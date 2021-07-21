@@ -25,6 +25,7 @@ const GymDetailsForm = (props) => {
           aria-describedby="basic-addon2"
         />
       </InputGroup>
+
       <InputGroup className="mb-3">
         <InputGroup.Text id="basic-addon2">Postcode:</InputGroup.Text>
         <FormControl id="postcode" aria-describedby="basic-addon3" />
