@@ -1,17 +1,18 @@
 import { InputGroup } from "react-bootstrap";
 import { FormControl } from "react-bootstrap";
-import { Form } from "react-bootstrap";
-// import "./GymDetailsForm.css";
+import { Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+import "./GymDetailsForm.css";
 
 const GymDetailsForm = (props) => {
-  const {} = props;
   return (
     <div id="container">
       <InputGroup className="mb-3">
         <InputGroup.Text id="basic-addon1">Name:</InputGroup.Text>
         <FormControl
-          placeholder="Username"
-          aria-label="Username"
+          placeholder="Gym name"
+          aria-label="gym-name"
           aria-describedby="basic-addon1"
         />
       </InputGroup>
@@ -19,25 +20,30 @@ const GymDetailsForm = (props) => {
       <InputGroup className="mb-3">
         <InputGroup.Text id="basic-addon2">Address:</InputGroup.Text>
         <FormControl
-          placeholder="Recipient's username"
-          aria-label="Recipient's username"
+          placeholder="Gym address"
+          aria-label="Gym-address"
           aria-describedby="basic-addon2"
         />
       </InputGroup>
       <InputGroup className="mb-3">
-        <Form.Label htmlFor="basic-url">Postcode:</Form.Label>
-        <FormControl id="basic-url" aria-describedby="basic-addon3" />
+        <InputGroup.Text id="basic-addon2">Postcode:</InputGroup.Text>
+        <FormControl id="postcode" aria-describedby="basic-addon3" />
       </InputGroup>
 
       <InputGroup className="mb-3">
         <InputGroup.Text>City:</InputGroup.Text>
-        <FormControl aria-label="Amount (to the nearest dollar)" />
+        <FormControl aria-label="City name" />
       </InputGroup>
 
-      <InputGroup>
+      <InputGroup className="mb-3">
         <InputGroup.Text>Contact number:</InputGroup.Text>
-        <FormControl id="basic-url" aria-describedby="basic-addon3" />
+        <FormControl id="Contact number" aria-describedby="basic-addon3" />
       </InputGroup>
+      <div className="d-grid gap-2">
+        <Button variant="primary" size="lg">
+          Submit
+        </Button>
+      </div>
     </div>
   );
 };

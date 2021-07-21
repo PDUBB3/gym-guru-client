@@ -1,17 +1,7 @@
-body {
-  background: #dfc2f2;
-  background-image: linear-gradient(to right, #ffffb3, #ffe6e6);
-  background-attachment: fixed;
-  background-size: cover;
-}
+/* body {
+  
+} */
 
-#container {
-  box-shadow: 0 15px 30px 1px grey;
-  background: rgba(161, 57, 57, 0.9);
-  text-align: center;
-  border-radius: 5px;
-  overflow: hidden;
-  margin: 5em auto;
-  height: 350px;
-  width: 700px;
-}
+/* #container {
+ 
+} */
