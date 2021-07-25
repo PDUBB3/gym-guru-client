@@ -58,6 +58,45 @@ const CreateGymDetailsForm = () => {
     );
   };
 
+  const renderFormThree = () => {
+    const exerciseFacilities = [
+      {
+        id: 1,
+        name: "Weight Area",
+      },
+      { id: 2, name: "Cardio Area" },
+      {
+        id: 3,
+        name: "Fitness Studio",
+      },
+      {
+        id: 4,
+        name: "Swimming Pool",
+      },
+      {
+        id: 5,
+        name: "Tennis Court",
+      },
+    ];
+
+    return (
+      <div>
+        {exerciseFacilities.map((exerciseFacility) => {
+          return (
+            <div key={exerciseFacility.id}>
+              <input
+                type="checkbox"
+                name="scales"
+                {...register(`exerciseFacilities_${exerciseFacility.id}`)}
+              />
+              <label>{exerciseFacility.name}</label>
+            </div>
+          );
+        })}
+      </div>
+    );
+  };
+
   const renderForm = () => {
     if (formNumber === 1) {
       return renderFormOne();
@@ -66,7 +105,7 @@ const CreateGymDetailsForm = () => {
       return <div>Form 2</div>;
     }
     if (formNumber === 3) {
-      return <div>Form 3</div>;
+      return renderFormThree();
     }
     if (formNumber === 4) {
       return <div>Form 4</div>;
