@@ -4,6 +4,7 @@ import { Form, FormField, Box, Button, TextInput } from "grommet";
 import styled from "styled-components";
 
 import "./GymDetailsForm.css";
+import FormInput from "../../FormInput";
 
 const MyStyledButton = styled(Button)`
   font-weight: bold;
@@ -21,64 +22,38 @@ const CreateGymDetailsForm = () => {
     console.log(formData);
   };
 
-  const [value, setValue] = useState({});
-
   return (
-    <Form
-      value={value}
-      onChange={(nextValue) => setValue(nextValue)}
-      onReset={() => setValue({})}
-      onSubmit={({ value }) => {}}
-    >
-      <FormField name="name" htmlFor="text-input-id" label="Name">
-        <TextInput
-          id="text-input-id"
-          name="name"
-          {...register("name", { required: true })}
-        />
-      </FormField>
-      <FormField name="address" htmlFor="text-input-id" label="Address">
-        <TextInput
-          id="text-input-id"
-          name="Address"
-          {...register("address", { required: true })}
-        />
-      </FormField>
-      <FormField name="city" htmlFor="text-input-id" label="City">
-        <TextInput
-          id="text-input-id"
-          name="City"
-          {...register("city", { required: true })}
-        />
-      </FormField>
-      <FormField name="postcode" htmlFor="text-input-id" label="Postcode">
-        <TextInput
-          id="text-input-id"
-          name="Postcode"
-          {...register("postcode", { required: true })}
-        />
-      </FormField>
-      <FormField
-        name="contactNumber"
-        htmlFor="text-input-id"
-        label="Contact Number"
-      >
-        <TextInput
-          id="text-input-id"
-          name="Contact Number"
-          {...register("contactNumber", { required: true })}
-        />
-      </FormField>
-      <Box direction="row" gap="medium">
-        <MyStyledButton
-          class="submit-btn"
-          type="submit"
-          primary
-          label="Submit"
-        />
-        <Button type="reset" label="Reset" />
-      </Box>
-    </Form>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <FormInput
+        placeholder="Name"
+        error={errors.name}
+        register={register("name", { required: true })}
+      />
+      <FormInput
+        placeholder="Address"
+        error={errors.address}
+        register={register("address", { required: true })}
+      />
+      <FormInput
+        placeholder="City"
+        error={errors.city}
+        register={register("city", { required: true })}
+      />
+      <FormInput
+        placeholder="Postcode"
+        error={errors.postcode}
+        register={register("postcode", { required: true })}
+      />
+      <FormInput
+        placeholder="Contact Number"
+        error={errors.contactNumber}
+        register={register("contactNumber", { required: true })}
+      />
+
+      <div className="button-block">
+        <button type="submit">Submit</button>
+      </div>
+    </form>
   );
 };
 

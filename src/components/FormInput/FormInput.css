@@ -1,0 +1,21 @@
+.form-element {
+  padding: 1rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border-radius: 2px;
+  border: 1px solid #aaaaaa;
+  line-height: 1.5px;
+  height: 48px;
+}
+
+.form-input::placeholder {
+  color: #aaaaaa;
+}
+
+.form-input--error::placeholder {
+  color: #fb5858;
+  font-size: 1.1rem;
+}

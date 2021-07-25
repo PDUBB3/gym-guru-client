@@ -1,3 +1,11 @@
 .submit-btn {
   background-color: linear-gradient(to left, #743ad5, #d53a9d);
 }
+
+.button-block {
+  display: grid;
+  grid-gap: 0.5rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  margin-top: 2rem;
+}
