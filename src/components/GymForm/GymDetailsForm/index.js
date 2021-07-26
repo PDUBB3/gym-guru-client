@@ -58,6 +58,8 @@ const CreateGymDetailsForm = () => {
     );
   };
 
+  const renderFormTwo = () => {};
+
   const renderFormThree = () => {
     const exerciseFacilities = [
       {
@@ -97,18 +99,72 @@ const CreateGymDetailsForm = () => {
     );
   };
 
+  const renderFormFour = () => {
+    const otherFacilities = [
+      {
+        id: 1,
+        name: "Parking",
+      },
+      {
+        id: 2,
+        name: "Sauna",
+      },
+      {
+        id: 3,
+        name: "Steam Room",
+      },
+      {
+        id: 4,
+        name: "Spa",
+      },
+      {
+        id: 5,
+        name: "Changing Room",
+      },
+      {
+        id: 6,
+        name: "Showers",
+      },
+      {
+        id: 7,
+        name: "Restaurant & Bar",
+      },
+      {
+        id: 8,
+        name: "Creche",
+      },
+    ];
+
+    return (
+      <div>
+        {otherFacilities.map((otherFacility) => {
+          return (
+            <div key={otherFacility.id}>
+              <input
+                type="checkbox"
+                name="scales"
+                {...register(`otherFacilities_${otherFacility.id}`)}
+              />
+              <label>{otherFacility.name}</label>
+            </div>
+          );
+        })}
+      </div>
+    );
+  };
+
   const renderForm = () => {
     if (formNumber === 1) {
       return renderFormOne();
     }
     if (formNumber === 2) {
-      return <div>Form 2</div>;
+      return renderFormTwo();
     }
     if (formNumber === 3) {
       return renderFormThree();
     }
     if (formNumber === 4) {
-      return <div>Form 4</div>;
+      return renderFormFour();
     }
   };
 
