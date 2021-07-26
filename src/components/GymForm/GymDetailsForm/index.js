@@ -28,7 +28,10 @@ const CreateGymDetailsForm = () => {
 
   const renderFormOne = () => {
     return (
-      <div>
+      <div class="form-box">
+        <div>
+          <h2 class="form-heading">Please enter your gym details</h2>
+        </div>
         <FormInput
           placeholder="Name"
           error={errors.name}
@@ -315,7 +318,7 @@ const CreateGymDetailsForm = () => {
       {renderForm()}
       <div className="button-block">
         {formNumber !== 1 && (
-          <button type="button" onClick={onClickPrevious}>
+          <button class="button" type="button" onClick={onClickPrevious}>
             Previous
           </button>
         )}

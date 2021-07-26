@@ -1,4 +1,4 @@
-.submit-btn {
+.button {
   background-color: linear-gradient(to left, #743ad5, #d53a9d);
 }
 
@@ -8,4 +8,17 @@
   padding-right: 1rem;
   padding-left: 1rem;
   margin-top: 2rem;
+}
+
+.form-box {
+  background: rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+}
+
+.form-heading {
+  text-align: center;
+  padding: 1rem;
+  padding-top: 1.5rem;
 }
