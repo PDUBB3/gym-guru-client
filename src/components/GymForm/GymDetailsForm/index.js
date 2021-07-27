@@ -318,16 +318,20 @@ const CreateGymDetailsForm = () => {
       {renderForm()}
       <div className="button-block">
         {formNumber !== 1 && (
-          <button class="button" type="button" onClick={onClickPrevious}>
+          <button className="button" type="button" onClick={onClickPrevious}>
             Previous
           </button>
         )}
         {formNumber !== 4 && (
-          <button type="button" onClick={onClickNext}>
+          <button className="button" type="button" onClick={onClickNext}>
             Next
           </button>
         )}
-        {formNumber === 4 && <button type="submit">Submit</button>}
+        {formNumber === 4 && (
+          <button className="button" type="submit">
+            Submit
+          </button>
+        )}
       </div>
     </form>
   );
