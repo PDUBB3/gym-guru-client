@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import FormInput from "../../FormInput";
 
 import "./GymDetailsForm.css";
+import "../OpeningHoursForm/OpeningHoursForm.css";
 
 const CreateGymDetailsForm = () => {
   const {
@@ -115,11 +116,11 @@ const CreateGymDetailsForm = () => {
     ];
 
     return (
-      <div>
+      <div className="opening-hours-container">
         {openingTimes.map((day) => {
           return (
-            <div key={day.dayIndex}>
-              <label>{day.dayName}</label>
+            <div className="opening-hours-items" key={day.dayIndex}>
+              <label>{day.dayShort}</label>
               <select name="from" id="from">
                 <option value="06:00">6:00 AM</option>{" "}
                 <option value="06:30">6:30 AM</option>{" "}
@@ -318,7 +319,11 @@ const CreateGymDetailsForm = () => {
       {renderForm()}
       <div className="button-block">
         {formNumber !== 1 && (
-          <button className="button" type="button" onClick={onClickPrevious}>
+          <button
+            className="button border-gradient"
+            type="button"
+            onClick={onClickPrevious}
+          >
             Previous
           </button>
         )}
