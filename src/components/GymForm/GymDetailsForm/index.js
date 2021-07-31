@@ -5,6 +5,7 @@ import FormInput from "../../FormInput";
 
 import "./GymDetailsForm.css";
 import "../OpeningHoursForm/OpeningHoursForm.css";
+import "../ExerciseFacilitiesForm/ExerciseFacilitiesForm.css";
 
 const CreateGymDetailsForm = () => {
   const {
@@ -228,19 +229,22 @@ const CreateGymDetailsForm = () => {
     ];
 
     return (
-      <div>
-        {exerciseFacilities.map((exerciseFacility) => {
-          return (
-            <div key={exerciseFacility.id}>
-              <input
-                type="checkbox"
-                name="scales"
-                {...register(`exerciseFacilities_${exerciseFacility.id}`)}
-              />
-              <label>{exerciseFacility.name}</label>
-            </div>
-          );
-        })}
+      <div className="form-box-facilities">
+        <div className="facilities-image-container"></div>
+        <div className="facilities-input">
+          {exerciseFacilities.map((exerciseFacility) => {
+            return (
+              <div className="facilities-checkbox" key={exerciseFacility.id}>
+                <input
+                  type="checkbox"
+                  name="scales"
+                  {...register(`exerciseFacilities_${exerciseFacility.id}`)}
+                />
+                <label>{exerciseFacility.name}</label>
+              </div>
+            );
+          })}
+        </div>
       </div>
     );
   };

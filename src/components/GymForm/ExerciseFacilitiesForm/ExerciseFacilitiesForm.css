@@ -1,0 +1,70 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+.opening-hours-container {
+  display: flex;
+  flex: wrap;
+  flex-direction: row;
+}
+
+button {
+  max-width: 6rem;
+  border-radius: 5px;
+  padding: 0.25rem;
+  background-color: #484a4b;
+  box-shadow: 0 20px 20px -10px #25293450;
+  color: white;
+}
+
+.button-block {
+  display: grid;
+  grid-gap: 0.5rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  margin-top: 2rem;
+}
+
+.form-box-facilities {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(2, 50%);
+  grid-column-gap: 10px;
+  overflow: hidden;
+  flex-wrap: wrap;
+  min-height: 80vh;
+  min-width: 50vw;
+  background-color: #f8f9fa;
+  background-image: fixed;
+  /* padding: 1rem; */
+  color: black;
+  border-radius: 5px;
+  box-shadow: 0 30px 30px -5px #25293450;
+}
+
+.facilities-image-container {
+  background-image: linear-gradient(to top, #202020 3%, rgba(0, 255, 0, 0) 100%),
+    url("https://images.unsplash.com/photo-1544033527-b192daee1f5b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80");
+}
+
+.facilities-input {
+  align-self: center;
+  justify-self: center;
+}
+
+.facilities-input input {
+  margin: 0.25rem;
+}
+
+.facilities-input label {
+  margin-left: 0.25rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.form-heading {
+  text-align: center;
+  padding: 1rem;
+  padding-top: 1.5rem;
+}

@@ -6,4 +6,6 @@ export const parameters = {
       date: /Date$/,
     },
   },
-}
+};
+
+// Import fonts here
