@@ -1,10 +1,13 @@
+import { BrowserRouter as Router } from "react-router-dom";
+
 import "./App.css";
+import Routes from "./Routes";
 
 const App = () => {
   return (
-    <div>
-      <h1>My App Goes Here</h1>
-    </div>
+    <Router>
+      <Routes />
+    </Router>
   );
 };
 
