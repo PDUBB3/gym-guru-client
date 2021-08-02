@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useMutation } from "@apollo/client";
 
 import FormInput from "../../FormInput";
+import CREATE_GYM from "../../../graphql/mutations";
 
 import "./GymDetailsForm.css";
 import "../OpeningHoursForm/OpeningHoursForm.css";
@@ -16,8 +18,18 @@ const CreateGymDetailsForm = () => {
 
   const [formNumber, setFormNumber] = useState(1);
 
-  const onSubmit = (formData) => {
-    console.log(formData);
+  const [createGym] = useMutation(CREATE_GYM, {
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  const onSubmit = async (formData) => {
+    await createGym({
+      variables: {
+        createGymInput: formData,
+      },
+    });
   };
 
   const onClickPrevious = () => {
