@@ -8,6 +8,8 @@ import OpeningHoursForm from "./OpeningHoursForm";
 import ExerciseFacilitiesForm from "./ExerciseFacilitiesForm";
 import OtherFacilitiesForm from "./OtherFacilitiesForm";
 
+import "./GymForm.css";
+
 const GymForm = () => {
   const {
     register,
@@ -55,7 +57,7 @@ const GymForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className="gymForm">
       {renderForm()}
       <div className="button-block">
         {formNumber !== 1 && (

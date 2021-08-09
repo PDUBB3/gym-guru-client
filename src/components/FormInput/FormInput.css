@@ -1,18 +1,21 @@
 .form-element {
-  padding: 0.75rem;
+  padding-bottom: 0.75rem;
+  width: 90%;
 }
 
 .form-input {
   width: 100%;
-  padding: 0.5rem 1rem;
-  border-radius: 2px;
+  padding: 0.5rem 0rem;
+  border-radius: 35px;
   border: 1px solid #aaaaaa;
   line-height: 1.5px;
   height: 48px;
+  text-align: center;
 }
 
 .form-input::placeholder {
   color: #aaaaaa;
+  text-align: center;
 }
 
 .form-input--error::placeholder {
