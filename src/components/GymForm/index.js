@@ -2,13 +2,13 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 
-import CREATE_GYM from "../../graphql/mutations";
+import { CREATE_GYM } from "../../graphql/mutations";
 import GymDetailsForm from "./GymDetailsForm";
 import OpeningHoursForm from "./OpeningHoursForm";
 import ExerciseFacilitiesForm from "./ExerciseFacilitiesForm";
 import OtherFacilitiesForm from "./OtherFacilitiesForm";
 
-const GymForm = (props) => {
+const GymForm = () => {
   const {
     register,
     handleSubmit,

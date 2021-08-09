@@ -1,4 +1,4 @@
-import "../ExerciseFacilitiesForm/ExerciseFacilitiesForm.css";
+import "./OpeningHoursForm.css";
 
 const OpeningHoursForm = () => {
   const openingTimes = [
