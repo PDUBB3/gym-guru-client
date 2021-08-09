@@ -26,7 +26,7 @@ const GymDetailsForm = ({ errors, register }) => {
       <FormInput
         placeholder="Postcode"
         error={errors.postcode}
-        register={register("postcode", { required: true })}
+        register={register("postCode", { required: true })}
       />
       <FormInput
         placeholder="Contact Number"

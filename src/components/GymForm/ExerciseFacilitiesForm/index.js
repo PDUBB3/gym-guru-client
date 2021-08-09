@@ -31,7 +31,7 @@ const ExerciseFacilitiesForm = ({ errors, register }) => {
               <input
                 type="checkbox"
                 name="scales"
-                {...register(`exerciseFacilities_${exerciseFacility.id}`)}
+                // {...register(`exerciseFacilities_${exerciseFacility.id}`)}
               />
               <label>{exerciseFacility.name}</label>
             </div>
