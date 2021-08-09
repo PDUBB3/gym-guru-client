@@ -7,15 +7,22 @@ export default {
   component: GymDetailsForm,
 };
 
-export const GymDetailsFormStory = (props) => <GymDetailsForm {...props} />;
+export const WithoutError = (props) => <GymDetailsForm {...props} />;
 
-GymDetailsFormStory.args = {
-  /** props here if any see sample below:
-    propName: value
-  */
-  name: "",
-  address: "",
-  postCode: "",
-  city: "",
-  contactNumber: "",
+export const WithError = (props) => <GymDetailsForm {...props} />;
+
+WithoutError.args = {
+  errors: {},
+  register: () => {},
+};
+
+WithError.args = {
+  errors: {
+    name: true,
+    address: true,
+    postcode: true,
+    city: true,
+    contactNumber: true,
+  },
+  register: () => {},
 };

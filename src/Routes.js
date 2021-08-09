@@ -1,4 +1,4 @@
-import { Switch, Route } from "react-router";
+import { Switch, Route } from "react-router-dom";
 
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
@@ -24,11 +24,11 @@ const Routes = () => {
       <Route exact path="/gyms">
         <GymsPage />
       </Route>
-      <Route exact path="/gyms/:id">
-        <GymPage />
-      </Route>
       <Route exact path="/gyms/new">
         <CreateGymPage />
+      </Route>
+      <Route exact path="/gyms/:id">
+        <GymPage />
       </Route>
       <Route exact path="/findbuddies">
         <BuddiesPage />

@@ -1,18 +1,55 @@
-import { Form } from "react-bootstrap";
+import "./OtherFacilitiesForm.css";
 
-import "bootstrap/dist/css/bootstrap.min.css";
+const OtherFacilitiesForm = ({ errors, register }) => {
+  const otherFacilities = [
+    {
+      id: 1,
+      name: "Parking",
+    },
+    {
+      id: 2,
+      name: "Sauna",
+    },
+    {
+      id: 3,
+      name: "Steam Room",
+    },
+    {
+      id: 4,
+      name: "Spa",
+    },
+    {
+      id: 5,
+      name: "Changing Room",
+    },
+    {
+      id: 6,
+      name: "Showers",
+    },
+    {
+      id: 7,
+      name: "Restaurant & Bar",
+    },
+    {
+      id: 8,
+      name: "Creche",
+    },
+  ];
 
-const OtherFacilitiesForm = (props) => {
-  const { otherFacilities } = props;
   return (
-    <div id="container">
-      {["checkbox", "radio"].map((otherFacilities) => {
-        return <div key={otherFacilities} className="mb-3"></div>;
+    <div>
+      {otherFacilities.map((otherFacility) => {
+        return (
+          <div key={otherFacility.id}>
+            <input
+              type="checkbox"
+              name="scales"
+              {...register(`otherFacilities_${otherFacility.id}`)}
+            />
+            <label>{otherFacility.name}</label>
+          </div>
+        );
       })}
-
-      {/* // .map((otherFacilities) => (
-      //   <div key={`default-${otherFacilities}`} className="mb-3"></div>
-      // ))} */}
     </div>
   );
 };

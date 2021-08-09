@@ -1,26 +1,43 @@
-import { Dropdown } from "react-bootstrap";
-// import { RangeStepInput } from "react-bootstrap";
+import "./ExerciseFacilitiesForm.css";
 
-import "bootstrap/dist/css/bootstrap.min.css";
+const ExerciseFacilitiesForm = ({ errors, register }) => {
+  const exerciseFacilities = [
+    {
+      id: 1,
+      name: "Weight Area",
+    },
+    { id: 2, name: "Cardio Area" },
+    {
+      id: 3,
+      name: "Fitness Studio",
+    },
+    {
+      id: 4,
+      name: "Swimming Pool",
+    },
+    {
+      id: 5,
+      name: "Tennis Court",
+    },
+  ];
 
-const ExerciseFacilitiesForm = (props) => {
-  const { facilities } = props;
   return (
-    <div id="container">
-      <Dropdown>
-        <Dropdown.Toggle variant="success" id="dropdown-basic">
-          Exercise Facilities
-        </Dropdown.Toggle>
-
-        {/* Need href for range slider here */}
-        <Dropdown.Menu>
-          <div>
-            {facilities.map((facilities) => {
-              return <Dropdown.Item>{facilities}</Dropdown.Item>;
-            })}
-          </div>
-        </Dropdown.Menu>
-      </Dropdown>
+    <div className="form-box-facilities">
+      <div className="facilities-image-container"></div>
+      <div className="facilities-input">
+        {exerciseFacilities.map((exerciseFacility) => {
+          return (
+            <div className="facilities-checkbox" key={exerciseFacility.id}>
+              <input
+                type="checkbox"
+                name="scales"
+                {...register(`exerciseFacilities_${exerciseFacility.id}`)}
+              />
+              <label>{exerciseFacility.name}</label>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
