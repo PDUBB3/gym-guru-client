@@ -19,6 +19,9 @@ button {
   padding-left: 1rem;
   margin-top: 2rem;
 }
+.loginForm {
+  width: 90%;
+}
 
 .form-box {
   /* background-image: linear-gradient(180deg, #bc00dd, #b100e8);
@@ -38,6 +41,7 @@ button {
   border: 2px solid #484a4b;
   border-radius: 5px;
   box-shadow: 0 30px 30px -5px #25293450;
+  width: 60%;
 }
 
 .form-heading {
