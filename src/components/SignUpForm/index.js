@@ -40,6 +40,18 @@ const SignUpForm = () => {
 
         <ImageUpload />
 
+        <FormInput
+          placeholder="City"
+          error={errors.city}
+          register={register("city", { required: true })}
+        />
+
+        <FormInput
+          placeholder="Type a short bio about yourself here"
+          error={errors.bio}
+          register={register("bio", { required: true })}
+        />
+
         <button className="button border-gradient" type="submit">
           Sign Up
         </button>
