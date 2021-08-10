@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import FormInput from "../FormInput";
 import ImageUpload from "../ImageUpload";
 import PasswordInput from "../PasswordInput";
+import SelectInterests from "../SelectInterests";
 
 import "./SignUpForm.css";
 
@@ -51,6 +52,8 @@ const SignUpForm = () => {
           error={errors.bio}
           register={register("bio", { required: true })}
         />
+
+        <SelectInterests />
 
         <button className="button border-gradient" type="submit">
           Sign Up
