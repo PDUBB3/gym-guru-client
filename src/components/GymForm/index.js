@@ -26,10 +26,17 @@ const GymForm = () => {
   });
 
   const onSubmit = async (formData) => {
-    console.log(formData);
+    const otherFacilities = Object.entries(formData.otherFacilities)
+      .filter((each) => {
+        return each[1];
+      })
+      .map((each) => {
+        return each[0];
+      });
+
     await createGym({
       variables: {
-        createGymInput: formData,
+        createGymInput: { ...formData, otherFacilities },
       },
     });
   };

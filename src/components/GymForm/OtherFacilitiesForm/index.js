@@ -45,7 +45,7 @@ const OtherFacilitiesForm = ({ errors, register }) => {
               type="checkbox"
               name="scales"
               value={otherFacility.id}
-              {...register(`otherFacilities.${index}.${otherFacility.id}`)}
+              {...register(`otherFacilities.${otherFacility.id}`)}
             />
             <label>{otherFacility.name}</label>
           </div>
