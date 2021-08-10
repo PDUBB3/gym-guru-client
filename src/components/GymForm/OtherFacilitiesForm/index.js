@@ -3,48 +3,49 @@ import "./OtherFacilitiesForm.css";
 const OtherFacilitiesForm = ({ errors, register }) => {
   const otherFacilities = [
     {
-      id: 1,
+      id: "60fbf16966e59b3e340604bb",
       name: "Parking",
     },
     {
-      id: 2,
+      id: "60fbf16966e59b3e340604bc",
       name: "Sauna",
     },
     {
-      id: 3,
+      id: "60fbf16966e59b3e340604bd",
       name: "Steam Room",
     },
     {
-      id: 4,
+      id: "60fbf16966e59b3e340604be",
       name: "Spa",
     },
     {
-      id: 5,
+      id: "60fbf16966e59b3e340604bf",
       name: "Changing Room",
     },
     {
-      id: 6,
+      id: "60fbf16966e59b3e340604c0",
       name: "Showers",
     },
     {
-      id: 7,
+      id: "60fbf16966e59b3e340604c1",
       name: "Restaurant & Bar",
     },
     {
-      id: 8,
+      id: "60fbf16966e59b3e340604c2",
       name: "Creche",
     },
   ];
 
   return (
     <div>
-      {otherFacilities.map((otherFacility) => {
+      {otherFacilities.map((otherFacility, index) => {
         return (
           <div key={otherFacility.id}>
             <input
               type="checkbox"
               name="scales"
-              // {...register(`otherFacilities_${otherFacility.id}`)}
+              value={otherFacility.id}
+              {...register(`otherFacilities.${index}.${otherFacility.id}`)}
             />
             <label>{otherFacility.name}</label>
           </div>

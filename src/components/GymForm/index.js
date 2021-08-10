@@ -26,7 +26,7 @@ const GymForm = () => {
   });
 
   const onSubmit = async (formData) => {
-    console.log("hi");
+    console.log(formData);
     await createGym({
       variables: {
         createGymInput: formData,
