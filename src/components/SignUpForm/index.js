@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import FormInput from "../FormInput";
+import PasswordInput from "../PasswordInput";
 
 import "./SignUpForm.css";
 
@@ -33,26 +34,8 @@ const SignUpForm = () => {
           error={errors.email}
           register={register("email", { required: true })}
         />
-        <FormInput
-          placeholder="Password"
-          error={errors.password}
-          register={register("password", { required: true })}
-        />
-        <FormInput
-          placeholder="Username"
-          error={errors.username}
-          register={register("username", { required: true })}
-        />
-        <FormInput
-          placeholder="Username"
-          error={errors.username}
-          register={register("username", { required: true })}
-        />
-        <FormInput
-          placeholder="Password"
-          error={errors.password}
-          register={register("password", { required: true })}
-        />
+
+        <PasswordInput />
 
         <button className="button border-gradient" type="submit">
           Sign in
