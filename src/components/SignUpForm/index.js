@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import FormInput from "../FormInput";
+import ImageUpload from "../ImageUpload";
 import PasswordInput from "../PasswordInput";
 
 import "./SignUpForm.css";
@@ -15,7 +16,7 @@ const SignUpForm = () => {
   };
   return (
     <div class="form-box">
-      <form className="loginForm" onSubmit={handleSubmit(onSubmit)}>
+      <form className="signUpForm" onSubmit={handleSubmit(onSubmit)}>
         <div>
           <h2 class="form-heading">Sign Up Here</h2>
         </div>
@@ -37,8 +38,10 @@ const SignUpForm = () => {
 
         <PasswordInput />
 
+        <ImageUpload />
+
         <button className="button border-gradient" type="submit">
-          Sign in
+          Sign Up
         </button>
       </form>
     </div>
