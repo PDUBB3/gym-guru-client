@@ -17,6 +17,7 @@ const SignUpForm = ({ redirect = "/login" }) => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm();
 
@@ -28,11 +29,12 @@ const SignUpForm = ({ redirect = "/login" }) => {
   });
 
   const onSubmit = async (formData) => {
-    await signUp({
-      variables: {
-        signUpInput: formData,
-      },
-    });
+    console.log(formData);
+    // await signUp({
+    //   variables: {
+    //     signUpInput: formData,
+    //   },
+    // });
   };
 
   if (loading) {
@@ -68,7 +70,7 @@ const SignUpForm = ({ redirect = "/login" }) => {
 
         <PasswordInput register={register} />
 
-        <ImageUpload />
+        <ImageUpload setValue={setValue} />
 
         <FormInput
           placeholder="City"
