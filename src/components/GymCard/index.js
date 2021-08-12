@@ -13,6 +13,8 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
+import "./GymCard.css";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
@@ -34,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const GymCard = () => {
+const GymCard = ({ name }) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -43,65 +45,69 @@ const GymCard = () => {
   };
 
   return (
-    <Card className={classes.root}>
-      <CardHeader title="Gymshark Solihull" />
-      <CardMedia
-        className={classes.media}
-        image="https://mir-s3-cdn-cf.behance.net/projects/max_808/f7189086626231.Y3JvcCwxMDgwLDg0NCwwLDExNw.png"
-        title="Gymshark"
-      />
-      <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          Gymshark is a fitness apparel & accessories brand, manufacturer and
-          online retailer based in the United Kingdom, supported by millions of
-          highly engaged social media followers and customers in 131 countries.
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </IconButton>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
+    <div className="gymCard">
+      <Card className={classes.root}>
+        <CardHeader title={name} />
+        <CardMedia
+          className={classes.media}
+          image="https://mir-s3-cdn-cf.behance.net/projects/max_808/f7189086626231.Y3JvcCwxMDgwLDg0NCwwLDExNw.png"
+          title="Gymshark"
+        />
         <CardContent>
-          <Typography paragraph>More Info:</Typography>
-          <Typography paragraph>
-            Created in 2012 by teenager Ben Francis and a group of his
-            high-school friends. Gymshark has grown from a screen printing
-            operation in a garage, into one of the fastest growing and most
-            recognisable brands in fitness. This growth comes from a devotion to
-            producing innovative, effective performance wear and an
-            ever-expanding social presence, and above all a commitment to the
-            Gymshark vision
-          </Typography>
-          <Typography paragraph>
-            Add rice and stir very gently to distribute. Top with artichokes and
-            peppers, and cook without stirring, until most of the liquid is
-            absorbed, 15 to 18 minutes. Reduce heat to medium-low, add reserved
-            shrimp and mussels, tucking them down into the rice, and cook again
-            without stirring, until mussels have opened and rice is just tender,
-            5 to 7 minutes more. (Discard any mussels that don’t open.)
-          </Typography>
-          <Typography>
-            Set aside off of the heat to let rest for 10 minutes, and then
-            serve.
+          <Typography variant="body2" color="textSecondary" component="p">
+            Gymshark is a fitness apparel & accessories brand, manufacturer and
+            online retailer based in the United Kingdom, supported by millions
+            of highly engaged social media followers and customers in 131
+            countries.
           </Typography>
         </CardContent>
-      </Collapse>
-    </Card>
+        <CardActions disableSpacing>
+          <IconButton aria-label="add to favorites">
+            <FavoriteIcon />
+          </IconButton>
+          <IconButton aria-label="share">
+            <ShareIcon />
+          </IconButton>
+          <IconButton
+            className={clsx(classes.expand, {
+              [classes.expandOpen]: expanded,
+            })}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+          >
+            <ExpandMoreIcon />
+          </IconButton>
+        </CardActions>
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <CardContent>
+            <Typography paragraph>More Info:</Typography>
+            <Typography paragraph>
+              Created in 2012 by teenager Ben Francis and a group of his
+              high-school friends. Gymshark has grown from a screen printing
+              operation in a garage, into one of the fastest growing and most
+              recognisable brands in fitness. This growth comes from a devotion
+              to producing innovative, effective performance wear and an
+              ever-expanding social presence, and above all a commitment to the
+              Gymshark vision
+            </Typography>
+            <Typography paragraph>
+              Add rice and stir very gently to distribute. Top with artichokes
+              and peppers, and cook without stirring, until most of the liquid
+              is absorbed, 15 to 18 minutes. Reduce heat to medium-low, add
+              reserved shrimp and mussels, tucking them down into the rice, and
+              cook again without stirring, until mussels have opened and rice is
+              just tender, 5 to 7 minutes more. (Discard any mussels that don’t
+              open.)
+            </Typography>
+            <Typography>
+              Set aside off of the heat to let rest for 10 minutes, and then
+              serve.
+            </Typography>
+          </CardContent>
+        </Collapse>
+      </Card>
+    </div>
   );
 };
 
