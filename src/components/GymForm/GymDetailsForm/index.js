@@ -6,7 +6,7 @@ const GymDetailsForm = ({ errors, register }) => {
   return (
     <div class="form-box">
       <div>
-        <h2 class="form-heading">Please enter your gym details</h2>
+        <h2 class="form-heading">Please enter your gym details:</h2>
       </div>
       <FormInput
         placeholder="Name"
@@ -25,8 +25,8 @@ const GymDetailsForm = ({ errors, register }) => {
       />
       <FormInput
         placeholder="Postcode"
-        error={errors.postcode}
-        register={register("postcode", { required: true })}
+        error={errors.postCode}
+        register={register("postCode", { required: true })}
       />
       <FormInput
         placeholder="Contact Number"

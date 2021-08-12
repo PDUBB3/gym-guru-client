@@ -18,14 +18,6 @@ button {
   color: white;
 }
 
-.button-block {
-  display: grid;
-  grid-gap: 0.5rem;
-  padding-right: 1rem;
-  padding-left: 1rem;
-  margin-top: 2rem;
-}
-
 .form-box-facilities {
   display: grid;
   justify-content: center;

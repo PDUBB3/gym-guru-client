@@ -1,8 +1,30 @@
-const HomePage = () => {
+// import { Carousel } from "bootstrap";
+import Carousel from "../utils/Carousel";
+
+import Header from "../components/Header/Header";
+
+import "../index.css";
+
+const HomePage = (props) => {
   return (
-    <div>
-      <h1>This is the homepage</h1>
-    </div>
+    <>
+      <Header />
+      <Carousel>
+        {
+          <div id="app">
+            <a
+              href="https://youtu.be/5ptXXNjuUfg"
+              target="_blank"
+              rel="noreferrer"
+              data-keyframers-credit
+              style="color: #FFF"
+            >
+              Link text
+            </a>
+          </div>
+        }
+      </Carousel>
+    </>
   );
 };
 
