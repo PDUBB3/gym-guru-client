@@ -12,9 +12,6 @@ import CreateGymPage from "./pages/CreateGymPage";
 const Routes = () => {
   return (
     <Switch>
-      <Route exact path="/">
-        <HomePage />
-      </Route>
       <Route exact path="/login">
         <LoginPage />
       </Route>
@@ -35,6 +32,9 @@ const Routes = () => {
       </Route>
       <Route exact path="/:username">
         <ProfilePage />
+      </Route>
+      <Route exact path="/">
+        <HomePage />
       </Route>
     </Switch>
   );
