@@ -66,7 +66,7 @@ const SignUpForm = ({ redirect = "/login" }) => {
           register={register("username", { required: true })}
         />
 
-        <PasswordInput />
+        <PasswordInput register={register} />
 
         <ImageUpload />
 

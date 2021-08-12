@@ -8,14 +8,11 @@ const GymOwnerCheckBox = ({
 }) => {
   return (
     <div>
-      <form>
-        <input type={type} value="true">
-          <label for="yes">Yes</label>
-        </input>
-        <input type={type} value="no">
-          <label for="no">No</label>
-        </input>
-      </form>
+      <p> Are you the owner of a gym?</p>
+      <label for="yes">Yes</label>
+      <input type={type}></input>
+      <label for="no">No</label>
+      <input type={type}></input>
     </div>
   );
 };

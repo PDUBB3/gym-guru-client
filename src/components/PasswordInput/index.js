@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import "./PasswordInput.css";
 
-export default function PasswordInput() {
+export default function PasswordInput({ register }) {
   const [passwordShown, setPasswordShown] = useState(false);
 
   const togglePassword = () => {
@@ -15,6 +15,7 @@ export default function PasswordInput() {
         className="password-input"
         placeholder="Password"
         type={passwordShown ? "text" : "password"}
+        {...register("password", { required: true })}
       />
       <button onClick={togglePassword}>Show</button>
     </div>
