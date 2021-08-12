@@ -24,6 +24,7 @@ const GymPage = ({ rating }) => {
                 <FaStar />
                 <FaStar />
                 <FaStar />
+                <span className="rating">{rating}/10</span>
               </div>
             )) ||
               (rating >= 8 && (
@@ -33,6 +34,7 @@ const GymPage = ({ rating }) => {
                   <FaStar />
                   <FaStar />
                   <FaRegStar />
+                  <span className="rating">{rating}/10</span>
                 </div>
               )) ||
               (rating >= 6 && (
@@ -42,6 +44,7 @@ const GymPage = ({ rating }) => {
                   <FaStar />
                   <FaRegStar />
                   <FaRegStar />
+                  <span className="rating">{rating}/10</span>
                 </div>
               )) ||
               (rating >= 3 && (
@@ -51,6 +54,7 @@ const GymPage = ({ rating }) => {
                   <FaRegStar />
                   <FaRegStar />
                   <FaRegStar />
+                  <span className="rating">{rating}/10</span>
                 </div>
               )) ||
               (rating >= 1 && (
@@ -60,6 +64,7 @@ const GymPage = ({ rating }) => {
                   <FaRegStar />
                   <FaRegStar />
                   <FaRegStar />
+                  <span className="rating">{rating}/10</span>
                 </div>
               )) ||
               (rating === 0 && (
@@ -69,6 +74,7 @@ const GymPage = ({ rating }) => {
                   <FaRegStar />
                   <FaRegStar />
                   <FaRegStar />
+                  <span className="rating">{rating}/10</span>
                 </div>
               ))}
           </div>

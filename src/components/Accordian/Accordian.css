@@ -1,10 +1,10 @@
 .contact {
-  width: 550px;
+  width: 525px;
   text-align: center;
 }
 
 .table {
-  width: 550px;
+  width: 525px;
 }
 
 .list-item {
@@ -15,5 +15,5 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  width: 550px;
+  width: 525px;
 }

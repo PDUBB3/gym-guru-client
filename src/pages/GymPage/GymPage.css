@@ -1,6 +1,6 @@
 .main-container {
   margin: 3rem;
-  height: 500px;
+  height: 400px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -18,7 +18,7 @@
 
 .title {
   padding: 1rem 0;
-  margin-left: 2rem;
+  margin: 0 2rem;
   border-bottom: 2px solid black;
 }
 
@@ -27,6 +27,11 @@
   margin-top: 1rem;
 }
 
+.rating {
+  padding: 0.5rem;
+}
+
 .accordian {
-  margin-top: 1rem;
+  margin: 1rem 0;
+  margin-right: 2rem;
 }
