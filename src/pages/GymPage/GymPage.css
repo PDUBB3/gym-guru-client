@@ -1,0 +1,28 @@
+.main-container {
+  margin: 3rem;
+  height: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.image-container {
+  width: 50%;
+  text-align: center;
+  align-self: center;
+}
+
+.about-container {
+  width: 50%;
+}
+
+.title {
+  padding: 1rem;
+  margin-left: 2rem;
+  border-bottom: 2px solid black;
+}
+
+.info-container {
+  margin-left: 2rem;
+  margin-top: 1rem;
+}
