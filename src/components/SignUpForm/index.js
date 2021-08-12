@@ -82,7 +82,7 @@ const SignUpForm = ({ redirect = "/login" }) => {
           register={register("bio", { required: true })}
         />
 
-        <GymOwnerCheckBox />
+        <GymOwnerCheckBox register={register} />
         <button className="signUpBtn" type="submit">
           Sign Up
         </button>

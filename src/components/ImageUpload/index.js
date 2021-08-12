@@ -1,26 +1,36 @@
-const React = require("react");
+import { useState } from "react";
 
-class ImageUpload extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      file: null,
+const ImageUpload = () => {
+  const [file, setFile] = useState();
+  const [imagePreviewUrl, setImagePreviewUrl] = useState();
+
+  const handleChange = (event) => {
+    console.log(event.target.files[0]);
+    const reader = new FileReader();
+
+    const selectedFile = event.target.files[0];
+    reader.onloadend = () => {
+      setFile(URL.createObjectURL(selectedFile));
+      setImagePreviewUrl(reader.result);
     };
-    this.handleChange = this.handleChange.bind(this);
-  }
-  handleChange(event) {
-    this.setState({
-      file: URL.createObjectURL(event.target.files[0]),
-    });
-  }
-  render() {
-    return (
-      <div className="form-element">
-        <p> Choose a profile image:</p>
-        <br></br>
-        <input type="file" onChange={this.handleChange} />
-      </div>
-    );
-  }
-}
+    reader.readAsDataURL(selectedFile);
+  };
+
+  console.log({ file, imagePreviewUrl });
+  return (
+    <div className="form-element">
+      <p> Choose a profile image:</p>
+      <br></br>
+      <input type="file" onChange={handleChange} />
+      {imagePreviewUrl && (
+        <img
+          alt="profile-img"
+          style={{ height: "100px", width: "100px" }}
+          src={imagePreviewUrl}
+        />
+      )}
+    </div>
+  );
+};
+
 export default ImageUpload;
