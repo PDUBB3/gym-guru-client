@@ -1,8 +1,23 @@
+// import { Carousel } from "bootstrap";
+import Carousel from "../utils/Carousel";
+import "../index.css";
+
 const HomePage = () => {
   return (
-    <div>
-      <h1>This is the homepage</h1>
-    </div>
+    <>
+      <Carousel>
+        {
+          <div id="app">
+            <a
+              href="https://youtu.be/5ptXXNjuUfg"
+              target="_blank"
+              data-keyframers-credit
+              style="color: #FFF"
+            ></a>
+          </div>
+        }
+      </Carousel>
+    </>
   );
 };
 
