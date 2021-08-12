@@ -8,6 +8,8 @@ import OpeningHoursForm from "./OpeningHoursForm";
 import ExerciseFacilitiesForm from "./ExerciseFacilitiesForm";
 import OtherFacilitiesForm from "./OtherFacilitiesForm";
 
+import "./GymForm.css";
+
 const GymForm = () => {
   const {
     register,
@@ -24,9 +26,80 @@ const GymForm = () => {
   });
 
   const onSubmit = async (formData) => {
+    console.log(formData);
+
+    const otherFacilities = Object.entries(formData.otherFacilities)
+      .filter((each) => {
+        return each[1];
+      })
+      .map((each) => {
+        return each[0];
+      });
+
+    const exerciseFacilities = Object.entries(formData.exerciseFacilities)
+      .filter((each) => {
+        return each[1];
+      })
+      .map((each) => {
+        return each[0];
+      });
+
+    const openingTimes = formData.openingTimes.map((each, dayIndex) => {
+      const openingTimesMap = {
+        1: {
+          dayName: "Sunday",
+          dayShort: "Sun",
+        },
+        2: {
+          dayName: "Monday",
+          dayShort: "Mon",
+        },
+        3: {
+          dayName: "Tuesday",
+          dayShort: "Tue",
+        },
+        4: {
+          dayName: "Wednesday",
+          dayShort: "Wed",
+        },
+        5: {
+          dayName: "Thursday",
+          dayShort: "Thu",
+        },
+        6: {
+          dayName: "Friday",
+          dayShort: "Fri",
+        },
+        7: {
+          dayName: "Saturday",
+          dayShort: "Sat",
+        },
+      };
+
+      const { startTime, endTime } = each;
+
+      const startTimeValue = Object.entries(startTime)[0][1];
+      const endTimeValue = Object.entries(endTime)[0][1];
+
+      return {
+        dayIndex,
+        dayName: openingTimesMap[dayIndex].dayName,
+        dayShort: openingTimesMap[dayIndex].dayShort,
+        endTime: endTimeValue,
+        startTime: startTimeValue,
+      };
+    });
+
+    console.log(openingTimes);
+
     await createGym({
       variables: {
-        createGymInput: formData,
+        createGymInput: {
+          ...formData,
+          openingTimes,
+          otherFacilities,
+          exerciseFacilities,
+        },
       },
     });
   };
@@ -44,7 +117,7 @@ const GymForm = () => {
       return <GymDetailsForm errors={errors} register={register} />;
     }
     if (formNumber === 2) {
-      return <OpeningHoursForm />;
+      return <OpeningHoursForm errors={errors} register={register} />;
     }
     if (formNumber === 3) {
       return <ExerciseFacilitiesForm errors={errors} register={register} />;
@@ -55,7 +128,7 @@ const GymForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className="gymForm">
       {renderForm()}
       <div className="button-block">
         {formNumber !== 1 && (
