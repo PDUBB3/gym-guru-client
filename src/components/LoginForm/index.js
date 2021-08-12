@@ -68,6 +68,9 @@ const LoginForm = ({ redirect }) => {
         <button className="button border-gradient" type="submit">
           Sign in
         </button>
+        {error && !data && (
+          <div>Incorrect email or password. Please try again.</div>
+        )}
       </form>
     </div>
   );
