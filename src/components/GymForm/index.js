@@ -34,9 +34,17 @@ const GymForm = () => {
         return each[0];
       });
 
+    const exerciseFacilities = Object.entries(formData.exerciseFacilities)
+      .filter((each) => {
+        return each[1];
+      })
+      .map((each) => {
+        return each[0];
+      });
+
     await createGym({
       variables: {
-        createGymInput: { ...formData, otherFacilities },
+        createGymInput: { ...formData, otherFacilities, exerciseFacilities },
       },
     });
   };
