@@ -1,4 +1,9 @@
+import { useMutation } from "@apollo/client";
 import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
+
+import { SIGNUP } from "../../graphql/mutations";
+
 import FormInput from "../FormInput";
 import ImageUpload from "../ImageUpload";
 import PasswordInput from "../PasswordInput";
@@ -6,15 +11,34 @@ import SelectInterests from "../SelectInterests";
 
 import "./SignUpForm.css";
 
-const SignUpForm = () => {
+const SignUpForm = ({ redirect = "/login" }) => {
+  const history = useHistory();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (formData) => {
-    console.log(formData);
+
+  const [signUp, { data, error, loading }] = useMutation(SIGNUP, {
+    onCompleted: () => {
+      history.push(redirect);
+    },
+    onError: () => {},
+  });
+
+  const onSubmit = async (formData) => {
+    await signUp({
+      variables: {
+        signUpInput: formData,
+      },
+    });
   };
+
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
+
   return (
     <div class="form-box">
       <form className="signUpForm" onSubmit={handleSubmit(onSubmit)}>
@@ -58,6 +82,8 @@ const SignUpForm = () => {
         <button className="button border-gradient" type="submit">
           Sign Up
         </button>
+
+        {error && !data && <div>Failed to sign up. Please try again.</div>}
       </form>
     </div>
   );
