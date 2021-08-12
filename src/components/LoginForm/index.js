@@ -23,15 +23,13 @@ const LoginForm = ({ redirect }) => {
     onCompleted: (data) => {
       const {
         token,
-        user: { email, id, firstName, lastName },
+        user: { username, id },
       } = data.login;
 
       onLogin({
         id,
-        email,
         token,
-        firstName,
-        lastName,
+        username,
       });
 
       history.push(redirect || "/");
@@ -39,9 +37,10 @@ const LoginForm = ({ redirect }) => {
     onError: () => {},
   });
 
-  const { onLogin } = useContext(UserContext);
+  const onLogin = useContext(UserContext);
 
   const onSubmit = async (formData) => {
+    console.log(formData);
     await login({
       variables: {
         loginInput: formData,
@@ -63,7 +62,7 @@ const LoginForm = ({ redirect }) => {
           error={errors.username}
           register={register("username", { required: true })}
         />
-        <PasswordInput />
+        <PasswordInput register={register("password", { required: true })} />
 
         <button className="button border-gradient" type="submit">
           Sign in

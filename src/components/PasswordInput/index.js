@@ -15,7 +15,7 @@ export default function PasswordInput({ register }) {
         className="password-input"
         placeholder="Password"
         type={passwordShown ? "text" : "password"}
-        {...register("password", { required: true })}
+        register={register}
       />
       <button onClick={togglePassword}>Show</button>
     </div>
