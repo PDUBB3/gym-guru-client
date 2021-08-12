@@ -1,6 +1,6 @@
 import "./OpeningHoursForm.css";
 
-const OpeningHoursForm = () => {
+const OpeningHoursForm = ({ errors, register }) => {
   const openingTimes = [
     {
       dayIndex: 1,
@@ -60,7 +60,13 @@ const OpeningHoursForm = () => {
           <div className="opening-hours-container">
             <div className="opening-hours-items" key={day.dayIndex}>
               <label>{day.dayShort}</label>
-              <select name="from" id="from">
+              <select
+                name="from"
+                id="from"
+                {...register(
+                  `openingTimes.${day.dayIndex}.startTime.${day.startTime}`
+                )}
+              >
                 <option value="06:00">6:00 AM</option>
                 <option value="06:30">6:30 AM</option>
                 <option value="07:00">7:00 AM</option>
@@ -98,7 +104,13 @@ const OpeningHoursForm = () => {
                 <option value="22:00">10:00 PM</option>
               </select>
               <label>to</label>
-              <select name="to" id="to">
+              <select
+                name="to"
+                id="to"
+                {...register(
+                  `openingTimes.${day.dayIndex}.endTime.${day.endTime}`
+                )}
+              >
                 <option value="06:00">6:00 AM</option>
                 <option value="06:30">6:30 AM</option>
                 <option value="07:00">7:00 AM</option>
