@@ -11,6 +11,7 @@ const GymPage = ({ rating }) => {
           src="https://prod-we-cdn-media.puregym.com/media/805029/calcot-free-weights.jpg?quality=80"
           alt="pure gym"
           height="350"
+          class="image"
         />
       </div>
       <div className="about-container">
