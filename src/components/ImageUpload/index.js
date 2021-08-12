@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Controller } from "react-hook-form";
 
 const ImageUpload = ({ setValue }) => {
   const [file, setFile] = useState();
@@ -15,7 +14,7 @@ const ImageUpload = ({ setValue }) => {
       setImagePreviewUrl(reader.result);
       setValue("profileImageUrl", reader.result);
     };
-    reader.readAsDataURL(selectedFile);
+    reader.readAsArrayBuffer(selectedFile);
   };
 
   console.log({ file, imagePreviewUrl });

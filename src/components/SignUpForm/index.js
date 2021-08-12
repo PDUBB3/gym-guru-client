@@ -30,11 +30,11 @@ const SignUpForm = ({ redirect = "/login" }) => {
 
   const onSubmit = async (formData) => {
     console.log(formData);
-    // await signUp({
-    //   variables: {
-    //     signUpInput: formData,
-    //   },
-    // });
+    await signUp({
+      variables: {
+        signUpInput: formData,
+      },
+    });
   };
 
   if (loading) {
@@ -85,6 +85,7 @@ const SignUpForm = ({ redirect = "/login" }) => {
         />
 
         <GymOwnerCheckBox register={register} />
+
         <button className="signUpBtn" type="submit">
           Sign Up
         </button>
