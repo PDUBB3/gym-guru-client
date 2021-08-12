@@ -86,7 +86,11 @@ const SignUpForm = ({ redirect = "/login" }) => {
 
         <GymOwnerCheckBox register={register} />
 
-        <button className="signUpBtn" type="submit">
+        <button
+          onSubmit={handleSubmit(onSubmit)}
+          className="signUpBtn"
+          type="submit"
+        >
           Sign Up
         </button>
 
