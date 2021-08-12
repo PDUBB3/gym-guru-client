@@ -1,41 +1,23 @@
 import React from "react";
-import ReactDOM from "react-dom";
-
-console.clear();
 
 const slides = [
   {
-    title: "Gym 1",
-    subtitle: "Peru",
-    description: "Adventure is never far away",
     image:
       "https://images.unsplash.com/photo-1540496905036-5937c10647cc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
   },
   {
-    title: "Gym 2",
-    subtitle: "France",
-    description: "Let your dreams come true",
     image:
       "https://images.unsplash.com/photo-1540558870477-e8c59bf88421?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGd5bXN8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
   },
   {
-    title: "Gym 3",
-    subtitle: "Australia",
-    description: "A piece of heaven",
     image:
       "https://images.unsplash.com/photo-1593079831268-3381b0db4a77?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
   },
   {
-    title: "Gym 4",
-    subtitle: "Australia",
-    description: "A piece of heaven",
     image:
       "https://images.unsplash.com/photo-1568225506950-666cd1e7b2c5?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzQxfHxneW18ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
   },
   {
-    title: "Gym 5",
-    subtitle: "Australia",
-    description: "A piece of heaven",
     image:
       "https://images.unsplash.com/photo-1577992805652-44fed5545066?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTkyfHxneW18ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
   },
@@ -129,11 +111,7 @@ function Slide({ slide, offset }) {
           backgroundImage: `url('${slide.image}')`,
         }}
       >
-        <div className="slideContentInner">
-          <h2 className="slideTitle">{slide.title}</h2>
-          <h3 className="slideSubtitle">{slide.subtitle}</h3>
-          <p className="slideDescription">{slide.description}</p>
-        </div>
+        <div className="slideContentInner"></div>
       </div>
     </div>
   );
@@ -144,13 +122,27 @@ function Carousel() {
 
   return (
     <div className="slides">
-      <button onClick={() => dispatch({ type: "PREV" })}>‹</button>
+      <div className="button-container-left">
+        <button
+          className="carousel-button"
+          onClick={() => dispatch({ type: "PREV" })}
+        >
+          ‹
+        </button>
+      </div>
 
       {[...slides, ...slides, ...slides].map((slide, i) => {
         let offset = slides.length + (state.slideIndex - i);
         return <Slide slide={slide} offset={offset} key={i} />;
       })}
-      <button onClick={() => dispatch({ type: "NEXT" })}>›</button>
+      <div className="button-container-right">
+        <button
+          className="carousel-button"
+          onClick={() => dispatch({ type: "NEXT" })}
+        >
+          ›
+        </button>
+      </div>
     </div>
   );
 }

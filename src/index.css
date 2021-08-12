@@ -1,3 +1,7 @@
+* {
+  overflow-x: hidden;
+}
+
 .carousel-container {
   display: flex;
   justify-content: center;
@@ -17,12 +21,39 @@ button :hover {
   opacity: 1;
 }
 
+.button-container-left {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.button-container-right {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  margin-right: 2vw;
+}
+
+.carousel-button {
+  border-radius: 5px;
+  max-width: 30px;
+  background-color: black;
+  color: white;
+  box-shadow: 0 20px 20px -10px #25293450;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
 button:focus {
   outline: none;
 }
 
 button:first-child {
-  left: -50%;
+  left: -100%;
+}
+
+button:nth-child(2) {
+  right: 90%;
 }
 
 .slide {
@@ -50,7 +81,7 @@ button:first-child {
   align-content: center;
 
   transform-style: preserve-3d;
-  transform: perspective(1000px) translateX(calc(100% * var(--offset)))
+  transform: perspective(10000px) translateX(calc(100% * var(--offset)))
     rotateY(calc(-25deg * var(--dir)));
 }
 
