@@ -5,9 +5,9 @@ import { useHistory } from "react-router-dom";
 import { SIGNUP } from "../../graphql/mutations";
 
 import FormInput from "../FormInput";
+import GymOwnerCheckBox from "../GymOwnerCheckBox";
 import ImageUpload from "../ImageUpload";
 import PasswordInput from "../PasswordInput";
-import SelectInterests from "../SelectInterests";
 
 import "./SignUpForm.css";
 
@@ -60,6 +60,11 @@ const SignUpForm = ({ redirect = "/login" }) => {
           error={errors.email}
           register={register("email", { required: true })}
         />
+        <FormInput
+          placeholder="Username"
+          error={errors.username}
+          register={register("username", { required: true })}
+        />
 
         <PasswordInput />
 
@@ -77,9 +82,8 @@ const SignUpForm = ({ redirect = "/login" }) => {
           register={register("bio", { required: true })}
         />
 
-        <SelectInterests />
-
-        <button className="button border-gradient" type="submit">
+        <GymOwnerCheckBox />
+        <button className="signUpBtn" type="submit">
           Sign Up
         </button>
 

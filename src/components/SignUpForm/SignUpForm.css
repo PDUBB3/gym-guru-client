@@ -3,24 +3,12 @@
   margin: 0px;
 }
 
-button {
-  max-width: 6rem;
-  border-radius: 5px;
-  padding: 0.25rem;
-  background-color: #484a4b;
-  box-shadow: 0 20px 20px -10px #25293450;
-  color: white;
-}
-
-.button-block {
-  display: grid;
-  grid-gap: 0.5rem;
-  padding-right: 1rem;
-  padding-left: 1rem;
-  margin-top: 2rem;
-}
 .signUpForm {
   width: 90%;
+}
+
+.signUpBtn {
+  width: 100%;
 }
 
 .form-box {

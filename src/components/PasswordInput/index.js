@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import "./PasswordInput.css";
 
 export default function PasswordInput() {
@@ -15,7 +16,7 @@ export default function PasswordInput() {
         placeholder="Password"
         type={passwordShown ? "text" : "password"}
       />
-      <button onClick={togglePassword}>Show/Hide</button>
+      <button onClick={togglePassword}>Show</button>
     </div>
   );
 }
