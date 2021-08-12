@@ -24,7 +24,15 @@ const GymsPage = () => {
         </div>
         <div className="gymCards">
           {data.gyms.map((gym) => {
-            return <GymCard name={gym.name} />;
+            return (
+              <GymCard
+                name={gym.name}
+                address={gym.address}
+                postcode={gym.postcode}
+                city={gym.city}
+                contactNumber={gym.contactNumber}
+              />
+            );
           })}
         </div>
       </div>
