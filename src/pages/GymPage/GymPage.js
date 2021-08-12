@@ -1,4 +1,4 @@
-import CustomizedAccordions from "../../components/GymPage/Accordian/Accordian";
+import CustomizedAccordions from "../../components/Accordian/Accordian";
 
 import { FaStar, FaRegStar } from "react-icons/fa";
 import "./GymPage.css";

@@ -17,7 +17,7 @@
 }
 
 .title {
-  padding: 1rem;
+  padding: 1rem 0;
   margin-left: 2rem;
   border-bottom: 2px solid black;
 }

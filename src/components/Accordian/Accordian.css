@@ -1,0 +1,19 @@
+.contact {
+  width: 550px;
+  text-align: center;
+}
+
+.table {
+  width: 550px;
+}
+
+.list-item {
+  margin-left: 2rem;
+}
+
+.facilities {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 550px;
+}

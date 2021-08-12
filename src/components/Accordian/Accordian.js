@@ -4,6 +4,9 @@ import MuiAccordion from "@material-ui/core/Accordion";
 import MuiAccordionSummary from "@material-ui/core/AccordionSummary";
 import MuiAccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
+import BasicTable from "../Table/Table";
+
+import "./Accordian.css";
 
 const Accordion = withStyles({
   root: {
@@ -65,11 +68,12 @@ export default function CustomizedAccordions() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Ulleries Rd,
-            <br />
-            Solihull, <br />
-            B92 8DS <br />
-            0121 700 1350
+            <div className="contact">
+              <div>Ulleries Rd</div>
+              <div>Solihull</div>
+              <div>B92 8DS</div>
+              <div>0121 700 1350</div>
+            </div>
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -83,10 +87,9 @@ export default function CustomizedAccordions() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum
-            dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
-            lacus ex, sit amet blandit leo lobortis eget.
+            <div className="table">
+              <BasicTable />
+            </div>
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -100,10 +103,24 @@ export default function CustomizedAccordions() {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum
-            dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
-            lacus ex, sit amet blandit leo lobortis eget.
+            <div className="facilities">
+              <div>
+                <div>Exercise Facilities</div>
+                <ul>
+                  <li className="list-item">Fitness Studio</li>
+                  <li className="list-item">Cardio Area</li>
+                  <li className="list-item">Weight Area</li>
+                </ul>
+              </div>
+              <div>
+                <div>Other Facilities</div>
+                <ul>
+                  <li className="list-item">Sauna</li>
+                  <li className="list-item">Spa</li>
+                  <li className="list-item">Showers</li>
+                </ul>
+              </div>
+            </div>
           </Typography>
         </AccordionDetails>
       </Accordion>
