@@ -9,6 +9,13 @@ export const CREATE_GYM = gql`
       postCode
       contactNumber
       rating
+      openingTimes {
+        dayIndex
+        dayName
+        dayShort
+        startTime
+        endTime
+      }
       exerciseFacilities {
         id
         name

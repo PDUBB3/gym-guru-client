@@ -94,7 +94,12 @@ const GymForm = () => {
 
     await createGym({
       variables: {
-        createGymInput: { ...formData, otherFacilities, exerciseFacilities },
+        createGymInput: {
+          ...formData,
+          openingTimes,
+          otherFacilities,
+          exerciseFacilities,
+        },
       },
     });
   };
