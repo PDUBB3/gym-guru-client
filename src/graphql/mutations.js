@@ -20,3 +20,16 @@ export const CREATE_GYM = gql`
     }
   }
 `;
+
+export const LOGIN = gql`
+  mutation Mutation($loginInput: LoginInput) {
+    login(input: $loginInput) {
+      token
+      user {
+        username
+        email
+        id
+      }
+    }
+  }
+`;
