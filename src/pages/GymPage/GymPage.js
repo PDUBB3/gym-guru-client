@@ -1,9 +1,35 @@
-import CustomizedAccordions from "../../components/Accordian/Accordian";
+import { useQuery } from "@apollo/client";
+import { useParams } from "react-router-dom";
 
-import { FaStar, FaRegStar } from "react-icons/fa";
+import CustomizedAccordions from "../../components/Accordian/Accordian";
+import Rating from "../../components/GymPage/Rating/Rating";
+import { GYM_QUERY } from "../../graphql/queries";
+
 import "./GymPage.css";
 
 const GymPage = ({ rating }) => {
+  const { id } = useParams();
+
+  const { loading, error, data } = useQuery(GYM_QUERY, {
+    variables: { id },
+  });
+
+  if (loading) {
+    return <div>loading</div>;
+  }
+
+  if (error) {
+    return <div>error</div>;
+  }
+
+  if (!data?.gym) {
+    return <div>error</div>;
+  }
+
+  const gymData = data.gym;
+
+  console.log(gymData);
+
   return (
     <div className="main-container">
       <div className="image-container">
@@ -17,68 +43,7 @@ const GymPage = ({ rating }) => {
       <div className="about-container">
         <h1 className="title">Fitness First</h1>
         <div className="info-container">
-          <div>
-            {(rating === 10 && (
-              <div>
-                <FaStar />
-                <FaStar />
-                <FaStar />
-                <FaStar />
-                <FaStar />
-                <span className="rating">{rating}/10</span>
-              </div>
-            )) ||
-              (rating >= 8 && (
-                <div>
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaRegStar />
-                  <span className="rating">{rating}/10</span>
-                </div>
-              )) ||
-              (rating >= 6 && (
-                <div>
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaRegStar />
-                  <FaRegStar />
-                  <span className="rating">{rating}/10</span>
-                </div>
-              )) ||
-              (rating >= 3 && (
-                <div>
-                  <FaStar />
-                  <FaStar />
-                  <FaRegStar />
-                  <FaRegStar />
-                  <FaRegStar />
-                  <span className="rating">{rating}/10</span>
-                </div>
-              )) ||
-              (rating >= 1 && (
-                <div>
-                  <FaStar />
-                  <FaRegStar />
-                  <FaRegStar />
-                  <FaRegStar />
-                  <FaRegStar />
-                  <span className="rating">{rating}/10</span>
-                </div>
-              )) ||
-              (rating === 0 && (
-                <div>
-                  <FaRegStar />
-                  <FaRegStar />
-                  <FaRegStar />
-                  <FaRegStar />
-                  <FaRegStar />
-                  <span className="rating">{rating}/10</span>
-                </div>
-              ))}
-          </div>
+          <Rating />
           <div className="accordian">
             <CustomizedAccordions />
           </div>
