@@ -4,6 +4,7 @@ import MuiAccordion from "@material-ui/core/Accordion";
 import MuiAccordionSummary from "@material-ui/core/AccordionSummary";
 import MuiAccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
+
 import BasicTable from "../Table/Table";
 
 import "./Accordian.css";
@@ -49,13 +50,24 @@ const AccordionDetails = withStyles((theme) => ({
   },
 }))(MuiAccordionDetails);
 
-export default function CustomizedAccordions() {
+const CustomizedAccordions = ({ gym }) => {
   const [expanded, setExpanded] = React.useState("panel1");
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
   };
 
+  const {
+    address,
+    city,
+    postCode,
+    contactNumber,
+    openingTimes,
+    exerciseFacilities,
+    otherFacilities,
+  } = gym;
+
+  console.log(exerciseFacilities, otherFacilities);
   return (
     <div>
       <Accordion
@@ -67,14 +79,12 @@ export default function CustomizedAccordions() {
           <Typography>Contact Information</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
-            <div className="contact">
-              <div>Ulleries Rd</div>
-              <div>Solihull</div>
-              <div>B92 8DS</div>
-              <div>0121 700 1350</div>
-            </div>
-          </Typography>
+          <div className="contact">
+            <div>{address}</div>
+            <div>{city}</div>
+            <div>{postCode}</div>
+            <div>{contactNumber}</div>
+          </div>
         </AccordionDetails>
       </Accordion>
       <Accordion
@@ -86,11 +96,11 @@ export default function CustomizedAccordions() {
           <Typography>Opening Hours</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
-            <div className="table">
-              <BasicTable />
-            </div>
-          </Typography>
+          #{" "}
+          <div className="table">
+            <BasicTable openingTimes={openingTimes} />
+          </div>
+          #{" "}
         </AccordionDetails>
       </Accordion>
       <Accordion
@@ -102,28 +112,30 @@ export default function CustomizedAccordions() {
           <Typography>Facilities</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
-            <div className="facilities">
-              <div>
-                <div>Exercise Facilities</div>
-                <ul>
-                  <li className="list-item">Fitness Studio</li>
-                  <li className="list-item">Cardio Area</li>
-                  <li className="list-item">Weight Area</li>
-                </ul>
-              </div>
-              <div>
-                <div>Other Facilities</div>
-                <ul>
-                  <li className="list-item">Sauna</li>
-                  <li className="list-item">Spa</li>
-                  <li className="list-item">Showers</li>
-                </ul>
-              </div>
+          #{" "}
+          <div className="facilities">
+            <div>
+              <div>Exercise Facilities</div>
+              <ul>
+                {exerciseFacilities.map((facility) => (
+                  <li className="list-item">{facility.name}</li>
+                ))}
+              </ul>
             </div>
-          </Typography>
+            <div>
+              <div>Other Facilities</div>
+              <ul>
+                {otherFacilities.map((facility) => (
+                  <li className="list-item">{facility.name}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          #{" "}
         </AccordionDetails>
       </Accordion>
     </div>
   );
-}
+};
+
+export default CustomizedAccordions;

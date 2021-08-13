@@ -25,7 +25,7 @@ const Routes = () => {
         <CreateGymPage />
       </Route>
       <Route exact path="/gyms/:id">
-        <GymPage rating={10} />
+        <GymPage />
       </Route>
       <Route exact path="/findbuddies">
         <BuddiesPage />
