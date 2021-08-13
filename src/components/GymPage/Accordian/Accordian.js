@@ -96,11 +96,9 @@ const CustomizedAccordions = ({ gym }) => {
           <Typography>Opening Hours</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          #{" "}
           <div className="table">
             <BasicTable openingTimes={openingTimes} />
           </div>
-          #{" "}
         </AccordionDetails>
       </Accordion>
       <Accordion
@@ -112,7 +110,6 @@ const CustomizedAccordions = ({ gym }) => {
           <Typography>Facilities</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          #{" "}
           <div className="facilities">
             <div>
               <div>Exercise Facilities</div>
@@ -131,7 +128,6 @@ const CustomizedAccordions = ({ gym }) => {
               </ul>
             </div>
           </div>
-          #{" "}
         </AccordionDetails>
       </Accordion>
     </div>

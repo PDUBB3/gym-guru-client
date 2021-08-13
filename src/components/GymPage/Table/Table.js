@@ -6,41 +6,23 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 
-export default function BasicTable() {
+const BasicTable = ({ openingTimes }) => {
   return (
     <TableContainer component={Paper}>
       <Table aria-label="simple table">
         <TableBody>
-          <TableRow>
-            <TableCell>Monday</TableCell>
-            <TableCell align="right">6am - 9pm</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Tuesday</TableCell>
-            <TableCell align="right">6am - 9pm</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Wednesday</TableCell>
-            <TableCell align="right">6am - 9pm</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Thursday</TableCell>
-            <TableCell align="right">6am - 9pm</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Friday</TableCell>
-            <TableCell align="right">6am - 9pm</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Saturday</TableCell>
-            <TableCell align="right">6am - 9pm</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Sunday</TableCell>
-            <TableCell align="right">6am - 9pm</TableCell>
-          </TableRow>
+          {openingTimes.map((day) => (
+            <TableRow>
+              <TableCell>{day.dayName}</TableCell>
+              <TableCell align="right">
+                {day.startTime} - {day.endTime}
+              </TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </TableContainer>
   );
-}
+};
+
+export default BasicTable;
