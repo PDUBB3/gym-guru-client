@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const GYM_QUERY = gql`
-  query Query($gymId: ID!) {
-    gym(id: $gymId) {
+  query Query($id: ID!) {
+    gym(id: $id) {
       id
       name
       address
