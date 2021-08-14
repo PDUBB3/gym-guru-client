@@ -27,3 +27,29 @@ export const CREATE_GYM = gql`
     }
   }
 `;
+
+export const LOGIN = gql`
+  mutation Mutation($loginInput: LoginInput) {
+    login(input: $loginInput) {
+      token
+      user {
+        username
+        email
+        id
+      }
+    }
+  }
+`;
+
+export const SIGNUP = gql`
+  mutation Mutation($signUpInput: SignUpInput) {
+    signUp(input: $signUpInput) {
+      token
+      user {
+        id
+        email
+        username
+      }
+    }
+  }
+`;
