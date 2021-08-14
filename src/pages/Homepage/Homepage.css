@@ -1,0 +1,155 @@
+* {
+  overflow-x: hidden;
+}
+
+.carousel-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.slides {
+  padding-top: 3rem;
+  display: grid;
+}
+
+.slide {
+  grid-area: 1 / -1;
+}
+
+button :hover {
+  opacity: 1;
+}
+
+.button-container-left {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.button-container-right {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  margin-right: 2vw;
+}
+
+.carousel-button {
+  border-radius: 5px;
+  max-width: 30px;
+  background-color: black;
+  color: white;
+  box-shadow: 0 20px 20px -10px #25293450;
+  border-radius: 5px;
+}
+
+button:focus {
+  outline: none;
+}
+
+button:first-child {
+  left: -100%;
+}
+
+button:nth-child(2) {
+  right: 90%;
+}
+
+.slide {
+  transform-style: preserve-3d;
+  /* border: solid 1px red; */
+}
+
+/* &[data-active] {
+  slideContent > * {
+  transform: none;
+  opacity: 1;
+    //   }
+    // } */
+
+.slideContent {
+  width: 20vw;
+  height: 30vw;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  transition: transform 0.5s ease-in-out;
+  opacity: 0.95;
+
+  display: grid;
+  align-content: center;
+
+  transform-style: preserve-3d;
+  transform: perspective(10000px) translateX(calc(100% * var(--offset)))
+    rotateY(calc(-25deg * var(--dir)));
+}
+
+.slideContentInner {
+  transform-style: preserve-3d;
+  transform: translateZ(2rem);
+  transition: opacity 0.3s linear;
+  text-shadow: 0 0.1rem 1rem #000;
+  opacity: 0;
+}
+
+.slideSubtitle,
+.slideTitle {
+  font-size: 2rem;
+  font-weight: normal;
+  letter-spacing: 0.2ch;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.slideDescription {
+  margin: 0;
+  font-size: 0.8rem;
+  letter-spacing: 0.2ch;
+}
+
+.slideSubtitle::before {
+  content: "— ";
+}
+
+.slideBackground {
+  position: fixed;
+  top: 0;
+  left: -10%;
+  right: -10%;
+  bottom: 0;
+  background-size: cover;
+  background-position: center center;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s linear, transform 0.3s ease-in-out;
+  pointer-events: none;
+
+  transform: translateX(calc(10% * var(--dir)));
+}
+
+.slide[data-active] {
+  z-index: 2;
+  pointer-events: auto;
+
+  .slideBackground {
+    opacity: 0.2;
+    transform: none;
+  }
+
+  .slideContentInner {
+    opacity: 1;
+  }
+
+  .slideContent {
+    --x: calc(var(--px) - 0.5);
+    --y: calc(var(--py) - 0.5);
+    opacity: 1;
+
+    transform: perspective(1000px);
+  }
+  .slideContent:hover {
+    transition: none;
+    transform: perspective(1000px) rotateY(calc(var(--x) * 45deg))
+      rotateX(calc(var(--y) * -45deg));
+  }
+}
