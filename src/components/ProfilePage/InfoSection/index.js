@@ -2,6 +2,8 @@ import { GrYoga } from "react-icons/gr";
 import { GiMuscleUp } from "react-icons/gi";
 import { FaRunning, FaWeight } from "react-icons/fa";
 
+import BuddyCard from "../BuddyCard";
+
 const InfoSection = () => {
   return (
     <div className="extra-info-container">
@@ -41,16 +43,11 @@ const InfoSection = () => {
       </div>
       <div className="box">
         <h2>Buddies</h2>
-        <div className="buddy-card">
-          <img
-            src="https://images.unsplash.com/photo-1488228469209-c141f8bcd723?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80"
-            alt="buddy"
-            height="90"
-            width="90"
-            className="buddy-image"
-          ></img>
-          <h3>Alice Green</h3>
-          <div>Leeds</div>
+        <div className="cards">
+          <BuddyCard />
+          <BuddyCard />
+          <BuddyCard />
+          <BuddyCard />
         </div>
       </div>
     </div>
