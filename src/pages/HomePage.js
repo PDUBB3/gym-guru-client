@@ -1,4 +1,5 @@
 import { useQuery } from "@apollo/client";
+import { Container } from "@material-ui/core";
 import GymCarousel from "../components/GymCarousel";
 
 import Header from "../components/Header/Header";
@@ -27,7 +28,9 @@ const HomePage = (props) => {
   return (
     <>
       <Header />
-      <GymCarousel />
+      <Container maxWidth="lg">
+        <GymCarousel gyms={gyms} />
+      </Container>
     </>
   );
 };

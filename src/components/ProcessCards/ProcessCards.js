@@ -1,9 +1,5 @@
 import "./ProcessCards.css";
 
 const ProcessCards = (props) => {
-  return (
-
-  );
-}
-
-
+  return <div>Process Cards</div>;
+};

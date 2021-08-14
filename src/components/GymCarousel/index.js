@@ -1,6 +1,7 @@
 import Carousel from "react-multi-carousel";
 
 import "react-multi-carousel/lib/styles.css";
+import GymCard from "../GymCard";
 
 const GymCarousel = ({ gyms }) => {
   return (
@@ -8,13 +9,13 @@ const GymCarousel = ({ gyms }) => {
       additionalTransfrom={0}
       arrows
       autoPlaySpeed={3000}
-      centerMode={false}
+      centerMode={true}
       className=""
       containerClass="container"
       dotListClass=""
       draggable
       focusOnSelect={false}
-      infinite={false}
+      infinite={true}
       itemClass=""
       keyBoardControl
       minimumTouchDrag={80}
@@ -46,76 +47,15 @@ const GymCarousel = ({ gyms }) => {
           partialVisibilityGutter: 30,
         },
       }}
-      showDots={false}
+      showDots={true}
       sliderClass=""
       slidesToSlide={1}
       swipeable
     >
-      <div class="card">
-        <img src="..." class="card-img-top" alt="..." />
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <a href="#" class="btn btn-primary">
-            Go somewhere
-          </a>
-        </div>
-      </div>
-      <div class="card">
-        <img src="..." class="card-img-top" alt="..." />
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <a href="#" class="btn btn-primary">
-            Go somewhere
-          </a>
-        </div>
-      </div>
-      <div class="card">
-        <img src="..." class="card-img-top" alt="..." />
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <a href="#" class="btn btn-primary">
-            Go somewhere
-          </a>
-        </div>
-      </div>
-      <div class="card">
-        <img src="..." class="card-img-top" alt="..." />
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <a href="#" class="btn btn-primary">
-            Go somewhere
-          </a>
-        </div>
-      </div>
-      <div class="card">
-        <img src="..." class="card-img-top" alt="..." />
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <a href="#" class="btn btn-primary">
-            Go somewhere
-          </a>
-        </div>
-      </div>
+      {gyms.map((gym) => {
+        return <GymCard imageURL={gym.imageURL} name={gym.name} />;
+      })}
+      ;
     </Carousel>
   );
 };
