@@ -4,7 +4,9 @@ const CreateGymPage = () => {
   return (
     <div>
       <h1>This is the create a gym page</h1>
-      <GymForm />
+      <div className="formContainer">
+        <GymForm />
+      </div>
     </div>
   );
 };

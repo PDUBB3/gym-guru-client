@@ -13,14 +13,22 @@ button {
 }
 
 .button-block {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-gap: 0.5rem;
   padding-right: 1rem;
   padding-left: 1rem;
   margin-top: 2rem;
 }
+.loginForm {
+  width: 90%;
+}
 
 .form-box {
+  /* background-image: linear-gradient(180deg, #bc00dd, #b100e8);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+  border-radius: 10px; */
+  /* max-width: 250px; */
   background-image: linear-gradient(
       to top,
       rgb(75, 75, 75) 30%,
@@ -33,10 +41,7 @@ button {
   border: 2px solid #484a4b;
   border-radius: 5px;
   box-shadow: 0 30px 30px -5px #25293450;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  width: 60%;
 }
 
 .form-heading {

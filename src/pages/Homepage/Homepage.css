@@ -1,6 +1,6 @@
-/* * {
+* {
   overflow-x: hidden;
-} */
+}
 
 .carousel-container {
   display: flex;
@@ -17,7 +17,7 @@
   grid-area: 1 / -1;
 }
 
-.button :hover {
+button :hover {
   opacity: 1;
 }
 
@@ -57,7 +57,7 @@ button:nth-child(2) {
 
 .slide {
   transform-style: preserve-3d;
-  border: solid 1px red;
+  /* border: solid 1px red; */
 }
 
 /* &[data-active] {
@@ -130,25 +130,26 @@ button:nth-child(2) {
 .slide[data-active] {
   z-index: 2;
   pointer-events: auto;
-}
-.slideBackground {
-  opacity: 0.2;
-  transform: none;
-}
 
-.slideContentInner {
-  opacity: 1;
-}
+  .slideBackground {
+    opacity: 0.2;
+    transform: none;
+  }
 
-.slideContent {
-  --x: calc(var(--px) - 0.5);
-  --y: calc(var(--py) - 0.5);
-  opacity: 1;
+  .slideContentInner {
+    opacity: 1;
+  }
 
-  transform: perspective(1000px);
-}
-.slideContent:hover {
-  transition: none;
-  transform: perspective(1000px) rotateY(calc(var(--x) * 45deg))
-    rotateX(calc(var(--y) * -45deg));
+  .slideContent {
+    --x: calc(var(--px) - 0.5);
+    --y: calc(var(--py) - 0.5);
+    opacity: 1;
+
+    transform: perspective(1000px);
+  }
+  .slideContent:hover {
+    transition: none;
+    transform: perspective(1000px) rotateY(calc(var(--x) * 45deg))
+      rotateX(calc(var(--y) * -45deg));
+  }
 }

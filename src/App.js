@@ -7,6 +7,8 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 
+import Navbar from "./components/Navbar/Navbar";
+
 import Routes from "./Routes";
 
 import "./App.css";
@@ -35,6 +37,7 @@ const App = () => {
   return (
     <ApolloProvider client={client}>
       <Router>
+        <Navbar />
         <Routes />
       </Router>
     </ApolloProvider>

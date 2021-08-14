@@ -1,9 +1,9 @@
 // import { Carousel } from "bootstrap";
-import Carousel from "../utils/Carousel";
+import Carousel from "../../utils/Carousel";
 
-import Header from "../components/Header/Header";
+import Header from "../../components/Header/Header";
 
-import "../index.css";
+import "./Homepage.css";
 
 const HomePage = (props) => {
   return (

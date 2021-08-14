@@ -12,14 +12,6 @@ button {
   color: white;
 }
 
-.button-block {
-  display: grid;
-  grid-gap: 0.5rem;
-  padding-right: 1rem;
-  padding-left: 1rem;
-  margin-top: 2rem;
-}
-
 .opening-hours-grid {
   background-image: linear-gradient(
       to top,
@@ -31,7 +23,7 @@ button {
   border: 2px solid #484a4b;
   border-radius: 5px;
   box-shadow: 0 30px 30px -5px #25293450;
-  max-width: 500px;
+  height: 70%;
 }
 
 .opening-hours-container {
