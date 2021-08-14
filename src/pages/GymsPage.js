@@ -1,10 +1,10 @@
 import { useQuery } from "@apollo/client";
-import { GYMS } from "../graphql/queries";
+import { GYMS_QUERY } from "../graphql/queries";
 
 import GymCard from "../components/GymCard";
 
 const GymsPage = () => {
-  const { data, loading, error } = useQuery(GYMS);
+  const { data, loading, error } = useQuery(GYMS_QUERY);
 
   console.log(data);
 
