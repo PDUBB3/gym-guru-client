@@ -26,3 +26,14 @@ export const GYM_QUERY = gql`
     }
   }
 `;
+
+export const GYMS_QUERY = gql`
+  query Query($gymsSortBy: String) {
+    gyms(sortBy: $gymsSortBy) {
+      imageURL
+      id
+      rating
+      name
+    }
+  }
+`;

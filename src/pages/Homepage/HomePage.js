@@ -1,5 +1,5 @@
 // import { Carousel } from "bootstrap";
-import Carousel from "../../utils/Carousel";
+import Carousel from "../../utils/GymCarousel";
 
 import Header from "../../components/Header/Header";
 
