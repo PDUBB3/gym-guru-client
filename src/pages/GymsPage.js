@@ -1,5 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { GYMS } from "../graphql/queries";
+import Header from "../components/Header/Header";
 
 import GymCard from "../components/GymCard";
 
@@ -20,11 +21,12 @@ const GymsPage = () => {
     return (
       <div>
         <div>
-          <h1>This is the gyms page</h1>
+        <Header />
         </div>
         <div className="gymCards">
           {data.gyms.map((gym) => {
             return (
+              
               <GymCard
                 name={gym.name}
                 address={gym.address}
