@@ -5,10 +5,10 @@ import { useHistory } from "react-router-dom";
 
 import { SIGNUP } from "../../graphql/mutations";
 
-import PartOne from "./PartOne";
 import PartTwo from "./PartTwo";
 
 import "./SignUpForm.css";
+import PartOne from "./PartOne";
 
 const SignUpForm = ({ redirect = "/login" }) => {
   const {
@@ -18,7 +18,6 @@ const SignUpForm = ({ redirect = "/login" }) => {
     formState: { errors },
   } = useForm();
 
-  console.log(errors);
   const [formNumber, setFormNumber] = useState(1);
 
   const history = useHistory();
@@ -53,6 +52,7 @@ const SignUpForm = ({ redirect = "/login" }) => {
 
   const renderForm = () => {
     if (formNumber === 1) {
+      console.log(errors);
       return <PartOne errors={errors} register={register} />;
     }
     if (formNumber === 2) {

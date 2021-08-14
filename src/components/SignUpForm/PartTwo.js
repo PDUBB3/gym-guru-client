@@ -8,7 +8,6 @@ const PartTwo = ({ errors, register, setValue }) => {
   return (
     <div class="signUp-form-box">
       <form className="signUpForm">
-        {" "}
         <ImageUpload setValue={setValue} />
         <FormInput
           placeholder="City"
