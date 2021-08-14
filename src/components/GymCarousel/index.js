@@ -13,6 +13,7 @@ const GymCarousel = ({ gyms }) => {
       autoPlaySpeed={3000}
       centerMode={true}
       className=""
+      aria-hidden={true}
       ariaLabel={true}
       containerClass="container"
       dotListClass=""
