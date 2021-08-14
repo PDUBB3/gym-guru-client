@@ -9,6 +9,7 @@ export const GYMS = gql`
       postCode
       contactNumber
       rating
+      imageURL
       exerciseFacilities {
         name
       }

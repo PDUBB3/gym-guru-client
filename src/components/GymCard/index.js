@@ -6,7 +6,6 @@ import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
-import Collapse from "@material-ui/core/Collapse";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import PeopleIcon from "@material-ui/icons/People";
@@ -41,7 +40,6 @@ const GymCard = ({
   address,
   city,
   contactNumber,
-  openingTimes,
 }) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
@@ -52,7 +50,7 @@ const GymCard = ({
 
   return (
     <Card className={classes.root}>
-      <CardHeader title={name} style={{ wordWrap: "break-word" }} />
+      <CardHeader title={name} textOverflow="ellipsis" />
       <CardMedia className={classes.media} image={imageURL} title={name} />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
@@ -70,25 +68,7 @@ const GymCard = ({
         <IconButton aria-label="add icon">
           <AddIcon />
         </IconButton>
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </IconButton>
       </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography paragraph>More Info:</Typography>
-          {/* {openingTimes.map((openingTimes) => {
-            return <div>{openingTimes}</div>;
-          })} */}
-        </CardContent>
-      </Collapse>
     </Card>
   );
 };
