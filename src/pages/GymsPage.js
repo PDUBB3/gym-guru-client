@@ -32,6 +32,7 @@ const GymsPage = () => {
                 city={gym.city}
                 contactNumber={gym.contactNumber}
                 openingTimes={gym.openingTimes}
+                imageURL={gym.imageURL}
               />
             );
           })}

@@ -16,7 +16,7 @@ import AddIcon from "@material-ui/icons/Add";
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
-    boxShadow: "rgba(0, 0, 0, 0.56) 0px 15px 30px 4px;",
+    boxShadow: "0px 0px 20px #00b4d8",
   },
   media: {
     height: 0,
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const GymCard = ({
-  imageUrl,
+  imageURL,
   name,
   postCode,
   address,
@@ -52,12 +52,8 @@ const GymCard = ({
 
   return (
     <Card className={classes.root}>
-      <CardHeader
-        title={name}
-        style={{ wordWrap: "break-word" }}
-        width="250px"
-      />
-      <CardMedia className={classes.media} image={imageUrl} title={name} />
+      <CardHeader title={name} style={{ wordWrap: "break-word" }} />
+      <CardMedia className={classes.media} image={imageURL} title={name} />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
           {address} <br />
