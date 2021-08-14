@@ -1,7 +1,8 @@
 import Carousel from "react-multi-carousel";
 
 import "react-multi-carousel/lib/styles.css";
-import GymCard from "../GymCard";
+import GymCard from "../GymCard/index";
+import React from "react";
 
 const GymCarousel = ({ gyms }) => {
   return (
@@ -11,6 +12,7 @@ const GymCarousel = ({ gyms }) => {
       autoPlaySpeed={3000}
       centerMode={true}
       className=""
+      ariaLabel={false}
       containerClass="container"
       dotListClass=""
       draggable
