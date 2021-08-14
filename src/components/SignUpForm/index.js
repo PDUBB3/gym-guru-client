@@ -52,7 +52,6 @@ const SignUpForm = ({ redirect = "/login" }) => {
 
   const renderForm = () => {
     if (formNumber === 1) {
-      console.log(errors);
       return <PartOne errors={errors} register={register} />;
     }
     if (formNumber === 2) {
