@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 .gymCards {
   align-items: center;
   flex-wrap: wrap;
@@ -9,10 +8,8 @@
   margin: 0 auto;
   position: relative;
 }
-=======
 .formContainer {
   display: flex;
   align-items: center;
   justify-content: center;
 }
->>>>>>> master

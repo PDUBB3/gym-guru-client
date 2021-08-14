@@ -9,9 +9,7 @@ export const CREATE_GYM = gql`
       postCode
       contactNumber
       rating
-<<<<<<< HEAD
       imageURL
-=======
       openingTimes {
         dayIndex
         dayName
@@ -19,7 +17,6 @@ export const CREATE_GYM = gql`
         startTime
         endTime
       }
->>>>>>> master
       exerciseFacilities {
         id
         name

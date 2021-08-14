@@ -1,5 +1,23 @@
 import { gql } from "@apollo/client";
 
+export const GYMS = gql`
+  query Query {
+    gyms {
+      name
+      address
+      city
+      postCode
+      contactNumber
+      rating
+      exerciseFacilities {
+        name
+      }
+      otherFacilities {
+        name
+      }
+    }
+  }
+`;
 export const GYM_QUERY = gql`
   query Query($id: ID!) {
     gym(id: $id) {
