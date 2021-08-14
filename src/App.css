@@ -1,5 +1,18 @@
+<<<<<<< HEAD
+.gymCards {
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  display: grid;
+  grid-gap: 1rem;
+  padding: 1rem;
+  margin: 0 auto;
+  position: relative;
+}
+=======
 .formContainer {
   display: flex;
   align-items: center;
   justify-content: center;
 }
+>>>>>>> master
