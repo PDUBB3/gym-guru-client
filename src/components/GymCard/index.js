@@ -9,9 +9,9 @@ import CardActions from "@material-ui/core/CardActions";
 import Collapse from "@material-ui/core/Collapse";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import ShareIcon from "@material-ui/icons/Share";
+import PeopleIcon from "@material-ui/icons/People";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import AddIcon from "@material-ui/icons/Add";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,6 +41,7 @@ const GymCard = ({
   address,
   city,
   contactNumber,
+  openingTimes,
 }) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
@@ -51,7 +52,11 @@ const GymCard = ({
 
   return (
     <Card className={classes.root}>
-      <CardHeader title={name} />
+      <CardHeader
+        title={name}
+        style={{ wordWrap: "break-word" }}
+        width="250px"
+      />
       <CardMedia className={classes.media} image={imageUrl} title={name} />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
@@ -63,11 +68,11 @@ const GymCard = ({
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
+        <IconButton aria-label="people icon">
+          <PeopleIcon />
         </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
+        <IconButton aria-label="add icon">
+          <AddIcon />
         </IconButton>
         <IconButton
           className={clsx(classes.expand, {
@@ -83,27 +88,9 @@ const GymCard = ({
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>More Info:</Typography>
-          <Typography paragraph>
-            Created in 2012 by teenager Ben Francis and a group of his
-            high-school friends. Gymshark has grown from a screen printing
-            operation in a garage, into one of the fastest growing and most
-            recognisable brands in fitness. This growth comes from a devotion to
-            producing innovative, effective performance wear and an
-            ever-expanding social presence, and above all a commitment to the
-            Gymshark vision
-          </Typography>
-          <Typography paragraph>
-            Add rice and stir very gently to distribute. Top with artichokes and
-            peppers, and cook without stirring, until most of the liquid is
-            absorbed, 15 to 18 minutes. Reduce heat to medium-low, add reserved
-            shrimp and mussels, tucking them down into the rice, and cook again
-            without stirring, until mussels have opened and rice is just tender,
-            5 to 7 minutes more. (Discard any mussels that don’t open.)
-          </Typography>
-          <Typography>
-            Set aside off of the heat to let rest for 10 minutes, and then
-            serve.
-          </Typography>
+          {/* {openingTimes.map((openingTimes) => {
+            return <div>{openingTimes}</div>;
+          })} */}
         </CardContent>
       </Collapse>
     </Card>

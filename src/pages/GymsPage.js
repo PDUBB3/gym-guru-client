@@ -31,6 +31,7 @@ const GymsPage = () => {
                 postcode={gym.postcode}
                 city={gym.city}
                 contactNumber={gym.contactNumber}
+                openingTimes={gym.openingTimes}
               />
             );
           })}
