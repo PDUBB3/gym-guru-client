@@ -1,9 +1,9 @@
-import SignUpForm from "../components/SignUpForm";
+import PartOne from "../components/SignUpForm/PartOne";
 
 const SignupPage = () => {
   return (
     <div>
-      <SignUpForm />
+      <PartOne />
     </div>
   );
 };
