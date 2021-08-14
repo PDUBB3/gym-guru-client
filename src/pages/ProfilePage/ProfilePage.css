@@ -1,0 +1,52 @@
+.profile-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1rem 2rem;
+  height: 80vh;
+}
+
+.about-container {
+  width: 30%;
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: 0px 0px 20px #00b4d8;
+  margin: 1rem 1rem;
+}
+
+.profile-image {
+  border-radius: 200px;
+  border: 3px solid #00b4d8;
+  margin-top: 2rem;
+}
+
+h1 {
+  color: black;
+  font-size: 2rem;
+  border-bottom: 2px solid black;
+  margin: 0 3rem;
+}
+
+.bio {
+  text-align: start;
+  margin: 1rem 3rem;
+}
+
+.city {
+  font-style: italic;
+}
+
+.contact {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding: 0 1rem;
+  margin: 2rem 0;
+  font-size: 1.5rem;
+  color: #00b4d8;
+  cursor: pointer;
+}
+
+.extra-info-container {
+  width: 65%;
+  border: 1px solid black;
+}
