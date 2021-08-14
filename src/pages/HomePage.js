@@ -1,7 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { Container } from "@material-ui/core";
 import GymCarousel from "../components/GymCarousel";
-import GymCard from "../components/GymCard";
 
 import Header from "../components/Header/Header";
 import { GYMS_QUERY } from "../graphql/queries";
