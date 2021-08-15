@@ -45,3 +45,23 @@ export const GYM_QUERY = gql`
     }
   }
 `;
+
+export const USER_QUERY = gql`
+  query ($findUserId: ID!) {
+    findUser(id: $findUserId) {
+      id
+      username
+      firstName
+      lastName
+      isGymOwner
+      ownedGymId
+      attendingGymId
+      profileImageUrl
+      city
+      bio
+      goals
+      interests
+      buddies
+    }
+  }
+`;
