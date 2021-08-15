@@ -6,7 +6,7 @@ import SignupPage from "./pages/SignupPage";
 import GymsPage from "./pages/GymsPage";
 import GymPage from "./pages/GymPage/GymPage";
 import ProfilePage from "./pages/ProfilePage";
-import BuddiesPage from "./pages/BuddiesPage";
+import BuddiesPage from "./pages/BuddiesPage/BuddiesPage";
 import CreateGymPage from "./pages/CreateGymPage";
 
 const Routes = () => {

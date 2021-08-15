@@ -1,3 +1,5 @@
+import "./BuddiesPage.css";
+
 const BuddiesPage = () => {
   return (
     <div>
