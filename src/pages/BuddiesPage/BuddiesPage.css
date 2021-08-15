@@ -1,3 +1,20 @@
-h1 {
+.buddiesHeader {
+  display: flex;
+  justify-content: center;
+}
+
+.buddiesBody {
+  display: flex;
+  justify-content: space-evenly;
+}
+.buddiesCards {
+  width: 70%;
+}
+
+.buddiesHeader h1 {
+  color: black;
+}
+
+.buddiesCards h1 {
   color: black;
 }

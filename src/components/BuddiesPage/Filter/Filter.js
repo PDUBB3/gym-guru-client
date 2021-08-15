@@ -73,6 +73,7 @@ const Filter = ({ filterStatus, setFilterStatus }) => {
               color="primary"
               type="submit"
               onClick={() => setFilterStatus(!filterStatus)}
+              className="closeFilterButton"
             >
               Save & Close
             </Button>

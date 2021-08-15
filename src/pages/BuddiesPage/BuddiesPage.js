@@ -6,13 +6,24 @@ const BuddiesPage = () => {
   const [filterStatus, setFilterStatus] = useState(false);
   return (
     <div>
-      <h1>This is the buddies page</h1>
-      <button
-        onClick={() => setFilterStatus(!filterStatus)}
-        className="filterButton"
-      >
-        Filter
-      </button>
+      <div className="buddiesHeader">
+        <h1>Find a buddy!</h1>
+      </div>
+      <div className="buddiesBody">
+        <div>
+          <button
+            onClick={() => setFilterStatus(!filterStatus)}
+            className="filterButton"
+          >
+            Filter
+          </button>
+        </div>
+        <div className="buddiesCards">
+          <h1>BuddyCard</h1>
+          <h1>BuddyCard</h1>
+          <h1>BuddyCard</h1>
+        </div>
+      </div>
       <Filter filterStatus={filterStatus} setFilterStatus={setFilterStatus} />
     </div>
   );
