@@ -1,4 +1,4 @@
-const BuddyCard = () => {
+const BuddyCard = ({ buddy }) => {
   return (
     <div className="buddy-card">
       <img

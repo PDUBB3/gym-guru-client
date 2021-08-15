@@ -4,50 +4,42 @@ import { FaRunning, FaWeight } from "react-icons/fa";
 
 import BuddyCard from "../BuddyCard";
 
-const InfoSection = () => {
+const InfoSection = ({ user }) => {
+  const { interests, goals, buddies } = user;
   return (
     <div className="extra-info-container">
       <div className="box">
         <h2>Interests</h2>
         <div className="cards">
-          <div>
+          {interests.map((interest) => (
             <div>
-              <GrYoga />
+              <div>
+                <GrYoga />
+              </div>
+              <div>{interest}</div>
             </div>
-            <div>Yoga</div>
-          </div>
-          <div>
-            <div>
-              <FaRunning />
-            </div>
-            <div>Cardio</div>
-          </div>
+          ))}
         </div>
       </div>
       <div className="box">
         <h2>Goals</h2>
         <div className="cards">
-          <div>
+          {goals.map((goal) => (
             <div>
-              <FaWeight />
+              <div>
+                <FaWeight />
+              </div>
+              <div>{goal}</div>
             </div>
-            <div>Lose Weight</div>
-          </div>
-          <div>
-            <div>
-              <GiMuscleUp />
-            </div>
-            <div>Gain Muscle</div>
-          </div>
+          ))}
         </div>
       </div>
       <div className="box">
         <h2>Buddies</h2>
         <div className="cards">
-          <BuddyCard />
-          <BuddyCard />
-          <BuddyCard />
-          <BuddyCard />
+          {buddies.map((buddy) => (
+            <BuddyCard buddy={buddy} />
+          ))}
         </div>
       </div>
     </div>
