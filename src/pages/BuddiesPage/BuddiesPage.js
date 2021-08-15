@@ -1,6 +1,8 @@
 import "./BuddiesPage.css";
-import Filter from "../../components/BuddiesPage/Filter/Filter";
 import { useState } from "react";
+
+import Filter from "../../components/BuddiesPage/Filter/Filter";
+import BuddyCard from "../../components/BuddiesPage/BuddyCard/BuddyCard";
 
 const BuddiesPage = () => {
   const [filterStatus, setFilterStatus] = useState(false);
@@ -19,9 +21,7 @@ const BuddiesPage = () => {
           </button>
         </div>
         <div className="buddiesCards">
-          <h1>BuddyCard</h1>
-          <h1>BuddyCard</h1>
-          <h1>BuddyCard</h1>
+          <BuddyCard />
         </div>
       </div>
       <Filter filterStatus={filterStatus} setFilterStatus={setFilterStatus} />

@@ -27,6 +27,7 @@
   padding: 0.5rem;
   margin-top: 3rem;
   transition: all 0.3s ease;
+  width: 10rem;
 }
 
 .filterButton:hover,

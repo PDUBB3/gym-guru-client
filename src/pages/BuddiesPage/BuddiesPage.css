@@ -3,16 +3,17 @@
   justify-content: center;
 }
 
+.buddiesHeader h1 {
+  color: black;
+}
+
 .buddiesBody {
   display: flex;
   justify-content: space-evenly;
+  margin-top: 3rem;
 }
 .buddiesCards {
   width: 70%;
-}
-
-.buddiesHeader h1 {
-  color: black;
 }
 
 .buddiesCards h1 {

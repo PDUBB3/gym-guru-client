@@ -1,0 +1,7 @@
+.buddyCard {
+  background-color: rgb(255, 255, 255);
+  box-shadow: 1px 1px 30px rgb(0, 180, 216, 70%);
+  height: 10rem;
+  width: 30rem;
+  border-radius: 22px;
+}
