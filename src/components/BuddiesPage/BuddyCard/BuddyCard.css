@@ -1,7 +1,27 @@
 .buddyCard {
-  background-color: rgb(255, 255, 255);
+  background: -webkit-linear-gradient(
+      rgba(135, 60, 255, 1),
+      rgba(135, 60, 255, 0) 0%
+    ),
+    -webkit-linear-gradient(-35deg, rgba(27, 182, 221, 0.7) 42%, rgba(
+            255,
+            255,
+            255,
+            1
+          )
+          0%);
   box-shadow: 1px 1px 30px rgb(0, 180, 216, 70%);
   height: 10rem;
   width: 30rem;
   border-radius: 22px;
+  display: flex;
+  align-items: center;
+  margin: 2rem;
+}
+
+.avatarContainer {
+  margin-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

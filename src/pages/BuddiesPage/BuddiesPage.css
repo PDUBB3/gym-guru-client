@@ -12,8 +12,12 @@
   justify-content: space-evenly;
   margin-top: 3rem;
 }
+
 .buddiesCards {
   width: 70%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .buddiesCards h1 {

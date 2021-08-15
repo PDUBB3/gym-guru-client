@@ -22,6 +22,8 @@ const BuddiesPage = () => {
         </div>
         <div className="buddiesCards">
           <BuddyCard />
+          <BuddyCard />
+          <BuddyCard />
         </div>
       </div>
       <Filter filterStatus={filterStatus} setFilterStatus={setFilterStatus} />
