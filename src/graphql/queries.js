@@ -47,12 +47,12 @@ export const GYM_QUERY = gql`
 `;
 
 export const USER_QUERY = gql`
-  query ($findUserId: ID!) {
-    findUser(id: $findUserId) {
+  query Query($username: String) {
+    findUser(username: $username) {
       id
       username
-      firstName
       lastName
+      firstName
       isGymOwner
       ownedGymId
       attendingGymId
