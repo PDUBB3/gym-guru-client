@@ -7,8 +7,13 @@ const BuddiesPage = () => {
   return (
     <div>
       <h1>This is the buddies page</h1>
-      <button onClick={() => setFilterStatus(!filterStatus)}>Filter</button>
-      <Filter filterStatus={filterStatus} />
+      <button
+        onClick={() => setFilterStatus(!filterStatus)}
+        className="filterButton"
+      >
+        Filter
+      </button>
+      <Filter filterStatus={filterStatus} setFilterStatus={setFilterStatus} />
     </div>
   );
 };

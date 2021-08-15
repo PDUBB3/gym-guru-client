@@ -1,6 +1,6 @@
 .filter {
-  position: fixed;
-  top: 0;
+  position: absolute;
+  top: 7%;
   left: 0;
   width: 20rem;
   height: 100%;
@@ -12,12 +12,14 @@
   opacity: 0;
 }
 
-h2 {
+.filter h2 {
   padding: 2rem;
 }
 
-button {
+.filterButton,
+.closeFilterButton {
   text-decoration: none;
+  color: black;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -29,7 +31,8 @@ button {
   left: 30%;
 }
 
-button:hover {
+.filterButton:hover,
+.closeFilterButton:hover {
   background: rgb(65, 65, 65);
   color: white;
 }
@@ -56,10 +59,10 @@ button:hover {
 }
 
 @media screen and (max-width: 768px) {
-  .library {
+  .filter {
     width: 100%;
   }
-  a {
+  .filter a {
     left: 40%;
   }
 }
