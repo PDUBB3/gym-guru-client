@@ -1,6 +1,7 @@
 .buddiesHeader {
   display: flex;
   justify-content: center;
+  margin-top: 2rem;
 }
 
 .buddiesHeader h1 {
@@ -22,4 +23,11 @@
 
 .buddiesCards h1 {
   color: black;
+}
+
+@media screen and (max-width: 768px) {
+  .buddiesBody {
+    flex-direction: column;
+    align-items: center;
+  }
 }

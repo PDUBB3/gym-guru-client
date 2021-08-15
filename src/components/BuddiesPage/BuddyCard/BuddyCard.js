@@ -29,6 +29,13 @@ const BuddyCard = () => {
         />
         <p>Leon Wheeler</p>
       </div>
+      <div className="buddyInfoContainer">
+        <p>City: Birmingham</p>
+        <p>Gym: PureGym</p>
+        <br></br>
+        <p>Interests: Biking</p>
+        <p>Goals: Lose Weight</p>
+      </div>
     </div>
   );
 };
