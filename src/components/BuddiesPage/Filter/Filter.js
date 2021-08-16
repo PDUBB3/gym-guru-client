@@ -1,5 +1,7 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
+
+import { BuddiesFilterContext } from "../../../context/BuddiesFilterContext";
 
 import Button from "@material-ui/core/Button";
 import FormControl from "@material-ui/core/FormControl";
@@ -13,20 +15,21 @@ import "./Filter.css";
 const Filter = ({ filterStatus, setFilterStatus }) => {
   // const [countries] = useState(Country.getAllCountries());
   const [cities, setCities] = useState();
-  const [selectedCity, setSelectedCity] = useState("");
   const [selectedGym, setSelectedGym] = useState("");
+
+  const { filterParams, setFilterParams } = useContext(BuddiesFilterContext);
 
   const onSubmit = (event) => {
     event.preventDefault();
 
     console.log({
-      selectedCity,
+      filterParams,
       selectedGym,
     });
   };
 
   const handleChangeCity = (event) => {
-    setSelectedCity(event.target.value);
+    setFilterParams(event.target.value);
   };
 
   const handleChangeGym = (event) => {
@@ -41,14 +44,17 @@ const Filter = ({ filterStatus, setFilterStatus }) => {
           <Box component="div" m={1}>
             <FormControl style={{ minWidth: "200px" }}>
               <InputLabel>City</InputLabel>
-              <Select value={selectedCity} onChange={handleChangeCity}>
+              <Select value={filterParams} onChange={handleChangeCity}>
                 <MenuItem name="Birmingham" value="Birmingham" key="Birmingham">
                   Birmingham
+                </MenuItem>
+                <MenuItem name="Manchester" value="Manchester" key="Manchester">
+                  Manchester
                 </MenuItem>
               </Select>
             </FormControl>
           </Box>
-          {selectedCity && (
+          {filterParams && (
             <Box component="div" m={1}>
               <FormControl style={{ minWidth: "200px" }}>
                 <InputLabel>Gym</InputLabel>

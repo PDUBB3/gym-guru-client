@@ -37,8 +37,22 @@ const BuddyCard = ({ data }) => {
           <p>Gym: N/A</p>
         )}
         <br></br>
-        <p>Interests: Biking</p>
-        <p>Goals: Lose Weight</p>
+        <p>
+          Interests:
+          {data.interests
+            .map((interest) => {
+              return ` ${interest}`;
+            })
+            .slice(0, 2)}
+        </p>
+        <p>
+          Goals:{" "}
+          {data.goals
+            .map((goal) => {
+              return ` ${goal}`;
+            })
+            .slice(0, 2)}
+        </p>
       </div>
     </div>
   );

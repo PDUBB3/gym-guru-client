@@ -1,13 +1,19 @@
 import "./BuddiesPage.css";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useQuery } from "@apollo/client";
 import { USERS } from "../../graphql/queries";
+
+import { BuddiesFilterContext } from "../../context/BuddiesFilterContext";
 
 import Filter from "../../components/BuddiesPage/Filter/Filter";
 import BuddyCard from "../../components/BuddiesPage/BuddyCard/BuddyCard";
 
 const BuddiesPage = () => {
   const [filterStatus, setFilterStatus] = useState(false);
+
+  const { filterParams, setFilterParams } = useContext(BuddiesFilterContext);
+
+  console.log(filterParams);
 
   const { data, loading, error } = useQuery(USERS);
 
@@ -20,6 +26,14 @@ const BuddiesPage = () => {
   }
 
   if (data) {
+    const handleFilter = () => {
+      if (filterParams === "") {
+        return data.users;
+      }
+
+      return data.users.filter((user) => user.city === filterParams);
+    };
+
     return (
       <div>
         <div className="buddiesHeader">
@@ -35,7 +49,7 @@ const BuddiesPage = () => {
             </button>
           </div>
           <div className="buddiesCards">
-            {data.users.map((user) => {
+            {handleFilter().map((user) => {
               return <BuddyCard data={user} />;
             })}
           </div>

@@ -12,12 +12,18 @@
           0%);
   box-shadow: 1px 1px 30px rgb(0, 180, 216, 70%);
   height: 13rem;
-  width: 30rem;
+  width: 35rem;
   border-radius: 22px;
   display: flex;
   align-items: center;
   margin: 2rem;
   justify-content: space-between;
+  transition: all 0.2s ease-in-out;
+}
+
+.buddyCard:hover {
+  transform: scale(1.1);
+  transition: all 0.2s ease;
 }
 
 .avatarContainer {
