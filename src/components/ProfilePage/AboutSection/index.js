@@ -2,7 +2,7 @@ import { FaEnvelope, FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
 
 const AboutSection = ({ firstName, lastName, city, bio, profileImageUrl }) => {
   return (
-    <div className="about-container">
+    <div className="user-info-container">
       <img
         src={profileImageUrl}
         alt={firstName}

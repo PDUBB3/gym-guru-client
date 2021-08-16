@@ -5,7 +5,7 @@ const GymPageContent = ({ gym }) => {
   const { name, rating, imageURL, ...rest } = gym;
 
   return (
-    <div className="main-container">
+    <div className="gym-container">
       <div className="image-container">
         <img src={imageURL} alt={name} height="350" className="image" />
       </div>
