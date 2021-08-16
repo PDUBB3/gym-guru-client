@@ -5,7 +5,7 @@ import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import GymsPage from "./pages/GymsPage";
 import GymPage from "./pages/GymPage/GymPage";
-import ProfilePage from "./pages/ProfilePage";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import BuddiesPage from "./pages/BuddiesPage";
 import CreateGymPage from "./pages/CreateGymPage";
 
