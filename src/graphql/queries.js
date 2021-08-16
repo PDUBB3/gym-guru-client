@@ -45,3 +45,22 @@ export const GYM_QUERY = gql`
     }
   }
 `;
+
+export const USERS = gql`
+  query Query {
+    users {
+      username
+      firstName
+      lastName
+      attendingGymId
+      profileImageUrl
+      city
+      goals
+      buddies
+      interests
+      bio
+      isGymOwner
+      ownedGymId
+    }
+  }
+`;
