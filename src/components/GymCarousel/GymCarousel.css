@@ -1,0 +1,5 @@
+/* Container that contains the main carousel */
+.gym-carousel-container {
+  justify-content: space-evenly;
+  margin-top: 4rem;
+}
