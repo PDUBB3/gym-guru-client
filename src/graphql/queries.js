@@ -45,3 +45,23 @@ export const GYM_QUERY = gql`
     }
   }
 `;
+
+export const USER_QUERY = gql`
+  query Query($username: String) {
+    findUser(username: $username) {
+      id
+      username
+      lastName
+      firstName
+      isGymOwner
+      ownedGymId
+      attendingGymId
+      profileImageUrl
+      city
+      bio
+      goals
+      interests
+      buddies
+    }
+  }
+`;
