@@ -3,12 +3,12 @@ import { Container } from "@material-ui/core";
 import GymCarousel from "../components/GymCarousel";
 
 import Header from "../components/Header/Header";
-import { GYMS_QUERY } from "../graphql/queries";
+import { HOME_QUERY } from "../graphql/queries";
 
 // import "../index.css";
 
 const HomePage = (props) => {
-  const { loading, error, data } = useQuery(GYMS_QUERY, {
+  const { loading, error, data } = useQuery(HOME_QUERY, {
     variables: {
       gymsSortBy: "rating",
     },

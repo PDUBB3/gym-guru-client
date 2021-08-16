@@ -1,65 +1,39 @@
 import Carousel from "react-multi-carousel";
+
+import GymCard from "../GymCard";
+
 import "react-multi-carousel/lib/styles.css";
-
-import GymCard from "../GymCard/index";
-
-// import React from "react";
+import "./GymCarousel.css";
 
 const GymCarousel = ({ gyms }) => {
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3,
+      partialVisibilityGutter: 40, // this is optional if you are not using partialVisible props
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+      partialVisibilityGutter: 30, // this is optional if you are not using partialVisible props
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+      partialVisibilityGutter: 30, // this is optional if you are not using partialVisible props
+    },
+  };
+
   return (
     <Carousel
-      additionalTransfrom={0}
-      arrows
-      autoPlaySpeed={3000}
-      centerMode={true}
-      className=""
-      aria-hidden={true}
-      ariaLabel={true}
-      containerClass="container"
-      dotListClass=""
-      draggable
-      focusOnSelect={false}
+      containerClass="gym-carousel-container"
       infinite={true}
-      itemClass=""
-      keyBoardControl
-      minimumTouchDrag={80}
-      renderButtonGroupOutside={false}
-      renderDotsOutside={false}
-      responsive={{
-        desktop: {
-          breakpoint: {
-            max: 3000,
-            min: 1024,
-          },
-          items: 3,
-          partialVisibilityGutter: 40,
-        },
-        mobile: {
-          breakpoint: {
-            max: 464,
-            min: 0,
-          },
-          items: 1,
-          partialVisibilityGutter: 30,
-        },
-        tablet: {
-          breakpoint: {
-            max: 1024,
-            min: 464,
-          },
-          items: 2,
-          partialVisibilityGutter: 30,
-        },
-      }}
-      showDots={true}
-      sliderClass=""
-      slidesToSlide={1}
-      swipeable
+      responsive={responsive}
+      removeArrowOnDeviceType={["tablet", "mobile"]}
     >
       {gyms.map((gym) => {
-        return <GymCard imageURL={gym.imageURL} name={gym.name} />;
+        return <GymCard {...gym} />;
       })}
-      ;
     </Carousel>
   );
 };
