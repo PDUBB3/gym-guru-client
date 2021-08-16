@@ -1,3 +1,9 @@
+import Checkbox from "@material-ui/core/Checkbox";
+import { withStyles } from "@material-ui/core/styles";
+import { green } from "@material-ui/core/colors";
+import FormGroup from "@material-ui/core/FormGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+
 import "./ExerciseFacilitiesForm.css";
 
 const ExerciseFacilitiesForm = ({ errors, register }) => {
@@ -22,22 +28,44 @@ const ExerciseFacilitiesForm = ({ errors, register }) => {
   ];
 
   return (
-    <div className="form-box-facilities">
-      <div className="facilities-image-container"></div>
-      <div className="facilities-input">
-        {exerciseFacilities.map((exerciseFacility) => {
-          return (
-            <div className="facilities-checkbox" key={exerciseFacility.id}>
-              <input
-                type="checkbox"
-                name="scales"
-                value={exerciseFacility.id}
-                {...register(`exerciseFacilities.${exerciseFacility.id}`)}
-              />
-              <label>{exerciseFacility.name}</label>
-            </div>
-          );
-        })}
+    <div>
+      <FormGroup row>
+        <FormControlLabel
+          control={
+            <Checkbox checked={true} onChange={() => {}} name="checkedA" />
+          }
+          label="Secondary"
+        />
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={true}
+              onChange={() => {}}
+              name="checkedB"
+              color="primary"
+            />
+          }
+          label="Primary"
+        />
+      </FormGroup>
+      <div className="form-box-facilities">
+        <div className="facilities-image-container">
+          <div className="facilities-input">
+            {exerciseFacilities.map((exerciseFacility) => {
+              return (
+                <div className="facilities-checkbox" key={exerciseFacility.id}>
+                  <input
+                    type="checkbox"
+                    name="scales"
+                    value={exerciseFacility.id}
+                    {...register(`exerciseFacilities.${exerciseFacility.id}`)}
+                  />
+                  <label>{exerciseFacility.name}</label>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </div>
   );
