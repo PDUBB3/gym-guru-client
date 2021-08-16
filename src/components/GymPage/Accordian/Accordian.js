@@ -79,7 +79,7 @@ const CustomizedAccordions = ({ gym }) => {
           <Typography>Contact Information</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <div className="contact">
+          <div>
             <div>{address}</div>
             <div>{city}</div>
             <div>{postCode}</div>

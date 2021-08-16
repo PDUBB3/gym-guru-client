@@ -5,15 +5,24 @@ import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
-import PeopleIcon from "@material-ui/icons/People";
-import AddIcon from "@material-ui/icons/Add";
+
+import { BsPeopleFill } from "react-icons/bs";
+import { RiAddCircleFill } from "react-icons/ri";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 345,
+    width: 250,
+    height: 430,
     boxShadow: "0px 0px 20px #00b4d8",
+    margin: 15,
+  },
+  header: {
+    height: 80,
+    textAlign: "center",
+  },
+  content: {
+    color: "grey",
+    fontSize: 12,
   },
   media: {
     height: 0,
@@ -32,40 +41,50 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const GymCard = ({
+  id,
   imageURL,
   name,
-  postCode,
+  postcode,
   address,
   city,
   contactNumber,
 }) => {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+  const url = `/gyms/${id}`;
 
   return (
     <Card className={classes.root}>
-      <CardHeader title={name} textOverflow="ellipsis" />
+      <CardHeader
+        title={name}
+        className={classes.header}
+        titleTypographyProps={{ variant: "h6" }}
+      />
       <CardMedia className={classes.media} image={imageURL} title={name} />
-      <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {address} <br />
-          {city} <br />
-          {postCode}
-          <br />
-          {contactNumber}
-        </Typography>
+      <CardContent className={classes.content}>
+        <div className="address">
+          <div>{address}</div>
+          <div>{city} </div>
+          <div>{postcode}</div>
+        </div>
+        <div>{contactNumber}</div>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="people icon">
-          <PeopleIcon />
-        </IconButton>
-        <IconButton aria-label="add icon">
-          <AddIcon />
-        </IconButton>
+        <div className="card-icons">
+          <div className="view-btn">
+            <a href={url}>View</a>
+          </div>
+          <span className="card-icon">
+            <a href="/">
+              <BsPeopleFill />
+            </a>
+          </span>
+          <span className="card-icon">
+            <a href="/">
+              <RiAddCircleFill />
+            </a>
+          </span>
+        </div>
       </CardActions>
     </Card>
   );

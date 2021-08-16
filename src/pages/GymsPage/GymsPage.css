@@ -1,0 +1,27 @@
+.gym-cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 2rem;
+}
+
+.address {
+  margin-bottom: 0.5rem;
+}
+
+.card-icons {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  text-align: center;
+}
+
+.view-btn {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-icon {
+  padding: 0.2rem;
+}

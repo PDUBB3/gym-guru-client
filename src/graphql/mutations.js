@@ -10,6 +10,13 @@ export const CREATE_GYM = gql`
       contactNumber
       rating
       imageURL
+      openingTimes {
+        dayIndex
+        dayName
+        dayShort
+        startTime
+        endTime
+      }
       exerciseFacilities {
         id
         name
