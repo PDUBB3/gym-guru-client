@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-export const GYMS = gql`
+export const GYMS_QUERY = gql`
   query Query {
     gyms {
       name
@@ -8,6 +8,7 @@ export const GYMS = gql`
       city
       postCode
       contactNumber
+      imageURL
       rating
       exerciseFacilities {
         name
