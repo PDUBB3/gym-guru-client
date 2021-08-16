@@ -3,12 +3,13 @@ import { gql } from "@apollo/client";
 export const GYMS_QUERY = gql`
   query Query {
     gyms {
+      id
       name
+      imageURL
       address
       city
       postCode
       contactNumber
-      imageURL
       rating
       exerciseFacilities {
         name
@@ -50,7 +51,6 @@ export const GYM_QUERY = gql`
 export const USER_QUERY = gql`
   query Query($username: String) {
     findUser(username: $username) {
-      id
       username
       lastName
       firstName

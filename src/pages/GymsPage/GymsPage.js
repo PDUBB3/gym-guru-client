@@ -23,6 +23,7 @@ const GymsPage = () => {
           {data.gyms.map((gym) => {
             return (
               <GymCard
+                id={gym.id}
                 name={gym.name}
                 address={gym.address}
                 postcode={gym.postCode}

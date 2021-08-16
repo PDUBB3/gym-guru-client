@@ -41,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const GymCard = ({
+  id,
   imageURL,
   name,
   postcode,
@@ -49,6 +50,8 @@ const GymCard = ({
   contactNumber,
 }) => {
   const classes = useStyles();
+
+  const url = `/gyms/${id}`;
 
   return (
     <Card className={classes.root}>
@@ -69,7 +72,7 @@ const GymCard = ({
       <CardActions disableSpacing>
         <div className="card-icons">
           <div className="view-btn">
-            <a href="/gyms/new">View</a>
+            <a href={url}>View</a>
           </div>
           <span className="card-icon">
             <a href="/">
