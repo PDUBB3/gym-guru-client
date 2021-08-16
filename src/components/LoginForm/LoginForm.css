@@ -24,11 +24,10 @@ button {
 }
 
 .form-box {
-  /* background-image: linear-gradient(180deg, #bc00dd, #b100e8);
-  box-sizing: border-box;
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
-  border-radius: 10px; */
-  /* max-width: 250px; */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background-image: linear-gradient(
       to top,
       rgb(75, 75, 75) 30%,
