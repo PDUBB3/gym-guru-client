@@ -52,7 +52,9 @@ export const USERS = gql`
       username
       firstName
       lastName
-      attendingGymId
+      attendingGymId {
+        name
+      }
       profileImageUrl
       city
       goals

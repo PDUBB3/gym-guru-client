@@ -11,6 +11,10 @@ const BuddiesPage = () => {
 
   const { data, loading, error } = useQuery(USERS);
 
+  if (error) {
+    return <h1>Error</h1>;
+  }
+
   if (loading) {
     return <h1>Loading</h1>;
   }
