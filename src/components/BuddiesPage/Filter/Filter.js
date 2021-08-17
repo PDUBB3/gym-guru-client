@@ -44,6 +44,12 @@ const Filter = ({ filterStatus, setFilterStatus }) => {
     setFilterParams({ ...filterParams, gym: event.target.value });
   };
 
+  const handleChangeInterest = (event) => {
+    setFilterParams({ ...filterParams, interests: event.target.value });
+  };
+
+  console.log(filterParams);
+
   if (loading) {
     return <h1>Loading...</h1>;
   }
@@ -55,6 +61,12 @@ const Filter = ({ filterStatus, setFilterStatus }) => {
   const filteredGyms = data.gyms.filter((gym) => {
     return gym.city === filterParams.city;
   });
+
+  const userInterests = userData.users.map((user) => user.interests);
+
+  const interests = userInterests.flat();
+
+  const filteredInterests = [...new Set(interests)];
 
   return (
     <div className={`filter ${filterStatus ? "active-filter" : ""}`}>
@@ -95,6 +107,20 @@ const Filter = ({ filterStatus, setFilterStatus }) => {
               </FormControl>
             </Box>
           )}
+          <Box component="div" m={1}>
+            <FormControl style={{ minWidth: "200px" }}>
+              <InputLabel>Interests</InputLabel>
+              <Select value={filterParams} onChange={handleChangeInterest}>
+                {filteredInterests.map((interest) => {
+                  return (
+                    <MenuItem name={interest} value={interest} key={interest}>
+                      {interest}
+                    </MenuItem>
+                  );
+                })}
+              </Select>
+            </FormControl>
+          </Box>
           <Box component="div" m={1}>
             <Button
               variant="contained"

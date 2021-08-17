@@ -31,12 +31,40 @@ const BuddiesPage = () => {
         return data.users;
       }
 
+      // Look for city, gym, and interests
+      if (filterParams.city && filterParams.interests && filterParams.gym) {
+        return data.users.filter(
+          (user) =>
+            user.attendingGymId !== null &&
+            user.city === filterParams.city &&
+            user.interests.includes(filterParams.interests) &&
+            user.attendingGymId.name === filterParams.gym
+        );
+      }
+
+      // Look for city and interest
+      if (filterParams.city && filterParams.interests) {
+        return data.users.filter(
+          (user) =>
+            user.city === filterParams.city &&
+            user.interests.includes(filterParams.interests)
+        );
+      }
+
+      // Look for city and gym
       if (filterParams.city && filterParams.gym) {
         return data.users.filter(
           (user) =>
             user.attendingGymId !== null &&
             user.city === filterParams.city &&
             user.attendingGymId.name === filterParams.gym
+        );
+      }
+
+      // Look for interests
+      if (filterParams.interests) {
+        return data.users.filter((user) =>
+          user.interests.includes(filterParams.interests)
         );
       }
 
