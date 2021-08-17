@@ -14,7 +14,6 @@ import "./Filter.css";
 
 const Filter = ({ filterStatus, setFilterStatus }) => {
   // const [countries] = useState(Country.getAllCountries());
-  const [cities, setCities] = useState();
   const [selectedGym, setSelectedGym] = useState("");
 
   const { filterParams, setFilterParams } = useContext(BuddiesFilterContext);
@@ -29,11 +28,11 @@ const Filter = ({ filterStatus, setFilterStatus }) => {
   };
 
   const handleChangeCity = (event) => {
-    setFilterParams(event.target.value);
+    setFilterParams({ ...filterParams, city: event.target.value });
   };
 
   const handleChangeGym = (event) => {
-    setSelectedGym(event.target.value);
+    setFilterParams({ ...filterParams, gym: event.target.value });
   };
 
   return (

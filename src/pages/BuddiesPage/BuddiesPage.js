@@ -18,6 +18,7 @@ const BuddiesPage = () => {
   const { data, loading, error } = useQuery(USERS);
 
   if (error) {
+    console.log(error);
     return <h1>Error</h1>;
   }
 
@@ -31,7 +32,17 @@ const BuddiesPage = () => {
         return data.users;
       }
 
-      return data.users.filter((user) => user.city === filterParams);
+      if (filterParams.city && filterParams.gym) {
+        return data.users.filter(
+          (user) =>
+            user.attendingGymId !== null &&
+            user.city === filterParams.city &&
+            user.attendingGymId.name === filterParams.gym
+        );
+      }
+
+      console.log(data.users);
+      return data.users.filter((user) => user.city === filterParams.city);
     };
 
     return (
