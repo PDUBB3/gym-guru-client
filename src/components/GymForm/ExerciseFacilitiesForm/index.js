@@ -34,7 +34,9 @@ const ExerciseFacilitiesForm = ({ errors, register }) => {
                 value={exerciseFacility.id}
                 {...register(`exerciseFacilities.${exerciseFacility.id}`)}
               />
-              <label>{exerciseFacility.name}</label>
+              <label className="facilities-label">
+                {exerciseFacility.name}
+              </label>
             </div>
           );
         })}
