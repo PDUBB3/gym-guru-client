@@ -1,4 +1,5 @@
 import FormInput from "../../FormInput";
+import Logo from "../../../assets/img/logo-blue-bg.png";
 
 import "./GymDetailsForm.css";
 
@@ -6,7 +7,9 @@ const GymDetailsForm = ({ errors, register }) => {
   return (
     <div class="details-form-box">
       <div className="gym-details-image-container">
-        <img src="../../../assets/img/gym-guru-white.png" alt="logo"></img>
+        <div className="logo" id="gg" width="500" height="600">
+          <img src={Logo} alt="gym-guru-logo" />
+        </div>
       </div>
       <div className="gym-details-input-container">
         <h2 class="form-heading">Please enter your gym details:</h2>
