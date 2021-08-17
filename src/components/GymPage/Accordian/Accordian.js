@@ -67,7 +67,6 @@ const CustomizedAccordions = ({ gym }) => {
     otherFacilities,
   } = gym;
 
-  console.log(exerciseFacilities, otherFacilities);
   return (
     <div>
       <Accordion
@@ -112,7 +111,7 @@ const CustomizedAccordions = ({ gym }) => {
         <AccordionDetails>
           <div className="facilities">
             <div>
-              <div>Exercise Facilities</div>
+              <div className="facility">Exercise Facilities</div>
               <ul>
                 {exerciseFacilities.map((facility) => (
                   <li className="list-item">{facility.name}</li>
@@ -120,7 +119,7 @@ const CustomizedAccordions = ({ gym }) => {
               </ul>
             </div>
             <div>
-              <div>Other Facilities</div>
+              <div className="facility">Other Facilities</div>
               <ul>
                 {otherFacilities.map((facility) => (
                   <li className="list-item">{facility.name}</li>

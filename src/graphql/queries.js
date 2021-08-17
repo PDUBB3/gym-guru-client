@@ -20,6 +20,7 @@ export const GYMS_QUERY = gql`
     }
   }
 `;
+
 export const GYM_QUERY = gql`
   query Query($id: ID!) {
     gym(id: $id) {
@@ -63,6 +64,17 @@ export const USER_QUERY = gql`
       goals
       interests
       buddies
+    }
+  }
+`;
+
+export const HOME_QUERY = gql`
+  query Query($gymsSortBy: String) {
+    gyms(sortBy: $gymsSortBy) {
+      imageURL
+      id
+      rating
+      name
     }
   }
 `;

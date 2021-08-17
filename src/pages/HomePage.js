@@ -1,29 +1,36 @@
-// import { Carousel } from "bootstrap";
-import Carousel from "../utils/Carousel";
+import { useQuery } from "@apollo/client";
+import { Container } from "@material-ui/core";
+import GymCarousel from "../components/GymCarousel";
 
 import Header from "../components/Header/Header";
+import { HOME_QUERY } from "../graphql/queries";
 
-import "../index.css";
+// import "../index.css";
 
 const HomePage = (props) => {
+  const { loading, error, data } = useQuery(HOME_QUERY, {
+    variables: {
+      gymsSortBy: "rating",
+    },
+  });
+
+  if (loading) {
+    return <div>loading</div>;
+  }
+
+  if (error) {
+    return <div>error</div>;
+  }
+
+  const { gyms } = data;
+  console.log(gyms);
+
   return (
     <>
       <Header />
-      <Carousel>
-        {
-          <div id="app">
-            <a
-              href="https://youtu.be/5ptXXNjuUfg"
-              target="_blank"
-              rel="noreferrer"
-              data-keyframers-credit
-              style="color: #FFF"
-            >
-              Link text
-            </a>
-          </div>
-        }
-      </Carousel>
+      <Container maxWidth="lg">
+        <GymCarousel gyms={gyms} />
+      </Container>
     </>
   );
 };
