@@ -15,14 +15,10 @@ const Navbar = (props) => {
         {isLoggedIn && (
           <>
             <div id="nav-item-container">
-              <a href="/:username" target="blank">
-                My Profile
-              </a>
+              <a href="/:username">My Profile</a>
             </div>
             <div id="nav-item-container">
-              <a href="/findbuddies" target="blank">
-                Buddies
-              </a>
+              <a href="/findbuddies">Buddies</a>
             </div>
           </>
         )}
@@ -37,9 +33,7 @@ const Navbar = (props) => {
           </>
         )}
         <div id="nav-item-container">
-          <a href="/gyms" target="blank">
-            Gyms
-          </a>
+          <a href="/gyms">Gyms</a>
         </div>
       </nav>
     </div>
