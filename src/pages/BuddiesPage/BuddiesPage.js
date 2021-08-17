@@ -1,7 +1,7 @@
 import "./BuddiesPage.css";
 import { useState, useContext } from "react";
 import { useQuery } from "@apollo/client";
-import { USERS } from "../../graphql/queries";
+import { USERS_QUERY } from "../../graphql/queries";
 
 import { BuddiesFilterContext } from "../../context/BuddiesFilterContext";
 
@@ -13,12 +13,11 @@ const BuddiesPage = () => {
 
   const { filterParams, setFilterParams } = useContext(BuddiesFilterContext);
 
-  console.log(filterParams);
+  const { data, loading, error } = useQuery(USERS_QUERY);
 
-  const { data, loading, error } = useQuery(USERS);
+  console.log(data);
 
   if (error) {
-    console.log(error);
     return <h1>Error</h1>;
   }
 
