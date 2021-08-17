@@ -9,6 +9,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import Box from "@material-ui/core/Box";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
+import { listCities } from "cclist";
 
 import "./Filter.css";
 
@@ -35,6 +36,9 @@ const Filter = ({ filterStatus, setFilterStatus }) => {
     setFilterParams({ ...filterParams, gym: event.target.value });
   };
 
+  const cities = listCities("GB").sort();
+  console.log(cities);
+
   return (
     <div className={`filter ${filterStatus ? "active-filter" : ""}`}>
       <h2>Filter</h2>
@@ -44,6 +48,13 @@ const Filter = ({ filterStatus, setFilterStatus }) => {
             <FormControl style={{ minWidth: "200px" }}>
               <InputLabel>City</InputLabel>
               <Select value={filterParams} onChange={handleChangeCity}>
+                {cities.map((city) => {
+                  return (
+                    <MenuItem name={city} value={city} key={city}>
+                      {city}
+                    </MenuItem>
+                  );
+                })}
                 <MenuItem name="Birmingham" value="Birmingham" key="Birmingham">
                   Birmingham
                 </MenuItem>
