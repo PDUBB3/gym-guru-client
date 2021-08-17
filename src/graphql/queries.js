@@ -57,7 +57,10 @@ export const USER_QUERY = gql`
       firstName
       isGymOwner
       ownedGymId
-      attendingGymId
+      attendingGymId {
+        id
+        name
+      }
       profileImageUrl
       city
       bio
