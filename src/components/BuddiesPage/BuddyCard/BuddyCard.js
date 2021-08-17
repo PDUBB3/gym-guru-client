@@ -20,41 +20,43 @@ const BuddyCard = ({ data }) => {
   const classes = useStyles();
 
   return (
-    <div className="buddyCard">
-      <div className="avatarContainer">
-        <Avatar
-          alt="Leon Wheeler"
-          src="https://techcrunch.com/wp-content/uploads/2019/07/Bob-Smith_portrait-1.jpg"
-          className={classes.large}
-        />
-        <p>{data.username}</p>
+    <a className="buddyCardLink" href={`/${data.username}`}>
+      <div className="buddyCard">
+        <div className="avatarContainer">
+          <Avatar
+            alt="Leon Wheeler"
+            src="https://techcrunch.com/wp-content/uploads/2019/07/Bob-Smith_portrait-1.jpg"
+            className={classes.large}
+          />
+          <p>{data.username}</p>
+        </div>
+        <div className="buddyInfoContainer">
+          <p>City: {data.city}</p>
+          {data.attendingGymId ? (
+            <p>Gym: {data.attendingGymId.name}</p>
+          ) : (
+            <p>Gym: N/A</p>
+          )}
+          <br></br>
+          <p>
+            Interests:
+            {data.interests
+              .map((interest) => {
+                return ` ${interest}`;
+              })
+              .slice(0, 2)}
+          </p>
+          <p>
+            Goals:{" "}
+            {data.goals
+              .map((goal) => {
+                return ` ${goal}`;
+              })
+              .slice(0, 2)}
+          </p>
+        </div>
       </div>
-      <div className="buddyInfoContainer">
-        <p>City: {data.city}</p>
-        {data.attendingGymId ? (
-          <p>Gym: {data.attendingGymId.name}</p>
-        ) : (
-          <p>Gym: N/A</p>
-        )}
-        <br></br>
-        <p>
-          Interests:
-          {data.interests
-            .map((interest) => {
-              return ` ${interest}`;
-            })
-            .slice(0, 2)}
-        </p>
-        <p>
-          Goals:{" "}
-          {data.goals
-            .map((goal) => {
-              return ` ${goal}`;
-            })
-            .slice(0, 2)}
-        </p>
-      </div>
-    </div>
+    </a>
   );
 };
 

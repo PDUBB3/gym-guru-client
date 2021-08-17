@@ -37,3 +37,8 @@
 .buddyInfoContainer {
   margin-right: 2rem;
 }
+
+.buddyCardLink {
+  text-decoration: none;
+  color: inherit;
+}
