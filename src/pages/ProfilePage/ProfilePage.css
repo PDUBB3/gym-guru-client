@@ -1,6 +1,6 @@
 .profile-container {
   display: flex;
-  flex-wrap: wrap;
+  flex-flow: wrap;
   margin: 1rem 2rem;
   height: 80vh;
 }
@@ -35,7 +35,8 @@ h1 {
 
 .bio {
   text-align: start;
-  margin: 1rem 3rem;
+  margin: 1rem 0;
+  padding: 1rem;
 }
 
 .city {
@@ -105,4 +106,43 @@ h2 {
 .buddy-image {
   border-radius: 100px;
   margin: 1rem 0;
+}
+
+@media screen and (max-width: 900px) {
+  .profile-container {
+    margin: 0;
+  }
+
+  .user-info-container {
+    margin: 0.5;
+  }
+
+  .profile-image {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .user-info-container {
+    width: 100%;
+  }
+
+  .extra-info-container {
+    width: 100%;
+  }
+
+  .bio {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .goals-interests-container {
+    flex-direction: column;
+  }
+
+  .goals-interests {
+    width: 100%;
+  }
 }
