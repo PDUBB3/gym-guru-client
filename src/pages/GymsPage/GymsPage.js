@@ -1,13 +1,12 @@
 import { useQuery } from "@apollo/client";
-import { GYMS } from "../graphql/queries";
-import Header from "../components/Header/Header";
+import { GYMS_QUERY } from "../../graphql/queries";
 
-import GymCard from "../components/GymCard";
+import GymCard from "../../components/GymCard";
+
+import "./GymsPage.css";
 
 const GymsPage = () => {
-  const { data, loading, error } = useQuery(GYMS);
-
-  console.log(data);
+  const { data, loading, error } = useQuery(GYMS_QUERY);
 
   if (loading) {
     return <h1>loading</h1>;
@@ -20,17 +19,14 @@ const GymsPage = () => {
   if (data) {
     return (
       <div>
-        <div>
-        <Header />
-        </div>
-        <div className="gymCards">
+        <div className="gym-cards">
           {data.gyms.map((gym) => {
             return (
-              
               <GymCard
+                id={gym.id}
                 name={gym.name}
                 address={gym.address}
-                postcode={gym.postcode}
+                postcode={gym.postCode}
                 city={gym.city}
                 contactNumber={gym.contactNumber}
                 imageURL={gym.imageURL}

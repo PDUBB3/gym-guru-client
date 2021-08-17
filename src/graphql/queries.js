@@ -1,9 +1,11 @@
 import { gql } from "@apollo/client";
 
-export const GYMS = gql`
+export const GYMS_QUERY = gql`
   query Query {
     gyms {
+      id
       name
+      imageURL
       address
       city
       postCode
@@ -18,6 +20,7 @@ export const GYMS = gql`
     }
   }
 `;
+
 export const GYM_QUERY = gql`
   query Query($id: ID!) {
     gym(id: $id) {
@@ -46,23 +49,32 @@ export const GYM_QUERY = gql`
   }
 `;
 
-export const USERS = gql`
-  query Query {
-    users {
+export const USER_QUERY = gql`
+  query Query($username: String) {
+    findUser(username: $username) {
       username
-      firstName
       lastName
-      attendingGymId {
-        name
-      }
-      profileImageUrl
-      city
-      goals
-      buddies
-      interests
-      bio
+      firstName
       isGymOwner
       ownedGymId
+      attendingGymId
+      profileImageUrl
+      city
+      bio
+      goals
+      interests
+      buddies
+    }
+  }
+`;
+
+export const HOME_QUERY = gql`
+  query Query($gymsSortBy: String) {
+    gyms(sortBy: $gymsSortBy) {
+      imageURL
+      id
+      rating
+      name
     }
   }
 `;

@@ -3,10 +3,10 @@ import { Switch, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
-import GymsPage from "./pages/GymsPage";
+import GymsPage from "./pages/GymsPage/GymsPage";
 import GymPage from "./pages/GymPage/GymPage";
-import ProfilePage from "./pages/ProfilePage";
 import BuddiesPage from "./pages/BuddiesPage/BuddiesPage";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import CreateGymPage from "./pages/CreateGymPage";
 
 const Routes = () => {
