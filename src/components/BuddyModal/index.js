@@ -25,6 +25,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const handleSubmit = (event) => {
+  event.preventDefault();
+  //handle close to go inside handlesubmit fn
+};
+
 export default function FormDialog({ handleClose, open }) {
   useStyles();
 
@@ -58,7 +63,7 @@ export default function FormDialog({ handleClose, open }) {
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleClose} color="primary">
+          <Button type="submit" onClick={handleSubmit} color="primary">
             Send
           </Button>
         </DialogActions>
