@@ -44,7 +44,7 @@
   /* background-color: grey; */
 }
 
-a {
+.navbarLink {
   max-width: 20%;
   background-color: white;
   border: 1px solid black;
@@ -59,9 +59,9 @@ a {
   text-decoration: none;
 }
 
-a:hover,
-a:focus,
-a:active {
+.navbarLink:hover,
+.navbarLink:focus,
+.navbarLink:active {
   background-color: #00b4d8;
   color: white;
   border: 2px solid bottom;

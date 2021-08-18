@@ -7,11 +7,14 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 
+import { BuddiesFilterProvider } from "./context/BuddiesFilterContext";
+
 import Navbar from "./components/Navbar/Navbar";
 
 import Routes from "./Routes";
 
 import "./App.css";
+import { UserProvider } from "./context/UserContext";
 
 const httpLink = createHttpLink({
   uri: process.env.GRAPHQL_URL || "http://localhost:4000/",
@@ -35,12 +38,16 @@ const client = new ApolloClient({
 
 const App = () => {
   return (
-    <ApolloProvider client={client}>
-      <Router>
-        <Navbar />
-        <Routes />
-      </Router>
-    </ApolloProvider>
+    <UserProvider>
+      <ApolloProvider client={client}>
+        <BuddiesFilterProvider>
+          <Router>
+            <Navbar />
+            <Routes />
+          </Router>
+        </BuddiesFilterProvider>
+      </ApolloProvider>
+    </UserProvider>
   );
 };
 

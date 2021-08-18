@@ -1,0 +1,16 @@
+.other-facilities-form-box {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(2, 50%);
+  grid-column-gap: 10px;
+  overflow: hidden;
+  flex-wrap: wrap;
+  min-height: 70vh;
+  min-width: 50vw;
+  background-color: #f8f9fa;
+  background-image: fixed;
+  /* padding: 1rem; */
+  color: black;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px #00b4d8;
+}

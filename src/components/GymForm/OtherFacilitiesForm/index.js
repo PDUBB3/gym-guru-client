@@ -37,20 +37,25 @@ const OtherFacilitiesForm = ({ errors, register }) => {
   ];
 
   return (
-    <div>
-      {otherFacilities.map((otherFacility, index) => {
-        return (
-          <div key={otherFacility.id}>
-            <input
-              type="checkbox"
-              name="scales"
-              value={otherFacility.id}
-              {...register(`otherFacilities.${otherFacility.id}`)}
-            />
-            <label>{otherFacility.name}</label>
-          </div>
-        );
-      })}
+    <div className="other-facilities-form-box">
+      <div className="other-facilities-image-container"></div>
+      <div>
+        {otherFacilities.map((otherFacility, index) => {
+          return (
+            <div key={otherFacility.id}>
+              <div className="other-facilities-input-container">
+                <input
+                  type="checkbox"
+                  name="scales"
+                  value={otherFacility.id}
+                  {...register(`otherFacilities.${otherFacility.id}`)}
+                />
+                <label>{otherFacility.name}</label>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

@@ -58,7 +58,27 @@ export const USER_QUERY = gql`
       isGymOwner
       ownedGymId
       attendingGymId {
-        id
+        name
+      }
+      profileImageUrl
+      city
+      bio
+      goals
+      interests
+      buddies
+    }
+  }
+`;
+
+export const USERS_QUERY = gql`
+  query Query {
+    users {
+      username
+      lastName
+      firstName
+      isGymOwner
+      ownedGymId
+      attendingGymId {
         name
       }
       profileImageUrl
