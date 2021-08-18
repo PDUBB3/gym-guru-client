@@ -1,0 +1,44 @@
+.buddyCard {
+  background: -webkit-linear-gradient(
+      rgba(135, 60, 255, 1),
+      rgba(135, 60, 255, 0) 0%
+    ),
+    -webkit-linear-gradient(-35deg, rgba(22, 146, 177, 0.7) 42%, rgba(
+            255,
+            255,
+            255,
+            1
+          )
+          0%);
+  box-shadow: 1px 1px 30px rgb(0, 180, 216, 70%);
+  height: 13rem;
+  width: 35rem;
+  border-radius: 22px;
+  display: flex;
+  align-items: center;
+  margin: 2rem;
+  justify-content: space-between;
+  transition: all 0.2s ease-in-out;
+}
+
+.buddyCard:hover {
+  transform: scale(1.1);
+  transition: all 0.2s ease;
+}
+
+.avatarContainer {
+  margin-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+}
+
+.buddyInfoContainer {
+  margin-right: 2rem;
+}
+
+.buddyCardLink {
+  text-decoration: none;
+  color: inherit;
+}
