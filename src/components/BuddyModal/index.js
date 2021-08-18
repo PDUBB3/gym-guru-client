@@ -27,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
 
 const handleSubmit = (event) => {
   event.preventDefault();
+  console.log("Message submitted");
+  console.log();
+
   //handle close to go inside handlesubmit fn
 };
 
@@ -45,12 +48,11 @@ export default function FormDialog({ handleClose, open }) {
         aria-labelledby="max-width-dialog-title"
       >
         <DialogTitle id="max-width-dialog-title">New Message</DialogTitle>
-        <DialogContent>
+        <DialogContent onClick={handleSubmit}>
           <DialogContentText className="dialog-box">
             Write a message to your buddy here:
           </DialogContentText>
           <TextField
-            id="filled-full-width"
             label="Message"
             variant="outlined"
             autoFocus
