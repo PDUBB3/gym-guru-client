@@ -6,28 +6,52 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import { makeStyles } from "@material-ui/core/styles";
+
+import "./BuddyModal.css";
+const useStyles = makeStyles((theme) => ({
+  form: {
+    display: "flex",
+    flexDirection: "column",
+    margin: "auto",
+    width: "fit-content",
+  },
+  formControl: {
+    marginTop: theme.spacing(2),
+    minWidth: 120,
+  },
+  formControlLabel: {
+    marginTop: theme.spacing(1),
+  },
+}));
 
 export default function FormDialog({ handleClose, open }) {
+  useStyles();
+
+  const [fullWidth] = React.useState(true);
+
   return (
     <div>
       <Dialog
+        fullWidth={fullWidth}
+        className="dialog-box"
         open={open}
         onClose={handleClose}
-        aria-labelledby="form-dialog-title"
+        aria-labelledby="max-width-dialog-title"
       >
-        <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+        <DialogTitle id="max-width-dialog-title">New Message</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here.
-            We will send updates occasionally.
+          <DialogContentText className="dialog-box">
+            Write a message to your buddy here:
           </DialogContentText>
           <TextField
+            id="filled-full-width"
+            label="Message"
+            variant="outlined"
             autoFocus
-            margin="dense"
-            id="name"
-            label="Email Address"
-            type="email"
             fullWidth
+            margin="dense"
+            type="message"
           />
         </DialogContent>
         <DialogActions>
@@ -35,7 +59,7 @@ export default function FormDialog({ handleClose, open }) {
             Cancel
           </Button>
           <Button onClick={handleClose} color="primary">
-            Subscribe
+            Send
           </Button>
         </DialogActions>
       </Dialog>
