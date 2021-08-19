@@ -16,6 +16,7 @@ const SignUpForm = ({ redirect = "/login" }) => {
     handleSubmit,
     setValue,
     formState: { errors },
+    getValues,
   } = useForm();
 
   const [formNumber, setFormNumber] = useState(1);
@@ -24,18 +25,26 @@ const SignUpForm = ({ redirect = "/login" }) => {
 
   const [signUp, { data, error, loading }] = useMutation(SIGNUP, {
     onCompleted: () => {
-      history.push(redirect);
+      // history.push(redirect);
     },
-    onError: () => {},
+    onError: (e) => {
+      console.log(e);
+    },
   });
 
   const onSubmit = async (formData) => {
-    console.log(formData);
-    await signUp({
-      variables: {
-        signUpInput: formData,
-      },
-    });
+    console.log("onSubmit run");
+    /* debugger; */
+    try {
+      console.log(formData);
+      await signUp({
+        variables: {
+          signUpInput: formData,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   if (loading) {
@@ -61,8 +70,10 @@ const SignUpForm = ({ redirect = "/login" }) => {
     }
   };
 
+  console.log("hello");
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="gymForm">
+    <form onSubmit={handleSubmit(onSubmit)}>
       {renderForm()}
       <div className="button-block">
         {formNumber !== 1 && (
@@ -80,7 +91,21 @@ const SignUpForm = ({ redirect = "/login" }) => {
           </button>
         )}
         {formNumber === 2 && (
-          <button className="button" type="submit">
+          <button
+            className="button"
+            type="submit"
+            // onClick={() => {
+            //   console.log(getValues());
+            //   console.log(errors);
+            //   // onSubmit(getValues());
+
+            //   try {
+            //     handleSubmit(onSubmit)();
+            //   } catch (errorr) {
+            //     console.log(errorr);
+            //   }
+            // }}
+          >
             Submit
           </button>
         )}

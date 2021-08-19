@@ -52,10 +52,10 @@ const LoginForm = ({ redirect }) => {
     return <h1>Loading...</h1>;
   }
   return (
-    <div class="form-box">
+    <div className="form-box">
       <form className="loginForm" onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <h2 class="form-heading">Sign in</h2>
+          <h2 className="form-heading">Sign in</h2>
         </div>
         <FormInput
           placeholder="Username"
