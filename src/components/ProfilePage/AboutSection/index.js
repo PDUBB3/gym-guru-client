@@ -1,6 +1,42 @@
-import { FaEnvelope, FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
+import { useMutation } from "@apollo/client";
+import {
+  FaEnvelope,
+  FaFacebook,
+  FaTwitter,
+  FaInstagram,
+  FaUserPlus,
+} from "react-icons/fa";
+import { BUDDYREQUESTS } from "../../../graphql/mutations";
 
-const AboutSection = ({ firstName, lastName, city, bio, profileImageUrl }) => {
+const AboutSection = ({
+  firstName,
+  lastName,
+  city,
+  bio,
+  profileImageUrl,
+  id,
+}) => {
+  const [sendBuddyRequest] = useMutation(BUDDYREQUESTS, {
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  const requesterId = "611e9627c79841171c472906";
+  // This will be the logged in user ID from context
+
+  const onClick = async () => {
+    console.log(id);
+    await sendBuddyRequest({
+      variables: {
+        buddyRequestsInput: {
+          requesterId,
+          recipientId: id,
+        },
+      },
+    });
+  };
+
   return (
     <div className="user-info-container">
       <div className="background">
@@ -25,6 +61,7 @@ const AboutSection = ({ firstName, lastName, city, bio, profileImageUrl }) => {
         <FaTwitter />
         <FaInstagram />
       </div>
+      <FaUserPlus onClick={onClick} />
     </div>
   );
 };

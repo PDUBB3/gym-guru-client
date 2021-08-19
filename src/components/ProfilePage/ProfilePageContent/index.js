@@ -4,6 +4,8 @@ import InfoSection from "../InfoSection";
 const ProfilePageContent = ({ user }) => {
   const { firstName, lastName, city, bio, profileImageUrl, ...rest } = user;
 
+  console.log(user);
+
   return (
     <div className="profile-container">
       <AboutSection
@@ -12,6 +14,7 @@ const ProfilePageContent = ({ user }) => {
         city={city}
         bio={bio}
         profileImageUrl={profileImageUrl}
+        id={user.id}
       />
       <InfoSection user={rest} />
     </div>
