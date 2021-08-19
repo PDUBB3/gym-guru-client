@@ -64,24 +64,24 @@ const SignUpForm = ({ redirect = "/login" }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="gymForm">
       {renderForm()}
-      <div className="button-block">
+      <div className="button-container">
         {formNumber !== 1 && (
           <button
-            className="button border-gradient"
+            className=" button prevbutton"
             type="button"
             onClick={onClickPrevious}
           >
-            Previous
+            <span>Previous</span>
           </button>
         )}
         {formNumber !== 2 && (
-          <button className="button" type="button" onClick={onClickNext}>
-            Next
+          <button className="button hover" type="button" onClick={onClickNext}>
+            <span>Next</span>
           </button>
         )}
         {formNumber === 2 && (
-          <button className="button" type="submit">
-            Submit
+          <button className="button hover" type="submit">
+            <span>Submit</span>
           </button>
         )}
       </div>
