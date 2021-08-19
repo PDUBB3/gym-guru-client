@@ -36,19 +36,34 @@
   margin-top: 1rem;
 }
 
-.rating {
-  padding: 0.5rem;
-}
-
 .accordian {
   margin: 1rem 0;
   margin-right: 2rem;
 }
 
-/* .facilities {
+.review-container {
+  text-align: center;
+}
+
+.rating {
+  font-size: 4rem;
+  font-weight: bold;
+  padding: 0.5rem;
+}
+
+.rating-breakdown {
   display: flex;
   flex-wrap: wrap;
-} */
+  width: 100%;
+}
+
+.review {
+  width: 50%;
+}
+
+.comment {
+  width: 50%;
+}
 
 @media screen and (max-width: 1100px) {
   .image {
