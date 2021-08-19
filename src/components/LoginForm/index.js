@@ -65,7 +65,7 @@ const LoginForm = ({ redirect }) => {
         />
         <PasswordInput register={register("password", { required: true })} />
 
-        <button className="button" type="submit">
+        <button className="button hover" type="submit">
           <span>Sign in</span>
         </button>
         {error && !data && (

@@ -1,13 +1,12 @@
 .button {
-  background-color: black;
   border: 0;
   opacity: 1;
   visibility: visible;
   box-shadow: -10px 20px 15px -10px rgba(71, 77, 73, 0.3);
   border-radius: 10px;
   display: block;
-  margin: 15px auto;
-  padding: 15px 45px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   width: 100%;
   color: #ffffff;
   text-align: center;
@@ -16,13 +15,13 @@
   cursor: pointer;
   margin: 5px;
 }
-.button span {
+.hover span {
   cursor: pointer;
   display: inline-block;
   position: relative;
   transition: 0.5s;
 }
-.button span:after {
+.hover span:after {
   content: "\00bb";
   position: absolute;
   opacity: 0;
@@ -31,33 +30,15 @@
   transition: 0.5s;
 }
 
-.button:hover span {
+.hover:hover span {
   padding-right: 25px;
 }
 
-.button:hover span:after {
+.hover:hover span:after {
   opacity: 1;
   right: 0;
 }
 
-.prevbutton {
-  background-color: black;
-  border: 0;
-  opacity: 1;
-  visibility: visible;
-  box-shadow: -10px 20px 15px -10px rgba(71, 77, 73, 0.3);
-  border-radius: 10px;
-  display: block;
-  margin: 15px auto;
-  padding: 15px 45px;
-  width: 100%;
-  color: #ffffff;
-  text-align: center;
-  vertical-align: middle;
-  font-size: 15px;
-  cursor: pointer;
-  margin: 5px;
-}
 .prevbutton span {
   cursor: pointer;
   display: inline-block;
