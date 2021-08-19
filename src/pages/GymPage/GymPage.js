@@ -1,9 +1,9 @@
 import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 
-import GymPageContent from "../../components/GymPage/GymPageContent/GymPageContent";
+import { GYM_QUERY, REVIEWS_QUERY } from "../../graphql/queries";
 
-import { GYM_QUERY } from "../../graphql/queries";
+import GymPageContent from "../../components/GymPage/GymPageContent/GymPageContent";
 
 import "./GymPage.css";
 
@@ -14,21 +14,27 @@ const GymPage = () => {
     variables: { id },
   });
 
-  if (loading) {
+  const {
+    loading: reviewsLoading,
+    error: reviewsError,
+    data: reviewsData,
+  } = useQuery(REVIEWS_QUERY, {
+    variables: { reviewsGymId: id },
+  });
+
+  if (loading || reviewsLoading) {
     return <div>loading</div>;
   }
 
-  if (error) {
+  if (error || reviewsError) {
     return <div>error</div>;
   }
 
-  if (!data?.gym) {
+  if (!data?.gym || !reviewsData?.reviews) {
     return <div>error</div>;
   }
 
-  const gymData = data.gym;
-
-  return <GymPageContent gym={gymData} />;
+  return <GymPageContent gym={data.gym} reviews={reviewsData.reviews} />;
 };
 
 export default GymPage;

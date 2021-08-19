@@ -2,6 +2,7 @@ import FormInput from "../FormInput";
 import PasswordInput from "../PasswordInput";
 
 import "./SignUpForm.css";
+import "../Button/button.css";
 
 const PartOne = ({ errors, register }) => {
   return (

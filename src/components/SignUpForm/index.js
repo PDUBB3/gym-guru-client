@@ -16,7 +16,6 @@ const SignUpForm = ({ redirect = "/login" }) => {
     handleSubmit,
     setValue,
     formState: { errors },
-    getValues,
   } = useForm();
 
   const [formNumber, setFormNumber] = useState(1);
@@ -25,7 +24,7 @@ const SignUpForm = ({ redirect = "/login" }) => {
 
   const [signUp, { data, error, loading }] = useMutation(SIGNUP, {
     onCompleted: () => {
-      // history.push(redirect);
+      history.push(redirect);
     },
     onError: (e) => {
       console.log(e);
@@ -34,7 +33,7 @@ const SignUpForm = ({ redirect = "/login" }) => {
 
   const onSubmit = async (formData) => {
     console.log("onSubmit run");
-    /* debugger; */
+
     try {
       console.log(formData);
       await signUp({
@@ -75,37 +74,23 @@ const SignUpForm = ({ redirect = "/login" }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       {renderForm()}
-      <div className="button-block">
+      <div className="button-container">
         {formNumber !== 1 && (
           <button
-            className="button border-gradient"
+            className=" button prevbutton"
             type="button"
             onClick={onClickPrevious}
           >
-            Previous
+            <span>Previous</span>
           </button>
         )}
         {formNumber !== 2 && (
-          <button className="button" type="button" onClick={onClickNext}>
-            Next
+          <button className="button hover" type="button" onClick={onClickNext}>
+            <span>Next</span>
           </button>
         )}
         {formNumber === 2 && (
-          <button
-            className="button"
-            type="submit"
-            // onClick={() => {
-            //   console.log(getValues());
-            //   console.log(errors);
-            //   // onSubmit(getValues());
-
-            //   try {
-            //     handleSubmit(onSubmit)();
-            //   } catch (errorr) {
-            //     console.log(errorr);
-            //   }
-            // }}
-          >
+          <button className="button" type="submit">
             Submit
           </button>
         )}
