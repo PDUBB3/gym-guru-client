@@ -25,51 +25,59 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const handleSubmit = (event) => {
-  event.preventDefault();
-  console.log("Message submitted");
-  console.log();
-
-  //handle close to go inside handlesubmit fn
-};
-
 export default function FormDialog({ handleClose, open }) {
   useStyles();
 
   const [fullWidth] = React.useState(true);
+  const [message, setMessage] = React.useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(message);
+
+    //handle close to go inside handlesubmit fn
+  };
+
+  const handleOnChange = (event) => {
+    setMessage(event.target.value);
+  };
 
   return (
     <div>
-      <Dialog
-        fullWidth={fullWidth}
-        className="dialog-box"
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="max-width-dialog-title"
-      >
-        <DialogTitle id="max-width-dialog-title">New Message</DialogTitle>
-        <DialogContent onClick={handleSubmit}>
-          <DialogContentText className="dialog-box">
-            Write a message to your buddy here:
-          </DialogContentText>
-          <TextField
-            label="Message"
-            variant="outlined"
-            autoFocus
-            fullWidth
-            margin="dense"
-            type="message"
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button type="submit" onClick={handleSubmit} color="primary">
-            Send
-          </Button>
-        </DialogActions>
-      </Dialog>
+      <form onSubmit={handleSubmit}>
+        <Dialog
+          fullWidth={fullWidth}
+          className="dialog-box"
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="max-width-dialog-title"
+        >
+          <DialogTitle id="max-width-dialog-title">New Message</DialogTitle>
+          <DialogContent>
+            <DialogContentText className="dialog-box">
+              Write a message to your buddy here:
+            </DialogContentText>
+            <TextField
+              label="Message"
+              variant="outlined"
+              autoFocus
+              fullWidth
+              margin="dense"
+              type="message"
+              value={message}
+              onChange={handleOnChange}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} color="primary">
+              Cancel
+            </Button>
+            <Button type="submit" onClick={handleSubmit} color="primary">
+              Send
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </form>
     </div>
   );
 }
