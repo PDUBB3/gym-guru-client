@@ -80,8 +80,8 @@ export const HOME_QUERY = gql`
 `;
 
 export const REVIEWS_QUERY = gql`
-  query Query($reviewGymId: String) {
-    reviews(gymId: $reviewGymId) {
+  query Query($reviewsGymId: ID!) {
+    reviews(gymId: $reviewsGymId) {
       id
       categories {
         category

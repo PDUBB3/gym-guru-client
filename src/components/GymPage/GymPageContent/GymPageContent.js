@@ -17,6 +17,9 @@ const GymPageContent = ({ gym }) => {
             <CustomizedAccordions gym={rest} />
           </div>
         </div>
+        <div className="review-container">
+          <div>Reviews</div>
+        </div>
       </div>
     </div>
   );
