@@ -19,7 +19,7 @@ const GymPageContent = ({ gym, reviews }) => {
           <StarRatings
             rating={rating}
             numberOfStars={5}
-            starRatedColor="black"
+            starRatedColor="#00b4d8"
             starDimension="20px"
             starSpacing="3px"
           />
@@ -29,41 +29,42 @@ const GymPageContent = ({ gym, reviews }) => {
         </div>
       </div>
       <div className="review-container">
-        {/* <h1>Reviews</h1> */}
         <div>
-          <div className="rating">{rating}</div>
+          <div className="overall-rating">{rating}</div>
           <StarRatings
             rating={rating}
             numberOfStars={5}
-            starRatedColor="black"
+            starRatedColor="#00b4d8"
             starDimension="30px"
             starSpacing="3px"
           />
         </div>
         <div>
-          <div>
-            {reviews.map((review) => {
-              return (
-                <div className="ratings-breakdown">
+          {reviews.map((review) => {
+            return (
+              <div className="reviews">
+                <div className="ratings">
                   {review.categories.map((category) => {
                     return (
                       <div className="review">
-                        <span>{category.category}</span>
+                        <span className="category-name">
+                          {category.category}
+                        </span>
                         <StarRatings
                           rating={category.rating}
                           numberOfStars={5}
-                          starRatedColor="black"
+                          starRatedColor="#00b4d8"
                           starDimension="20px"
                           starSpacing="3px"
                         />
                       </div>
                     );
                   })}
-                  <div className="comment">{review.comment}</div>
                 </div>
-              );
-            })}
-          </div>
+                <div className="comment">{review.comment}</div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

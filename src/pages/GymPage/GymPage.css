@@ -45,24 +45,40 @@
   text-align: center;
 }
 
-.rating {
+.overall-rating {
   font-size: 4rem;
   font-weight: bold;
   padding: 0.5rem;
 }
 
-.rating-breakdown {
+.reviews {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  padding: 1rem;
+  margin: 1rem;
   width: 100%;
+  border: 1px solid #00b4d8;
+  border-radius: 20px;
+}
+
+.ratings {
+  padding-right: 5rem;
 }
 
 .review {
-  width: 50%;
+  text-align: right;
+}
+
+.category-name {
+  margin-right: 1rem;
+  text-align: right;
 }
 
 .comment {
   width: 50%;
+  text-align: left;
+  align-self: center;
 }
 
 @media screen and (max-width: 1100px) {
@@ -92,6 +108,14 @@
   .title {
     text-align: center;
     font-size: 2rem;
+  }
+
+  .ratings {
+    padding-right: 0;
+  }
+  .comment {
+    width: 100%;
+    margin-top: 1rem;
   }
 }
 
