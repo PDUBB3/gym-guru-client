@@ -3,6 +3,7 @@ import GymOwnerCheckBox from "../GymOwnerCheckBox";
 import ImageUpload from "../ImageUpload";
 
 import "./SignUpForm.css";
+import "../Button/button.css";
 
 const PartTwo = ({ errors, register, setValue }) => {
   return (
