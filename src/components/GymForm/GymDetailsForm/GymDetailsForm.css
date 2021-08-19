@@ -45,6 +45,10 @@ button {
   background-color: #00b4d8;
   padding: 0px;
   margin: 0px;
+  align-content: center;
+  display: flex;
+  flex-wrap: wrap;
+
   /* min-height: 70vh; */
 }
 
@@ -68,4 +72,10 @@ button {
 .form-heading {
   text-align: center;
   padding-bottom: 1.5rem;
+}
+
+.logo {
+  align-content: center;
+  margin-left: 45px;
+  margin-bottom: 10px;
 }
