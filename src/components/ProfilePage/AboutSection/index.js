@@ -1,4 +1,10 @@
-import { FaEnvelope, FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
+import {
+  FaEnvelope,
+  FaFacebook,
+  FaTwitter,
+  FaInstagram,
+  FaUserPlus,
+} from "react-icons/fa";
 import FormDialog from "../../../components/BuddyModal";
 import { useState } from "react";
 
@@ -10,6 +16,8 @@ const AboutSection = ({ firstName, lastName, city, bio, profileImageUrl }) => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const isBuddy = true;
 
   return (
     <div className="user-info-container">
@@ -30,7 +38,8 @@ const AboutSection = ({ firstName, lastName, city, bio, profileImageUrl }) => {
         <div>{bio}</div>
       </div>
       <div className="contact">
-        <FaEnvelope onClick={handleClickOpen} />
+        {isBuddy && <FaEnvelope onClick={handleClickOpen} />}
+        {!isBuddy && <FaUserPlus />}
         <FormDialog handleClose={handleClose} open={open} />
         <FaFacebook />
         <FaTwitter />
