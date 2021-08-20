@@ -1,12 +1,20 @@
 import StarRatings from "react-star-ratings";
 
 import CustomizedAccordions from "../Accordian/Accordian";
-import Rating from "../Rating/Rating";
+import FormDialog from "../ReviewModal";
+
+import { useState } from "react";
 
 const GymPageContent = ({ gym, reviews }) => {
   const { name, rating, imageURL, ...rest } = gym;
 
-  console.log(reviews);
+  const [open, setOpen] = useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <div className="gym-container">
@@ -65,6 +73,8 @@ const GymPageContent = ({ gym, reviews }) => {
               </div>
             );
           })}
+          <button onClick={handleClickOpen}>Add review</button>
+          <FormDialog handleClose={handleClose} open={open} />
         </div>
       </div>
     </div>
