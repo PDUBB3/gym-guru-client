@@ -7,6 +7,28 @@ import Reviews from "../Reviews";
 const GymPageContent = ({ gym, reviews }) => {
   const { name, rating, imageURL, ...rest } = gym;
 
+  const averageRating = () => {
+    const allRatings = reviews
+      .map((review) => {
+        return review.categories.map((category) => {
+          return category.rating;
+        });
+      })
+      .flat();
+
+    if (allRatings.length !== 0) {
+      const totalRating = allRatings.reduce((acc, current) => {
+        return acc + current;
+      });
+
+      const average = totalRating / allRatings.length;
+
+      const rating = Math.round(average * 10) / 10;
+
+      return rating;
+    }
+  };
+
   return (
     <div className="gym-container">
       <div className="image-container">
@@ -15,8 +37,9 @@ const GymPageContent = ({ gym, reviews }) => {
       <div className="about-container">
         <h1 className="title">{name}</h1>
         <div className="info-container">
+          {}
           <StarRatings
-            rating={rating}
+            rating={averageRating()}
             numberOfStars={5}
             starRatedColor="#00b4d8"
             starDimension="20px"
@@ -28,7 +51,7 @@ const GymPageContent = ({ gym, reviews }) => {
         </div>
       </div>
       <div className="review-container">
-        <Reviews reviews={reviews} rating={rating} />
+        <Reviews reviews={reviews} rating={averageRating()} />
       </div>
     </div>
   );
