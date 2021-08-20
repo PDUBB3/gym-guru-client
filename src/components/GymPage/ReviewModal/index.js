@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
+
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
@@ -37,9 +39,19 @@ export default function FormDialog({ handleClose, open }) {
   const [staffRating, setStaffRating] = useState(0);
   const [facilitiesRating, setFacilitiesRating] = useState(0);
 
+  const { id: gymId } = useParams();
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(comment, cleanlinessRating, staffRating, facilitiesRating);
+    const review = {
+      gymId,
+      categories: [
+        { category: "cleanliness", rating: cleanlinessRating },
+        { category: "staff", rating: staffRating },
+        { category: "facilities", rating: facilitiesRating },
+      ],
+      comment,
+    };
 
     handleClose(true);
   };
