@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { useMutation } from "@apollo/client";
 
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -11,6 +12,8 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { makeStyles } from "@material-ui/core/styles";
 
 import StarRatings from "react-star-ratings";
+
+import { ADD_REVIEW } from "../../../graphql/mutations";
 
 import "./ReviewModal.css";
 
@@ -41,17 +44,28 @@ export default function FormDialog({ handleClose, open }) {
 
   const { id: gymId } = useParams();
 
-  const handleSubmit = (event) => {
+  const [addReview] = useMutation(ADD_REVIEW, {
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const review = {
-      gymId,
-      categories: [
-        { category: "cleanliness", rating: cleanlinessRating },
-        { category: "staff", rating: staffRating },
-        { category: "facilities", rating: facilitiesRating },
-      ],
-      comment,
-    };
+
+    await addReview({
+      variables: {
+        addReviewInput: {
+          gymId,
+          categories: [
+            { category: "cleanliness", rating: cleanlinessRating },
+            { category: "staff", rating: staffRating },
+            { category: "facilities", rating: facilitiesRating },
+          ],
+          comment,
+        },
+      },
+    });
 
     handleClose(true);
   };
