@@ -1,11 +1,20 @@
 // Importing react
 import React from "react";
 import Logo from "../../assets/img/white-bg-logo.png";
+import { useUserContext } from "../../context/UserContext";
 
 import "./Navbar.css";
 
 const Navbar = (props) => {
   const isLoggedIn = false;
+
+  const { state, dispatch } = useUserContext();
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    dispatch({ type: "LOGOUT" });
+  };
+
   return (
     <div id="nav-container">
       <img
@@ -22,7 +31,7 @@ const Navbar = (props) => {
             Home
           </a>
         </div>
-        {isLoggedIn && (
+        {state.user && (
           <>
             <div id="nav-item-container">
               <a className="navbarLink" href="/:username">
@@ -36,7 +45,7 @@ const Navbar = (props) => {
             </div>
           </>
         )}
-        {!isLoggedIn && (
+        {!state.user && (
           <>
             <div id="nav-item-container">
               <a className="navbarLink" href="/login">
@@ -55,6 +64,15 @@ const Navbar = (props) => {
             Gyms
           </a>
         </div>
+        {state.user && (
+          <>
+            <div id="nav-item-container">
+              <a className="navbarLink" onClick={handleLogout}>
+                Logout
+              </a>
+            </div>
+          </>
+        )}
       </nav>
     </div>
   );
