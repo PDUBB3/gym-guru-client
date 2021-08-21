@@ -84,3 +84,15 @@ export const REJECTBUDDYREQUEST = gql`
     }
   }
 `;
+
+export const ADD_REVIEW = gql`
+  mutation AddReviewMutation($addReviewInput: ReviewInput) {
+    addReview(input: $addReviewInput) {
+      categories {
+        category
+        rating
+      }
+      comment
+    }
+  }
+`;

@@ -1,4 +1,6 @@
 import { useMutation } from "@apollo/client";
+import FormDialog from "../../../components/BuddyModal";
+import { useState } from "react";
 import {
   FaEnvelope,
   FaFacebook,
@@ -6,6 +8,7 @@ import {
   FaInstagram,
   FaUserPlus,
 } from "react-icons/fa";
+
 import { BUDDYREQUESTS } from "../../../graphql/mutations";
 
 const AboutSection = ({
@@ -22,6 +25,16 @@ const AboutSection = ({
       console.log(error);
     },
   });
+
+  const [open, setOpen] = useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const isBuddy = true;
 
   console.log(currentUser);
 
@@ -61,6 +74,9 @@ const AboutSection = ({
       <div className="contact">
         <FaUserPlus onClick={onClick} />
         <FaEnvelope />
+        {isBuddy && <FaEnvelope onClick={handleClickOpen} />}
+        {!isBuddy && <FaUserPlus />}
+        <FormDialog handleClose={handleClose} open={open} />
         <FaFacebook />
         <FaTwitter />
         <FaInstagram />

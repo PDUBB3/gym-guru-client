@@ -102,3 +102,16 @@ export const HOME_QUERY = gql`
     }
   }
 `;
+
+export const REVIEWS_QUERY = gql`
+  query Query($reviewsGymId: ID!) {
+    reviews(gymId: $reviewsGymId) {
+      id
+      categories {
+        category
+        rating
+      }
+      comment
+    }
+  }
+`;

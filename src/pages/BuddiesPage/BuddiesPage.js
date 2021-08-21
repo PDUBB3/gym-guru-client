@@ -5,6 +5,7 @@ import { USERS_QUERY } from "../../graphql/queries";
 
 import { BuddiesFilterContext } from "../../context/BuddiesFilterContext";
 
+import BuddiesJumbotron from "../../components/BuddiesJumbotron";
 import Filter from "../../components/BuddiesPage/Filter/Filter";
 import BuddyCard from "../../components/BuddiesPage/BuddyCard/BuddyCard";
 
@@ -74,6 +75,7 @@ const BuddiesPage = () => {
 
     return (
       <div>
+        <BuddiesJumbotron />
         <div className="buddiesHeader">
           <h1>Find a buddy!</h1>
         </div>

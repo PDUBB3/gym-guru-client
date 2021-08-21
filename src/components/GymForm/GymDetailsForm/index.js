@@ -5,14 +5,14 @@ import "./GymDetailsForm.css";
 
 const GymDetailsForm = ({ errors, register }) => {
   return (
-    <div class="details-form-box">
+    <div className="details-form-box">
       <div className="gym-details-image-container">
         <div className="logo" id="gymlogo">
           <img src={Logo} alt="gym-guru-logo" width="260" height="220" />
         </div>
       </div>
       <div className="gym-details-input-container">
-        <h2 class="form-heading">Please enter your gym details:</h2>
+        <h2 className="form-heading">Please enter your gym details:</h2>
         <FormInput
           placeholder="Name"
           className="details-input"

@@ -9,6 +9,7 @@ import { UserContext } from "../../context/UserContext";
 import { LOGIN } from "../../graphql/mutations";
 
 import "./LoginForm.css";
+import "../Button/button.css";
 
 const LoginForm = ({ redirect }) => {
   const history = useHistory();
@@ -52,10 +53,10 @@ const LoginForm = ({ redirect }) => {
     return <h1>Loading...</h1>;
   }
   return (
-    <div class="form-box">
+    <div className="form-box">
       <form className="loginForm" onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <h2 class="form-heading">Sign in</h2>
+          <h2 className="form-heading">Sign in</h2>
         </div>
         <FormInput
           placeholder="Username"
@@ -64,8 +65,8 @@ const LoginForm = ({ redirect }) => {
         />
         <PasswordInput register={register("password", { required: true })} />
 
-        <button className="button border-gradient" type="submit">
-          Sign in
+        <button className="button hover" type="submit">
+          <span>Sign in</span>
         </button>
         {error && !data && (
           <div>Incorrect email or password. Please try again.</div>

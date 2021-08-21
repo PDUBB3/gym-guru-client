@@ -26,16 +26,24 @@ const SignUpForm = ({ redirect = "/login" }) => {
     onCompleted: () => {
       history.push(redirect);
     },
-    onError: () => {},
+    onError: (e) => {
+      console.log(e);
+    },
   });
 
   const onSubmit = async (formData) => {
-    console.log(formData);
-    await signUp({
-      variables: {
-        signUpInput: formData,
-      },
-    });
+    console.log("onSubmit run");
+
+    try {
+      console.log(formData);
+      await signUp({
+        variables: {
+          signUpInput: formData,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   if (loading) {
@@ -61,22 +69,24 @@ const SignUpForm = ({ redirect = "/login" }) => {
     }
   };
 
+  console.log("hello");
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="gymForm">
+    <form onSubmit={handleSubmit(onSubmit)}>
       {renderForm()}
-      <div className="button-block">
+      <div className="button-container">
         {formNumber !== 1 && (
           <button
-            className="button border-gradient"
+            className=" button prevbutton"
             type="button"
             onClick={onClickPrevious}
           >
-            Previous
+            <span>Previous</span>
           </button>
         )}
         {formNumber !== 2 && (
-          <button className="button" type="button" onClick={onClickNext}>
-            Next
+          <button className="button hover" type="button" onClick={onClickNext}>
+            <span>Next</span>
           </button>
         )}
         {formNumber === 2 && (
