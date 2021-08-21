@@ -69,8 +69,6 @@ const SignUpForm = ({ redirect = "/login" }) => {
     }
   };
 
-  console.log("hello");
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       {renderForm()}

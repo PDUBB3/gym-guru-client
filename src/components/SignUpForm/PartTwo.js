@@ -11,10 +11,12 @@ import "../Button/button.css";
 const PartTwo = ({ errors, register, setValue }) => {
   return (
     <div className="signUp-form-box">
-      <ImageUpload setValue={setValue} />
+      {/* <ImageUpload setValue={setValue} /> */}
+
       <Box component="div" m={1}>
-        <ImageUploader />
+        <ImageUploader setValue={setValue} />
       </Box>
+
       <FormInput
         placeholder="City"
         error={errors.city}

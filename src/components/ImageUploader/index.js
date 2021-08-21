@@ -26,7 +26,7 @@ const useStyles = makeStyles({
   },
 });
 
-const ImageUpload = () => {
+const ImageUpload = ({ setValue }) => {
   const [images, setImages] = useState([]);
   const [imageUrl, setImageUrl] = useState();
 
@@ -38,7 +38,7 @@ const ImageUpload = () => {
 
   const onUpload = async () => {
     const file = images[0].file;
-    const fileName = `bobsmith/images/profile/${file.name}`;
+    const fileName = `alicegreen/images/profile/${file.name}`;
 
     const config = {
       bucketName: process.env.REACT_APP_BUCKET_NAME,
@@ -51,9 +51,11 @@ const ImageUpload = () => {
 
     const s3Data = await ReactS3Client.uploadFile(file, fileName);
 
+    console.log(s3Data.location);
     if (s3Data.status === 204) {
       setImageUrl(s3Data.location);
       setImages([]);
+      setValue("profileImageUrl", s3Data.location);
     } else {
       console.log("failed to upload image");
     }
