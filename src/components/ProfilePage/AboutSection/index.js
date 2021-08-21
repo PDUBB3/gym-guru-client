@@ -1,3 +1,6 @@
+import { useMutation } from "@apollo/client";
+import FormDialog from "../../../components/BuddyModal";
+import { useState } from "react";
 import {
   FaEnvelope,
   FaFacebook,
@@ -5,10 +8,24 @@ import {
   FaInstagram,
   FaUserPlus,
 } from "react-icons/fa";
-import FormDialog from "../../../components/BuddyModal";
-import { useState } from "react";
 
-const AboutSection = ({ firstName, lastName, city, bio, profileImageUrl }) => {
+import { BUDDYREQUESTS } from "../../../graphql/mutations";
+
+const AboutSection = ({
+  firstName,
+  lastName,
+  city,
+  bio,
+  profileImageUrl,
+  id,
+  currentUser,
+}) => {
+  const [sendBuddyRequest] = useMutation(BUDDYREQUESTS, {
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
     setOpen(true);
@@ -18,6 +35,23 @@ const AboutSection = ({ firstName, lastName, city, bio, profileImageUrl }) => {
   };
 
   const isBuddy = true;
+
+  console.log(currentUser);
+
+  const requesterId = "611e9627c79841171c472906";
+  // This will be the logged in user ID from context
+
+  const onClick = async () => {
+    console.log(id);
+    await sendBuddyRequest({
+      variables: {
+        buddyRequestsInput: {
+          requesterId,
+          recipientId: id,
+        },
+      },
+    });
+  };
 
   return (
     <div className="user-info-container">
@@ -38,6 +72,8 @@ const AboutSection = ({ firstName, lastName, city, bio, profileImageUrl }) => {
         <div>{bio}</div>
       </div>
       <div className="contact">
+        <FaUserPlus onClick={onClick} />
+        <FaEnvelope />
         {isBuddy && <FaEnvelope onClick={handleClickOpen} />}
         {!isBuddy && <FaUserPlus />}
         <FormDialog handleClose={handleClose} open={open} />
