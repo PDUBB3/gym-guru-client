@@ -31,8 +31,8 @@ const HomePage = (props) => {
       <Header />
       <Container maxWidth="lg">
         <GymCarousel gyms={gyms} />
-        <HomeBenefitsBlock />
       </Container>
+      <HomeBenefitsBlock />
     </>
   );
 };
