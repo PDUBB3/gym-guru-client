@@ -2,12 +2,12 @@
   padding: 0px;
   margin: 0px;
 }
-
+/* 
 .opening-hours-container {
   display: flex;
   flex: wrap;
   flex-direction: row;
-}
+} */
 
 button {
   max-width: 6rem;
