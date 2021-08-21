@@ -1,0 +1,9 @@
+.set-ratings {
+  text-align: right;
+  position: relative;
+  left: -25%;
+}
+
+.rating-name {
+  padding: 1rem;
+}
