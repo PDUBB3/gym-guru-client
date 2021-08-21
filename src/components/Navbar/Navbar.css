@@ -57,6 +57,7 @@
   border-radius: 10px;
   margin: auto;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .navbarLink:hover,
