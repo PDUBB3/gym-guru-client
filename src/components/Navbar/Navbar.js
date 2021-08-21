@@ -6,8 +6,6 @@ import { useUserContext } from "../../context/UserContext";
 import "./Navbar.css";
 
 const Navbar = (props) => {
-  const isLoggedIn = false;
-
   const { state, dispatch } = useUserContext();
 
   const handleLogout = () => {
@@ -34,7 +32,7 @@ const Navbar = (props) => {
         {state.user && (
           <>
             <div id="nav-item-container">
-              <a className="navbarLink" href="/:username">
+              <a className="navbarLink" href={state.user.username}>
                 My Profile
               </a>
             </div>
