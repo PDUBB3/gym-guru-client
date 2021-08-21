@@ -36,17 +36,12 @@ const AboutSection = ({
 
   const isBuddy = true;
 
-  console.log(currentUser);
-
-  const requesterId = "611e9627c79841171c472906";
-  // This will be the logged in user ID from context
-
   const onClick = async () => {
     console.log(id);
     await sendBuddyRequest({
       variables: {
         buddyRequestsInput: {
-          requesterId,
+          requesterId: currentUser.id,
           recipientId: id,
         },
       },
@@ -73,9 +68,8 @@ const AboutSection = ({
       </div>
       <div className="contact">
         <FaUserPlus onClick={onClick} />
-        <FaEnvelope />
         {isBuddy && <FaEnvelope onClick={handleClickOpen} />}
-        {!isBuddy && <FaUserPlus />}
+        {!isBuddy && <FaUserPlus onClick={onClick} />}
         <FormDialog handleClose={handleClose} open={open} />
         <FaFacebook />
         <FaTwitter />

@@ -1,12 +1,25 @@
-import { createContext } from "react";
+import { createContext, useContext, useMemo, useReducer } from "react";
 
-export const UserContext = createContext();
+import reducer from "../reducer";
 
-export const UserProvider = ({ currentUser, onLogin, onLogout, ...rest }) => {
+const UserContext = createContext();
+
+export const useUserContext = () => useContext(UserContext);
+
+const initialState = {
+  user: JSON.parse(localStorage.getItem("user")),
+};
+
+const UserProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const contextValue = useMemo(() => {
+    return { state, dispatch };
+  }, [state, dispatch]);
+
   return (
-    <UserContext.Provider
-      value={{ currentUser, onLogin, onLogout }}
-      {...rest}
-    />
+    <UserContext.Provider value={contextValue}>{children}</UserContext.Provider>
   );
 };
+
+export default UserProvider;
