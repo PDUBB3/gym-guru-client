@@ -3,6 +3,8 @@ import { GYMS_QUERY } from "../../graphql/queries";
 
 import GymCard from "../../components/GymCard";
 
+import GymsJumbotron from "../../components/GymsJumbotron";
+
 import "./GymsPage.css";
 
 const GymsPage = () => {
@@ -19,6 +21,7 @@ const GymsPage = () => {
   if (data) {
     return (
       <div>
+        <GymsJumbotron />
         <div className="gym-cards">
           {data.gyms.map((gym) => {
             return (
