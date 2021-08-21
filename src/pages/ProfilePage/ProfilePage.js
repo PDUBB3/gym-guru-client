@@ -1,7 +1,9 @@
 import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
+import { useContext } from "react";
 
 import { USER_QUERY } from "../../graphql/queries";
+import { UserContext } from "../../context/UserContext";
 
 import ProfilePageContent from "../../components/ProfilePage/ProfilePageContent";
 
@@ -13,6 +15,8 @@ const ProfilePage = () => {
   const { loading, error, data } = useQuery(USER_QUERY, {
     variables: { username },
   });
+
+  const { currentUser } = useContext(UserContext);
 
   if (loading) {
     return <div>loading</div>;
@@ -30,7 +34,7 @@ const ProfilePage = () => {
 
   return (
     <div>
-      <ProfilePageContent user={user} />
+      <ProfilePageContent user={user} currentUser={currentUser} />
     </div>
   );
 };

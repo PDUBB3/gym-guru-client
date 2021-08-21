@@ -15,12 +15,15 @@ const AboutSection = ({
   bio,
   profileImageUrl,
   id,
+  currentUser,
 }) => {
   const [sendBuddyRequest] = useMutation(BUDDYREQUESTS, {
     onError: (error) => {
       console.log(error);
     },
   });
+
+  console.log(currentUser);
 
   const requesterId = "611e9627c79841171c472906";
   // This will be the logged in user ID from context
@@ -56,12 +59,12 @@ const AboutSection = ({
         <div>{bio}</div>
       </div>
       <div className="contact">
+        <FaUserPlus onClick={onClick} />
         <FaEnvelope />
         <FaFacebook />
         <FaTwitter />
         <FaInstagram />
       </div>
-      <FaUserPlus onClick={onClick} />
     </div>
   );
 };
