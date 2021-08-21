@@ -39,19 +39,19 @@ const OtherFacilitiesForm = ({ errors, register }) => {
   return (
     <div className="other-facilities-form-box">
       <div className="other-facilities-image-container"></div>
-      <div>
+      <div className="facilities-input">
         {otherFacilities.map((otherFacility, index) => {
           return (
-            <div key={otherFacility.id}>
-              <div className="other-facilities-input-container">
-                <input
-                  type="checkbox"
-                  name="scales"
-                  value={otherFacility.id}
-                  {...register(`otherFacilities.${otherFacility.id}`)}
-                />
-                <label>{otherFacility.name}</label>
-              </div>
+            <div className="facilities-checkbox" key={otherFacility.id}>
+              <input
+                type="checkbox"
+                name="scales"
+                value={otherFacility.id}
+                {...register(`otherFacilities.${otherFacility.id}`)}
+              />
+              <label className="other-facilities-label">
+                {otherFacility.name}
+              </label>
             </div>
           );
         })}
