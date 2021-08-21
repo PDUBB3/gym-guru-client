@@ -13,7 +13,6 @@
   min-height: 70vh;
   min-width: 50vw;
   background-color: #f8f9fa;
-  background-image: fixed;
   /* padding: 1rem; */
   color: black;
   border-radius: 5px;
@@ -25,11 +24,6 @@
     url("https://images.unsplash.com/photo-1550345332-09e3ac987658?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80");
   background-repeat: no-repeat;
 }
-
-/* .other-facilities-input-container {
-  align-content: center;
-  justify-content: center;
-} */
 
 .other-facilities-input {
   align-self: center;

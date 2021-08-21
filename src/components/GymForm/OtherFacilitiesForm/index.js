@@ -1,5 +1,7 @@
 import "./OtherFacilitiesForm.css";
 
+import Logo from "../../../assets/img/white-bg-logo.png";
+
 const OtherFacilitiesForm = ({ errors, register }) => {
   const otherFacilities = [
     {
@@ -39,7 +41,7 @@ const OtherFacilitiesForm = ({ errors, register }) => {
   return (
     <div className="other-facilities-form-box">
       <div className="other-facilities-image-container"></div>
-      <div className="facilities-input">
+      <div className="other-facilities-input">
         {otherFacilities.map((otherFacility, index) => {
           return (
             <div className="facilities-checkbox" key={otherFacility.id}>
