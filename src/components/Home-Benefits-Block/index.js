@@ -1,5 +1,7 @@
 import "./Home-Benefits-Block.css";
 
+// Benefits block for homepage
+
 const HomeBenefitsBlock = (props) => {
   return (
     <div className="benefits-container">
