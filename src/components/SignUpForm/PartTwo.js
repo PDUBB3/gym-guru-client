@@ -37,11 +37,17 @@ const PartTwo = ({ errors, register, setValue }) => {
         error={errors.bio}
         register={register("bio", { required: true })}
       />
-      <CheckboxesTags options={goals} placeholder="Goals" id="goals" />
+      <CheckboxesTags
+        options={goals}
+        placeholder="Goals"
+        id="goals"
+        register={register("goals", { required: true })}
+      />
       <CheckboxesTags
         options={interests}
         placeholder="Interests"
         id="interests"
+        register={register("interests", { required: true })}
       />
       <GymOwnerCheckBox register={register} />
     </div>

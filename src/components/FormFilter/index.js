@@ -4,13 +4,27 @@ import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@material-ui/icons/CheckBox";
+import { useState, useEffect } from "react";
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
-export default function CheckboxesTags({ options, placeholder, id }) {
+export default function CheckboxesTags({ options, placeholder, id, register }) {
+  const [selectedGoals, setSelectedGoals] = useState([]);
+  const [selectedInterests, setSelectedInterests] = useState([]);
+  const handleChange = (event, value) => {
+    if (id === "goals") {
+      setSelectedGoals(value);
+    } else {
+      setSelectedInterests(value);
+    }
+  };
+  useEffect(() => {
+    register(selectedGoals);
+  }, [register]);
   return (
     <Autocomplete
+      onChange={handleChange}
       multiple
       id={id}
       options={options}
