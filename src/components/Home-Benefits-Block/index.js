@@ -8,7 +8,7 @@ const HomeBenefitsBlock = (props) => {
       <div className="benefits-block-1">
         <h2 className="h2-benefits">Sign Up</h2>
         <p className="benefits-p">
-          Join the GymGuru family to kickstart your fitness journey
+          Join the Gym Guru family to kickstart your fitness journey
         </p>
       </div>
       <div className="benefits-block-2">
