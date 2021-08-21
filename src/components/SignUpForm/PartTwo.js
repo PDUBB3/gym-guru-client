@@ -1,55 +1,89 @@
-import FormInput from "../FormInput";
+import classNames from "classnames";
+import { Controller } from "react-hook-form";
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import TextareaAutosize from "@material-ui/core/TextareaAutosize";
+import Box from "@material-ui/core/Box";
+import Input from "@material-ui/core/Input";
+
+import MultiSelectDropDown from "../MultiSelectDropDown";
 import GymOwnerCheckBox from "../GymOwnerCheckBox";
-import ImageUpload from "../ImageUpload";
 
 import "./SignUpForm.css";
 import "../Button/button.css";
-import CheckboxesTags from "../FormFilter/index";
 
-const PartTwo = ({ errors, register, setValue }) => {
+const PartTwo = ({ control }) => {
   const goals = [
-    { title: "Lose Weight" },
-    { title: "Gain Muscle" },
-    { title: "Toning" },
-    { title: "Make Friends" },
-    { title: "Get Fit" },
-    { title: "Improving Endurance" },
-    { title: "Improve Strength" },
+    "Lose Weight",
+    "Gain Muscle",
+    "Toning",
+    "Make Friends",
+    "Get Fit",
+    "Improving Endurance",
+    "Improve Strength",
   ];
+
   const interests = [
-    { title: "Yoga" },
-    { title: "Cycling" },
-    { title: "Cardio" },
-    { title: "Weight Lifting" },
-    { title: "Endurance" },
-    { title: "Gym Classes" },
+    "Yoga",
+    "Cycling",
+    "Cardio",
+    "Weight Lifting",
+    "Endurance",
+    "Gym Classes",
   ];
+
   return (
     <div className="signUp-form-box">
-      <ImageUpload setValue={setValue} />
-      <FormInput
-        placeholder="City"
-        error={errors.city}
-        register={register("city", { required: true })}
-      />
-      <FormInput
-        placeholder="Type a short bio about yourself here"
-        error={errors.bio}
-        register={register("bio", { required: true })}
-      />
-      <CheckboxesTags
-        options={goals}
-        placeholder="Goals"
-        id="goals"
-        register={register("goals", { required: true })}
-      />
-      <CheckboxesTags
-        options={interests}
-        placeholder="Interests"
-        id="interests"
-        register={register("interests", { required: true })}
-      />
-      <GymOwnerCheckBox register={register} />
+      <Box component="div" m={1}>
+        <Controller
+          name="city"
+          control={control}
+          rules={{ required: "City is required" }}
+          render={({ field: { onChange, value }, fieldState: { error } }) => (
+            <FormControl>
+              <InputLabel className={classNames({ "form-error": error })}>
+                City
+              </InputLabel>
+              <Input value={value} onChange={onChange} error={!!error} />
+            </FormControl>
+          )}
+        />
+      </Box>
+      <Box component="div" m={1}>
+        <Controller
+          name="bio"
+          control={control}
+          rules={{ required: "Bio is required" }}
+          render={({ field: { onChange, value }, fieldState: { error } }) => (
+            <FormControl>
+              <TextareaAutosize
+                value={value}
+                onChange={onChange}
+                error={!!error}
+                placeholder="Bio"
+                className={classNames({ "form-error": error })}
+              />
+            </FormControl>
+          )}
+        />
+      </Box>
+      <Box component="div" m={1}>
+        <MultiSelectDropDown
+          options={goals}
+          placeholder="Goals"
+          name="goals"
+          control={control}
+        />
+      </Box>
+      <Box component="div" m={1}>
+        <MultiSelectDropDown
+          options={interests}
+          placeholder="Interests"
+          name="interests"
+          control={control}
+        />
+      </Box>
+      {/* <GymOwnerCheckBox register={register} /> */}
     </div>
   );
 };

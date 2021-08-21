@@ -32,3 +32,11 @@
   padding: 1rem;
   padding-top: 1.5rem;
 }
+
+.form-error {
+  color: red !important;
+}
+
+.form-error::placeholder {
+  color: red !important;
+}

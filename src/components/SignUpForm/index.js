@@ -16,6 +16,7 @@ const SignUpForm = ({ redirect = "/login" }) => {
     handleSubmit,
     setValue,
     formState: { errors },
+    control,
   } = useForm();
 
   const [formNumber, setFormNumber] = useState(1);
@@ -32,18 +33,18 @@ const SignUpForm = ({ redirect = "/login" }) => {
   });
 
   const onSubmit = async (formData) => {
-    console.log("onSubmit run");
+    console.log(formData);
 
-    try {
-      console.log(formData);
-      await signUp({
-        variables: {
-          signUpInput: formData,
-        },
-      });
-    } catch (error) {
-      console.log(error);
-    }
+    // try {
+    //   console.log(formData);
+    //   await signUp({
+    //     variables: {
+    //       signUpInput: formData,
+    //     },
+    //   });
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
 
   if (loading) {
@@ -64,12 +65,15 @@ const SignUpForm = ({ redirect = "/login" }) => {
     }
     if (formNumber === 2) {
       return (
-        <PartTwo setValue={setValue} errors={errors} register={register} />
+        <PartTwo
+          setValue={setValue}
+          errors={errors}
+          register={register}
+          control={control}
+        />
       );
     }
   };
-
-  console.log("hello");
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
