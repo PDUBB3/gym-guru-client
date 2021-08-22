@@ -1,7 +1,12 @@
 import AboutSection from "../AboutSection";
 import InfoSection from "../InfoSection";
 
-const ProfilePageContent = ({ user, currentUser }) => {
+const ProfilePageContent = ({
+  user,
+  currentUser,
+  buddiesData,
+  buddyRequestsData,
+}) => {
   const {
     firstName,
     lastName,
@@ -28,7 +33,12 @@ const ProfilePageContent = ({ user, currentUser }) => {
         id={user.id}
         currentUser={currentUser}
       />
-      <InfoSection firstName={firstName} user={rest} />
+      <InfoSection
+        firstName={firstName}
+        buddiesData={buddiesData}
+        buddyRequestData={buddyRequestsData}
+        user={rest}
+      />
     </div>
   );
 };

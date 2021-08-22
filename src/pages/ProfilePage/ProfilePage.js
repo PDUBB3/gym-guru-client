@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { Redirect, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import { useUserContext } from "../../context/UserContext";
 
@@ -18,14 +18,24 @@ const ProfilePage = () => {
   });
 
   const {
-    loading: buddiesLoading,
-    error: buddiesError,
-    data: buddiesData,
+    loading: buddyRequestsLoading,
+    error: buddyRequestsError,
+    data: buddyRequestsData,
   } = useQuery(BUDDIES_QUERY, {
     variables: { recipientId: state.user.id, status: "PENDING" },
   });
 
-  console.log(buddiesData);
+  const {
+    loading: buddiesLoading,
+    error: buddiesError,
+    data: buddiesData,
+  } = useQuery(BUDDIES_QUERY, {
+    variables: {
+      recipientId: state.user.id,
+      requesterId: state.user.id,
+      status: "BUDDIES",
+    },
+  });
 
   if (loading) {
     return <div>loading</div>;
@@ -45,7 +55,12 @@ const ProfilePage = () => {
 
   return (
     <div>
-      <ProfilePageContent user={user} currentUser={state.user} />
+      <ProfilePageContent
+        user={user}
+        currentUser={state.user}
+        buddiesData={buddiesData.getBuddies}
+        buddyRequestsData={buddyRequestsData.getBuddies}
+      />
     </div>
   );
 };

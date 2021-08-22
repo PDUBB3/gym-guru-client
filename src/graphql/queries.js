@@ -124,12 +124,16 @@ export const REVIEWS_QUERY = gql`
 `;
 
 export const BUDDIES_QUERY = gql`
-  query Query($getBuddiesRecipientId: ID, $getBuddiesStatus: BuddyStatus) {
-    getBuddies(recipientId: $getBuddiesRecipientId, status: $getBuddiesStatus) {
-      requesterId
+  query Query($recipientId: ID, $requesterId: ID, $status: BuddyStatus) {
+    getBuddies(
+      recipientId: $recipientId
+      requesterId: $requesterId
+      status: $status
+    ) {
+      id
       recipientId
       status
-      id
+      requesterId
     }
   }
 `;

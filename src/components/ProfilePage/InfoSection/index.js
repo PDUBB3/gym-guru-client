@@ -5,10 +5,10 @@ import StarRatings from "react-star-ratings";
 
 import BuddyCard from "../BuddyCard";
 
-const InfoSection = ({ firstName, user }) => {
-  const { interests, goals, attendingGymId, buddies } = user;
+const InfoSection = ({ firstName, user, buddiesData, buddyRequestData }) => {
+  const { interests, goals, attendingGymId } = user;
 
-  console.log(attendingGymId);
+  console.log(buddyRequestData);
   return (
     <div className="extra-info-container">
       <div className="goals-interests-container">
@@ -79,7 +79,7 @@ const InfoSection = ({ firstName, user }) => {
         <div className="box">
           <h2>Buddies</h2>
           <div className="cards">
-            {buddies.map((buddy) => (
+            {buddyRequestData.map((buddy) => (
               <BuddyCard buddy={buddy} />
             ))}
           </div>
