@@ -11,7 +11,7 @@
   border-radius: 20px;
   box-shadow: 0px 0px 20px #00b4d8;
   margin: 1rem;
-  align-self: stretch;
+  align-self: flex-start;
 }
 
 .background {
@@ -92,6 +92,31 @@ h2 {
   margin-top: 2rem;
   text-align: center;
   font-size: 1rem;
+}
+
+.gym-info {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.gym-details {
+  align-self: center;
+}
+
+.gym-rating {
+  padding: 1rem;
+}
+
+.gym-link {
+  text-decoration: none;
+  color: black;
+}
+
+.no-gym {
+  text-align: center;
+  margin: 1rem 0;
 }
 
 .buddy-card {

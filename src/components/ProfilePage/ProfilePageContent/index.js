@@ -28,7 +28,7 @@ const ProfilePageContent = ({ user, currentUser }) => {
         id={user.id}
         currentUser={currentUser}
       />
-      <InfoSection user={rest} />
+      <InfoSection firstName={firstName} user={rest} />
     </div>
   );
 };
