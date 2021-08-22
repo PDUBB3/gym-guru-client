@@ -3,6 +3,7 @@ import { Container } from "@material-ui/core";
 import GymCarousel from "../components/GymCarousel";
 
 import Header from "../components/Header/Header";
+import HomeBenefitsBlock from "../components/Home-Benefits-Block";
 import { HOME_QUERY } from "../graphql/queries";
 
 // import "../index.css";
@@ -31,6 +32,7 @@ const HomePage = (props) => {
       <Container maxWidth="lg">
         <GymCarousel gyms={gyms} />
       </Container>
+      <HomeBenefitsBlock />
     </>
   );
 };
