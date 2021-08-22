@@ -54,12 +54,16 @@ export const USER_QUERY = gql`
     findUser(username: $username) {
       id
       username
-      lastName
       firstName
+      lastName
       isGymOwner
       ownedGymId
       attendingGymId {
+        id
         name
+        imageURL
+        city
+        rating
       }
       profileImageUrl
       city
