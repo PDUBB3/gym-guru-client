@@ -14,7 +14,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Routes from "./Routes";
 
 import "./App.css";
-import { UserProvider } from "./context/UserContext";
+import UserProvider from "./context/UserContext";
 
 const httpLink = createHttpLink({
   uri: process.env.GRAPHQL_URL || "http://localhost:4000/",

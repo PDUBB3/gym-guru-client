@@ -1,3 +1,6 @@
+import { useMutation } from "@apollo/client";
+import FormDialog from "../../../components/BuddyModal";
+import { useState } from "react";
 import {
   FaEnvelope,
   FaFacebook,
@@ -5,8 +8,8 @@ import {
   FaInstagram,
   FaUserPlus,
 } from "react-icons/fa";
-import FormDialog from "../../../components/BuddyModal";
-import { useState } from "react";
+
+import { BUDDYREQUESTS } from "../../../graphql/mutations";
 
 const AboutSection = ({
   firstName,
@@ -17,7 +20,15 @@ const AboutSection = ({
   facebookUrl,
   twitterUrl,
   instagramUrl,
+  id,
+  currentUser,
 }) => {
+  const [sendBuddyRequest] = useMutation(BUDDYREQUESTS, {
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
     setOpen(true);
@@ -27,6 +38,18 @@ const AboutSection = ({
   };
 
   const isBuddy = true;
+
+  const onClick = async () => {
+    console.log(id);
+    await sendBuddyRequest({
+      variables: {
+        buddyRequestsInput: {
+          requesterId: currentUser.id,
+          recipientId: id,
+        },
+      },
+    });
+  };
 
   return (
     <div className="user-info-container">
@@ -47,8 +70,9 @@ const AboutSection = ({
         <div>{bio}</div>
       </div>
       <div className="contact">
+        <FaUserPlus onClick={onClick} />
         {isBuddy && <FaEnvelope onClick={handleClickOpen} />}
-        {!isBuddy && <FaUserPlus />}
+        {!isBuddy && <FaUserPlus onClick={onClick} />}
         <FormDialog handleClose={handleClose} open={open} />
         {facebookUrl && (
           <a href={facebookUrl} target="_blank" rel="noreferrer">

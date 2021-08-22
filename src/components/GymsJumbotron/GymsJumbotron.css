@@ -1,0 +1,50 @@
+.gym-header-container {
+  height: 65vh;
+  max-width: 100vw;
+  background-image: linear-gradient(
+      to left,
+      rgb(47, 47, 47) 45%,
+      rgba(0, 255, 0, 0) 95%
+    ),
+    url("https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80");
+  opacity: 0.95;
+  filter: saturate(1);
+  background-repeat: no-repeat;
+}
+
+.h1-gym-header-container {
+  margin-bottom: 2rem;
+  margin-right: 2.5rem;
+  display: flex;
+  justify-content: flex-end;
+  align-content: center;
+}
+
+.h2-gym-header-container {
+  margin-right: 4.4rem;
+  display: flex;
+  justify-content: flex-end;
+  align-content: center;
+}
+
+.h1-gym-header-home {
+  margin-top: 4.5rem;
+  text-decoration: none;
+  border-bottom: 2px solid #00b4d8;
+  font-size: 4.1rem;
+  color: white;
+}
+
+.h2-gym-header-blue {
+  color: #00b4d8;
+  font-size: 2.1rem;
+  margin-left: 0.2rem;
+  margin-right: 0.2rem;
+}
+
+.h2-gym-header-white {
+  color: white;
+  margin-left: 0.2rem;
+  margin-right: 0.2rem;
+  font-size: 2.1rem;
+}

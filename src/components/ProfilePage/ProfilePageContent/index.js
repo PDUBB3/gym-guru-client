@@ -1,7 +1,7 @@
 import AboutSection from "../AboutSection";
 import InfoSection from "../InfoSection";
 
-const ProfilePageContent = ({ user }) => {
+const ProfilePageContent = ({ user, currentUser }) => {
   const {
     firstName,
     lastName,
@@ -25,6 +25,8 @@ const ProfilePageContent = ({ user }) => {
         facebookUrl={facebookUrl}
         twitterUrl={twitterUrl}
         instagramUrl={instagramUrl}
+        id={user.id}
+        currentUser={currentUser}
       />
       <InfoSection user={rest} />
     </div>
