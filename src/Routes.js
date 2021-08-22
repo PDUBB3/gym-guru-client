@@ -6,7 +6,7 @@ import SignupPage from "./pages/SignupPage";
 import GymsPage from "./pages/GymsPage/GymsPage";
 import GymPage from "./pages/GymPage/GymPage";
 import BuddiesPage from "./pages/BuddiesPage/BuddiesPage";
-import ProfilePage from "./pages/ProfilePage/ProfilePage";
+import ProfileRoute from "./privateRoutes/ProfileRoute";
 import CreateGymPage from "./pages/CreateGymPage";
 
 const Routes = () => {
@@ -31,7 +31,7 @@ const Routes = () => {
         <BuddiesPage />
       </Route>
       <Route exact path="/:username">
-        <ProfilePage />
+        <ProfileRoute />
       </Route>
       <Route exact path="/">
         <HomePage />
