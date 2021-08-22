@@ -17,6 +17,9 @@ const AboutSection = ({
   city,
   bio,
   profileImageUrl,
+  facebookUrl,
+  twitterUrl,
+  instagramUrl,
   id,
   currentUser,
 }) => {
@@ -71,9 +74,21 @@ const AboutSection = ({
         {isBuddy && <FaEnvelope onClick={handleClickOpen} />}
         {!isBuddy && <FaUserPlus onClick={onClick} />}
         <FormDialog handleClose={handleClose} open={open} />
-        <FaFacebook />
-        <FaTwitter />
-        <FaInstagram />
+        {facebookUrl && (
+          <a href={facebookUrl} target="_blank" rel="noreferrer">
+            <FaFacebook />
+          </a>
+        )}
+        {twitterUrl && (
+          <a href={twitterUrl} target="_blank" rel="noreferrer">
+            <FaTwitter />
+          </a>
+        )}
+        {instagramUrl && (
+          <a href={instagramUrl} target="_blank" rel="noreferrer">
+            <FaInstagram />
+          </a>
+        )}
       </div>
     </div>
   );

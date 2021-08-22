@@ -66,6 +66,9 @@ export const USER_QUERY = gql`
       bio
       goals
       interests
+      facebookUrl
+      twitterUrl
+      instagramUrl
       buddies
     }
   }
