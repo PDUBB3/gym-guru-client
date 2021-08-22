@@ -51,7 +51,7 @@ const SignUpForm = ({ redirect = "/login" }) => {
     return <h1>Loading...</h1>;
   }
 
-  const onClickNext = () => {
+  const onClickNext = (event) => {
     setFormNumber(formNumber + 1);
   };
 
@@ -61,7 +61,14 @@ const SignUpForm = ({ redirect = "/login" }) => {
 
   const renderForm = () => {
     if (formNumber === 1) {
-      return <PartOne errors={errors} register={register} />;
+      return (
+        <PartOne
+          setValue={setValue}
+          errors={errors}
+          register={register}
+          control={control}
+        />
+      );
     }
     if (formNumber === 2) {
       return (
