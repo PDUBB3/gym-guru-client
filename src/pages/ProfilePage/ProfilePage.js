@@ -37,7 +37,7 @@ const ProfilePage = () => {
     },
   });
 
-  if (loading) {
+  if (loading || buddyRequestsLoading || buddiesLoading) {
     return <div>loading</div>;
   }
 

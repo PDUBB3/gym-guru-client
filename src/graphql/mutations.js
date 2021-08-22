@@ -68,8 +68,12 @@ export const BUDDYREQUESTS = gql`
 export const ACCEPTBUDDYREQUEST = gql`
   mutation Mutation($acceptBuddyRequestInput: BuddyInput) {
     acceptBuddyRequest(input: $acceptBuddyRequestInput) {
-      requesterId
-      recipientId
+      requesterId {
+        username
+      }
+      recipientId {
+        username
+      }
       status
     }
   }

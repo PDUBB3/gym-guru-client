@@ -1,4 +1,27 @@
-const BuddyCard = ({ buddy }) => {
+import { useMutation } from "@apollo/client";
+import { FaUserCheck } from "react-icons/fa";
+import { ACCEPTBUDDYREQUEST } from "../../../graphql/mutations";
+
+const BuddyCard = ({ buddy, userId }) => {
+  const [acceptBuddyRequest] = useMutation(ACCEPTBUDDYREQUEST, {
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  console.log(userId);
+
+  const onClickAccept = async () => {
+    await acceptBuddyRequest({
+      variables: {
+        acceptBuddyRequestInput: {
+          requesterId: buddy.id,
+          recipientId: userId,
+        },
+      },
+    });
+  };
+
   return (
     <div className="buddy-card">
       <img
@@ -8,8 +31,11 @@ const BuddyCard = ({ buddy }) => {
         width="90"
         className="buddy-image"
       ></img>
-      <h3>Alice Green</h3>
-      <div>Leeds</div>
+      <h3>{buddy.requesterId.username}</h3>
+      <div>{buddy.requesterId.city}</div>
+      <div>
+        <FaUserCheck onClick={onClickAccept} />
+      </div>
     </div>
   );
 };

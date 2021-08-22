@@ -131,9 +131,15 @@ export const BUDDIES_QUERY = gql`
       status: $status
     ) {
       id
-      recipientId
+      recipientId {
+        username
+        city
+      }
       status
-      requesterId
+      requesterId {
+        username
+        city
+      }
     }
   }
 `;
