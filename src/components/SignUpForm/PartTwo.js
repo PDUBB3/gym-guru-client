@@ -5,12 +5,21 @@ import InputLabel from "@material-ui/core/InputLabel";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import Box from "@material-ui/core/Box";
 import Input from "@material-ui/core/Input";
+import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
+import CheckBoxIcon from "@material-ui/icons/CheckBox";
 
 import MultiSelectDropDown from "../MultiSelectDropDown";
 import GymOwnerCheckBox from "../GymOwnerCheckBox";
 
 import "./SignUpForm.css";
 import "../Button/button.css";
+import { useState } from "react";
+
+const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
+
+const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 const PartTwo = ({ control }) => {
   const goals = [
@@ -31,6 +40,12 @@ const PartTwo = ({ control }) => {
     "Endurance",
     "Gym Classes",
   ];
+
+  const [isGymOwner, setIsGymOwner] = useState(false);
+
+  const handleChange = (event) => {
+    setIsGymOwner(event.target.checked);
+  };
 
   return (
     <div className="signUp-form-box">
@@ -83,7 +98,25 @@ const PartTwo = ({ control }) => {
           control={control}
         />
       </Box>
-      {/* <GymOwnerCheckBox register={register} /> */}
+      <Box component="div" m={1}>
+        <Controller
+          render={({ field: { onChange, value } }) => (
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={value}
+                  onChange={onChange}
+                  name="isGymOwner"
+                  color="primary"
+                />
+              }
+              label="Are you a gym owner?"
+            />
+          )}
+          name="isGymOwner"
+          control={control}
+        />
+      </Box>
     </div>
   );
 };

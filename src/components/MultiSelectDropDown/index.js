@@ -17,7 +17,6 @@ const MultiSelectDropDown = ({ options, placeholder, name, control }) => {
           multiple
           disableCloseOnSelect
           options={options}
-          // getOptionLabel={(option) => option}
           renderOption={(option, { selected }) => (
             <FormControlLabel
               control={
