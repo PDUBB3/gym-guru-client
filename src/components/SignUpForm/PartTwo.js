@@ -64,6 +64,8 @@ const PartTwo = ({ control }) => {
                 multiline
                 rows={1}
                 rowsMax={5}
+                value={value}
+                onChange={onChange}
                 className={classNames({ "form-error": error })}
               />
             </FormControl>
