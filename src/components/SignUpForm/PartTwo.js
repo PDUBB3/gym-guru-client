@@ -8,6 +8,7 @@ import Box from "@material-ui/core/Box";
 import Input from "@material-ui/core/Input";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import TextField from "@material-ui/core/TextField";
 
 import MultiSelectDropDown from "../MultiSelectDropDown";
 
@@ -58,11 +59,11 @@ const PartTwo = ({ control }) => {
           rules={{ required: "Bio is required" }}
           render={({ field: { onChange, value }, fieldState: { error } }) => (
             <FormControl>
-              <TextareaAutosize
-                value={value}
-                onChange={onChange}
-                error={!!error}
+              <TextField
                 placeholder="Bio"
+                multiline
+                rows={1}
+                rowsMax={5}
                 className={classNames({ "form-error": error })}
               />
             </FormControl>

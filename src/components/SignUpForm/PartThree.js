@@ -3,27 +3,31 @@ import { Controller } from "react-hook-form";
 
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
+import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import Box from "@material-ui/core/Box";
 import Input from "@material-ui/core/Input";
+import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+
+import MultiSelectDropDown from "../MultiSelectDropDown";
 
 import "./SignUpForm.css";
 import "../Button/button.css";
 
-const PartOne = ({ control }) => {
+const PartThree = ({ control }) => {
   return (
     <div className="signUp-form-box">
-      <div>
-        <h2 className="form-heading">Sign Up Here</h2>
+      <div className="form-heading">
+        <h2>Add your social media information!</h2>
       </div>
       <Box component="div" m={1}>
         <Controller
-          name="firstName"
+          name="facebookUrl"
           control={control}
-          rules={{ required: "First name is required" }}
           render={({ field: { onChange, value }, fieldState: { error } }) => (
             <FormControl>
               <InputLabel className={classNames({ "form-error": error })}>
-                First Name
+                Facebook URL
               </InputLabel>
               <Input value={value} onChange={onChange} error={!!error} />
             </FormControl>
@@ -32,13 +36,12 @@ const PartOne = ({ control }) => {
       </Box>
       <Box component="div" m={1}>
         <Controller
-          name="lastName"
+          name="twitterUrl"
           control={control}
-          rules={{ required: "Last name is required" }}
           render={({ field: { onChange, value }, fieldState: { error } }) => (
             <FormControl>
               <InputLabel className={classNames({ "form-error": error })}>
-                Last Name
+                Twitter URL
               </InputLabel>
               <Input value={value} onChange={onChange} error={!!error} />
             </FormControl>
@@ -47,51 +50,14 @@ const PartOne = ({ control }) => {
       </Box>
       <Box component="div" m={1}>
         <Controller
-          name="email"
+          name="instagramUrl"
           control={control}
-          rules={{ required: "Email is required" }}
           render={({ field: { onChange, value }, fieldState: { error } }) => (
             <FormControl>
               <InputLabel className={classNames({ "form-error": error })}>
-                Email
+                Instagram URL
               </InputLabel>
               <Input value={value} onChange={onChange} error={!!error} />
-            </FormControl>
-          )}
-        />
-      </Box>
-      <Box component="div" m={1}>
-        <Controller
-          name="username"
-          control={control}
-          rules={{ required: "Username is required" }}
-          render={({ field: { onChange, value }, fieldState: { error } }) => (
-            <FormControl>
-              <InputLabel className={classNames({ "form-error": error })}>
-                Username
-              </InputLabel>
-              <Input value={value} onChange={onChange} error={!!error} />
-            </FormControl>
-          )}
-        />
-      </Box>
-      <Box component="div" m={1}>
-        <Controller
-          name="password"
-          control={control}
-          rules={{ required: "Password is required" }}
-          render={({ field: { onChange, value }, fieldState: { error } }) => (
-            <FormControl>
-              <InputLabel className={classNames({ "form-error": error })}>
-                Password
-              </InputLabel>
-              <Input
-                value={value}
-                onChange={onChange}
-                error={!!error}
-                label="Password"
-                type="password"
-              />
             </FormControl>
           )}
         />
@@ -100,4 +66,4 @@ const PartOne = ({ control }) => {
   );
 };
 
-export default PartOne;
+export default PartThree;

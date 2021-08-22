@@ -5,10 +5,11 @@ import { useHistory } from "react-router-dom";
 
 import { SIGNUP } from "../../graphql/mutations";
 
+import PartOne from "./PartOne";
 import PartTwo from "./PartTwo";
+import PartThree from "./PartThree";
 
 import "./SignUpForm.css";
-import PartOne from "./PartOne";
 
 const SignUpForm = ({ redirect = "/login" }) => {
   const {
@@ -80,6 +81,16 @@ const SignUpForm = ({ redirect = "/login" }) => {
         />
       );
     }
+    if (formNumber === 3) {
+      return (
+        <PartThree
+          setValue={setValue}
+          errors={errors}
+          register={register}
+          control={control}
+        />
+      );
+    }
   };
 
   return (
@@ -95,12 +106,12 @@ const SignUpForm = ({ redirect = "/login" }) => {
             <span>Previous</span>
           </button>
         )}
-        {formNumber !== 2 && (
+        {formNumber !== 3 && (
           <button className="button hover" type="button" onClick={onClickNext}>
             <span>Next</span>
           </button>
         )}
-        {formNumber === 2 && (
+        {formNumber === 3 && (
           <button className="button" type="submit">
             Submit
           </button>
