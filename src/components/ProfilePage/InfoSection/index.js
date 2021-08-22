@@ -1,6 +1,5 @@
-import { GrYoga } from "react-icons/gr";
-import { GiMuscleUp } from "react-icons/gi";
-import { FaRunning, FaWeight } from "react-icons/fa";
+import { GiHearts } from "react-icons/gi";
+import { FiTarget } from "react-icons/fi";
 
 import BuddyCard from "../BuddyCard";
 
@@ -15,7 +14,7 @@ const InfoSection = ({ user }) => {
             {interests.map((interest) => (
               <div>
                 <div>
-                  <GrYoga />
+                  <GiHearts />
                 </div>
                 <div>{interest}</div>
               </div>
@@ -28,7 +27,7 @@ const InfoSection = ({ user }) => {
             {goals.map((goal) => (
               <div>
                 <div>
-                  <FaWeight />
+                  <FiTarget />
                 </div>
                 <div>{goal}</div>
               </div>
