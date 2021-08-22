@@ -36,77 +36,79 @@ const PartTwo = ({ control }) => {
   ];
 
   return (
-    <div className="signUp-form-box">
-      <Box component="div" m={1}>
-        <Controller
-          name="city"
-          control={control}
-          rules={{ required: "City is required" }}
-          render={({ field: { onChange, value }, fieldState: { error } }) => (
-            <FormControl>
-              <InputLabel className={classNames({ "form-error": error })}>
-                City
-              </InputLabel>
-              <Input value={value} onChange={onChange} error={!!error} />
-            </FormControl>
-          )}
-        />
-      </Box>
-      <Box component="div" m={1}>
-        <Controller
-          name="bio"
-          control={control}
-          rules={{ required: "Bio is required" }}
-          render={({ field: { onChange, value }, fieldState: { error } }) => (
-            <FormControl>
-              <TextField
-                placeholder="Bio"
-                multiline
-                rows={1}
-                rowsMax={5}
-                value={value}
-                onChange={onChange}
-                className={classNames({ "form-error": error })}
-              />
-            </FormControl>
-          )}
-        />
-      </Box>
-      <Box component="div" m={1}>
-        <MultiSelectDropDown
-          options={goals}
-          placeholder="Goals"
-          name="goals"
-          control={control}
-        />
-      </Box>
-      <Box component="div" m={1}>
-        <MultiSelectDropDown
-          options={interests}
-          placeholder="Interests"
-          name="interests"
-          control={control}
-        />
-      </Box>
-      <Box component="div" m={1}>
-        <Controller
-          render={({ field: { onChange, value } }) => (
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={value}
+    <div className="signUp-form-container">
+      <div className="signUp-form-box">
+        <Box component="div" m={1}>
+          <Controller
+            name="city"
+            control={control}
+            rules={{ required: "City is required" }}
+            render={({ field: { onChange, value }, fieldState: { error } }) => (
+              <FormControl>
+                <InputLabel className={classNames({ "form-error": error })}>
+                  City
+                </InputLabel>
+                <Input value={value} onChange={onChange} error={!!error} />
+              </FormControl>
+            )}
+          />
+        </Box>
+        <Box component="div" m={1}>
+          <Controller
+            name="bio"
+            control={control}
+            rules={{ required: "Bio is required" }}
+            render={({ field: { onChange, value }, fieldState: { error } }) => (
+              <FormControl>
+                <TextField
+                  placeholder="Bio"
+                  multiline
+                  rows={1}
+                  rowsMax={5}
+                  value={value}
                   onChange={onChange}
-                  name="isGymOwner"
-                  color="primary"
+                  className={classNames({ "form-error": error })}
                 />
-              }
-              label="Are you a gym owner?"
-            />
-          )}
-          name="isGymOwner"
-          control={control}
-        />
-      </Box>
+              </FormControl>
+            )}
+          />
+        </Box>
+        <Box component="div" m={1}>
+          <MultiSelectDropDown
+            options={goals}
+            placeholder="Goals"
+            name="goals"
+            control={control}
+          />
+        </Box>
+        <Box component="div" m={1}>
+          <MultiSelectDropDown
+            options={interests}
+            placeholder="Interests"
+            name="interests"
+            control={control}
+          />
+        </Box>
+        <Box component="div" m={1}>
+          <Controller
+            render={({ field: { onChange, value } }) => (
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={value}
+                    onChange={onChange}
+                    name="isGymOwner"
+                    color="primary"
+                  />
+                }
+                label="Are you a gym owner?"
+              />
+            )}
+            name="isGymOwner"
+            control={control}
+          />
+        </Box>
+      </div>
     </div>
   );
 };
