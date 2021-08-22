@@ -28,6 +28,8 @@ const ProfilePage = () => {
 
   const user = data.findUser;
 
+  console.log(user);
+
   return (
     <div>
       <ProfilePageContent user={user} />

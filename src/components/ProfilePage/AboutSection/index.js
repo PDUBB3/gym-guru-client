@@ -8,7 +8,16 @@ import {
 import FormDialog from "../../../components/BuddyModal";
 import { useState } from "react";
 
-const AboutSection = ({ firstName, lastName, city, bio, profileImageUrl }) => {
+const AboutSection = ({
+  firstName,
+  lastName,
+  city,
+  bio,
+  profileImageUrl,
+  facebookUrl,
+  twitterUrl,
+  instagramUrl,
+}) => {
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
     setOpen(true);
@@ -41,9 +50,21 @@ const AboutSection = ({ firstName, lastName, city, bio, profileImageUrl }) => {
         {isBuddy && <FaEnvelope onClick={handleClickOpen} />}
         {!isBuddy && <FaUserPlus />}
         <FormDialog handleClose={handleClose} open={open} />
-        <FaFacebook />
-        <FaTwitter />
-        <FaInstagram />
+        {facebookUrl && (
+          <a href={facebookUrl} target="_blank" rel="noreferrer">
+            <FaFacebook />
+          </a>
+        )}
+        {twitterUrl && (
+          <a href={twitterUrl} target="_blank" rel="noreferrer">
+            <FaTwitter />
+          </a>
+        )}
+        {instagramUrl && (
+          <a href={instagramUrl} target="_blank" rel="noreferrer">
+            <FaInstagram />
+          </a>
+        )}
       </div>
     </div>
   );
