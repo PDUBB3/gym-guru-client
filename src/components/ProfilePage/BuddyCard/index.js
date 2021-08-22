@@ -9,14 +9,14 @@ const BuddyCard = ({ buddy, userId }) => {
     },
   });
 
-  console.log(userId);
+  console.log(buddy);
 
   const onClickAccept = async () => {
     await acceptBuddyRequest({
       variables: {
         acceptBuddyRequestInput: {
-          requesterId: buddy.id,
           recipientId: userId,
+          requesterId: buddy.requesterId.id,
         },
       },
     });
