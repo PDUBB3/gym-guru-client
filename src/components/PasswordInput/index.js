@@ -1,8 +1,15 @@
 import { useState } from "react";
+import { Controller } from "react-hook-form";
+
+import Box from "@material-ui/core/Box";
+import classNames from "classnames";
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import Input from "@material-ui/core/Input";
 
 import "./PasswordInput.css";
 
-export default function PasswordInput({ register }) {
+const PasswordInput = ({ control, placeholder, name }) => {
   const [passwordShown, setPasswordShown] = useState(false);
 
   const togglePassword = () => {
@@ -10,14 +17,29 @@ export default function PasswordInput({ register }) {
   };
 
   return (
-    <div className="form-element">
-      <input
-        className="password-input"
-        placeholder="Password"
-        type={passwordShown ? "text" : "password"}
-        {...register}
+    <Box component="div" m={1}>
+      <Controller
+        name={name}
+        control={control}
+        rules={{ required: `{placeholder} is required` }}
+        render={({ field: { onChange, value }, fieldState: { error } }) => (
+          <FormControl>
+            <InputLabel className={classNames({ "form-error": error })}>
+              {placeholder}
+            </InputLabel>
+            <Input
+              value={value}
+              onChange={onChange}
+              error={!!error}
+              label="Password"
+              type={passwordShown ? "text" : "password"}
+            />
+          </FormControl>
+        )}
       />
       <button onClick={togglePassword}>Show</button>
-    </div>
+    </Box>
   );
-}
+};
+
+export default PasswordInput;

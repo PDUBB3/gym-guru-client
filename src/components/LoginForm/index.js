@@ -16,6 +16,7 @@ import FormInput from "../FormInput";
 
 import "./LoginForm.css";
 import "../Button/button.css";
+import PasswordInput from "../PasswordInput";
 
 const LoginForm = ({ redirect }) => {
   const history = useHistory();
@@ -73,28 +74,11 @@ const LoginForm = ({ redirect }) => {
           <h2 className="form-heading">Sign in</h2>
         </div>
         <FormInput control={control} placeholder="Username" name="username" />
-        <Box component="div" m={1}>
-          <Controller
-            name="password"
-            control={control}
-            rules={{ required: "Password is required" }}
-            render={({ field: { onChange, value }, fieldState: { error } }) => (
-              <FormControl>
-                <InputLabel className={classNames({ "form-error": error })}>
-                  Password
-                </InputLabel>
-                <Input
-                  value={value}
-                  onChange={onChange}
-                  error={!!error}
-                  label="Password"
-                  type={passwordShown ? "text" : "password"}
-                />
-              </FormControl>
-            )}
-          />
-        </Box>
-        <button onClick={togglePassword}>Show</button>
+        <PasswordInput
+          control={control}
+          placeholder="Password"
+          name="password"
+        />
 
         <button className="button hover" type="submit">
           <span>Sign in</span>
