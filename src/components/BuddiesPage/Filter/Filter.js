@@ -29,11 +29,6 @@ const Filter = ({ filterStatus, setFilterStatus }) => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-
-    console.log({
-      filterParams,
-      selectedGym,
-    });
   };
 
   const handleChangeCity = (event) => {
@@ -47,8 +42,6 @@ const Filter = ({ filterStatus, setFilterStatus }) => {
   const handleChangeInterest = (event) => {
     setFilterParams({ ...filterParams, interests: event.target.value });
   };
-
-  console.log(filterParams);
 
   if (loading) {
     return <h1>Loading...</h1>;

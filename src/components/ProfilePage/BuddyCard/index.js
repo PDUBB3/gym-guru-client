@@ -54,8 +54,6 @@ const BuddyCard = ({ buddy, userId, username }) => {
     buddyImage = buddy.requesterId.profileImageUrl;
   }
 
-  console.log(buddyImage);
-
   return (
     <div className="buddy-card">
       <a href={buddyName} className="buddyCardLink">

@@ -33,7 +33,6 @@ export default function FormDialog({ handleClose, open }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(message);
 
     //handle close to go inside handlesubmit fn
   };
