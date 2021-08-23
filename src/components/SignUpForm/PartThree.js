@@ -18,51 +18,63 @@ const PartThree = ({ control }) => {
   return (
     <div className="signUp-form-container">
       <div className="signUp-form-box">
-        <div className="form-heading">
-          <h2>Add your social media information!</h2>
+        <div className="signUp-form-image-container"></div>
+        <div className="signUp-form-input-container">
+          <div className="form-heading">
+            <h2>Add your social media information!</h2>
+          </div>
+          <Box component="div" m={1}>
+            <Controller
+              name="facebookUrl"
+              control={control}
+              render={({
+                field: { onChange, value },
+                fieldState: { error },
+              }) => (
+                <FormControl>
+                  <InputLabel className={classNames({ "form-error": error })}>
+                    Facebook URL
+                  </InputLabel>
+                  <Input value={value} onChange={onChange} error={!!error} />
+                </FormControl>
+              )}
+            />
+          </Box>
+          <Box component="div" m={1}>
+            <Controller
+              name="twitterUrl"
+              control={control}
+              render={({
+                field: { onChange, value },
+                fieldState: { error },
+              }) => (
+                <FormControl>
+                  <InputLabel className={classNames({ "form-error": error })}>
+                    Twitter URL
+                  </InputLabel>
+                  <Input value={value} onChange={onChange} error={!!error} />
+                </FormControl>
+              )}
+            />
+          </Box>
+          <Box component="div" m={1}>
+            <Controller
+              name="instagramUrl"
+              control={control}
+              render={({
+                field: { onChange, value },
+                fieldState: { error },
+              }) => (
+                <FormControl>
+                  <InputLabel className={classNames({ "form-error": error })}>
+                    Instagram URL
+                  </InputLabel>
+                  <Input value={value} onChange={onChange} error={!!error} />
+                </FormControl>
+              )}
+            />
+          </Box>
         </div>
-        <Box component="div" m={1}>
-          <Controller
-            name="facebookUrl"
-            control={control}
-            render={({ field: { onChange, value }, fieldState: { error } }) => (
-              <FormControl>
-                <InputLabel className={classNames({ "form-error": error })}>
-                  Facebook URL
-                </InputLabel>
-                <Input value={value} onChange={onChange} error={!!error} />
-              </FormControl>
-            )}
-          />
-        </Box>
-        <Box component="div" m={1}>
-          <Controller
-            name="twitterUrl"
-            control={control}
-            render={({ field: { onChange, value }, fieldState: { error } }) => (
-              <FormControl>
-                <InputLabel className={classNames({ "form-error": error })}>
-                  Twitter URL
-                </InputLabel>
-                <Input value={value} onChange={onChange} error={!!error} />
-              </FormControl>
-            )}
-          />
-        </Box>
-        <Box component="div" m={1}>
-          <Controller
-            name="instagramUrl"
-            control={control}
-            render={({ field: { onChange, value }, fieldState: { error } }) => (
-              <FormControl>
-                <InputLabel className={classNames({ "form-error": error })}>
-                  Instagram URL
-                </InputLabel>
-                <Input value={value} onChange={onChange} error={!!error} />
-              </FormControl>
-            )}
-          />
-        </Box>
       </div>
     </div>
   );
