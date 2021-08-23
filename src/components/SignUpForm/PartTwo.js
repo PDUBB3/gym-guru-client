@@ -1,9 +1,9 @@
+import ImageUploader from "../ImageUploader";
 import classNames from "classnames";
 import { Controller } from "react-hook-form";
 
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
-import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import Box from "@material-ui/core/Box";
 import Input from "@material-ui/core/Input";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -15,7 +15,7 @@ import MultiSelectDropDown from "../MultiSelectDropDown";
 import "./SignUpForm.css";
 import "../Button/button.css";
 
-const PartTwo = ({ control }) => {
+const PartTwo = ({ control, setValue }) => {
   const goals = [
     "Lose Weight",
     "Gain Muscle",
@@ -38,6 +38,9 @@ const PartTwo = ({ control }) => {
   return (
     <div className="signUp-form-container">
       <div className="signUp-form-box">
+        <Box component="div" m={1}>
+          <ImageUploader setValue={setValue} />
+        </Box>
         <Box component="div" m={1}>
           <Controller
             name="city"
