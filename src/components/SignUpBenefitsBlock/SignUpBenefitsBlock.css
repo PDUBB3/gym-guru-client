@@ -1,0 +1,103 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+.signup-benefits-block-container {
+  margin-bottom: 2rem;
+  margin-top: 3rem;
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(2, 45%);
+  grid-column-gap: 8px;
+  overflow: hidden;
+  min-height: 60vh;
+  min-width: 100vw;
+  background-color: white;
+  color: white;
+}
+
+.signup-benefits-block:first-of-type {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: center;
+  justify-content: flex-end;
+  background-image: linear-gradient(to top, #333533 46%, rgba(0, 255, 0, 0) 95%),
+    url("https://images.unsplash.com/photo-1554284126-aa88f22d8b74?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzN8fHdvcmtvdXR8ZW58MHx8MHx8&auto=format&fit=crop&w=700&q=60");
+  background-repeat: no-repeat;
+}
+
+.signup-benefits-block:last-of-type {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: center;
+  justify-content: flex-end;
+  background-image: linear-gradient(to top, #333533 46%, rgba(0, 255, 0, 0) 95%),
+    url("https://images.unsplash.com/photo-1590487988256-9ed24133863e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGZpdG5lc3N8ZW58MHx8MHxibGFja19hbmRfd2hpdGV8&ixlib=rb-1.2.1&auto=format&fit=crop&w=650&q=60");
+  background-repeat: no-repeat;
+}
+
+.h2-roles-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  margin-top: 3rem;
+}
+
+.signup-block-h2-roles span {
+  background-color: #00b4d8;
+  color: white;
+  text-align: center;
+  font-size: 2rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.signup-block-h2-benefits-white {
+  color: white;
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.signup-benefits-block ul li:first-child {
+  margin-left: 1rem;
+  margin-right: 0.25rem;
+  padding-top: 1rem;
+  justify-self: center;
+  align-self: center;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #00b4d8;
+}
+
+.signup-benefits-block ul li:nth-child(2) {
+  margin-left: 1rem;
+  margin-right: 0.2rem;
+  padding-top: 1rem;
+  justify-self: center;
+  align-self: center;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: white;
+}
+
+.signup-benefits-block ul li:nth-child(3) {
+  margin-left: 1rem;
+  margin-right: 0.2rem;
+  padding-top: 1rem;
+  padding-bottom: 3rem;
+  justify-self: center;
+  align-self: center;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #00b4d8;
+}
