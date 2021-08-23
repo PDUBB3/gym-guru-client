@@ -16,13 +16,15 @@ const Navbar = (props) => {
   return (
     <div id="nav-container">
       <nav className="navbar">
-        <img
-          className="navlogo"
-          src={Logo}
-          alt="gym-guru-logo"
-          width="60"
-          height="50"
-        />{" "}
+        <div id="nav-item-container">
+          <img
+            className="navlogo"
+            src={Logo}
+            alt="gym-guru-logo"
+            width="55"
+            height="45"
+          />{" "}
+        </div>
         <div id="nav-item-container">
           <a className="navbarLink" href="/">
             Home
