@@ -68,7 +68,7 @@ const InfoSection = ({ firstName, user, buddiesData, buddyRequestData }) => {
             </a>
           ) : (
             <div className="no-gym">
-              {firstName} does not currently attend a gym.{" "}
+              {firstName} does not currently attend a gym.
             </div>
           )}
         </div>

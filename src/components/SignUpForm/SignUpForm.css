@@ -11,24 +11,43 @@
   width: 100%;
 }
 
+.signUp-form-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+
 .signUp-form-box {
-  /* background-image: linear-gradient(
-      to top,
-      rgb(75, 75, 75) 30%,
-      rgba(0, 255, 0, 0) 100%
-    ),
-    url("https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=968&q=80");
-  background-image: fixed; */
-  padding: 1rem;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(2, 50%);
+  grid-column-gap: 10px;
+  overflow: hidden;
   color: black;
   border: 2px solid #484a4b;
   border-radius: 5px;
-  box-shadow: 0 30px 30px -5px #25293450;
-  width: 60%;
+  box-shadow: 0 20px 20px -5px #25293450;
+  min-height: 83vh;
+  min-width: 50vw;
   text-align: center;
+  font-size: 1.25rem;
 }
 
-.form-heading {
+.signUp-form-image-container {
+  background-image: url("https://images.unsplash.com/photo-1499711860525-c485eb341d5e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=390&q=80");
+  background-repeat: no-repeat;
+}
+
+.signUp-form-input-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
+
+.signUp-form .form-heading {
   text-align: center;
   padding: 1rem;
   padding-top: 1.5rem;
