@@ -62,8 +62,10 @@ const BuddyCard = ({ buddy, userId, username }) => {
           className="buddy-image"
         ></img>
       </a>
-      <h3>{buddyName}</h3>
-      <div>{buddyCity}</div>
+      <div className="buddyDetails">
+        <h3>{buddyName}</h3>
+        <div>{buddyCity}</div>
+      </div>
       <div>
         {buddy.status === "PENDING" && (
           <div>
