@@ -1,10 +1,9 @@
 import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
-import { useContext } from "react";
 
 import { useUserContext } from "../../context/UserContext";
 
-import { USER_QUERY } from "../../graphql/queries";
+import { BUDDIES_QUERY, USER_QUERY } from "../../graphql/queries";
 
 import ProfilePageContent from "../../components/ProfilePage/ProfilePageContent";
 
@@ -18,7 +17,15 @@ const ProfilePage = () => {
     variables: { username },
   });
 
-  if (loading) {
+  const {
+    loading: buddyRequestsLoading,
+    error: buddyRequestsError,
+    data: buddyRequestsData,
+  } = useQuery(BUDDIES_QUERY, {
+    variables: { recipientId: state.user.id, status: "PENDING" },
+  });
+
+  if (loading || buddyRequestsLoading) {
     return <div>loading</div>;
   }
 
@@ -36,7 +43,11 @@ const ProfilePage = () => {
 
   return (
     <div>
-      <ProfilePageContent user={user} currentUser={state.user} />
+      <ProfilePageContent
+        user={user}
+        currentUser={state.user}
+        buddyRequestsData={buddyRequestsData.getBuddies}
+      />
     </div>
   );
 };

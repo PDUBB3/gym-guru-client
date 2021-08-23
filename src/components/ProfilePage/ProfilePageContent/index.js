@@ -1,7 +1,10 @@
 import AboutSection from "../AboutSection";
 import InfoSection from "../InfoSection";
 
-const ProfilePageContent = ({ user, currentUser }) => {
+import { BUDDIES_QUERY } from "../../../graphql/queries";
+import { useQuery } from "@apollo/client";
+
+const ProfilePageContent = ({ user, currentUser, buddyRequestsData }) => {
   const {
     firstName,
     lastName,
@@ -14,6 +17,22 @@ const ProfilePageContent = ({ user, currentUser }) => {
     ...rest
   } = user;
 
+  const {
+    loading: buddiesLoading,
+    error: buddiesError,
+    data: buddiesData,
+  } = useQuery(BUDDIES_QUERY, {
+    variables: {
+      recipientId: user.id,
+      requesterId: user.id,
+      status: "BUDDIES",
+    },
+  });
+
+  if (buddiesLoading) {
+    return <h1>Loading</h1>;
+  }
+
   return (
     <div className="profile-container">
       <AboutSection
@@ -25,10 +44,17 @@ const ProfilePageContent = ({ user, currentUser }) => {
         facebookUrl={facebookUrl}
         twitterUrl={twitterUrl}
         instagramUrl={instagramUrl}
+        username={user.username}
         id={user.id}
         currentUser={currentUser}
+        buddiesData={buddiesData.getBuddies}
       />
-      <InfoSection firstName={firstName} user={rest} />
+      <InfoSection
+        firstName={firstName}
+        buddiesData={buddiesData.getBuddies}
+        buddyRequestData={buddyRequestsData}
+        user={rest}
+      />
     </div>
   );
 };

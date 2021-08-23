@@ -122,3 +122,26 @@ export const REVIEWS_QUERY = gql`
     }
   }
 `;
+
+export const BUDDIES_QUERY = gql`
+  query Query($recipientId: ID, $requesterId: ID, $status: BuddyStatus) {
+    getBuddies(
+      recipientId: $recipientId
+      requesterId: $requesterId
+      status: $status
+    ) {
+      id
+      recipientId {
+        id
+        username
+        city
+      }
+      status
+      requesterId {
+        id
+        username
+        city
+      }
+    }
+  }
+`;

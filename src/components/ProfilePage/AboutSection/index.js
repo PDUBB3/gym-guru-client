@@ -20,8 +20,10 @@ const AboutSection = ({
   facebookUrl,
   twitterUrl,
   instagramUrl,
+  username,
   id,
   currentUser,
+  buddiesData,
 }) => {
   const [sendBuddyRequest] = useMutation(BUDDYREQUESTS, {
     onError: (error) => {
@@ -37,10 +39,7 @@ const AboutSection = ({
     setOpen(false);
   };
 
-  const isBuddy = true;
-
   const onClick = async () => {
-    console.log(id);
     await sendBuddyRequest({
       variables: {
         buddyRequestsInput: {
@@ -73,9 +72,18 @@ const AboutSection = ({
         <div>{bio}</div>
       </div>
       <div className="contact">
-        <FaUserPlus onClick={onClick} />
-        {isBuddy && <FaEnvelope onClick={handleClickOpen} />}
-        {!isBuddy && <FaUserPlus onClick={onClick} />}
+        {currentUser.username !== username && [
+          buddiesData.find(
+            (buddy) => buddy.recipientId.id === currentUser.id
+          ) ||
+          buddiesData.find(
+            (buddy) => buddy.requesterId.id === currentUser.id
+          ) ? (
+            <FaEnvelope onClick={handleClickOpen} />
+          ) : (
+            <FaUserPlus onClick={onClick} />
+          ),
+        ]}
         <FormDialog handleClose={handleClose} open={open} />
         {facebookUrl && (
           <a href={facebookUrl} target="_blank" rel="noreferrer">
