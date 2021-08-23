@@ -68,25 +68,33 @@ const LoginForm = ({ redirect }) => {
   };
 
   return (
-    <div className="form-box">
-      <form className="loginForm" onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <h2 className="form-heading">Sign in</h2>
-        </div>
-        <FormInput control={control} placeholder="Username" name="username" />
-        <PasswordInput
-          control={control}
-          placeholder="Password"
-          name="password"
-        />
+    <div className="login-form-container">
+      <div className="form-box">
+        <div className="login-image-container"></div>
+        <form className="loginForm" onSubmit={handleSubmit(onSubmit)}>
+          <div className="login-input-container">
+            <h2 className="form-heading">Sign in</h2>
 
-        <button className="button hover" type="submit">
-          <span>Sign in</span>
-        </button>
-        {error && !data && (
-          <div>Incorrect email or password. Please try again.</div>
-        )}
-      </form>
+            <FormInput
+              control={control}
+              placeholder="Username"
+              name="username"
+            />
+            <PasswordInput
+              control={control}
+              placeholder="Password"
+              name="password"
+            />
+
+            <button className="button hover login-button" type="submit">
+              <span>Sign in</span>
+            </button>
+            {error && !data && (
+              <div>Incorrect email or password. Please try again.</div>
+            )}
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
