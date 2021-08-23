@@ -1,10 +1,18 @@
 import { useMutation } from "@apollo/client";
-import { FaUserCheck } from "react-icons/fa";
-import { Redirect } from "react-router-dom";
-import { ACCEPTBUDDYREQUEST } from "../../../graphql/mutations";
+import { FaUserCheck, FaUserMinus } from "react-icons/fa";
+import {
+  ACCEPTBUDDYREQUEST,
+  REJECTBUDDYREQUEST,
+} from "../../../graphql/mutations";
 
 const BuddyCard = ({ buddy, userId, username }) => {
   const [acceptBuddyRequest] = useMutation(ACCEPTBUDDYREQUEST, {
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  const [rejectBuddyRequest] = useMutation(REJECTBUDDYREQUEST, {
     onError: (error) => {
       console.log(error);
     },
@@ -19,8 +27,17 @@ const BuddyCard = ({ buddy, userId, username }) => {
         },
       },
     });
+  };
 
-    <Redirect to="/" />;
+  const onClickReject = async () => {
+    await rejectBuddyRequest({
+      variables: {
+        rejectBuddyRequestInput: {
+          recipientId: userId,
+          requesterId: buddy.requesterId.id,
+        },
+      },
+    });
   };
 
   let buddyName = "";
@@ -48,7 +65,12 @@ const BuddyCard = ({ buddy, userId, username }) => {
       <h3>{buddyName}</h3>
       <div>{buddyCity}</div>
       <div>
-        {buddy.status === "PENDING" && <FaUserCheck onClick={onClickAccept} />}
+        {buddy.status === "PENDING" && (
+          <div>
+            <FaUserCheck onClick={onClickAccept} className="buddyIcon" />
+            <FaUserMinus onClick={onClickReject} className="buddyIcon" />
+          </div>
+        )}
       </div>
     </div>
   );

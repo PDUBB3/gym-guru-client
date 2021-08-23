@@ -144,6 +144,11 @@ h2 {
   margin: 1rem 0;
 }
 
+.buddyIcon {
+  margin: 1rem;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 900px) {
   .profile-container {
     margin: 0;
