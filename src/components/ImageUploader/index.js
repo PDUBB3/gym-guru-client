@@ -54,7 +54,8 @@ const ImageUpload = ({ setValue }) => {
     console.log(s3Data.location);
     if (s3Data.status === 204) {
       setImageUrl(s3Data.location);
-      setImages([]);
+      // setImages([]);
+      images.push(s3Data.location);
       setValue("profileImageUrl", s3Data.location);
     } else {
       console.log("failed to upload image");

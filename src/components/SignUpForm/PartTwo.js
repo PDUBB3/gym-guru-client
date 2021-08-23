@@ -13,9 +13,7 @@ const PartTwo = ({ errors, register, setValue }) => {
     <div className="signUp-form-box">
       {/* <ImageUpload setValue={setValue} /> */}
 
-      <Box component="div" m={1}>
-        <ImageUploader setValue={setValue} />
-      </Box>
+      <ImageUploader setValue={setValue} />
 
       <FormInput
         placeholder="City"
