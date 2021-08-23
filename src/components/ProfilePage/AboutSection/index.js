@@ -1,3 +1,6 @@
+import { useMutation } from "@apollo/client";
+import FormDialog from "../../../components/BuddyModal";
+import { useState } from "react";
 import {
   FaEnvelope,
   FaFacebook,
@@ -5,10 +8,27 @@ import {
   FaInstagram,
   FaUserPlus,
 } from "react-icons/fa";
-import FormDialog from "../../../components/BuddyModal";
-import { useState } from "react";
 
-const AboutSection = ({ firstName, lastName, city, bio, profileImageUrl }) => {
+import { BUDDYREQUESTS } from "../../../graphql/mutations";
+
+const AboutSection = ({
+  firstName,
+  lastName,
+  city,
+  bio,
+  profileImageUrl,
+  facebookUrl,
+  twitterUrl,
+  instagramUrl,
+  id,
+  currentUser,
+}) => {
+  const [sendBuddyRequest] = useMutation(BUDDYREQUESTS, {
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
     setOpen(true);
@@ -19,11 +39,26 @@ const AboutSection = ({ firstName, lastName, city, bio, profileImageUrl }) => {
 
   const isBuddy = true;
 
+  const onClick = async () => {
+    console.log(id);
+    await sendBuddyRequest({
+      variables: {
+        buddyRequestsInput: {
+          requesterId: currentUser.id,
+          recipientId: id,
+        },
+      },
+    });
+  };
+
   return (
     <div className="user-info-container">
       <div className="background">
         <img
-          src={profileImageUrl}
+          src={
+            profileImageUrl ||
+            "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+          }
           alt={firstName}
           height="200"
           width="200"
@@ -38,12 +73,25 @@ const AboutSection = ({ firstName, lastName, city, bio, profileImageUrl }) => {
         <div>{bio}</div>
       </div>
       <div className="contact">
+        <FaUserPlus onClick={onClick} />
         {isBuddy && <FaEnvelope onClick={handleClickOpen} />}
-        {!isBuddy && <FaUserPlus />}
+        {!isBuddy && <FaUserPlus onClick={onClick} />}
         <FormDialog handleClose={handleClose} open={open} />
-        <FaFacebook />
-        <FaTwitter />
-        <FaInstagram />
+        {facebookUrl && (
+          <a href={facebookUrl} target="_blank" rel="noreferrer">
+            <FaFacebook />
+          </a>
+        )}
+        {twitterUrl && (
+          <a href={twitterUrl} target="_blank" rel="noreferrer">
+            <FaTwitter />
+          </a>
+        )}
+        {instagramUrl && (
+          <a href={instagramUrl} target="_blank" rel="noreferrer">
+            <FaInstagram />
+          </a>
+        )}
       </div>
     </div>
   );

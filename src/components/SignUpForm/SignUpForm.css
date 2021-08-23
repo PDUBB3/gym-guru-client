@@ -12,23 +12,32 @@
 }
 
 .signUp-form-box {
-  background-image: linear-gradient(
+  /* background-image: linear-gradient(
       to top,
       rgb(75, 75, 75) 30%,
       rgba(0, 255, 0, 0) 100%
     ),
     url("https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=968&q=80");
-  background-image: fixed;
+  background-image: fixed; */
   padding: 1rem;
-  color: white;
+  color: black;
   border: 2px solid #484a4b;
   border-radius: 5px;
   box-shadow: 0 30px 30px -5px #25293450;
   width: 60%;
+  text-align: center;
 }
 
 .form-heading {
   text-align: center;
   padding: 1rem;
   padding-top: 1.5rem;
+}
+
+.form-error {
+  color: red !important;
+}
+
+.form-error::placeholder {
+  color: red !important;
 }

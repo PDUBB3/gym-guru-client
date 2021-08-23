@@ -54,3 +54,45 @@ export const SIGNUP = gql`
     }
   }
 `;
+
+export const BUDDYREQUESTS = gql`
+  mutation Mutation($buddyRequestsInput: BuddyInput) {
+    buddyRequests(input: $buddyRequestsInput) {
+      requesterId
+      recipientId
+      status
+    }
+  }
+`;
+
+export const ACCEPTBUDDYREQUEST = gql`
+  mutation Mutation($acceptBuddyRequestInput: BuddyInput) {
+    acceptBuddyRequest(input: $acceptBuddyRequestInput) {
+      requesterId
+      recipientId
+      status
+    }
+  }
+`;
+
+export const REJECTBUDDYREQUEST = gql`
+  mutation Mutation($rejectBuddyRequestInput: BuddyInput) {
+    rejectBuddyRequest(input: $rejectBuddyRequestInput) {
+      requesterId
+      recipientId
+      status
+    }
+  }
+`;
+
+export const ADD_REVIEW = gql`
+  mutation AddReviewMutation($addReviewInput: ReviewInput) {
+    addReview(input: $addReviewInput) {
+      categories {
+        category
+        rating
+      }
+      comment
+    }
+  }
+`;

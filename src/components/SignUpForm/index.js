@@ -5,10 +5,11 @@ import { useHistory } from "react-router-dom";
 
 import { SIGNUP } from "../../graphql/mutations";
 
+import PartOne from "./PartOne";
 import PartTwo from "./PartTwo";
+import PartThree from "./PartThree";
 
 import "./SignUpForm.css";
-import PartOne from "./PartOne";
 
 const SignUpForm = ({ redirect = "/login" }) => {
   const {
@@ -16,6 +17,7 @@ const SignUpForm = ({ redirect = "/login" }) => {
     handleSubmit,
     setValue,
     formState: { errors },
+    control,
   } = useForm();
 
   const [formNumber, setFormNumber] = useState(1);
@@ -32,7 +34,7 @@ const SignUpForm = ({ redirect = "/login" }) => {
   });
 
   const onSubmit = async (formData) => {
-    console.log("onSubmit run");
+    console.log(formData);
 
     try {
       console.log(formData);
@@ -50,7 +52,7 @@ const SignUpForm = ({ redirect = "/login" }) => {
     return <h1>Loading...</h1>;
   }
 
-  const onClickNext = () => {
+  const onClickNext = (event) => {
     setFormNumber(formNumber + 1);
   };
 
@@ -60,11 +62,33 @@ const SignUpForm = ({ redirect = "/login" }) => {
 
   const renderForm = () => {
     if (formNumber === 1) {
-      return <PartOne errors={errors} register={register} />;
+      return (
+        <PartOne
+          setValue={setValue}
+          errors={errors}
+          register={register}
+          control={control}
+        />
+      );
     }
     if (formNumber === 2) {
       return (
-        <PartTwo setValue={setValue} errors={errors} register={register} />
+        <PartTwo
+          setValue={setValue}
+          errors={errors}
+          register={register}
+          control={control}
+        />
+      );
+    }
+    if (formNumber === 3) {
+      return (
+        <PartThree
+          setValue={setValue}
+          errors={errors}
+          register={register}
+          control={control}
+        />
       );
     }
   };
@@ -82,12 +106,12 @@ const SignUpForm = ({ redirect = "/login" }) => {
             <span>Previous</span>
           </button>
         )}
-        {formNumber !== 2 && (
+        {formNumber !== 3 && (
           <button className="button hover" type="button" onClick={onClickNext}>
             <span>Next</span>
           </button>
         )}
-        {formNumber === 2 && (
+        {formNumber === 3 && (
           <button className="button" type="submit">
             Submit
           </button>

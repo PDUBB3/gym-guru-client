@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 
 import FormInput from "../FormInput";
 import PasswordInput from "../PasswordInput";
-import { UserContext } from "../../context/UserContext";
+import { useUserContext } from "../../context/UserContext";
 import { LOGIN } from "../../graphql/mutations";
 
 import "./LoginForm.css";
@@ -13,6 +13,7 @@ import "../Button/button.css";
 
 const LoginForm = ({ redirect }) => {
   const history = useHistory();
+  const { dispatch } = useUserContext();
 
   const {
     register,
@@ -22,23 +23,24 @@ const LoginForm = ({ redirect }) => {
 
   const [login, { data, error, loading }] = useMutation(LOGIN, {
     onCompleted: (data) => {
-      const {
-        token,
-        user: { username, id },
-      } = data.login;
+      const payload = {
+        token: data.login.token,
+        email: data.login.user.email,
+        username: data.login.user.username,
+        id: data.login.user.id,
+      };
 
-      onLogin({
-        id,
-        token,
-        username,
+      localStorage.setItem("user", JSON.stringify(payload));
+
+      dispatch({
+        type: "LOGIN",
+        payload,
       });
 
-      history.push(redirect || "/");
+      history.push("/");
     },
     onError: () => {},
   });
-
-  const onLogin = useContext(UserContext);
 
   const onSubmit = async (formData) => {
     console.log(formData);
