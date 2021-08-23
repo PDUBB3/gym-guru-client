@@ -42,25 +42,40 @@ const BuddyCard = ({ buddy, userId, username }) => {
 
   let buddyName = "";
   let buddyCity = "";
+  let buddyImage = "";
   if (buddy.recipientId.username !== username) {
     buddyName = buddy.recipientId.username;
     buddyCity = buddy.recipientId.city;
+    buddyImage = buddy.recipientId.profileImageUrl;
   }
   if (buddy.requesterId.username !== username) {
     buddyName = buddy.requesterId.username;
     buddyCity = buddy.requesterId.city;
+    buddyImage = buddy.requesterId.profileImageUrl;
   }
+
+  console.log(buddyImage);
 
   return (
     <div className="buddy-card">
       <a href={buddyName} className="buddyCardLink">
-        <img
-          src="https://images.unsplash.com/photo-1488228469209-c141f8bcd723?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80"
-          alt="buddy"
-          height="90"
-          width="90"
-          className="buddy-image"
-        ></img>
+        {buddyImage === null ? (
+          <img
+            src="https://www.seekpng.com/png/full/966-9665317_placeholder-image-person-jpg.png"
+            alt="buddy"
+            height="90"
+            width="90"
+            className="buddy-image"
+          />
+        ) : (
+          <img
+            src={buddyImage}
+            alt="buddy"
+            height="90"
+            width="90"
+            className="buddy-image"
+          />
+        )}
       </a>
       <div className="buddyDetails">
         <h3>{buddyName}</h3>
