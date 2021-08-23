@@ -20,8 +20,10 @@ const AboutSection = ({
   facebookUrl,
   twitterUrl,
   instagramUrl,
+  username,
   id,
   currentUser,
+  buddiesData,
 }) => {
   const [sendBuddyRequest] = useMutation(BUDDYREQUESTS, {
     onError: (error) => {
@@ -73,9 +75,15 @@ const AboutSection = ({
         <div>{bio}</div>
       </div>
       <div className="contact">
-        <FaUserPlus onClick={onClick} />
-        {isBuddy && <FaEnvelope onClick={handleClickOpen} />}
-        {!isBuddy && <FaUserPlus onClick={onClick} />}
+        {/* <FaUserPlus onClick={onClick} /> */}
+        {currentUser.username !== username && [
+          buddiesData.length > 0 ? (
+            <FaEnvelope onClick={handleClickOpen} />
+          ) : (
+            <FaUserPlus onClick={onClick} />
+          ),
+        ]}
+
         <FormDialog handleClose={handleClose} open={open} />
         {facebookUrl && (
           <a href={facebookUrl} target="_blank" rel="noreferrer">

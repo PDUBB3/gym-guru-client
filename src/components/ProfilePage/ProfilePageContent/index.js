@@ -44,8 +44,10 @@ const ProfilePageContent = ({ user, currentUser, buddyRequestsData }) => {
         facebookUrl={facebookUrl}
         twitterUrl={twitterUrl}
         instagramUrl={instagramUrl}
+        username={user.username}
         id={user.id}
         currentUser={currentUser}
+        buddiesData={buddiesData.getBuddies}
       />
       <InfoSection
         firstName={firstName}
