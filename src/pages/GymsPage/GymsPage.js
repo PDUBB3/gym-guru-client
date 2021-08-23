@@ -6,6 +6,7 @@ import GymCard from "../../components/GymCard";
 import GymsJumbotron from "../../components/GymsJumbotron";
 
 import "./GymsPage.css";
+import GymFilter from "../../components/GymPage/GymFilter";
 
 const GymsPage = () => {
   const { data, loading, error } = useQuery(GYMS_QUERY);
@@ -21,6 +22,7 @@ const GymsPage = () => {
   if (data) {
     return (
       <div>
+        <GymFilter />
         <GymsJumbotron />
         <div className="gym-cards">
           {data.gyms.map((gym) => {
