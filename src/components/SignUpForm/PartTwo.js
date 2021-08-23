@@ -15,7 +15,7 @@ import MultiSelectDropDown from "../MultiSelectDropDown";
 import "./SignUpForm.css";
 import "../Button/button.css";
 
-const PartTwo = ({ control }) => {
+const PartTwo = ({ control, setValue }) => {
   const goals = [
     "Lose Weight",
     "Gain Muscle",
