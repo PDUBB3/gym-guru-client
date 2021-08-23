@@ -25,19 +25,7 @@ const ProfilePage = () => {
     variables: { recipientId: state.user.id, status: "PENDING" },
   });
 
-  const {
-    loading: buddiesLoading,
-    error: buddiesError,
-    data: buddiesData,
-  } = useQuery(BUDDIES_QUERY, {
-    variables: {
-      recipientId: state.user.id,
-      requesterId: state.user.id,
-      status: "BUDDIES",
-    },
-  });
-
-  if (loading || buddyRequestsLoading || buddiesLoading) {
+  if (loading || buddyRequestsLoading) {
     return <div>loading</div>;
   }
 
@@ -58,7 +46,6 @@ const ProfilePage = () => {
       <ProfilePageContent
         user={user}
         currentUser={state.user}
-        buddiesData={buddiesData.getBuddies}
         buddyRequestsData={buddyRequestsData.getBuddies}
       />
     </div>

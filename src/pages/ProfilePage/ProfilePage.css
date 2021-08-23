@@ -82,6 +82,18 @@ h1 {
   margin-bottom: 0;
 }
 
+.buddiesBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.buddyRequestsContainer,
+.buddyContainer {
+  margin: 1rem;
+}
+
 h2 {
   text-align: center;
 }

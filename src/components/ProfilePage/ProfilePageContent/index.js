@@ -1,12 +1,10 @@
 import AboutSection from "../AboutSection";
 import InfoSection from "../InfoSection";
 
-const ProfilePageContent = ({
-  user,
-  currentUser,
-  buddiesData,
-  buddyRequestsData,
-}) => {
+import { BUDDIES_QUERY } from "../../../graphql/queries";
+import { useQuery } from "@apollo/client";
+
+const ProfilePageContent = ({ user, currentUser, buddyRequestsData }) => {
   const {
     firstName,
     lastName,
@@ -18,6 +16,22 @@ const ProfilePageContent = ({
     instagramUrl,
     ...rest
   } = user;
+
+  const {
+    loading: buddiesLoading,
+    error: buddiesError,
+    data: buddiesData,
+  } = useQuery(BUDDIES_QUERY, {
+    variables: {
+      recipientId: user.id,
+      requesterId: user.id,
+      status: "BUDDIES",
+    },
+  });
+
+  if (buddiesLoading) {
+    return <h1>Loading</h1>;
+  }
 
   return (
     <div className="profile-container">
@@ -35,7 +49,7 @@ const ProfilePageContent = ({
       />
       <InfoSection
         firstName={firstName}
-        buddiesData={buddiesData}
+        buddiesData={buddiesData.getBuddies}
         buddyRequestData={buddyRequestsData}
         user={rest}
       />
