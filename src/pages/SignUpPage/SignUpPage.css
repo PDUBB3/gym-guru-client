@@ -1,12 +1,36 @@
-.signUp-form-container {
+.sign-up-page-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
+  flex-direction: row;
+}
+
+.accordion-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  align-items: center;
+  margin: 1.5rem;
+}
+
+.signUp-form-container {
+  display: flex;
   flex-direction: column;
 }
 
-.sign-up-btn-container {
+.sign-up-form-container {
+  display: flex;
+}
+
+.sign-up-form-accordion-items-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+}
+
+*/ .sign-up-btn-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
