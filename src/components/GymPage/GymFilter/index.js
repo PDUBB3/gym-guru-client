@@ -71,13 +71,10 @@ const GymFilter = ({ exerciseFacilities, otherFacilities, getGyms }) => {
 
     getGyms({
       variables: {
-        gymsCity: "Leeds",
+        gymsExerciseFacilities: exerciseFacilities,
+        gymsOtherFacilities: otherFacilities,
       },
     });
-
-    console.log(formData);
-    console.log(exerciseFacilities);
-    console.log(otherFacilities);
   };
 
   return (
