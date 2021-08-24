@@ -85,7 +85,10 @@ const BuddyCard = ({ buddy, userId, username }) => {
       <div>
         {buddy.status === "PENDING" && (
           <div>
-            <FaUserCheck onClick={onClickAccept} className="buddyIcon" />
+            <FaUserCheck
+              onClick={onClickAccept}
+              className="addBuddy buddyIcon"
+            />
             <FaUserMinus onClick={onClickReject} className="buddyIcon" />
           </div>
         )}

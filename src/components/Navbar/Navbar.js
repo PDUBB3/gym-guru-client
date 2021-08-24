@@ -66,7 +66,7 @@ const Navbar = (props) => {
         {state.user && (
           <>
             <div id="nav-item-container">
-              <a className="navbarLink" onClick={handleLogout}>
+              <a className="navbarLink" onClick={handleLogout} href="/login">
                 Logout
               </a>
             </div>
