@@ -3,13 +3,6 @@ import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 
-import { Controller } from "react-hook-form";
-import Box from "@material-ui/core/Box";
-import classNames from "classnames";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import Input from "@material-ui/core/Input";
-
 import { useUserContext } from "../../context/UserContext";
 import { LOGIN } from "../../graphql/mutations";
 import FormInput from "../FormInput";
@@ -18,7 +11,7 @@ import "./LoginForm.css";
 import "../Button/button.css";
 import PasswordInput from "../PasswordInput";
 
-const LoginForm = ({ redirect }) => {
+const LoginForm = () => {
   const history = useHistory();
   const { dispatch } = useUserContext();
   const [passwordShown, setPasswordShown] = useState(false);
@@ -45,13 +38,12 @@ const LoginForm = ({ redirect }) => {
         payload,
       });
 
-      history.push("/");
+      history.push(`/${data.login.user.username}`);
     },
     onError: () => {},
   });
 
   const onSubmit = async (formData) => {
-    console.log(formData);
     await login({
       variables: {
         loginInput: formData,

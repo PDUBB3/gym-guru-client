@@ -24,8 +24,8 @@ const BuddyCard = ({ data }) => {
       <div className="buddyCard">
         <div className="avatarContainer">
           <Avatar
-            alt="Leon Wheeler"
-            src="https://techcrunch.com/wp-content/uploads/2019/07/Bob-Smith_portrait-1.jpg"
+            alt={data.username}
+            src={data.profileImageUrl}
             className={classes.large}
           />
           <p>{data.username}</p>
