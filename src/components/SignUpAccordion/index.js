@@ -1,15 +1,16 @@
 import React from "react";
 import { useMutation } from "@apollo/client";
+import { Controller } from "react-hook-form";
 import { makeStyles } from "@material-ui/core/styles";
+import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
+import classNames from "classnames";
 
 import Accordion from "@material-ui/core/Accordion";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import classNames from "classnames";
-import { Controller } from "react-hook-form";
-import ImageUploader from "../ImageUploader";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Box from "@material-ui/core/Box";
@@ -18,15 +19,13 @@ import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import TextField from "@material-ui/core/TextField";
 
-import MultiSelectDropDown from "../MultiSelectDropDown";
-
-import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
-
 import { SIGNUP } from "../../graphql/mutations";
 
+import ImageUploader from "../ImageUploader";
+import MultiSelectDropDown from "../MultiSelectDropDown";
+import CityAutocomplete from "../CityAutocomplete";
+
 import "../../pages/SignUpPage/SignUpPage.css";
-import "../Button/button.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -275,13 +274,10 @@ export default function ControlledAccordions({ redirect = "/login" }) {
                     field: { onChange, value },
                     fieldState: { error },
                   }) => (
-                    <FormControl>
-                      <InputLabel
-                        className={classNames({ "form-error": error })}
-                      >
-                        City
-                      </InputLabel>
-                      <Input
+                    <FormControl
+                      className={classNames({ "form-error": error })}
+                    >
+                      <CityAutocomplete
                         value={value}
                         onChange={onChange}
                         error={!!error}
