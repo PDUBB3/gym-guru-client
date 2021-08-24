@@ -1,12 +1,11 @@
 import { useQuery } from "@apollo/client";
+
 import { GYMS_QUERY } from "../../graphql/queries";
-
 import GymCard from "../../components/GymCard";
-
 import GymsJumbotron from "../../components/GymsJumbotron";
+import GymFilter from "../../components/GymPage/GymFilter";
 
 import "./GymsPage.css";
-import GymFilter from "../../components/GymPage/GymFilter";
 
 const GymsPage = () => {
   const { data, loading, error } = useQuery(GYMS_QUERY);
@@ -22,8 +21,8 @@ const GymsPage = () => {
   if (data) {
     return (
       <div>
-        <GymFilter />
         <GymsJumbotron />
+        <GymFilter />
         <div className="gym-cards">
           {data.gyms.map((gym) => {
             return (
