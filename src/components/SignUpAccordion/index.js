@@ -387,10 +387,11 @@ export default function ControlledAccordions({ redirect = "/login" }) {
             </Box>
           </AccordionDetails>
         </Accordion>
-
-        <button className="button" type="submit">
-          Submit
-        </button>
+        <div className="sign-up-btn-container">
+          <button className="sign-up-btn" type="submit">
+            Submit
+          </button>
+        </div>
       </form>
     </div>
   );

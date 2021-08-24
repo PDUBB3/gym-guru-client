@@ -3,4 +3,30 @@
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
+  flex-direction: column;
+}
+
+.sign-up-btn-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+
+.sign-up-btn {
+  border: 0;
+  opacity: 1;
+  visibility: visible;
+  box-shadow: -10px 20px 15px -10px rgba(71, 77, 73, 0.3);
+  border-radius: 10px;
+  display: block;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  width: 100%;
+  color: #ffffff;
+  text-align: center;
+
+  font-size: 15px;
+  cursor: pointer;
+  margin: 5px;
 }
