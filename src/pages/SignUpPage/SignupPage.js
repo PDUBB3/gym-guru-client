@@ -5,8 +5,13 @@ import SignUpAccordion from "../../components/SignUpAccordion";
 const SignupPage = () => {
   return (
     <div>
-      <SignUpAccordion />
-      <SignUpBenefitsBlock />
+      <div>
+        <h1 className="form-heading">Sign Up Now</h1>
+      </div>
+      <div className="sign-up-form-container">
+        <SignUpBenefitsBlock />
+        <SignUpAccordion />
+      </div>
     </div>
   );
 };

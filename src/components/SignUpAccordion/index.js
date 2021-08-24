@@ -108,291 +108,340 @@ export default function ControlledAccordions({ redirect = "/login" }) {
   };
 
   return (
-    <div className={classes.root}>
-      <div>
-        <h1 className="form-heading">Sign Up Here</h1>
-      </div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Accordion
-          expanded={expanded === "panel1"}
-          onChange={handleChange("panel1")}
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1bh-content"
-            id="panel1bh-header"
+    <div className="accordion-container">
+      <div className={classes.root}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Accordion
+            expanded={expanded === "panel1"}
+            onChange={handleChange("panel1")}
           >
-            <Typography className={classes.heading}>
-              1. Basic details
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails className="signUp-form-container">
-            <Box component="div" m={1}>
-              <Controller
-                name="firstName"
-                control={control}
-                rules={{ required: "First name is required" }}
-                render={({
-                  field: { onChange, value },
-                  fieldState: { error },
-                }) => (
-                  <FormControl>
-                    <InputLabel className={classNames({ "form-error": error })}>
-                      First Name
-                    </InputLabel>
-                    <Input value={value} onChange={onChange} error={!!error} />
-                  </FormControl>
-                )}
-              />
-            </Box>
-            <Box component="div" m={1}>
-              <Controller
-                name="lastName"
-                control={control}
-                rules={{ required: "Last name is required" }}
-                render={({
-                  field: { onChange, value },
-                  fieldState: { error },
-                }) => (
-                  <FormControl>
-                    <InputLabel className={classNames({ "form-error": error })}>
-                      Last Name
-                    </InputLabel>
-                    <Input value={value} onChange={onChange} error={!!error} />
-                  </FormControl>
-                )}
-              />
-            </Box>
-            <Box component="div" m={1}>
-              <Controller
-                name="email"
-                control={control}
-                rules={{ required: "Email is required" }}
-                render={({
-                  field: { onChange, value },
-                  fieldState: { error },
-                }) => (
-                  <FormControl>
-                    <InputLabel className={classNames({ "form-error": error })}>
-                      Email
-                    </InputLabel>
-                    <Input value={value} onChange={onChange} error={!!error} />
-                  </FormControl>
-                )}
-              />
-            </Box>
-            <Box component="div" m={1}>
-              <Controller
-                name="username"
-                control={control}
-                rules={{ required: "Username is required" }}
-                render={({
-                  field: { onChange, value },
-                  fieldState: { error },
-                }) => (
-                  <FormControl>
-                    <InputLabel className={classNames({ "form-error": error })}>
-                      Username
-                    </InputLabel>
-                    <Input value={value} onChange={onChange} error={!!error} />
-                  </FormControl>
-                )}
-              />
-            </Box>
-            <Box component="div" m={1}>
-              <Controller
-                name="password"
-                control={control}
-                rules={{ required: "Password is required" }}
-                render={({
-                  field: { onChange, value },
-                  fieldState: { error },
-                }) => (
-                  <FormControl>
-                    <InputLabel className={classNames({ "form-error": error })}>
-                      Password
-                    </InputLabel>
-                    <Input
-                      value={value}
-                      onChange={onChange}
-                      error={!!error}
-                      label="Password"
-                      type="password"
-                    />
-                  </FormControl>
-                )}
-              />
-            </Box>
-          </AccordionDetails>
-        </Accordion>
-        <Accordion
-          expanded={expanded === "panel2"}
-          onChange={handleChange("panel2")}
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel2bh-content"
-            id="panel2bh-header"
-          >
-            <Typography className={classes.heading}>
-              2. Create your profile
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails className="signUp-form-container">
-            <Box component="div" m={1}>
-              <ImageUploader setValue={setValue} />
-            </Box>
-            <Box component="div" m={1}>
-              <Controller
-                name="city"
-                control={control}
-                rules={{ required: "City is required" }}
-                render={({
-                  field: { onChange, value },
-                  fieldState: { error },
-                }) => (
-                  <FormControl>
-                    <InputLabel className={classNames({ "form-error": error })}>
-                      City
-                    </InputLabel>
-                    <Input value={value} onChange={onChange} error={!!error} />
-                  </FormControl>
-                )}
-              />
-            </Box>
-            <Box component="div" m={1}>
-              <Controller
-                name="bio"
-                control={control}
-                rules={{ required: "Bio is required" }}
-                render={({
-                  field: { onChange, value },
-                  fieldState: { error },
-                }) => (
-                  <FormControl>
-                    <TextField
-                      placeholder="Bio"
-                      multiline
-                      rows={1}
-                      rowsMax={5}
-                      value={value}
-                      onChange={onChange}
-                      className={classNames({ "form-error": error })}
-                    />
-                  </FormControl>
-                )}
-              />
-            </Box>
-            <Box component="div" m={1}>
-              <MultiSelectDropDown
-                options={goals}
-                placeholder="Goals"
-                name="goals"
-                control={control}
-              />
-            </Box>
-            <Box component="div" m={1}>
-              <MultiSelectDropDown
-                options={interests}
-                placeholder="Interests"
-                name="interests"
-                control={control}
-              />
-            </Box>
-            <Box component="div" m={1}>
-              <Controller
-                render={({ field: { onChange, value } }) => (
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        checked={value}
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1bh-content"
+              id="panel1bh-header"
+            >
+              <Typography className={classes.heading}>
+                1. Basic details
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails className="signUp-form-container">
+              <Box component="div" m={1}>
+                <Controller
+                  name="firstName"
+                  control={control}
+                  rules={{ required: "First name is required" }}
+                  render={({
+                    field: { onChange, value },
+                    fieldState: { error },
+                  }) => (
+                    <FormControl>
+                      <InputLabel
+                        className={classNames({ "form-error": error })}
+                      >
+                        First Name
+                      </InputLabel>
+                      <Input
+                        value={value}
                         onChange={onChange}
-                        name="isGymOwner"
-                        color="primary"
+                        error={!!error}
                       />
-                    }
-                    label="Are you a gym owner?"
-                  />
-                )}
-                name="isGymOwner"
-                control={control}
-              />
-            </Box>
-          </AccordionDetails>
-        </Accordion>
-        <Accordion
-          expanded={expanded === "panel3"}
-          onChange={handleChange("panel3")}
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel3bh-content"
-            id="panel3bh-header"
+                    </FormControl>
+                  )}
+                />
+              </Box>
+              <Box component="div" m={1}>
+                <Controller
+                  name="lastName"
+                  control={control}
+                  rules={{ required: "Last name is required" }}
+                  render={({
+                    field: { onChange, value },
+                    fieldState: { error },
+                  }) => (
+                    <FormControl>
+                      <InputLabel
+                        className={classNames({ "form-error": error })}
+                      >
+                        Last Name
+                      </InputLabel>
+                      <Input
+                        value={value}
+                        onChange={onChange}
+                        error={!!error}
+                      />
+                    </FormControl>
+                  )}
+                />
+              </Box>
+              <Box component="div" m={1}>
+                <Controller
+                  name="email"
+                  control={control}
+                  rules={{ required: "Email is required" }}
+                  render={({
+                    field: { onChange, value },
+                    fieldState: { error },
+                  }) => (
+                    <FormControl>
+                      <InputLabel
+                        className={classNames({ "form-error": error })}
+                      >
+                        Email
+                      </InputLabel>
+                      <Input
+                        value={value}
+                        onChange={onChange}
+                        error={!!error}
+                      />
+                    </FormControl>
+                  )}
+                />
+              </Box>
+              <Box component="div" m={1}>
+                <Controller
+                  name="username"
+                  control={control}
+                  rules={{ required: "Username is required" }}
+                  render={({
+                    field: { onChange, value },
+                    fieldState: { error },
+                  }) => (
+                    <FormControl>
+                      <InputLabel
+                        className={classNames({ "form-error": error })}
+                      >
+                        Username
+                      </InputLabel>
+                      <Input
+                        value={value}
+                        onChange={onChange}
+                        error={!!error}
+                      />
+                    </FormControl>
+                  )}
+                />
+              </Box>
+              <Box component="div" m={1}>
+                <Controller
+                  name="password"
+                  control={control}
+                  rules={{ required: "Password is required" }}
+                  render={({
+                    field: { onChange, value },
+                    fieldState: { error },
+                  }) => (
+                    <FormControl>
+                      <InputLabel
+                        className={classNames({ "form-error": error })}
+                      >
+                        Password
+                      </InputLabel>
+                      <Input
+                        value={value}
+                        onChange={onChange}
+                        error={!!error}
+                        label="Password"
+                        type="password"
+                      />
+                    </FormControl>
+                  )}
+                />
+              </Box>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel2"}
+            onChange={handleChange("panel2")}
           >
-            <Typography className={classes.heading}>
-              3. Add your social media info
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails className="signUp-form-container">
-            <Box component="div" m={1}>
-              <Controller
-                name="facebookUrl"
-                control={control}
-                render={({
-                  field: { onChange, value },
-                  fieldState: { error },
-                }) => (
-                  <FormControl>
-                    <InputLabel className={classNames({ "form-error": error })}>
-                      Facebook URL
-                    </InputLabel>
-                    <Input value={value} onChange={onChange} error={!!error} />
-                  </FormControl>
-                )}
-              />
-            </Box>
-            <Box component="div" m={1}>
-              <Controller
-                name="twitterUrl"
-                control={control}
-                render={({
-                  field: { onChange, value },
-                  fieldState: { error },
-                }) => (
-                  <FormControl>
-                    <InputLabel className={classNames({ "form-error": error })}>
-                      Twitter URL
-                    </InputLabel>
-                    <Input value={value} onChange={onChange} error={!!error} />
-                  </FormControl>
-                )}
-              />
-            </Box>
-            <Box component="div" m={1}>
-              <Controller
-                name="instagramUrl"
-                control={control}
-                render={({
-                  field: { onChange, value },
-                  fieldState: { error },
-                }) => (
-                  <FormControl>
-                    <InputLabel className={classNames({ "form-error": error })}>
-                      Instagram URL
-                    </InputLabel>
-                    <Input value={value} onChange={onChange} error={!!error} />
-                  </FormControl>
-                )}
-              />
-            </Box>
-          </AccordionDetails>
-        </Accordion>
-        <div className="sign-up-btn-container">
-          <button className="sign-up-btn" type="submit">
-            Submit
-          </button>
-        </div>
-      </form>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel2bh-content"
+              id="panel2bh-header"
+            >
+              <Typography className={classes.heading}>
+                2. Create your profile
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails className="signUp-form-container">
+              <Box component="div" m={1}>
+                <ImageUploader setValue={setValue} />
+              </Box>
+              <Box component="div" m={1}>
+                <Controller
+                  name="city"
+                  control={control}
+                  rules={{ required: "City is required" }}
+                  render={({
+                    field: { onChange, value },
+                    fieldState: { error },
+                  }) => (
+                    <FormControl>
+                      <InputLabel
+                        className={classNames({ "form-error": error })}
+                      >
+                        City
+                      </InputLabel>
+                      <Input
+                        value={value}
+                        onChange={onChange}
+                        error={!!error}
+                      />
+                    </FormControl>
+                  )}
+                />
+              </Box>
+              <Box component="div" m={1}>
+                <Controller
+                  name="bio"
+                  control={control}
+                  rules={{ required: "Bio is required" }}
+                  render={({
+                    field: { onChange, value },
+                    fieldState: { error },
+                  }) => (
+                    <FormControl>
+                      <TextField
+                        placeholder="Bio"
+                        multiline
+                        rows={1}
+                        rowsMax={5}
+                        value={value}
+                        onChange={onChange}
+                        className={classNames({ "form-error": error })}
+                      />
+                    </FormControl>
+                  )}
+                />
+              </Box>
+              <Box component="div" m={1}>
+                <MultiSelectDropDown
+                  options={goals}
+                  placeholder="Goals"
+                  name="goals"
+                  control={control}
+                />
+              </Box>
+              <Box component="div" m={1}>
+                <MultiSelectDropDown
+                  options={interests}
+                  placeholder="Interests"
+                  name="interests"
+                  control={control}
+                />
+              </Box>
+              <Box component="div" m={1}>
+                <Controller
+                  render={({ field: { onChange, value } }) => (
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          checked={value}
+                          onChange={onChange}
+                          name="isGymOwner"
+                          color="primary"
+                        />
+                      }
+                      label="Are you a gym owner?"
+                    />
+                  )}
+                  name="isGymOwner"
+                  control={control}
+                />
+              </Box>
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded === "panel3"}
+            onChange={handleChange("panel3")}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel3bh-content"
+              id="panel3bh-header"
+            >
+              <Typography className={classes.heading}>
+                3. Add your social media info
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails className="signUp-form-container">
+              <Box component="div" m={1}>
+                <Controller
+                  name="facebookUrl"
+                  control={control}
+                  render={({
+                    field: { onChange, value },
+                    fieldState: { error },
+                  }) => (
+                    <FormControl>
+                      <InputLabel
+                        className={classNames({ "form-error": error })}
+                      >
+                        Facebook URL
+                      </InputLabel>
+                      <Input
+                        value={value}
+                        onChange={onChange}
+                        error={!!error}
+                      />
+                    </FormControl>
+                  )}
+                />
+              </Box>
+              <Box component="div" m={1}>
+                <Controller
+                  name="twitterUrl"
+                  control={control}
+                  render={({
+                    field: { onChange, value },
+                    fieldState: { error },
+                  }) => (
+                    <FormControl>
+                      <InputLabel
+                        className={classNames({ "form-error": error })}
+                      >
+                        Twitter URL
+                      </InputLabel>
+                      <Input
+                        value={value}
+                        onChange={onChange}
+                        error={!!error}
+                      />
+                    </FormControl>
+                  )}
+                />
+              </Box>
+              <Box component="div" m={1}>
+                <Controller
+                  name="instagramUrl"
+                  control={control}
+                  render={({
+                    field: { onChange, value },
+                    fieldState: { error },
+                  }) => (
+                    <FormControl>
+                      <InputLabel
+                        className={classNames({ "form-error": error })}
+                      >
+                        Instagram URL
+                      </InputLabel>
+                      <Input
+                        value={value}
+                        onChange={onChange}
+                        error={!!error}
+                      />
+                    </FormControl>
+                  )}
+                />
+              </Box>
+            </AccordionDetails>
+          </Accordion>
+          <div className="sign-up-btn-container">
+            <button className="sign-up-btn" type="submit">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
