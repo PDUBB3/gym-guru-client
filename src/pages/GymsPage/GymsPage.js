@@ -41,21 +41,25 @@ const GymsPage = () => {
           getGyms={getGyms}
           options={cities}
         />
-        <div className="gym-cards">
-          {gyms.map((gym) => {
-            return (
-              <GymCard
-                id={gym.id}
-                name={gym.name}
-                address={gym.address}
-                postcode={gym.postCode}
-                city={gym.city}
-                contactNumber={gym.contactNumber}
-                imageURL={gym.imageURL}
-              />
-            );
-          })}
-        </div>
+        {gyms.length ? (
+          <div className="gym-cards">
+            {gyms.map((gym) => {
+              return (
+                <GymCard
+                  id={gym.id}
+                  name={gym.name}
+                  address={gym.address}
+                  postcode={gym.postCode}
+                  city={gym.city}
+                  contactNumber={gym.contactNumber}
+                  imageURL={gym.imageURL}
+                />
+              );
+            })}
+          </div>
+        ) : (
+          <div>No gyms</div>
+        )}
       </div>
     );
   }
