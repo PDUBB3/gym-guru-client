@@ -102,40 +102,6 @@ const PartTwo = ({ control, setValue }) => {
           </Box>
           <Box component="div" m={1}>
             <Controller
-              render={({
-                field: { onChange, value },
-                fieldState: { error },
-              }) => (
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={value}
-                      onChange={onChange}
-                      className={classNames({ "form-error": error })}
-                    />
-                  }
-                />
-              )}
-            />
-          </Box>
-          <Box component="div" m={1}>
-            <MultiSelectDropDown
-              options={goals}
-              placeholder="Goals"
-              name="goals"
-              control={control}
-            />
-          </Box>
-          <Box component="div" m={1}>
-            <MultiSelectDropDown
-              options={interests}
-              placeholder="Interests"
-              name="interests"
-              control={control}
-            />
-          </Box>
-          <Box component="div" m={1}>
-            <Controller
               render={({ field: { onChange, value } }) => (
                 <FormControlLabel
                   control={
