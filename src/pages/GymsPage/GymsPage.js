@@ -1,4 +1,5 @@
-import { useQuery } from "@apollo/client";
+import { useEffect } from "react";
+import { useLazyQuery, useQuery } from "@apollo/client";
 
 import { GYMS_QUERY } from "../../graphql/queries";
 import GymCard from "../../components/GymCard";
@@ -10,21 +11,38 @@ import "./GymsPage.css";
 const GymsPage = () => {
   const { data, loading, error } = useQuery(GYMS_QUERY);
 
-  if (loading) {
+  const [getGyms, { loading: lazyLoading, data: lazyData, error: lazyError }] =
+    useLazyQuery(GYMS_QUERY, {
+      fetchPolicy: "network-only",
+    });
+
+  if (loading || lazyLoading) {
     return <h1>loading</h1>;
   }
 
-  if (error) {
+  if (error || lazyError) {
     return <h1>error</h1>;
   }
 
-  if (data) {
+  if (data || lazyData) {
+    console.log("data", data);
+    console.log("lazyData", lazyData);
+
+    const exerciseFacilities =
+      lazyData?.exerciseFacilities || data.exerciseFacilities;
+    const otherFacilities = lazyData?.otherFacilities || data.otherFacilities;
+    const gyms = lazyData?.gyms || data.gyms;
+
     return (
       <div>
         <GymsJumbotron />
-        <GymFilter />
+        <GymFilter
+          exerciseFacilities={exerciseFacilities}
+          otherFacilities={otherFacilities}
+          getGyms={getGyms}
+        />
         <div className="gym-cards">
-          {data.gyms.map((gym) => {
+          {gyms.map((gym) => {
             return (
               <GymCard
                 id={gym.id}

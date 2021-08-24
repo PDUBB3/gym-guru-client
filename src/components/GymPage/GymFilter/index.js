@@ -16,64 +16,6 @@ import CloseIcon from "@material-ui/icons/Close";
 
 import { DESKTOP_BREAKPOINT } from "../../../mediaQueries";
 
-const exerciseFacilities = [
-  {
-    id: "612405ab0df2da8865e56d92",
-    name: "Weight Area",
-  },
-  {
-    id: "612405ab0df2da8865e56d93",
-    name: "Cardio Area",
-  },
-  {
-    id: "612405ab0df2da8865e56d94",
-    name: "Fitness Studio",
-  },
-  {
-    id: "612405ab0df2da8865e56d95",
-    name: "Swimming Pool",
-  },
-  {
-    id: "612405ab0df2da8865e56d96",
-    name: "Tennis Court",
-  },
-];
-
-const otherFacilities = [
-  {
-    id: "612405ab0df2da8865e56d98",
-    name: "Parking",
-  },
-  {
-    id: "612405ab0df2da8865e56d99",
-    name: "Sauna",
-  },
-  {
-    id: "612405ab0df2da8865e56d9a",
-    name: "Steam Room",
-  },
-  {
-    id: "612405ab0df2da8865e56d9b",
-    name: "Spa",
-  },
-  {
-    id: "612405ab0df2da8865e56d9c",
-    name: "Changing Room",
-  },
-  {
-    id: "612405ab0df2da8865e56d9d",
-    name: "Showers",
-  },
-  {
-    id: "612405ab0df2da8865e56d9e",
-    name: "Restaurant & Bar",
-  },
-  {
-    id: "612405ab0df2da8865e56d9f",
-    name: "Creche",
-  },
-];
-
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(3),
@@ -94,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const GymFilter = () => {
+const GymFilter = ({ exerciseFacilities, otherFacilities, getGyms }) => {
   const isDesktop = useMediaQuery(DESKTOP_BREAKPOINT);
 
   const classes = useStyles();
@@ -126,6 +68,12 @@ const GymFilter = () => {
   const onSubmit = (formData) => {
     const exerciseFacilities = getFacilities(formData, "exercise_facility_");
     const otherFacilities = getFacilities(formData, "other_facility_");
+
+    getGyms({
+      variables: {
+        gymsCity: "Leeds",
+      },
+    });
 
     console.log(formData);
     console.log(exerciseFacilities);

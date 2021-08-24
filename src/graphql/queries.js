@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const GYMS_QUERY = gql`
-  query Query {
-    gyms {
+  query Query($gymsCity: String) {
+    gyms(city: $gymsCity) {
       id
       name
       imageURL
@@ -17,6 +17,14 @@ export const GYMS_QUERY = gql`
       otherFacilities {
         name
       }
+    }
+    otherFacilities {
+      id
+      name
+    }
+    exerciseFacilities {
+      id
+      name
     }
   }
 `;
