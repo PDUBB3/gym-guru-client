@@ -43,18 +43,6 @@
   border-radius: 5px;
 }
 
-button:focus {
-  outline: none;
-}
-
-button:first-child {
-  left: -100%;
-}
-
-button:nth-child(2) {
-  right: 90%;
-}
-
 .slide {
   transform-style: preserve-3d;
   border: solid 1px red;
