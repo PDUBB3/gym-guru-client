@@ -1,28 +1,45 @@
 import { gql } from "@apollo/client";
 
 export const GYMS_QUERY = gql`
-  query Query($gymsCity: String) {
-    gyms(city: $gymsCity) {
+  query Query(
+    $gymsCity: String
+    $gymsSortBy: String
+    $gymsExerciseFacilities: [ID]
+    $gymsOtherFacilities: [ID]
+  ) {
+    gyms(
+      city: $gymsCity
+      sortBy: $gymsSortBy
+      exerciseFacilities: $gymsExerciseFacilities
+      otherFacilities: $gymsOtherFacilities
+    ) {
       id
       name
       imageURL
       address
       city
       postCode
+      openingTimes {
+        dayName
+        startTime
+        endTime
+      }
       contactNumber
       rating
       exerciseFacilities {
+        id
         name
       }
       otherFacilities {
+        id
         name
       }
     }
-    otherFacilities {
+    exerciseFacilities {
       id
       name
     }
-    exerciseFacilities {
+    otherFacilities {
       id
       name
     }
