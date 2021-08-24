@@ -48,6 +48,8 @@ const AboutSection = ({
         },
       },
     });
+
+    document.querySelector(".buddyIcon").remove();
   };
 
   return (
@@ -79,9 +81,9 @@ const AboutSection = ({
           buddiesData.find(
             (buddy) => buddy.requesterId.id === currentUser.id
           ) ? (
-            <FaEnvelope onClick={handleClickOpen} />
+            <FaEnvelope onClick={handleClickOpen} className="buddyIcon" />
           ) : (
-            <FaUserPlus onClick={onClick} />
+            <FaUserPlus onClick={onClick} className="buddyIcon" />
           ),
         ]}
         <FormDialog handleClose={handleClose} open={open} />

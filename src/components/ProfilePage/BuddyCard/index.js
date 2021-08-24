@@ -1,10 +1,21 @@
 import { useMutation } from "@apollo/client";
-import { FaUserCheck } from "react-icons/fa";
-import { Redirect } from "react-router-dom";
-import { ACCEPTBUDDYREQUEST } from "../../../graphql/mutations";
+import { FaUserCheck, FaUserMinus } from "react-icons/fa";
+import {
+  ACCEPTBUDDYREQUEST,
+  REJECTBUDDYREQUEST,
+} from "../../../graphql/mutations";
+import { BUDDIES_QUERY } from "../../../graphql/queries";
 
 const BuddyCard = ({ buddy, userId, username }) => {
   const [acceptBuddyRequest] = useMutation(ACCEPTBUDDYREQUEST, {
+    refetchQueries: [BUDDIES_QUERY, "getBuddies"],
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  const [rejectBuddyRequest] = useMutation(REJECTBUDDYREQUEST, {
+    refetchQueries: [BUDDIES_QUERY, "getBuddies"],
     onError: (error) => {
       console.log(error);
     },
@@ -19,36 +30,68 @@ const BuddyCard = ({ buddy, userId, username }) => {
         },
       },
     });
+  };
 
-    <Redirect to="/" />;
+  const onClickReject = async () => {
+    await rejectBuddyRequest({
+      variables: {
+        rejectBuddyRequestInput: {
+          recipientId: userId,
+          requesterId: buddy.requesterId.id,
+        },
+      },
+    });
   };
 
   let buddyName = "";
   let buddyCity = "";
+  let buddyImage = "";
   if (buddy.recipientId.username !== username) {
     buddyName = buddy.recipientId.username;
     buddyCity = buddy.recipientId.city;
+    buddyImage = buddy.recipientId.profileImageUrl;
   }
   if (buddy.requesterId.username !== username) {
     buddyName = buddy.requesterId.username;
     buddyCity = buddy.requesterId.city;
+    buddyImage = buddy.requesterId.profileImageUrl;
   }
 
   return (
     <div className="buddy-card">
       <a href={buddyName} className="buddyCardLink">
-        <img
-          src="https://images.unsplash.com/photo-1488228469209-c141f8bcd723?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80"
-          alt="buddy"
-          height="90"
-          width="90"
-          className="buddy-image"
-        ></img>
+        {buddyImage === null ? (
+          <img
+            src="https://www.seekpng.com/png/full/966-9665317_placeholder-image-person-jpg.png"
+            alt="buddy"
+            height="90"
+            width="90"
+            className="buddy-image"
+          />
+        ) : (
+          <img
+            src={buddyImage}
+            alt="buddy"
+            height="90"
+            width="90"
+            className="buddy-image"
+          />
+        )}
       </a>
-      <h3>{buddyName}</h3>
-      <div>{buddyCity}</div>
+      <div className="buddyDetails">
+        <h3>{buddyName}</h3>
+        <div>{buddyCity}</div>
+      </div>
       <div>
-        {buddy.status === "PENDING" && <FaUserCheck onClick={onClickAccept} />}
+        {buddy.status === "PENDING" && (
+          <div>
+            <FaUserCheck
+              onClick={onClickAccept}
+              className="addBuddy buddyIcon"
+            />
+            <FaUserMinus onClick={onClickReject} className="buddyIcon" />
+          </div>
+        )}
       </div>
     </div>
   );

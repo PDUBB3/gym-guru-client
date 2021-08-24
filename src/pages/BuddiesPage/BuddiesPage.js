@@ -16,8 +16,6 @@ const BuddiesPage = () => {
 
   const { data, loading, error } = useQuery(USERS_QUERY);
 
-  console.log(data);
-
   if (error) {
     return <h1>Error</h1>;
   }
@@ -69,7 +67,6 @@ const BuddiesPage = () => {
         );
       }
 
-      console.log(data.users);
       return data.users.filter((user) => user.city === filterParams.city);
     };
 

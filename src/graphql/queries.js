@@ -135,12 +135,14 @@ export const BUDDIES_QUERY = gql`
         id
         username
         city
+        profileImageUrl
       }
       status
       requesterId {
         id
         username
         city
+        profileImageUrl
       }
     }
   }
