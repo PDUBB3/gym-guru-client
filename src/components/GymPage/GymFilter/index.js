@@ -12,6 +12,8 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Box from "@material-ui/core/Box";
 import Divider from "@material-ui/core/Divider";
+import TextField from "@material-ui/core/TextField";
+import Autocomplete from "@material-ui/lab/Autocomplete";
 import CloseIcon from "@material-ui/icons/Close";
 
 import { DESKTOP_BREAKPOINT } from "../../../mediaQueries";
@@ -36,7 +38,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const GymFilter = ({ exerciseFacilities, otherFacilities, getGyms }) => {
+const GymFilter = ({
+  exerciseFacilities,
+  otherFacilities,
+  getGyms,
+  options,
+}) => {
   const isDesktop = useMediaQuery(DESKTOP_BREAKPOINT);
 
   const classes = useStyles();
@@ -66,6 +73,7 @@ const GymFilter = ({ exerciseFacilities, otherFacilities, getGyms }) => {
   };
 
   const onSubmit = (formData) => {
+    console.log(formData);
     const exerciseFacilities = getFacilities(formData, "exercise_facility_");
     const otherFacilities = getFacilities(formData, "other_facility_");
 
@@ -86,6 +94,30 @@ const GymFilter = ({ exerciseFacilities, otherFacilities, getGyms }) => {
         </Box>
         <Box m={2}>
           <form onSubmit={handleSubmit(onSubmit)}>
+            <Box component="div">
+              <Controller
+                name="city"
+                control={control}
+                defaultValue=""
+                render={({ field: { onChange, value } }) => {
+                  return (
+                    <Autocomplete
+                      onChange={(_, data) => onChange(data.name)}
+                      value={value}
+                      options={options}
+                      getOptionLabel={(option) => option.name}
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          label="Select city"
+                          variant="outlined"
+                        />
+                      )}
+                    />
+                  );
+                }}
+              />
+            </Box>
             <Box component="div">
               <FormControl component="fieldset" className={classes.formControl}>
                 <FormLabel component="legend">Exercise Facilities</FormLabel>

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { City } from "country-state-city";
 import { useLazyQuery, useQuery } from "@apollo/client";
 
 import { GYMS_QUERY } from "../../graphql/queries";
@@ -16,6 +16,8 @@ const GymsPage = () => {
       fetchPolicy: "network-only",
     });
 
+  const cities = City.getCitiesOfCountry("GB");
+
   if (loading || lazyLoading) {
     return <h1>loading</h1>;
   }
@@ -25,9 +27,6 @@ const GymsPage = () => {
   }
 
   if (data || lazyData) {
-    console.log("data", data);
-    console.log("lazyData", lazyData);
-
     const exerciseFacilities =
       lazyData?.exerciseFacilities || data.exerciseFacilities;
     const otherFacilities = lazyData?.otherFacilities || data.otherFacilities;
@@ -40,6 +39,7 @@ const GymsPage = () => {
           exerciseFacilities={exerciseFacilities}
           otherFacilities={otherFacilities}
           getGyms={getGyms}
+          options={cities}
         />
         <div className="gym-cards">
           {gyms.map((gym) => {
