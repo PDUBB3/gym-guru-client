@@ -33,7 +33,7 @@ const Navbar = (props) => {
         {state.user && (
           <>
             <div id="nav-item-container">
-              <a className="navbarLink" href={state.user.username}>
+              <a className="navbarLink" href={`/${state.user.username}`}>
                 My Profile
               </a>
             </div>

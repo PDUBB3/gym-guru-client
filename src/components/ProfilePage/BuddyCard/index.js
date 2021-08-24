@@ -4,15 +4,18 @@ import {
   ACCEPTBUDDYREQUEST,
   REJECTBUDDYREQUEST,
 } from "../../../graphql/mutations";
+import { BUDDIES_QUERY } from "../../../graphql/queries";
 
 const BuddyCard = ({ buddy, userId, username }) => {
   const [acceptBuddyRequest] = useMutation(ACCEPTBUDDYREQUEST, {
+    refetchQueries: [BUDDIES_QUERY, "getBuddies"],
     onError: (error) => {
       console.log(error);
     },
   });
 
   const [rejectBuddyRequest] = useMutation(REJECTBUDDYREQUEST, {
+    refetchQueries: [BUDDIES_QUERY, "getBuddies"],
     onError: (error) => {
       console.log(error);
     },

@@ -14,6 +14,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import StarRatings from "react-star-ratings";
 
 import { ADD_REVIEW } from "../../../graphql/mutations";
+import { REVIEWS_QUERY } from "../../../graphql/queries";
 
 import "./ReviewModal.css";
 
@@ -45,6 +46,7 @@ export default function FormDialog({ handleClose, open }) {
   const { id: gymId } = useParams();
 
   const [addReview] = useMutation(ADD_REVIEW, {
+    refetchQueries: [REVIEWS_QUERY, "getReviews"],
     onError: (error) => {
       console.log(error);
     },
