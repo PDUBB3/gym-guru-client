@@ -11,13 +11,6 @@
   width: 100%;
 }
 
-.signUp-form-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-content: center;
-}
-
 .signUp-form-box {
   display: grid;
   justify-content: center;

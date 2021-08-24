@@ -2,7 +2,7 @@ import { Switch, Route } from "react-router-dom";
 
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
-import SignupPage from "./pages/SignupPage";
+import SignupPage from "./pages/SignUpPage/SignupPage";
 import GymsPage from "./pages/GymsPage/GymsPage";
 import GymPage from "./pages/GymPage/GymPage";
 import BuddiesPage from "./pages/BuddiesPage/BuddiesPage";
