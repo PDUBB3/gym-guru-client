@@ -73,12 +73,13 @@ const GymFilter = ({
   };
 
   const onSubmit = (formData) => {
-    console.log(formData);
+    const { city } = formData;
     const exerciseFacilities = getFacilities(formData, "exercise_facility_");
     const otherFacilities = getFacilities(formData, "other_facility_");
 
     getGyms({
       variables: {
+        gymsCity: city,
         gymsExerciseFacilities: exerciseFacilities,
         gymsOtherFacilities: otherFacilities,
       },
@@ -98,7 +99,6 @@ const GymFilter = ({
               <Controller
                 name="city"
                 control={control}
-                defaultValue=""
                 render={({ field: { onChange, value } }) => {
                   return (
                     <Autocomplete
