@@ -27,6 +27,7 @@ import Divider from "@material-ui/core/Divider";
 import { CREATE_GYM } from "../graphql/mutations";
 import ImageUploader from "../components/ImageUploader";
 import CityAutocomplete from "../components/CityAutocomplete";
+import FacilitiesCheckboxes from "../components/FacilitiesCheckboxes";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -65,8 +66,6 @@ const CreateGymPage = () => {
   if (error) {
     return <h1>error</h1>;
   }
-
-  const cities = City.getCitiesOfCountry("GB");
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -458,73 +457,19 @@ const CreateGymPage = () => {
               <Typography className={classes.heading}>Facilities</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Box component="div">
-                <FormControl
-                  component="fieldset"
-                  className={classes.formControl}
-                >
-                  <FormLabel component="legend">Exercise Facilities</FormLabel>
-                  <FormGroup className={classes.checkboxesContainer}>
-                    {data.exerciseFacilities.map((exerciseFacility) => {
-                      return (
-                        <FormControlLabel
-                          control={
-                            <Controller
-                              name={`exercise_facility_${exerciseFacility.id}`}
-                              control={control}
-                              defaultValue={false}
-                              render={({ field: { onChange, value } }) => {
-                                return (
-                                  <Checkbox
-                                    checked={value}
-                                    onChange={onChange}
-                                  />
-                                );
-                              }}
-                            />
-                          }
-                          label={exerciseFacility.name}
-                          key={exerciseFacility.id}
-                        />
-                      );
-                    })}
-                  </FormGroup>
-                </FormControl>
-              </Box>
+              <FacilitiesCheckboxes
+                control={control}
+                classes={classes}
+                facility={data.exerciseFacilities}
+                label="Exercise Facilities"
+              />
               <Divider />
-              <Box component="div">
-                <FormControl
-                  component="fieldset"
-                  className={classes.formControl}
-                >
-                  <FormLabel component="legend">Other Facilities</FormLabel>
-                  <FormGroup className={classes.checkboxesContainer}>
-                    {data.otherFacilities.map((otherFacility) => {
-                      return (
-                        <FormControlLabel
-                          control={
-                            <Controller
-                              name={`other_facility_${otherFacility.id}`}
-                              control={control}
-                              defaultValue={false}
-                              render={({ field: { onChange, value } }) => {
-                                return (
-                                  <Checkbox
-                                    checked={value}
-                                    onChange={onChange}
-                                  />
-                                );
-                              }}
-                            />
-                          }
-                          label={otherFacility.name}
-                          key={otherFacility.id}
-                        />
-                      );
-                    })}
-                  </FormGroup>
-                </FormControl>
-              </Box>
+              <FacilitiesCheckboxes
+                control={control}
+                classes={classes}
+                facility={data.otherFacilities}
+                label="Other Facilities"
+              />
             </AccordionDetails>
           </Accordion>
           <Accordion
@@ -553,7 +498,7 @@ const CreateGymPage = () => {
               color="primary"
               disableElevation
             >
-              Search
+              Submit
             </Button>
           </Box>
         </div>
