@@ -23,6 +23,7 @@ const GymsPage = () => {
   }
 
   if (error || lazyError) {
+    console.log(error);
     return <h1>error</h1>;
   }
 
