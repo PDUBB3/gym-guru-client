@@ -79,19 +79,11 @@ const GymCard = ({
       </CardContent>
       <CardActions disableSpacing>
         <div className="card-icons">
-          <div className="view-btn">
-            <a href={url}>View</a>
+          <div>
+            <a href={url} className="view-btn">
+              View
+            </a>
           </div>
-          <span className="card-icon">
-            <a href="/">
-              <BsPeopleFill />
-            </a>
-          </span>
-          <span className="card-icon">
-            <a href="/">
-              <RiAddCircleFill />
-            </a>
-          </span>
         </div>
       </CardActions>
     </Card>

@@ -20,6 +20,8 @@
 .view-btn {
   font-size: 1rem;
   margin-bottom: 0.5rem;
+  text-decoration: none;
+  color: #00b4d8;
 }
 
 .card-icon {

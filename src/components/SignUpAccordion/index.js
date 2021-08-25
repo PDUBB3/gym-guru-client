@@ -64,6 +64,7 @@ export default function ControlledAccordions({ redirect = "/login" }) {
   const [expanded, setExpanded] = React.useState(false);
 
   const onSubmit = async (formData) => {
+    formData.username = formData.username.toLowerCase();
     try {
       await signUp({
         variables: {
