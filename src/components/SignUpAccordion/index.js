@@ -261,27 +261,7 @@ export default function ControlledAccordions({ redirect = "/login" }) {
               <Box component="div" m={1}>
                 <ImageUploader setValue={setValue} />
               </Box>
-              <Box component="div" m={1}>
-                <Controller
-                  name="city"
-                  control={control}
-                  rules={{ required: "City is required" }}
-                  render={({
-                    field: { onChange, value },
-                    fieldState: { error },
-                  }) => (
-                    <FormControl
-                      className={classNames({ "form-error": error })}
-                    >
-                      <CityAutocomplete
-                        value={value}
-                        onChange={onChange}
-                        error={!!error}
-                      />
-                    </FormControl>
-                  )}
-                />
-              </Box>
+              <CityAutocomplete control={control} />
               <Box component="div" m={1}>
                 <Controller
                   name="bio"

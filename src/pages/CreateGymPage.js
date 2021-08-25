@@ -26,6 +26,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import Divider from "@material-ui/core/Divider";
 import { CREATE_GYM } from "../graphql/mutations";
 import ImageUploader from "../components/ImageUploader";
+import CityAutocomplete from "../components/CityAutocomplete";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -361,29 +362,7 @@ const CreateGymPage = () => {
                 control={control}
                 required={true}
               />
-              <Box component="div">
-                <Controller
-                  name="city"
-                  control={control}
-                  render={({ field: { onChange, value } }) => {
-                    return (
-                      <Autocomplete
-                        onChange={(_, data) => onChange(data.name)}
-                        value={value}
-                        options={cities}
-                        getOptionLabel={(option) => option.name}
-                        renderInput={(params) => (
-                          <TextField
-                            {...params}
-                            label="Select city"
-                            variant="outlined"
-                          />
-                        )}
-                      />
-                    );
-                  }}
-                />
-              </Box>
+              <CityAutocomplete control={control} />
               <FormInput
                 name="postCode"
                 placeholder="Postcode"
