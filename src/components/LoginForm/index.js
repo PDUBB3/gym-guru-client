@@ -44,6 +44,8 @@ const LoginForm = () => {
   });
 
   const onSubmit = async (formData) => {
+    formData.username = formData.username.toLowerCase();
+
     await login({
       variables: {
         loginInput: formData,

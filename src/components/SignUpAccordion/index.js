@@ -67,6 +67,8 @@ export default function ControlledAccordions({ redirect = "/login" }) {
   const onSubmit = async (formData) => {
     console.log(formData);
 
+    formData.username = formData.username.toLowerCase();
+
     try {
       console.log(formData);
       await signUp({
