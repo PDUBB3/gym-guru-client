@@ -27,6 +27,7 @@ import CityAutocomplete from "../CityAutocomplete";
 import { useUserContext } from "../../context/UserContext";
 
 import "../../pages/SignUpPage/SignUpPage.css";
+import Loader from "react-loader-spinner";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -80,7 +81,17 @@ export default function ControlledAccordions({ redirect = "/login" }) {
   };
 
   if (loading) {
-    return <h1>Loading...</h1>;
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center">
+        <Loader
+          type="Circles"
+          color="#00BFFF"
+          height={100}
+          width={100}
+          timeout={3000} //3 secs
+        />
+      </Box>
+    );
   }
 
   const goals = [

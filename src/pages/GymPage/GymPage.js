@@ -6,6 +6,8 @@ import { GYM_QUERY, REVIEWS_QUERY } from "../../graphql/queries";
 import GymPageContent from "../../components/GymPage/GymPageContent/GymPageContent";
 
 import "./GymPage.css";
+import { Box } from "@material-ui/core";
+import Loader from "react-loader-spinner";
 
 const GymPage = () => {
   const { id } = useParams();
@@ -23,7 +25,17 @@ const GymPage = () => {
   });
 
   if (loading || reviewsLoading) {
-    return <div>loading</div>;
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center">
+        <Loader
+          type="Circles"
+          color="#00BFFF"
+          height={100}
+          width={100}
+          timeout={3000} //3 secs
+        />
+      </Box>
+    );
   }
 
   if (error || reviewsError) {

@@ -8,6 +8,8 @@ import { BUDDIES_QUERY, USER_QUERY } from "../../graphql/queries";
 import ProfilePageContent from "../../components/ProfilePage/ProfilePageContent";
 
 import "./ProfilePage.css";
+import { Box } from "@material-ui/core";
+import Loader from "react-loader-spinner";
 
 const ProfilePage = () => {
   const { username } = useParams();
@@ -26,7 +28,17 @@ const ProfilePage = () => {
   });
 
   if (loading || buddyRequestsLoading) {
-    return <div>loading</div>;
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center">
+        <Loader
+          type="Circles"
+          color="#00BFFF"
+          height={100}
+          width={100}
+          timeout={3000} //3 secs
+        />
+      </Box>
+    );
   }
 
   if (error) {

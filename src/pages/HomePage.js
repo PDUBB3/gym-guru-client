@@ -1,12 +1,11 @@
 import { useQuery } from "@apollo/client";
-import { Container } from "@material-ui/core";
+import { Box, Container } from "@material-ui/core";
 import GymCarousel from "../components/GymCarousel";
 
 import Header from "../components/Header/Header";
 import HomeBenefitsBlock from "../components/Home-Benefits-Block";
+import Loader from "react-loader-spinner";
 import { HOME_QUERY } from "../graphql/queries";
-
-// import "../index.css";
 
 const HomePage = (props) => {
   const { loading, error, data } = useQuery(HOME_QUERY, {
@@ -16,7 +15,17 @@ const HomePage = (props) => {
   });
 
   if (loading) {
-    return <div>loading</div>;
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center">
+        <Loader
+          type="Circles"
+          color="#00BFFF"
+          height={100}
+          width={100}
+          timeout={3000} //3 secs
+        />
+      </Box>
+    );
   }
 
   if (error) {
