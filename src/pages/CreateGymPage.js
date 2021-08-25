@@ -25,6 +25,7 @@ import { GYMS_QUERY } from "../graphql/queries";
 import { useMutation, useQuery } from "@apollo/client";
 import Divider from "@material-ui/core/Divider";
 import { CREATE_GYM } from "../graphql/mutations";
+import ImageUploader from "../components/ImageUploader";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,7 +45,12 @@ const useStyles = makeStyles((theme) => ({
 const CreateGymPage = () => {
   const classes = useStyles();
 
-  const { handleSubmit, control } = useForm();
+  const {
+    handleSubmit,
+    setValue,
+    formState: { errors },
+    control,
+  } = useForm();
 
   const [expanded, setExpanded] = useState(false);
 
@@ -524,14 +530,14 @@ const CreateGymPage = () => {
               aria-controls="panel4bh-content"
               id="panel4bh-header"
             >
-              <Typography className={classes.heading}>Personal data</Typography>
+              <Typography className={classes.heading}>
+                Upload an image
+              </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography>
-                Nunc vitae orci ultricies, auctor nunc in, volutpat nisl.
-                Integer sit amet egestas eros, vitae egestas augue. Duis vel est
-                augue.
-              </Typography>
+              <Box component="div" m={1}>
+                <ImageUploader setValue={setValue} />
+              </Box>
             </AccordionDetails>
           </Accordion>
           <Box component="div" className={classes.center}>
