@@ -1,7 +1,6 @@
 import classNames from "classnames";
-import { useState } from "react";
 import { Controller } from "react-hook-form";
-
+import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -9,16 +8,36 @@ import Input from "@material-ui/core/Input";
 
 import "./FormInput.css";
 
-const FormInput = ({ placeholder, name, control }) => {
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    padding: "8px 16px",
+    minWidth: "100%",
+  },
+}));
+
+const FormInput = ({
+  placeholder,
+  name,
+  control,
+  required = false,
+  defaultValue = "",
+}) => {
+  const classes = useStyles();
+
   return (
     <Box component="div" m={1}>
       <Controller
         name={name}
         control={control}
-        rules={{ required: `${placeholder} is required` }}
+        rules={{ required }}
+        defaultValue={defaultValue}
         render={({ field: { onChange, value }, fieldState: { error } }) => (
-          <FormControl>
-            <InputLabel className={classNames({ "form-error": error })}>
+          <FormControl className={classes.formControl}>
+            <InputLabel
+              className={classNames(classes.formControl, {
+                "form-error": error,
+              })}
+            >
               {placeholder}
             </InputLabel>
             <Input value={value} onChange={onChange} error={!!error} />

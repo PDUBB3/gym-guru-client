@@ -1,20 +1,35 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import { listCities } from "cclist";
+import { City } from "country-state-city";
+import { Controller } from "react-hook-form";
+import { Box } from "@material-ui/core";
 
-const cities = listCities("GB");
+const cities = City.getCitiesOfCountry("GB");
 
-export default function ComboBox() {
-  console.log(cities);
+const CityAutocomplete = ({ control }) => {
   return (
-    <Autocomplete
-      options={cities}
-      getOptionLabel={(option) => option}
-      style={{ width: 300 }}
-      renderInput={(params) => (
-        <TextField {...params} label="Type a city in here" variant="outlined" />
-      )}
-    />
+    <Box component="div">
+      <Controller
+        name="city"
+        control={control}
+        render={({ field: { onChange, value } }) => {
+          return (
+            <Autocomplete
+              onChange={(_, data) => onChange(data.name)}
+              value={value}
+              options={cities}
+              getOptionLabel={(option) => option.name}
+              style={{ width: 300 }}
+              renderInput={(params) => (
+                <TextField {...params} label="Select city" variant="outlined" />
+              )}
+            />
+          );
+        }}
+      />
+    </Box>
   );
-}
+};
+
+export default CityAutocomplete;

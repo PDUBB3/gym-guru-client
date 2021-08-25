@@ -1,4 +1,3 @@
-import { useState } from "react";
 import S3 from "react-aws-s3";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -26,10 +25,7 @@ const useStyles = makeStyles({
   },
 });
 
-const ImageUpload = ({ setValue }) => {
-  const [images, setImages] = useState([]);
-  const [imageUrl, setImageUrl] = useState();
-
+const ImageUpload = ({ images, setImages, imageUrl, setImageUrl, prefix }) => {
   const classes = useStyles();
 
   const onChange = (imageList) => {
@@ -38,7 +34,7 @@ const ImageUpload = ({ setValue }) => {
 
   const onUpload = async () => {
     const file = images[0].file;
-    const fileName = `alicegreen/images/profile/${file.name}`;
+    const fileName = `${prefix}${file.name}`;
 
     const config = {
       bucketName: process.env.REACT_APP_BUCKET_NAME,
@@ -51,12 +47,10 @@ const ImageUpload = ({ setValue }) => {
 
     const s3Data = await ReactS3Client.uploadFile(file, fileName);
 
-    console.log(s3Data.location);
     if (s3Data.status === 204) {
       setImageUrl(s3Data.location);
-      // setImages([]);
+      setImages([]);
       images.push(s3Data.location);
-      setValue("profileImageUrl", s3Data.location);
     } else {
       console.log("failed to upload image");
     }
