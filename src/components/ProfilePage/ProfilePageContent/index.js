@@ -3,6 +3,8 @@ import InfoSection from "../InfoSection";
 
 import { BUDDIES_QUERY } from "../../../graphql/queries";
 import { useQuery } from "@apollo/client";
+import { Box } from "@material-ui/core";
+import Loader from "react-loader-spinner";
 
 const ProfilePageContent = ({ user, currentUser, buddyRequestsData }) => {
   const {
@@ -30,7 +32,17 @@ const ProfilePageContent = ({ user, currentUser, buddyRequestsData }) => {
   });
 
   if (buddiesLoading) {
-    return <h1>Loading</h1>;
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center">
+        <Loader
+          type="Circles"
+          color="#00BFFF"
+          height={100}
+          width={100}
+          timeout={3000} //3 secs
+        />
+      </Box>
+    );
   }
 
   return (

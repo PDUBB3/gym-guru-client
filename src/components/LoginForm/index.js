@@ -6,6 +6,8 @@ import { useHistory } from "react-router-dom";
 import { useUserContext } from "../../context/UserContext";
 import { LOGIN } from "../../graphql/mutations";
 import FormInput from "../FormInput";
+import { Box } from "@material-ui/core";
+import Loader from "react-loader-spinner";
 
 import "./LoginForm.css";
 import "../Button/button.css";
@@ -57,7 +59,17 @@ const LoginForm = () => {
   };
 
   if (loading) {
-    return <h1>Loading...</h1>;
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center">
+        <Loader
+          type="Circles"
+          color="#00BFFF"
+          height={100}
+          width={100}
+          timeout={3000} //3 secs
+        />
+      </Box>
+    );
   }
 
   const togglePassword = () => {
