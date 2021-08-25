@@ -1,4 +1,4 @@
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
@@ -8,8 +8,11 @@ import GymPage from "./pages/GymPage/GymPage";
 import BuddiesPage from "./pages/BuddiesPage/BuddiesPage";
 import ProfileRoute from "./privateRoutes/ProfileRoute";
 import CreateGymPage from "./pages/CreateGymPage";
+import { useUserContext } from "./context/UserContext";
 
 const Routes = () => {
+  const { state } = useUserContext();
+
   return (
     <Switch>
       <Route exact path="/login">
@@ -22,7 +25,7 @@ const Routes = () => {
         <GymsPage />
       </Route>
       <Route exact path="/gyms/new">
-        <CreateGymPage />
+        {state.user ? <CreateGymPage /> : <Redirect to="/login" />}
       </Route>
       <Route exact path="/gyms/:id">
         <GymPage />
