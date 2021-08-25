@@ -28,6 +28,8 @@ import { CREATE_GYM } from "../graphql/mutations";
 import ImageUploader from "../components/ImageUploader";
 import CityAutocomplete from "../components/CityAutocomplete";
 import FacilitiesCheckboxes from "../components/FacilitiesCheckboxes";
+import { useUserContext } from "../context/UserContext";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,13 +49,23 @@ const useStyles = makeStyles((theme) => ({
 const CreateGymPage = () => {
   const classes = useStyles();
 
+  const history = useHistory();
+
+  const { state } = useUserContext();
+
   const { handleSubmit, setValue, control } = useForm();
 
   const [expanded, setExpanded] = useState(false);
 
+  const [images, setImages] = useState([]);
+  const [imageUrl, setImageUrl] = useState();
+
   const { data, loading, error } = useQuery(GYMS_QUERY);
 
   const [createGym] = useMutation(CREATE_GYM, {
+    onCompleted: (data) => {
+      history.push(`${data.createGym.id}`);
+    },
     onError: (error) => {
       console.log(error);
     },
@@ -90,48 +102,30 @@ const CreateGymPage = () => {
   };
 
   const onSubmit = async (formData) => {
-    console.log(formData);
     const openingTimes = days.map((day, dayIndex) => {
       const openTime = getOpeningTimes(formData, `openTime_${day.value}`);
       const closeTime = getOpeningTimes(formData, `closeTime_${day.value}`);
       const isClosed = getOpeningTimes(formData, `isClosed_${day.value}`);
 
-      let startTime = "";
-      let endTime = "";
-
-      if (openTime.value) {
-        startTime = openTime.value;
-      }
-
-      if (closeTime.value) {
-        endTime = closeTime.value;
-      }
-
       return {
         dayIndex,
         dayName: day.label,
         dayShort: day.short,
-        startTime,
-        endTime,
+        startTime: openTime.value || "",
+        endTime: closeTime.value || "",
       };
     });
 
     const exerciseFacilities = getFacilities(formData, "exercise_facility_");
     const otherFacilities = getFacilities(formData, "other_facility_");
 
-    let imageURL = "";
-
-    if (formData.imageURL) {
-      imageURL = formData.imageURL;
-    }
-
     const { name, address, city, postCode, contactNumber } = formData;
 
-    await createGym({
+    const { data } = await createGym({
       variables: {
         createGymInput: {
           name,
-          imageURL,
+          imageURL: imageUrl,
           address,
           city,
           postCode,
@@ -487,7 +481,13 @@ const CreateGymPage = () => {
             </AccordionSummary>
             <AccordionDetails>
               <Box component="div" m={1}>
-                <ImageUploader setValue={setValue} />
+                <ImageUploader
+                  images={images}
+                  setImages={setImages}
+                  imageUrl={imageUrl}
+                  setImageUrl={setImageUrl}
+                  prefix={`${state.user.username}/gyms/images/`}
+                />
               </Box>
             </AccordionDetails>
           </Accordion>
