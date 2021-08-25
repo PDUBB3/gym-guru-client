@@ -22,8 +22,9 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import FormInput from "../components/FormInput";
 import ReactHookFormSelect from "../components/ReactHookFormSelect";
 import { GYMS_QUERY } from "../graphql/queries";
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import Divider from "@material-ui/core/Divider";
+import { CREATE_GYM } from "../graphql/mutations";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,6 +50,12 @@ const CreateGymPage = () => {
 
   const { data, loading, error } = useQuery(GYMS_QUERY);
 
+  const [createGym] = useMutation(CREATE_GYM, {
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
   if (loading) {
     return <h1>loading</h1>;
   }
@@ -57,16 +64,51 @@ const CreateGymPage = () => {
     return <h1>error</h1>;
   }
 
-  console.log(data.exerciseFacilities);
-
   const cities = City.getCitiesOfCountry("GB");
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
 
+  const getFacilities = (formData, prefix) => {
+    return Object.entries(formData).reduce((acc, [key, value]) => {
+      if (key.includes(prefix) && value) {
+        return [...acc, key.replace(prefix, "")];
+      }
+      return acc;
+    }, []);
+  };
+
+  const getOpeningTimes = (formData, prefix) => {
+    return Object.entries(formData).reduce((acc, [key, value]) => {
+      if (key.includes(prefix) && value) {
+        return { ...acc, value };
+      }
+      return acc;
+    }, {});
+  };
+
   const onSubmit = (formData) => {
     console.log(formData);
+    const openingTimes = days.map((day, index) => {
+      const openTime = getOpeningTimes(formData, `openTime_${day.value}`);
+      const closeTime = getOpeningTimes(formData, `closeTime_${day.value}`);
+      const isClosed = getOpeningTimes(formData, `isClosed_${day.value}`);
+
+      return {
+        dayIndex: index,
+        dayName: day.label,
+        dayShort: day.short,
+        startTime: openTime.value,
+        endTime: closeTime.value,
+        isClosed: isClosed.value,
+      };
+    });
+
+    const exerciseFacilities = getFacilities(formData, "exercise_facility_");
+    const otherFacilities = getFacilities(formData, "other_facility_");
+
+    console.log(openingTimes);
   };
 
   const times = [
@@ -224,30 +266,37 @@ const CreateGymPage = () => {
     {
       label: "Sunday",
       value: "sunday",
+      short: "Sun",
     },
     {
       label: "Monday",
       value: "monday",
+      short: "Mon",
     },
     {
       label: "Tuesday",
       value: "tuesday",
+      short: "Tue",
     },
     {
       label: "Wednesday",
       value: "wednesday",
+      short: "Wed",
     },
     {
       label: "Thursday",
       value: "thursday",
+      short: "Thur",
     },
     {
       label: "Friday",
       value: "friday",
+      short: "Fri",
     },
     {
       label: "Saturday",
       value: "saturday",
+      short: "Sat",
     },
   ];
 
