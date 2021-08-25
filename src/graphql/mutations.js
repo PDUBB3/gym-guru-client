@@ -8,7 +8,6 @@ export const CREATE_GYM = gql`
       city
       postCode
       contactNumber
-      rating
       imageURL
       openingTimes {
         dayIndex
