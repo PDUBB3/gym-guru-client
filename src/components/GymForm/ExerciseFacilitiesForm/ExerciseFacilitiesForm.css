@@ -9,14 +9,14 @@
   flex-direction: row;
 } */
 
-button {
+/* button {
   max-width: 6rem;
   border-radius: 5px;
   padding: 0.25rem;
   background-color: #484a4b;
   box-shadow: 0 20px 20px -10px #25293450;
   color: white;
-}
+} */
 
 .form-box-facilities {
   display: grid;

@@ -1,6 +1,7 @@
 // Importing react
 import React from "react";
 import { useUserContext } from "../../context/UserContext";
+import { useHistory } from "react-router-dom";
 import Logo from "../../assets/img/gym-guru-whitebg-nav-logo.png";
 
 import "./Navbar.css";
@@ -8,7 +9,9 @@ import "./Navbar.css";
 const Navbar = (props) => {
   const { state, dispatch } = useUserContext();
 
+  const history = useHistory();
   const handleLogout = () => {
+    history.push("/login");
     localStorage.removeItem("user");
     dispatch({ type: "LOGOUT" });
   };
@@ -66,9 +69,9 @@ const Navbar = (props) => {
         {state.user && (
           <>
             <div id="nav-item-container">
-              <a className="navbarLink" onClick={handleLogout} href="/login">
+              <button className="navbarLink" onClick={handleLogout}>
                 Logout
-              </a>
+              </button>
             </div>
           </>
         )}
