@@ -10,12 +10,6 @@ import Input from "@material-ui/core/Input";
 import "./PasswordInput.css";
 
 const PasswordInput = ({ control, placeholder, name }) => {
-  const [passwordShown, setPasswordShown] = useState(false);
-
-  const togglePassword = () => {
-    setPasswordShown(!passwordShown);
-  };
-
   return (
     <Box component="div" m={1}>
       <Controller
@@ -32,12 +26,11 @@ const PasswordInput = ({ control, placeholder, name }) => {
               onChange={onChange}
               error={!!error}
               label="Password"
-              type={passwordShown ? "text" : "password"}
+              type="password"
             />
           </FormControl>
         )}
       />
-      <button onClick={togglePassword}>Show</button>
     </Box>
   );
 };
