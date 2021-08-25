@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { Controller } from "react-hook-form";
 import { makeStyles } from "@material-ui/core/styles";
@@ -24,6 +24,7 @@ import { SIGNUP } from "../../graphql/mutations";
 import ImageUploader from "../ImageUploader";
 import MultiSelectDropDown from "../MultiSelectDropDown";
 import CityAutocomplete from "../CityAutocomplete";
+import { useUserContext } from "../../context/UserContext";
 
 import "../../pages/SignUpPage/SignUpPage.css";
 
@@ -45,7 +46,6 @@ const useStyles = makeStyles((theme) => ({
 export default function ControlledAccordions({ redirect = "/login" }) {
   const {
     handleSubmit,
-    setValue,
     formState: { errors },
     control,
   } = useForm();
@@ -61,7 +61,10 @@ export default function ControlledAccordions({ redirect = "/login" }) {
     },
   });
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
+
+  const [expanded, setExpanded] = useState(false);
+  const [images, setImages] = useState([]);
+  const [imageUrl, setImageUrl] = useState();
 
   const onSubmit = async (formData) => {
     formData.username = formData.username.toLowerCase();
@@ -260,7 +263,13 @@ export default function ControlledAccordions({ redirect = "/login" }) {
             </AccordionSummary>
             <AccordionDetails className="signUp-form-container">
               <Box component="div" m={1}>
-                <ImageUploader setValue={setValue} />
+                <ImageUploader
+                  images={images}
+                  setImages={setImages}
+                  imageUrl={imageUrl}
+                  setImageUrl={setImageUrl}
+                  prefix={"user/images/"}
+                />
               </Box>
               <CityAutocomplete control={control} />
               <Box component="div" m={1}>

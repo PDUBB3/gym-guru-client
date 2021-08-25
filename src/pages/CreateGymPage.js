@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-import { City } from "country-state-city";
+import { useHistory } from "react-router-dom";
+import { useMutation, useQuery } from "@apollo/client";
+
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Accordion from "@material-ui/core/Accordion";
@@ -8,28 +10,22 @@ import AccordionDetails from "@material-ui/core/AccordionDetails";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormGroup from "@material-ui/core/FormGroup";
-import FormLabel from "@material-ui/core/FormLabel";
-import FormControl from "@material-ui/core/FormControl";
 import Checkbox from "@material-ui/core/Checkbox";
-import Autocomplete from "@material-ui/lab/Autocomplete";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-
-import FormInput from "../components/FormInput";
-import ReactHookFormSelect from "../components/ReactHookFormSelect";
-import { GYMS_QUERY } from "../graphql/queries";
-import { useMutation, useQuery } from "@apollo/client";
 import Divider from "@material-ui/core/Divider";
+
+import { GYMS_QUERY } from "../graphql/queries";
 import { CREATE_GYM } from "../graphql/mutations";
+
 import ImageUploader from "../components/ImageUploader";
 import CityAutocomplete from "../components/CityAutocomplete";
 import FacilitiesCheckboxes from "../components/FacilitiesCheckboxes";
+import FormInput from "../components/FormInput";
+import ReactHookFormSelect from "../components/ReactHookFormSelect";
 import { useUserContext } from "../context/UserContext";
-import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,7 +49,7 @@ const CreateGymPage = () => {
 
   const { state } = useUserContext();
 
-  const { handleSubmit, setValue, control } = useForm();
+  const { handleSubmit, control } = useForm();
 
   const [expanded, setExpanded] = useState(false);
 
@@ -106,7 +102,6 @@ const CreateGymPage = () => {
       const openTime = getOpeningTimes(formData, `openTime_${day.value}`);
       const closeTime = getOpeningTimes(formData, `closeTime_${day.value}`);
       const isClosed = getOpeningTimes(formData, `isClosed_${day.value}`);
-
       return {
         dayIndex,
         dayName: day.label,
