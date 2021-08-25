@@ -44,7 +44,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ControlledAccordions({ redirect = "/login" }) {
   const {
-    register,
     handleSubmit,
     setValue,
     formState: { errors },
@@ -65,10 +64,7 @@ export default function ControlledAccordions({ redirect = "/login" }) {
   const [expanded, setExpanded] = React.useState(false);
 
   const onSubmit = async (formData) => {
-    console.log(formData);
-
     try {
-      console.log(formData);
       await signUp({
         variables: {
           signUpInput: formData,

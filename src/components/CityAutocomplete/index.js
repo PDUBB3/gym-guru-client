@@ -6,7 +6,6 @@ import { listCities } from "cclist";
 const cities = listCities("GB");
 
 export default function ComboBox() {
-  console.log(cities);
   return (
     <Autocomplete
       options={cities}
