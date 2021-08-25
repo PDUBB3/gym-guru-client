@@ -1,17 +1,16 @@
 import { useState } from "react";
 
 import StarRatings from "react-star-ratings";
+import ReviewModal from "../ReviewModal";
 
-import FormDialog from "../ReviewModal";
-
-const Reviews = ({ reviews, rating }) => {
+const Reviews = ({ reviews, rating, updateRating }) => {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
   };
 
-  const handleClose = () => {
+  const handleClose = async () => {
     setOpen(false);
   };
 
@@ -52,7 +51,11 @@ const Reviews = ({ reviews, rating }) => {
           );
         })}
         <button onClick={handleClickOpen}>Add review</button>
-        <FormDialog handleClose={handleClose} open={open} />
+        <ReviewModal
+          handleClose={handleClose}
+          open={open}
+          updateRating={updateRating}
+        />
       </div>
     </div>
   );

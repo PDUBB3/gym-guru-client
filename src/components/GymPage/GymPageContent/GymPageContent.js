@@ -1,11 +1,22 @@
 import StarRatings from "react-star-ratings";
+import { useMutation } from "@apollo/client";
+
+import { UPDATE_GYM_RATING } from "../../../graphql/mutations";
+import { GYM_QUERY } from "../../../graphql/queries";
 
 import CustomizedAccordions from "../Accordian/Accordian";
 
 import Reviews from "../Reviews";
 
 const GymPageContent = ({ gym, reviews }) => {
-  const { name, rating, imageURL, ...rest } = gym;
+  const { id, name, rating, imageURL, ...rest } = gym;
+
+  const [updateGymRating] = useMutation(UPDATE_GYM_RATING, {
+    refetchQueries: [GYM_QUERY, "getGym"],
+    onError: (error) => {
+      console.log(error);
+    },
+  });
 
   const averageRating = () => {
     const allRatings = reviews
@@ -29,6 +40,19 @@ const GymPageContent = ({ gym, reviews }) => {
     }
   };
 
+  const updateRating = async () => {
+    const updatedRating = averageRating();
+
+    await updateGymRating({
+      variables: {
+        updateGymRatingInput: {
+          id,
+          rating: updatedRating,
+        },
+      },
+    });
+  };
+
   return (
     <div className="gym-container">
       <div className="image-container">
@@ -37,9 +61,8 @@ const GymPageContent = ({ gym, reviews }) => {
       <div className="about-container">
         <h1 className="title">{name}</h1>
         <div className="info-container">
-          {}
           <StarRatings
-            rating={averageRating()}
+            rating={rating}
             numberOfStars={5}
             starRatedColor="#00b4d8"
             starDimension="20px"
@@ -51,7 +74,11 @@ const GymPageContent = ({ gym, reviews }) => {
         </div>
       </div>
       <div className="review-container">
-        <Reviews reviews={reviews} rating={averageRating()} />
+        <Reviews
+          reviews={reviews}
+          rating={rating}
+          updateRating={updateRating}
+        />
       </div>
     </div>
   );
