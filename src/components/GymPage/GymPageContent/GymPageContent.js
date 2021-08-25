@@ -11,6 +11,7 @@ import { UPDATE_GYM_RATING } from "../../../graphql/mutations";
 import { GYM_QUERY } from "../../../graphql/queries";
 import CustomizedAccordions from "../Accordian/Accordian";
 import Reviews from "../Reviews";
+import GymForm from "../../GymForm";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -109,7 +110,9 @@ const GymPageContent = ({ gym, reviews, user }) => {
               }}
             >
               <Fade in={open}>
-                <div className={classes.paper}></div>
+                <div className={classes.paper}>
+                  <GymForm gym={gym} />
+                </div>
               </Fade>
             </Modal>
           </Box>

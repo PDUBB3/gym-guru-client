@@ -63,7 +63,7 @@ const ImageUpload = ({ images, setImages, imageUrl, setImageUrl, prefix }) => {
           <div className="upload__image-wrapper">
             <Card className={classes.root}>
               <CardActionArea>
-                {images.length && (
+                {images.length !== 0 && (
                   <>
                     <Typography
                       variant="h6"

@@ -5,9 +5,13 @@ import { City } from "country-state-city";
 import { Controller } from "react-hook-form";
 import { Box } from "@material-ui/core";
 
-const cities = City.getCitiesOfCountry("GB");
+const CityAutocomplete = ({ control, city }) => {
+  const cities = City.getCitiesOfCountry("GB");
 
-const CityAutocomplete = ({ control }) => {
+  const defaultValue = cities.find((each) => {
+    return each.name === city;
+  });
+
   return (
     <Box component="div">
       <Controller
@@ -16,7 +20,8 @@ const CityAutocomplete = ({ control }) => {
         render={({ field: { onChange, value } }) => {
           return (
             <Autocomplete
-              onChange={(_, data) => onChange(data.name)}
+              defaultValue={defaultValue}
+              onChange={(_, data) => onChange(data?.name)}
               value={value}
               options={cities}
               getOptionLabel={(option) => option.name}
