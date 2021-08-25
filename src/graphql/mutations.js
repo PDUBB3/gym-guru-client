@@ -108,3 +108,13 @@ export const ADD_REVIEW = gql`
     }
   }
 `;
+
+export const UPDATE_GYM_RATING = gql`
+  mutation UpdateGymRatingMutation($updateGymRatingInput: GymRating) {
+    updateGymRating(input: $updateGymRatingInput) {
+      name
+      id
+      rating
+    }
+  }
+`;
