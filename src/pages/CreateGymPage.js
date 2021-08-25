@@ -45,12 +45,7 @@ const useStyles = makeStyles((theme) => ({
 const CreateGymPage = () => {
   const classes = useStyles();
 
-  const {
-    handleSubmit,
-    setValue,
-    formState: { errors },
-    control,
-  } = useForm();
+  const { handleSubmit, setValue, control } = useForm();
 
   const [expanded, setExpanded] = useState(false);
 
@@ -94,27 +89,59 @@ const CreateGymPage = () => {
     }, {});
   };
 
-  const onSubmit = (formData) => {
+  const onSubmit = async (formData) => {
     console.log(formData);
-    const openingTimes = days.map((day, index) => {
+    const openingTimes = days.map((day, dayIndex) => {
       const openTime = getOpeningTimes(formData, `openTime_${day.value}`);
       const closeTime = getOpeningTimes(formData, `closeTime_${day.value}`);
       const isClosed = getOpeningTimes(formData, `isClosed_${day.value}`);
 
+      let startTime = "";
+      let endTime = "";
+
+      if (openTime.value) {
+        startTime = openTime.value;
+      }
+
+      if (closeTime.value) {
+        endTime = closeTime.value;
+      }
+
       return {
-        dayIndex: index,
+        dayIndex,
         dayName: day.label,
         dayShort: day.short,
-        startTime: openTime.value,
-        endTime: closeTime.value,
-        isClosed: isClosed.value,
+        startTime,
+        endTime,
       };
     });
 
     const exerciseFacilities = getFacilities(formData, "exercise_facility_");
     const otherFacilities = getFacilities(formData, "other_facility_");
 
-    console.log(openingTimes);
+    let imageURL = "";
+
+    if (formData.imageURL) {
+      imageURL = formData.imageURL;
+    }
+
+    const { name, address, city, postCode, contactNumber } = formData;
+
+    await createGym({
+      variables: {
+        createGymInput: {
+          name,
+          imageURL,
+          address,
+          city,
+          postCode,
+          contactNumber,
+          openingTimes,
+          otherFacilities,
+          exerciseFacilities,
+        },
+      },
+    });
   };
 
   const times = [
