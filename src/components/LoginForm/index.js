@@ -31,6 +31,9 @@ const LoginForm = () => {
         email: data.login.user.email,
         username: data.login.user.username,
         id: data.login.user.id,
+        isGymOwner: data.login.user.isGymOwner,
+        ownedGymId: data.login.user.ownedGymId,
+        attendingGymId: data.login.user.attendingGymId,
       };
 
       localStorage.setItem("user", JSON.stringify(payload));
