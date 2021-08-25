@@ -7,8 +7,9 @@ import { GYM_QUERY } from "../../../graphql/queries";
 import CustomizedAccordions from "../Accordian/Accordian";
 
 import Reviews from "../Reviews";
+import { Box, Button, Container } from "@material-ui/core";
 
-const GymPageContent = ({ gym, reviews }) => {
+const GymPageContent = ({ gym, reviews, user }) => {
   const { id, name, rating, imageURL, ...rest } = gym;
 
   const [updateGymRating] = useMutation(UPDATE_GYM_RATING, {
@@ -54,33 +55,44 @@ const GymPageContent = ({ gym, reviews }) => {
   };
 
   return (
-    <div className="gym-container">
-      <div className="image-container">
-        <img src={imageURL} alt={name} height="350" className="image" />
-      </div>
-      <div className="about-container">
-        <h1 className="title">{name}</h1>
-        <div className="info-container">
-          <StarRatings
-            rating={rating}
-            numberOfStars={5}
-            starRatedColor="#00b4d8"
-            starDimension="20px"
-            starSpacing="3px"
-          />
-          <div className="accordian">
-            <CustomizedAccordions gym={rest} />
+    <>
+      <Container maxWidth="lg">
+        {user && user.ownedGymId === id && (
+          <Box m={1}>
+            <Button variant="contained" disableElevation>
+              Edit
+            </Button>
+          </Box>
+        )}
+      </Container>
+      <div className="gym-container">
+        <div className="image-container">
+          <img src={imageURL} alt={name} height="350" className="image" />
+        </div>
+        <div className="about-container">
+          <h1 className="title">{name}</h1>
+          <div className="info-container">
+            <StarRatings
+              rating={rating}
+              numberOfStars={5}
+              starRatedColor="#00b4d8"
+              starDimension="20px"
+              starSpacing="3px"
+            />
+            <div className="accordian">
+              <CustomizedAccordions gym={rest} />
+            </div>
           </div>
         </div>
+        <div className="review-container">
+          <Reviews
+            reviews={reviews}
+            rating={rating}
+            updateRating={updateRating}
+          />
+        </div>
       </div>
-      <div className="review-container">
-        <Reviews
-          reviews={reviews}
-          rating={rating}
-          updateRating={updateRating}
-        />
-      </div>
-    </div>
+    </>
   );
 };
 

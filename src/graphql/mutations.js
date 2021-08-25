@@ -37,6 +37,9 @@ export const LOGIN = gql`
         username
         email
         id
+        isGymOwner
+        ownedGymId
+        attendingGymId
       }
     }
   }
