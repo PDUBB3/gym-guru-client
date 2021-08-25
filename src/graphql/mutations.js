@@ -24,6 +24,7 @@ export const CREATE_GYM = gql`
         id
         name
       }
+      id
     }
   }
 `;
