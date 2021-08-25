@@ -104,8 +104,8 @@ export const USER_QUERY = gql`
 `;
 
 export const USERS_QUERY = gql`
-  query Query {
-    users {
+  query Query($usersCity: String) {
+    users(city: $usersCity) {
       username
       lastName
       firstName

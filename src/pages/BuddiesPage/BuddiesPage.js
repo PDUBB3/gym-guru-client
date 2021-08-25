@@ -1,20 +1,23 @@
 import "./BuddiesPage.css";
 import { useState, useContext } from "react";
-import { useQuery } from "@apollo/client";
+import { useLazyQuery, useQuery } from "@apollo/client";
+import { City } from "country-state-city";
+
 import { USERS_QUERY } from "../../graphql/queries";
 
-import { BuddiesFilterContext } from "../../context/BuddiesFilterContext";
-
 import BuddiesJumbotron from "../../components/BuddiesJumbotron";
-import Filter from "../../components/BuddiesPage/Filter/Filter";
+import BuddiesFilter from "../../components/BuddiesPage/Filter/BuddiesFilter";
 import BuddyCard from "../../components/BuddiesPage/BuddyCard/BuddyCard";
 
 const BuddiesPage = () => {
-  const [filterStatus, setFilterStatus] = useState(false);
-
-  const { filterParams, setFilterParams } = useContext(BuddiesFilterContext);
+  const [getUsers, { loading: lazyLoading, data: lazyData, error: lazyError }] =
+    useLazyQuery(USERS_QUERY, {
+      fetchPolicy: "network-only",
+    });
 
   const { data, loading, error } = useQuery(USERS_QUERY);
+
+  const cities = City.getCitiesOfCountry("GB");
 
   if (error) {
     return <h1>Error</h1>;
@@ -24,51 +27,8 @@ const BuddiesPage = () => {
     return <h1>Loading</h1>;
   }
 
-  if (data) {
-    const handleFilter = () => {
-      if (filterParams === "") {
-        return data.users;
-      }
-
-      // Look for city, gym, and interests
-      if (filterParams.city && filterParams.interests && filterParams.gym) {
-        return data.users.filter(
-          (user) =>
-            user.attendingGymId !== null &&
-            user.city === filterParams.city &&
-            user.interests.includes(filterParams.interests) &&
-            user.attendingGymId.name === filterParams.gym
-        );
-      }
-
-      // Look for city and interest
-      if (filterParams.city && filterParams.interests) {
-        return data.users.filter(
-          (user) =>
-            user.city === filterParams.city &&
-            user.interests.includes(filterParams.interests)
-        );
-      }
-
-      // Look for city and gym
-      if (filterParams.city && filterParams.gym) {
-        return data.users.filter(
-          (user) =>
-            user.attendingGymId !== null &&
-            user.city === filterParams.city &&
-            user.attendingGymId.name === filterParams.gym
-        );
-      }
-
-      // Look for interests
-      if (filterParams.interests) {
-        return data.users.filter((user) =>
-          user.interests.includes(filterParams.interests)
-        );
-      }
-
-      return data.users.filter((user) => user.city === filterParams.city);
-    };
+  if (data || lazyData) {
+    const users = lazyData?.users || data.users;
 
     return (
       <div>
@@ -78,20 +38,14 @@ const BuddiesPage = () => {
         </div>
         <div className="buddiesBody">
           <div>
-            <button
-              onClick={() => setFilterStatus(!filterStatus)}
-              className="filterButton"
-            >
-              Filter
-            </button>
+            <BuddiesFilter getUsers={getUsers} options={cities} />
           </div>
           <div className="buddiesCards">
-            {handleFilter().map((user) => {
+            {users.map((user) => {
               return <BuddyCard data={user} />;
             })}
           </div>
         </div>
-        <Filter filterStatus={filterStatus} setFilterStatus={setFilterStatus} />
       </div>
     );
   }
