@@ -12,12 +12,18 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormGroup from "@material-ui/core/FormGroup";
+import FormLabel from "@material-ui/core/FormLabel";
+import FormControl from "@material-ui/core/FormControl";
 import Checkbox from "@material-ui/core/Checkbox";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import FormInput from "../components/FormInput";
 import ReactHookFormSelect from "../components/ReactHookFormSelect";
+import { GYMS_QUERY } from "../graphql/queries";
+import { useQuery } from "@apollo/client";
+import Divider from "@material-ui/core/Divider";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,6 +46,18 @@ const CreateGymPage = () => {
   const { handleSubmit, control } = useForm();
 
   const [expanded, setExpanded] = useState(false);
+
+  const { data, loading, error } = useQuery(GYMS_QUERY);
+
+  if (loading) {
+    return <h1>loading</h1>;
+  }
+
+  if (error) {
+    return <h1>error</h1>;
+  }
+
+  console.log(data.exerciseFacilities);
 
   const cities = City.getCitiesOfCountry("GB");
 
@@ -376,19 +394,76 @@ const CreateGymPage = () => {
               aria-controls="panel3bh-content"
               id="panel3bh-header"
             >
-              <Typography className={classes.heading}>
-                Advanced settings
-              </Typography>
-              <Typography className={classes.secondaryHeading}>
-                Filtering has been entirely disabled for whole web server
-              </Typography>
+              <Typography className={classes.heading}>Facilities</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography>
-                Nunc vitae orci ultricies, auctor nunc in, volutpat nisl.
-                Integer sit amet egestas eros, vitae egestas augue. Duis vel est
-                augue.
-              </Typography>
+              <Box component="div">
+                <FormControl
+                  component="fieldset"
+                  className={classes.formControl}
+                >
+                  <FormLabel component="legend">Exercise Facilities</FormLabel>
+                  <FormGroup className={classes.checkboxesContainer}>
+                    {data.exerciseFacilities.map((exerciseFacility) => {
+                      return (
+                        <FormControlLabel
+                          control={
+                            <Controller
+                              name={`exercise_facility_${exerciseFacility.id}`}
+                              control={control}
+                              defaultValue={false}
+                              render={({ field: { onChange, value } }) => {
+                                return (
+                                  <Checkbox
+                                    checked={value}
+                                    onChange={onChange}
+                                  />
+                                );
+                              }}
+                            />
+                          }
+                          label={exerciseFacility.name}
+                          key={exerciseFacility.id}
+                        />
+                      );
+                    })}
+                  </FormGroup>
+                </FormControl>
+              </Box>
+              <Divider />
+              <Box component="div">
+                <FormControl
+                  component="fieldset"
+                  className={classes.formControl}
+                >
+                  <FormLabel component="legend">Other Facilities</FormLabel>
+                  <FormGroup className={classes.checkboxesContainer}>
+                    {data.otherFacilities.map((otherFacility) => {
+                      return (
+                        <FormControlLabel
+                          control={
+                            <Controller
+                              name={`other_facility_${otherFacility.id}`}
+                              control={control}
+                              defaultValue={false}
+                              render={({ field: { onChange, value } }) => {
+                                return (
+                                  <Checkbox
+                                    checked={value}
+                                    onChange={onChange}
+                                  />
+                                );
+                              }}
+                            />
+                          }
+                          label={otherFacility.name}
+                          key={otherFacility.id}
+                        />
+                      );
+                    })}
+                  </FormGroup>
+                </FormControl>
+              </Box>
             </AccordionDetails>
           </Accordion>
           <Accordion
