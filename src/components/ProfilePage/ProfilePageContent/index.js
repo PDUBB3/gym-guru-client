@@ -30,6 +30,9 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: "75%",
     overflowY: "auto",
   },
+  buttons: {
+    textAlign: "center",
+  },
 }));
 
 const ProfilePageContent = ({ user, currentUser, buddyRequestsData }) => {
@@ -49,6 +52,7 @@ const ProfilePageContent = ({ user, currentUser, buddyRequestsData }) => {
   const history = useHistory();
 
   const [open, setOpen] = useState(false);
+  const [confirmOpen, setConfirmOpen] = useState(false);
 
   const [deleteUser, { data, error, loading }] = useMutation(DELETE_USER, {
     onCompleted: () => {
@@ -65,6 +69,14 @@ const ProfilePageContent = ({ user, currentUser, buddyRequestsData }) => {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleConfirmOpen = () => {
+    setConfirmOpen(true);
+  };
+
+  const handleConfirmClose = () => {
+    setConfirmOpen(false);
   };
 
   const onClickDelete = async () => {
@@ -118,7 +130,7 @@ const ProfilePageContent = ({ user, currentUser, buddyRequestsData }) => {
             variant="contained"
             disableElevation
             type="button"
-            onClick={onClickDelete}
+            onClick={handleConfirmOpen}
             color="secondary"
             style={{ maxWidth: "170px", minWidth: "170px", margin: "1rem" }}
           >
@@ -139,6 +151,57 @@ const ProfilePageContent = ({ user, currentUser, buddyRequestsData }) => {
             <Fade in={open}>
               <div className={classes.paper}>
                 <SignupAccordian user={user} />
+              </div>
+            </Fade>
+          </Modal>
+          <Modal
+            aria-labelledby="transition-modal-title"
+            aria-describedby="transition-modal-description"
+            className={classes.modal}
+            open={confirmOpen}
+            onClose={handleConfirmClose}
+            closeAfterTransition
+            BackdropComponent={Backdrop}
+            BackdropProps={{
+              timeout: 500,
+            }}
+          >
+            <Fade in={confirmOpen}>
+              <div className={classes.paper}>
+                <Box m={1}>
+                  <h2>
+                    Are you sure you want to permanently delete your profile?
+                  </h2>
+                  <Box m={1} className={classes.buttons}>
+                    <Button
+                      variant="contained"
+                      disableElevation
+                      type="button"
+                      onClick={handleConfirmClose}
+                      style={{
+                        maxWidth: "170px",
+                        minWidth: "170px",
+                        margin: "1rem",
+                      }}
+                    >
+                      No
+                    </Button>
+                    <Button
+                      variant="contained"
+                      disableElevation
+                      type="button"
+                      onClick={onClickDelete}
+                      color="secondary"
+                      style={{
+                        maxWidth: "170px",
+                        minWidth: "170px",
+                        margin: "1rem",
+                      }}
+                    >
+                      Yes
+                    </Button>
+                  </Box>
+                </Box>
               </div>
             </Fade>
           </Modal>
