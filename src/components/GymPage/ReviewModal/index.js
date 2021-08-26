@@ -142,7 +142,6 @@ const ReviewModal = ({ handleClose, open, updateRating }) => {
               fullWidth
               margin="dense"
               type="comment"
-              value={comment}
               onChange={handleOnChange}
             />
           </DialogContent>
