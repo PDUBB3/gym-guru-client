@@ -24,7 +24,6 @@ const FacilitiesCheckboxes = ({
         </FormLabel>
         <FormGroup className={classes?.checkboxesContainer}>
           {facilities.map((facility) => {
-            console.log(selectedFacilityIds.includes(facility.id));
             return (
               <FormControlLabel
                 control={

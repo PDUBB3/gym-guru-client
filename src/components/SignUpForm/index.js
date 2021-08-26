@@ -36,8 +36,6 @@ const SignUpForm = ({ redirect = "/login" }) => {
   });
 
   const onSubmit = async (formData) => {
-    console.log(formData);
-
     try {
       console.log(formData);
       await signUp({

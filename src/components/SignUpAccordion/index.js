@@ -87,7 +87,6 @@ const SignupAccordian = ({ user }, { redirect = "/login" }) => {
 
   const onSubmit = async (formData) => {
     formData.username = formData.username.toLowerCase();
-    console.log(formData);
     if (!user) {
       try {
         await signUp({
