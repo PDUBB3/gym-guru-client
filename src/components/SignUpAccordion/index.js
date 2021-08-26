@@ -36,9 +36,11 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
   },
   heading: {
-    fontSize: theme.typography.pxToRem(15),
+    fontSize: 20,
     flexBasis: "33.33%",
     flexShrink: 0,
+    color: "#00b4d8",
+    fontWeight: "bold",
   },
   secondaryHeading: {
     fontSize: theme.typography.pxToRem(15),
@@ -52,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SignupAccordian = ({ user }, { redirect = "/login" }) => {
+  console.log(user);
   const {
     handleSubmit,
     formState: { errors },
@@ -72,7 +75,7 @@ const SignupAccordian = ({ user }, { redirect = "/login" }) => {
 
   const [expanded, setExpanded] = useState(false);
   const [images, setImages] = useState([]);
-  const [imageUrl, setImageUrl] = useState();
+  const [imageUrl, setImageUrl] = useState(user?.profileImageUrl);
 
   const onSubmit = async (formData) => {
     formData.username = formData.username.toLowerCase();
@@ -137,9 +140,7 @@ const SignupAccordian = ({ user }, { redirect = "/login" }) => {
               aria-controls="panel1bh-content"
               id="panel1bh-header"
             >
-              <Typography className={classes.heading}>
-                1. Basic details
-              </Typography>
+              <Typography className={classes.heading}>Basic details</Typography>
             </AccordionSummary>
             <AccordionDetails className="signUp-form-container">
               <FormInput
@@ -196,7 +197,7 @@ const SignupAccordian = ({ user }, { redirect = "/login" }) => {
               id="panel2bh-header"
             >
               <Typography className={classes.heading}>
-                2. Create your profile
+                Create your profile
               </Typography>
             </AccordionSummary>
             <AccordionDetails className="signUp-form-container">
@@ -209,12 +210,13 @@ const SignupAccordian = ({ user }, { redirect = "/login" }) => {
                   prefix={"user/images/"}
                 />
               </Box>
-              <CityAutocomplete control={control} />
+              <CityAutocomplete control={control} city={user?.city} />
               <Box component="div" m={1}>
                 <Controller
                   name="bio"
                   control={control}
                   rules={{ required: "Bio is required" }}
+                  defaultValue={user?.bio}
                   render={({
                     field: { onChange, value },
                     fieldState: { error },
@@ -282,7 +284,7 @@ const SignupAccordian = ({ user }, { redirect = "/login" }) => {
               id="panel3bh-header"
             >
               <Typography className={classes.heading}>
-                3. Add your social media info
+                Add your social media info
               </Typography>
             </AccordionSummary>
             <AccordionDetails className="signUp-form-container">
@@ -292,6 +294,7 @@ const SignupAccordian = ({ user }, { redirect = "/login" }) => {
                 control={control}
                 required={true}
                 classes={classes}
+                defaultValue={user?.facebookUrl}
               />
               <FormInput
                 name="twitterUrl"
@@ -299,6 +302,7 @@ const SignupAccordian = ({ user }, { redirect = "/login" }) => {
                 control={control}
                 required={true}
                 classes={classes}
+                defaultValue={user?.twitterUrl}
               />
               <FormInput
                 name="instagramUrl"
@@ -306,6 +310,7 @@ const SignupAccordian = ({ user }, { redirect = "/login" }) => {
                 control={control}
                 required={true}
                 classes={classes}
+                defaultValue={user?.instagramUrl}
               />
             </AccordionDetails>
           </Accordion>
