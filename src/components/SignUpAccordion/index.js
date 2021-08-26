@@ -54,7 +54,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SignupAccordian = ({ user }, { redirect = "/login" }) => {
-  console.log(user);
   const {
     handleSubmit,
     formState: { errors },
