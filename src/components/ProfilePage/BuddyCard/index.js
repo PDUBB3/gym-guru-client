@@ -43,19 +43,38 @@ const BuddyCard = ({ buddy, userId, username }) => {
     });
   };
 
-  let buddyName = "";
-  let buddyCity = "";
-  let buddyImage = "";
-  if (buddy.recipientId.username !== username) {
-    buddyName = buddy.recipientId.username;
-    buddyCity = buddy.recipientId.city;
-    buddyImage = buddy.recipientId.profileImageUrl;
-  }
-  if (buddy.requesterId.username !== username) {
-    buddyName = buddy.requesterId.username;
-    buddyCity = buddy.requesterId.city;
-    buddyImage = buddy.requesterId.profileImageUrl;
-  }
+  const onClickDelete = async () => {
+    if (buddy.recipientId.id === userId) {
+      await rejectBuddyRequest({
+        variables: {
+          rejectBuddyRequestInput: {
+            recipientId: userId,
+            requesterId: buddy.requesterId.id,
+          },
+        },
+      });
+    }
+    await rejectBuddyRequest({
+      variables: {
+        rejectBuddyRequestInput: {
+          recipientId: buddy.recipientId.id,
+          requesterId: userId,
+        },
+      },
+    });
+  };
+
+  const isRecipient = buddy.requesterId.username !== username;
+
+  const buddyName = isRecipient
+    ? buddy.requesterId.username
+    : buddy.recipientId.username;
+  const buddyCity = isRecipient
+    ? buddy.requesterId.city
+    : buddy.recipientId.city;
+  const buddyImage = isRecipient
+    ? buddy.requesterId.profileImageUrl
+    : buddy.recipientId.profileImageUrl;
 
   return (
     <div className="buddy-card">
@@ -81,6 +100,9 @@ const BuddyCard = ({ buddy, userId, username }) => {
       <div className="buddyDetails">
         <h3>{buddyName}</h3>
         <div>{buddyCity}</div>
+        {buddy.status === "BUDDIES" && (
+          <FaUserMinus onClick={onClickDelete} className="buddyIcon" />
+        )}
       </div>
       <div>
         {buddy.status === "PENDING" && (
