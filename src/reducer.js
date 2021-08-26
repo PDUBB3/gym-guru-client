@@ -13,6 +13,20 @@ const reducer = (state, action) => {
     };
   }
 
+  if (action.type === "UPDATE_ATTENDING_GYM") {
+    const newUser = { ...state.user };
+    newUser.attendingGymId = action.payload.attendingGymId;
+
+    const newState = {
+      ...state,
+      user: newUser,
+    };
+
+    localStorage.setItem("user", JSON.stringify(newUser));
+
+    return newState;
+  }
+
   return state;
 };
 

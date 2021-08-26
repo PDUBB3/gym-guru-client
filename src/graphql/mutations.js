@@ -157,6 +157,9 @@ export const UPDATE_USER = gql`
       firstName
       lastName
       isGymOwner
+      attendingGymId {
+        name
+      }
       profileImageUrl
       city
       bio
@@ -173,6 +176,24 @@ export const DELETE_USER = gql`
   mutation Mutation($deleteUserId: ID!) {
     deleteUser(id: $deleteUserId) {
       id
+     }
+   }
+ `
+export const DELETE_GYM = gql`
+  mutation Mutation($deleteGymId: ID!) {
+    deleteGym(id: $deleteGymId) {
+      id}
+      }`;
+
+export const UPDATE_ATTENDING_GYM = gql`
+  mutation Mutation($updateAttendingGymInput: updateAttendingGymInput) {
+    updateAttendingGym(input: $updateAttendingGymInput) {
+      username
+      firstName
+      lastName
+      attendingGymId {
+        name
+      }
     }
   }
 `;

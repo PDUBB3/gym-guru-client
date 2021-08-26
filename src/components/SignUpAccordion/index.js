@@ -91,7 +91,7 @@ const SignupAccordian = ({ user }, { redirect = "/login" }) => {
       try {
         await signUp({
           variables: {
-            signUpInput: formData,
+            signUpInput: { ...formData, profileImageUrl: imageUrl },
           },
         });
       } catch (error) {
