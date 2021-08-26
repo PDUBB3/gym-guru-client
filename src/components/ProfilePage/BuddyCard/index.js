@@ -87,7 +87,7 @@ const BuddyCard = ({ buddy, userId, username, currentUser }) => {
   return (
     <div className="buddy-card">
       <a href={buddyName} className="buddyCardLink">
-        {buddyImage === null ? (
+        {!buddyImage ? (
           <img
             src="https://www.seekpng.com/png/full/966-9665317_placeholder-image-person-jpg.png"
             alt="buddy"
