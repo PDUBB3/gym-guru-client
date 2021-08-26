@@ -49,8 +49,6 @@ const GymPageContent = ({ gym, reviews, user }) => {
 
   const { dispatch } = useUserContext();
 
-  console.log(user);
-
   const [updateGymRating] = useMutation(UPDATE_GYM_RATING, {
     refetchQueries: [GYM_QUERY, "getGym"],
     onError: (error) => {
@@ -166,9 +164,16 @@ const GymPageContent = ({ gym, reviews, user }) => {
           {user.attendingGymId === gym.id ? (
             <h2>You are attending this gym!</h2>
           ) : (
-            <button className="attendGymBtn" onClick={onClickAttend}>
-              + Attend this gym
-            </button>
+            [
+              user.attendingGymId && (
+                <button
+                  className="attendGymBtn view-btn"
+                  onClick={onClickAttend}
+                >
+                  + Attend this gym
+                </button>
+              ),
+            ]
           )}
         </div>
         <div className="about-container">

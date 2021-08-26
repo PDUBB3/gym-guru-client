@@ -87,7 +87,7 @@
 }
 
 .attendGymBtn {
-  margin-top: 1rem;
+  max-width: none;
 }
 
 @media screen and (max-width: 1100px) {
