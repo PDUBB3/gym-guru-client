@@ -2,6 +2,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
+import Box from "@material-ui/core/Box";
 
 import "./footer.css";
 
@@ -12,7 +13,7 @@ const useStyles = makeStyles({
     borderRadius: 3,
     boxShadow: "0 3px 5px 2px #666769",
     color: "white",
-    height: 48,
+    height: 58,
     padding: "0 30px",
     alignItems: "center",
   },
@@ -21,8 +22,11 @@ const useStyles = makeStyles({
 const Footer = () => {
   const classes = useStyles();
   return (
-    <div id="footer" className={classes.root}>
-      <Typography> Created 2021</Typography>
+    <div className={classes.root}>
+      <Typography id="footer"> © 2021. All Rights reserved.</Typography>
+      <Box fontStyle="italic" id="quote" m={1}>
+        Hustle for that muscle
+      </Box>
     </div>
   );
 };
