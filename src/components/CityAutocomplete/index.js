@@ -20,9 +20,9 @@ const CityAutocomplete = ({ control, city, classes }) => {
         render={({ field: { onChange, value } }) => {
           return (
             <Autocomplete
-              defaultValue={defaultValue}
               onChange={(_, data) => onChange(data?.name)}
               value={value}
+              defaultValue={defaultValue}
               options={cities}
               getOptionLabel={(option) => option.name}
               className={classes?.cityAutocomplete}

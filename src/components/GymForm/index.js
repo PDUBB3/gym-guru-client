@@ -17,7 +17,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Divider from "@material-ui/core/Divider";
 
 import { GYMS_QUERY } from "../../graphql/queries";
-import { CREATE_GYM } from "../../graphql/mutations";
+import { CREATE_GYM, UPDATE_GYM } from "../../graphql/mutations";
 
 import ImageUploader from "../ImageUploader";
 import CityAutocomplete from "../CityAutocomplete";
@@ -74,6 +74,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const GymForm = ({ gym }) => {
+  const id = gym?.id;
+
   const classes = useStyles();
 
   const history = useHistory();
@@ -90,6 +92,15 @@ const GymForm = ({ gym }) => {
   const { data, loading, error } = useQuery(GYMS_QUERY);
 
   const [createGym] = useMutation(CREATE_GYM, {
+    onCompleted: (data) => {
+      history.push(`${data.createGym.id}`);
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  const [updateGym] = useMutation(UPDATE_GYM, {
     onCompleted: (data) => {
       history.push(`${data.createGym.id}`);
     },
@@ -157,21 +168,40 @@ const GymForm = ({ gym }) => {
 
     const { name, address, city, postCode, contactNumber } = formData;
 
-    const { data } = await createGym({
-      variables: {
-        createGymInput: {
-          name,
-          imageURL: imageUrl,
-          address,
-          city,
-          postCode,
-          contactNumber,
-          openingTimes,
-          otherFacilities,
-          exerciseFacilities,
+    if (!gym) {
+      const { data } = await createGym({
+        variables: {
+          createGymInput: {
+            name,
+            imageURL: imageUrl,
+            address,
+            city,
+            postCode,
+            contactNumber,
+            openingTimes,
+            otherFacilities,
+            exerciseFacilities,
+          },
         },
-      },
-    });
+      });
+    } else {
+      await updateGym({
+        variables: {
+          updateGymInput: {
+            id,
+            name,
+            imageURL: imageUrl,
+            address,
+            city,
+            postCode,
+            contactNumber,
+            openingTimes,
+            otherFacilities,
+            exerciseFacilities,
+          },
+        },
+      });
+    }
   };
 
   return (
