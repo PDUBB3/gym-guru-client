@@ -16,6 +16,7 @@ import { GYM_QUERY } from "../../../graphql/queries";
 import CustomizedAccordions from "../Accordian/Accordian";
 import Reviews from "../Reviews";
 import GymForm from "../../GymForm";
+import { useUserContext } from "../../../context/UserContext";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -45,6 +46,10 @@ const GymPageContent = ({ gym, reviews, user }) => {
   };
 
   const { id, name, rating, imageURL, ...rest } = gym;
+
+  const { dispatch } = useUserContext();
+
+  console.log(user);
 
   const [updateGymRating] = useMutation(UPDATE_GYM_RATING, {
     refetchQueries: [GYM_QUERY, "getGym"],
@@ -98,14 +103,27 @@ const GymPageContent = ({ gym, reviews, user }) => {
   };
 
   const onClickAttend = async () => {
-    await updateAttendingGym({
-      variables: {
-        updateAttendingGymInput: {
-          id: user.id,
-          attendingGymId: gym.id,
+    try {
+      await updateAttendingGym({
+        variables: {
+          updateAttendingGymInput: {
+            id: user.id,
+            attendingGymId: gym.id,
+          },
         },
-      },
-    });
+      });
+
+      const payload = {
+        attendingGymId: gym.id,
+      };
+
+      dispatch({
+        type: "UPDATE_ATTENDING_GYM",
+        payload,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -145,9 +163,13 @@ const GymPageContent = ({ gym, reviews, user }) => {
       <div className="gym-container">
         <div className="image-container">
           <img src={imageURL} alt={name} height="350" className="image" />
-          <button className="attendGymBtn" onClick={onClickAttend}>
-            + Attend this gym
-          </button>
+          {user.attendingGymId === gym.id ? (
+            <h2>You are attending this gym!</h2>
+          ) : (
+            <button className="attendGymBtn" onClick={onClickAttend}>
+              + Attend this gym
+            </button>
+          )}
         </div>
         <div className="about-container">
           <h1 className="title">{name}</h1>
