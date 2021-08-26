@@ -5,8 +5,23 @@ import StarRatings from "react-star-ratings";
 
 import BuddyCard from "../BuddyCard";
 
-const InfoSection = ({ firstName, user, buddiesData, buddyRequestData }) => {
-  const { interests, goals, attendingGymId, id, username } = user;
+const InfoSection = ({
+  firstName,
+  user,
+  currentUser,
+  buddiesData,
+  buddyRequestData,
+}) => {
+  const {
+    interests,
+    goals,
+    isGymOwner,
+    ownedGymId,
+    attendingGymId,
+    id,
+    username,
+  } = user;
+
   return (
     <div className="extra-info-container">
       <div className="goals-interests-container">
@@ -39,38 +54,85 @@ const InfoSection = ({ firstName, user, buddiesData, buddyRequestData }) => {
       </div>
       <div className="gym-details-container">
         <div className="box">
-          <h2>Attending Gym</h2>
-          {attendingGymId ? (
-            <a href={`/gyms/${attendingGymId.id}`} className="gym-link">
-              <div className="gym-info">
-                <div>
-                  <img
-                    src={attendingGymId.imageURL}
-                    alt={attendingGymId.name}
-                    width="200"
-                    height="150"
-                  />
-                </div>
-                <div className="gym-details">
-                  <h4>{attendingGymId.name}</h4>
-                  <div>{attendingGymId.city}</div>
-                  <div className="gym-rating">
-                    <StarRatings
-                      rating={attendingGymId.rating}
-                      numberOfStars={5}
-                      starRatedColor="#00b4d8"
-                      starDimension="30px"
-                      starSpacing="3px"
-                    />
+          {!isGymOwner
+            ? [
+                attendingGymId ? (
+                  <div>
+                    <h2>Attending Gym</h2>
+                    <a href={`/gyms/${attendingGymId.id}`} className="gym-link">
+                      <div className="gym-info">
+                        <div>
+                          <img
+                            src={attendingGymId.imageURL}
+                            alt={attendingGymId.name}
+                            width="200"
+                            height="150"
+                          />
+                        </div>
+                        <div className="gym-details">
+                          <h4>{attendingGymId.name}</h4>
+                          <div>{attendingGymId.city}</div>
+                          <div className="gym-rating">
+                            <StarRatings
+                              rating={attendingGymId.rating}
+                              numberOfStars={5}
+                              starRatedColor="#00b4d8"
+                              starDimension="30px"
+                              starSpacing="3px"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </a>
                   </div>
-                </div>
-              </div>
-            </a>
-          ) : (
-            <div className="no-gym">
-              {firstName} does not currently attend a gym.
-            </div>
-          )}
+                ) : (
+                  <div className="no-gym">
+                    <h2>Attending Gym</h2>
+                    <div>{firstName} does not currently attend a gym.</div>
+                  </div>
+                ),
+              ]
+            : [
+                ownedGymId ? (
+                  <div>
+                    <h2>Owned Gym</h2>
+                    <a href={`/gyms/${ownedGymId.id}`} className="gym-link">
+                      <div className="gym-info">
+                        <div>
+                          <img
+                            src={ownedGymId.imageURL}
+                            alt={ownedGymId.name}
+                            width="200"
+                            height="150"
+                          />
+                        </div>
+                        <div className="gym-details">
+                          <h4>{ownedGymId.name}</h4>
+                          <div>{ownedGymId.city}</div>
+                          <div className="gym-rating">
+                            <StarRatings
+                              rating={ownedGymId.rating}
+                              numberOfStars={5}
+                              starRatedColor="#00b4d8"
+                              starDimension="30px"
+                              starSpacing="3px"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                ) : (
+                  <div className="no-gym">
+                    <h2>Own Gym</h2>
+                    {username === currentUser.username ? (
+                      <a href="/gyms/new">Add a gym</a>
+                    ) : (
+                      <div>{firstName} has not registered their gym.</div>
+                    )}
+                  </div>
+                ),
+              ]}
         </div>
       </div>
       <div className="buddies-container">
