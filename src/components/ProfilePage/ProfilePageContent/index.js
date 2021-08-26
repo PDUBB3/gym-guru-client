@@ -1,18 +1,19 @@
-import AboutSection from "../AboutSection";
-import InfoSection from "../InfoSection";
+import { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { useMutation, useQuery } from "@apollo/client";
+import Loader from "react-loader-spinner";
 
-import { BUDDIES_QUERY } from "../../../graphql/queries";
-import { useQuery } from "@apollo/client";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
-
 import Fade from "@material-ui/core/Fade";
+import { Box, Button, makeStyles } from "@material-ui/core";
 
-import { Box, Button, Container, makeStyles } from "@material-ui/core";
+import { BUDDIES_QUERY } from "../../../graphql/queries";
+import { DELETE_USER } from "../../../graphql/mutations";
 
-import Loader from "react-loader-spinner";
-import { useState } from "react";
+import AboutSection from "../AboutSection";
 import SignupAccordian from "../../SignUpAccordion";
+import InfoSection from "../InfoSection";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -45,8 +46,18 @@ const ProfilePageContent = ({ user, currentUser, buddyRequestsData }) => {
   } = user;
 
   const classes = useStyles();
+  const history = useHistory();
 
   const [open, setOpen] = useState(false);
+
+  const [deleteUser, { data, error, loading }] = useMutation(DELETE_USER, {
+    onCompleted: () => {
+      history.push("/");
+    },
+    onError: (e) => {
+      console.log(e);
+    },
+  });
 
   const handleOpen = () => {
     setOpen(true);
@@ -56,8 +67,12 @@ const ProfilePageContent = ({ user, currentUser, buddyRequestsData }) => {
     setOpen(false);
   };
 
-  const onClickDelete = () => {
-    console.log("delete");
+  const onClickDelete = async () => {
+    await deleteUser({
+      variables: {
+        deleteUserId: user.id,
+      },
+    });
   };
 
   const {
@@ -72,7 +87,7 @@ const ProfilePageContent = ({ user, currentUser, buddyRequestsData }) => {
     },
   });
 
-  if (buddiesLoading) {
+  if (loading || buddiesLoading) {
     return (
       <Box display="flex" justifyContent="center" alignItems="center">
         <Loader
