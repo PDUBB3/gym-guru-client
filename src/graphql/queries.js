@@ -82,7 +82,13 @@ export const USER_QUERY = gql`
       firstName
       lastName
       isGymOwner
-      ownedGymId
+      ownedGymId {
+        id
+        name
+        imageURL
+        city
+        rating
+      }
       attendingGymId {
         id
         name
@@ -110,7 +116,6 @@ export const USERS_QUERY = gql`
       lastName
       firstName
       isGymOwner
-      ownedGymId
       attendingGymId {
         name
       }
