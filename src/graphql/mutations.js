@@ -168,3 +168,11 @@ export const UPDATE_USER = gql`
     }
   }
 `;
+
+export const DELETE_USER = gql`
+  mutation Mutation($deleteUserId: ID!) {
+    deleteUser(id: $deleteUserId) {
+      id
+    }
+  }
+`;
