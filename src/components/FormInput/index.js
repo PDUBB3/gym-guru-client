@@ -11,7 +11,8 @@ import "./FormInput.css";
 const useStyles = makeStyles((theme) => ({
   formControl: {
     padding: "8px 16px",
-    minWidth: "100%",
+    minWidth: "20rem",
+    textAlign: "left",
   },
 }));
 
