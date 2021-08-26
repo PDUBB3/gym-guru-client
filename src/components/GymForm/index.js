@@ -271,6 +271,9 @@ const GymForm = ({ gym }) => {
           </AccordionSummary>
           <AccordionDetails className={classes.accordionDetails}>
             {days.map(({ label, value }) => {
+              // look up our data value from db for this day
+              // dayDefaultValue = data value
+              // only if it's edit form
               return (
                 <Box component="div" m={1}>
                   <Box component="div" m={1} className={classes.day}>
@@ -280,6 +283,7 @@ const GymForm = ({ gym }) => {
                         name={`openTime_${value}`}
                         label="Open"
                         control={control}
+                        defaultValue={null}
                         rules={{ required: false }}
                       >
                         {times.map(({ label, value }) => {
