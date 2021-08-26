@@ -56,6 +56,10 @@ const ProfilePageContent = ({ user, currentUser, buddyRequestsData }) => {
     setOpen(false);
   };
 
+  const onClickDelete = () => {
+    console.log("delete");
+  };
+
   const {
     loading: buddiesLoading,
     error: buddiesError,
@@ -91,8 +95,19 @@ const ProfilePageContent = ({ user, currentUser, buddyRequestsData }) => {
             disableElevation
             type="button"
             onClick={handleOpen}
+            style={{ maxWidth: "170px", minWidth: "170px", margin: "1rem" }}
           >
-            Edit
+            Edit Profile
+          </Button>
+          <Button
+            variant="contained"
+            disableElevation
+            type="button"
+            onClick={onClickDelete}
+            color="secondary"
+            style={{ maxWidth: "170px", minWidth: "170px", margin: "1rem" }}
+          >
+            Delete Profile
           </Button>
           <Modal
             aria-labelledby="transition-modal-title"
