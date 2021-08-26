@@ -22,7 +22,8 @@ import "./App.css";
 import UserProvider from "./context/UserContext";
 
 const httpLink = createHttpLink({
-  uri: process.env.GRAPHQL_URL || "http://localhost:4000/",
+  // uri: process.env.GRAPHQL_URL || "http://localhost:4000/",
+  uri: "https://whispering-ocean-57878.herokuapp.com/",
 });
 
 const authLink = setContext((_, { headers }) => {
