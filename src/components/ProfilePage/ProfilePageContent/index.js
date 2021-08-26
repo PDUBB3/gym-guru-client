@@ -108,7 +108,7 @@ const ProfilePageContent = ({ user, currentUser, buddyRequestsData }) => {
           >
             <Fade in={open}>
               <div className={classes.paper}>
-                <SignupAccordian />
+                <SignupAccordian user={user} />
               </div>
             </Fade>
           </Modal>

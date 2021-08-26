@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SignupAccordian = ({ redirect = "/login" }) => {
+const SignupAccordian = ({ user }, { redirect = "/login" }) => {
   const {
     handleSubmit,
     formState: { errors },
@@ -148,6 +148,7 @@ const SignupAccordian = ({ redirect = "/login" }) => {
                 control={control}
                 required={true}
                 classes={classes}
+                defaultValue={user?.firstName}
               />
               <FormInput
                 name="lastName"
@@ -155,26 +156,34 @@ const SignupAccordian = ({ redirect = "/login" }) => {
                 control={control}
                 required={true}
                 classes={classes}
+                defaultValue={user?.lastName}
               />
-              <FormInput
-                name="email"
-                placeholder="Email"
-                control={control}
-                required={true}
-                classes={classes}
-              />
+              {!user && (
+                <FormInput
+                  name="email"
+                  placeholder="Email"
+                  control={control}
+                  required={true}
+                  classes={classes}
+                  defaultValue={user?.email}
+                />
+              )}
+
               <FormInput
                 name="username"
                 placeholder="Username"
                 control={control}
                 required={true}
                 classes={classes}
+                defaultValue={user?.username}
               />
-              <PasswordInput
-                control={control}
-                placeholder="Password"
-                name="password"
-              />
+              {!user && (
+                <PasswordInput
+                  control={control}
+                  placeholder="Password"
+                  name="password"
+                />
+              )}
             </AccordionDetails>
           </Accordion>
           <Accordion
