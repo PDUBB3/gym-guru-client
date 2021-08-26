@@ -16,7 +16,6 @@ const BuddyCard = ({ buddy, userId, username, currentUser }) => {
 
   const [rejectBuddyRequest] = useMutation(REJECTBUDDYREQUEST, {
     refetchQueries: [BUDDIES_QUERY, "getBuddies"],
-
     onError: (error) => {
       console.log(error);
     },
@@ -47,7 +46,6 @@ const BuddyCard = ({ buddy, userId, username, currentUser }) => {
   const onClickDelete = async () => {
     if (buddy.recipientId.id === userId) {
       console.log("hello");
-
       await rejectBuddyRequest({
         variables: {
           rejectBuddyRequestInput: {
@@ -64,7 +62,6 @@ const BuddyCard = ({ buddy, userId, username, currentUser }) => {
           recipientId: buddy.recipientId.id,
           requesterId: userId,
         },
-        v: Math.random(),
       },
     });
   };
@@ -80,9 +77,6 @@ const BuddyCard = ({ buddy, userId, username, currentUser }) => {
   const buddyImage = isRecipient
     ? buddy.requesterId.profileImageUrl
     : buddy.recipientId.profileImageUrl;
-
-  console.log(currentUser);
-  console.log(username);
 
   return (
     <div className="buddy-card">
