@@ -6,17 +6,25 @@ import { useHistory } from "react-router-dom";
 import { useUserContext } from "../../context/UserContext";
 import { LOGIN } from "../../graphql/mutations";
 import FormInput from "../FormInput";
-import { Box } from "@material-ui/core";
+import { Box, makeStyles } from "@material-ui/core";
 import Loader from "react-loader-spinner";
 
 import "./LoginForm.css";
 import "../Button/button.css";
 import PasswordInput from "../PasswordInput";
 
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    padding: "8px 16px",
+    minWidth: "100%",
+    textAlign: "left",
+  },
+}));
+
 const LoginForm = () => {
+  const classes = useStyles();
   const history = useHistory();
   const { dispatch } = useUserContext();
-  const [passwordShown, setPasswordShown] = useState(false);
 
   const {
     handleSubmit,
@@ -72,10 +80,6 @@ const LoginForm = () => {
     );
   }
 
-  const togglePassword = () => {
-    setPasswordShown(!passwordShown);
-  };
-
   return (
     <div className="login-form-container">
       <div className="form-box">
@@ -88,6 +92,7 @@ const LoginForm = () => {
               control={control}
               placeholder="Username"
               name="username"
+              classes={classes}
             />
             <PasswordInput
               control={control}
