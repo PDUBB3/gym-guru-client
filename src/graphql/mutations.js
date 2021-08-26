@@ -172,6 +172,11 @@ export const UPDATE_USER = gql`
   }
 `;
 
+export const DELETE_GYM = gql`
+  mutation Mutation($deleteGymId: ID!) {
+    deleteGym(id: $deleteGymId) {
+      id}`;
+
 export const UPDATE_ATTENDING_GYM = gql`
   mutation Mutation($updateAttendingGymInput: updateAttendingGymInput) {
     updateAttendingGym(input: $updateAttendingGymInput) {
