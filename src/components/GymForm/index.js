@@ -28,6 +28,7 @@ import { useUserContext } from "../../context/UserContext";
 import days from "./days";
 import times from "./times";
 import Loader from "react-loader-spinner";
+import ErrorAlert from "../ErrorAlert";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -96,7 +97,7 @@ const GymForm = ({ gym }) => {
       history.push(`${data.createGym.id}`);
     },
     onError: (error) => {
-      console.log(error);
+      <ErrorAlert error={error} />;
     },
   });
 
@@ -105,7 +106,7 @@ const GymForm = ({ gym }) => {
       history.push(`${data.createGym.id}`);
     },
     onError: (error) => {
-      console.log(error);
+      <ErrorAlert error={error} />;
     },
   });
 
