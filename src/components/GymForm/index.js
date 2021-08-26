@@ -34,18 +34,29 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
   },
   heading: {
-    fontSize: theme.typography.pxToRem(15),
+    fontSize: 20,
     flexBasis: "33.33%",
     flexShrink: 0,
+    color: "#00b4d8",
+    fontWeight: "bold",
   },
-  secondaryHeading: {
-    fontSize: theme.typography.pxToRem(15),
-    color: theme.palette.text.secondary,
+  gymDetails: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  formControl: {
+    padding: "8px 16px",
+    minWidth: "100%",
+    fontSize: 18,
+  },
+  cityAutocomplete: {
+    minWidth: "100%",
+    padding: "0 16px",
+    paddingTop: "15px",
   },
 }));
 
 const GymForm = ({ gym }) => {
-  console.log(gym);
   const classes = useStyles();
 
   const history = useHistory();
@@ -160,13 +171,14 @@ const GymForm = ({ gym }) => {
           >
             <Typography className={classes.heading}>Gym Details</Typography>
           </AccordionSummary>
-          <AccordionDetails>
+          <AccordionDetails className={classes.gymDetails}>
             <FormInput
               name="name"
               placeholder="Name"
               control={control}
               required={true}
               defaultValue={gym?.name}
+              classes={classes}
             />
             <FormInput
               name="address"
@@ -174,14 +186,20 @@ const GymForm = ({ gym }) => {
               control={control}
               required={true}
               defaultValue={gym?.address}
+              classes={classes}
             />
-            <CityAutocomplete control={control} city={gym?.city} />
+            <CityAutocomplete
+              control={control}
+              city={gym?.city}
+              classes={classes}
+            />
             <FormInput
               name="postCode"
               placeholder="Postcode"
               control={control}
               required={true}
               defaultValue={gym?.postCode}
+              classes={classes}
             />
             <FormInput
               name="contactNumber"
@@ -189,6 +207,7 @@ const GymForm = ({ gym }) => {
               control={control}
               required={true}
               defaultValue={gym?.contactNumber}
+              classes={classes}
             />
           </AccordionDetails>
         </Accordion>

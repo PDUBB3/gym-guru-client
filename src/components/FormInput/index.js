@@ -8,23 +8,14 @@ import Input from "@material-ui/core/Input";
 
 import "./FormInput.css";
 
-const useStyles = makeStyles((theme) => ({
-  formControl: {
-    padding: "8px 16px",
-    minWidth: "20rem",
-    textAlign: "left",
-  },
-}));
-
 const FormInput = ({
   placeholder,
   name,
   control,
   required = false,
   defaultValue = "",
+  classes,
 }) => {
-  const classes = useStyles();
-
   return (
     <Box component="div" m={1}>
       <Controller
