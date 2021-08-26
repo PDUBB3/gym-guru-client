@@ -9,6 +9,10 @@ import { setContext } from "@apollo/client/link/context";
 
 import { BuddiesFilterProvider } from "./context/BuddiesFilterContext";
 
+import { ThemeProvider } from "@material-ui/core/styles";
+
+import { createTheme } from "@material-ui/core/styles";
+
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/index";
 
@@ -38,14 +42,27 @@ const client = new ApolloClient({
 });
 
 const App = () => {
+  const theme = createTheme({
+    breakpoints: {
+      values: {
+        xs: 300,
+        sm: 600,
+        md: 960,
+        lg: 1280,
+        xl: 1920,
+      },
+    },
+  });
   return (
     <UserProvider>
       <ApolloProvider client={client}>
         <BuddiesFilterProvider>
-          <Router>
-            <Navbar />
-            <Routes />
-          </Router>
+          <ThemeProvider theme={theme}>
+            <Router>
+              <Navbar />
+              <Routes />
+            </Router>
+          </ThemeProvider>
         </BuddiesFilterProvider>
       </ApolloProvider>
       <Footer />
