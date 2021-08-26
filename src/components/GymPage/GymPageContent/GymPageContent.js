@@ -7,7 +7,11 @@ import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import { Box, Button, Container } from "@material-ui/core";
 
-import { UPDATE_GYM_RATING } from "../../../graphql/mutations";
+import {
+  UPDATE_ATTENDING_GYM,
+  UPDATE_GYM_RATING,
+} from "../../../graphql/mutations";
+
 import { GYM_QUERY } from "../../../graphql/queries";
 import CustomizedAccordions from "../Accordian/Accordian";
 import Reviews from "../Reviews";
@@ -49,6 +53,15 @@ const GymPageContent = ({ gym, reviews, user }) => {
     },
   });
 
+  const [
+    updateAttendingGym,
+    { data: updateData, error: updateError, loading: updateLoading },
+  ] = useMutation(UPDATE_ATTENDING_GYM, {
+    onError: (e) => {
+      console.log(e);
+    },
+  });
+
   const averageRating = () => {
     const allRatings = reviews
       .map((review) => {
@@ -79,6 +92,17 @@ const GymPageContent = ({ gym, reviews, user }) => {
         updateGymRatingInput: {
           id,
           rating: updatedRating,
+        },
+      },
+    });
+  };
+
+  const onClickAttend = async () => {
+    await updateAttendingGym({
+      variables: {
+        updateAttendingGymInput: {
+          id: user.id,
+          attendingGymId: gym.id,
         },
       },
     });
@@ -121,6 +145,9 @@ const GymPageContent = ({ gym, reviews, user }) => {
       <div className="gym-container">
         <div className="image-container">
           <img src={imageURL} alt={name} height="350" className="image" />
+          <button className="attendGymBtn" onClick={onClickAttend}>
+            + Attend this gym
+          </button>
         </div>
         <div className="about-container">
           <h1 className="title">{name}</h1>
