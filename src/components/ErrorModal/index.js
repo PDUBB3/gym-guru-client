@@ -1,9 +1,8 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
-import { useSpring, animated } from "react-spring/web.cjs";
+import Fade from "@material-ui/core/Fade";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -19,38 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Fade = React.forwardRef(function Fade(props, ref) {
-  const { in: open, children, onEnter, onExited, ...other } = props;
-  const style = useSpring({
-    from: { opacity: 0 },
-    to: { opacity: open ? 1 : 0 },
-    onStart: () => {
-      if (open && onEnter) {
-        onEnter();
-      }
-    },
-    onRest: () => {
-      if (!open && onExited) {
-        onExited();
-      }
-    },
-  });
-
-  return (
-    <animated.div ref={ref} style={style} {...other}>
-      {children}
-    </animated.div>
-  );
-});
-
-Fade.propTypes = {
-  children: PropTypes.element,
-  in: PropTypes.bool.isRequired,
-  onEnter: PropTypes.func,
-  onExited: PropTypes.func,
-};
-
-const ErrorModal = () => {
+export default function TransitionsModal() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -65,11 +33,11 @@ const ErrorModal = () => {
   return (
     <div>
       <button type="button" onClick={handleOpen}>
-        react-spring
+        Error
       </button>
       <Modal
-        aria-labelledby="spring-modal-title"
-        aria-describedby="spring-modal-description"
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
         className={classes.modal}
         open={open}
         onClose={handleClose}
@@ -81,16 +49,13 @@ const ErrorModal = () => {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2 id="spring-modal-title">Error</h2>
-            <p id="spring-modal-description">
-              Something went wrong. Our dedicated engineers are working hard on
-              fixing this issue. Please try again in some time.
+            <h2 id="transition-modal-title">Error</h2>
+            <p id="transition-modal-description">
+              Something went wrong. We are working hard to fix the issue.
             </p>
           </div>
         </Fade>
       </Modal>
     </div>
   );
-};
-
-export default ErrorModal;
+}
