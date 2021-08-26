@@ -7,11 +7,12 @@ import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import { Box, Button, Container } from "@material-ui/core";
 
-import { UPDATE_GYM_RATING } from "../../../graphql/mutations";
+import { UPDATE_GYM_RATING, DELETE_GYM } from "../../../graphql/mutations";
 import { GYM_QUERY } from "../../../graphql/queries";
 import CustomizedAccordions from "../Accordian/Accordian";
 import Reviews from "../Reviews";
 import GymForm from "../../GymForm";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -29,8 +30,24 @@ const useStyles = makeStyles((theme) => ({
 
 const GymPageContent = ({ gym, reviews, user }) => {
   const classes = useStyles();
-
+  const history = useHistory();
   const [open, setOpen] = useState(false);
+
+  const [deleteGym] = useMutation(DELETE_GYM, {
+    variables: {
+      deleteGymId: gym.id,
+    },
+    onCompleted: (data) => {
+      history.push(`/${user.username}`);
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  const handleDelete = async () => {
+    await deleteGym();
+  };
 
   const handleOpen = () => {
     setOpen(true);
@@ -97,6 +114,15 @@ const GymPageContent = ({ gym, reviews, user }) => {
             >
               Edit
             </Button>
+            <Button
+              variant="contained"
+              disableElevation
+              type="button"
+              onClick={handleDelete}
+            >
+              Delete
+            </Button>
+
             <Modal
               aria-labelledby="transition-modal-title"
               aria-describedby="transition-modal-description"

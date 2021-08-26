@@ -168,3 +168,11 @@ export const UPDATE_USER = gql`
     }
   }
 `;
+
+export const DELETE_GYM = gql`
+  mutation Mutation($deleteGymId: ID!) {
+    deleteGym(id: $deleteGymId) {
+      id
+    }
+  }
+`;
