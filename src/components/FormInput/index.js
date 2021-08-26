@@ -24,9 +24,9 @@ const FormInput = ({
         rules={{ required }}
         defaultValue={defaultValue}
         render={({ field: { onChange, value }, fieldState: { error } }) => (
-          <FormControl className={classes.formControl}>
+          <FormControl className={classes?.formControl}>
             <InputLabel
-              className={classNames(classes.formControl, {
+              className={classNames(classes?.formControl, {
                 "form-error": error,
               })}
             >

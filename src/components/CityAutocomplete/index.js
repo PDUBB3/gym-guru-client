@@ -25,7 +25,7 @@ const CityAutocomplete = ({ control, city, classes }) => {
               value={value}
               options={cities}
               getOptionLabel={(option) => option.name}
-              className={classes.cityAutocomplete}
+              className={classes?.cityAutocomplete}
               renderInput={(params) => (
                 <TextField {...params} label="Select city" variant="outlined" />
               )}
