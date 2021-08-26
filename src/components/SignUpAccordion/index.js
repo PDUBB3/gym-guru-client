@@ -210,7 +210,7 @@ const SignupAccordian = ({ redirect = "/login" }) => {
                     field: { onChange, value },
                     fieldState: { error },
                   }) => (
-                    <FormControl>
+                    <FormControl className={classes.formControl}>
                       <TextField
                         placeholder="Bio"
                         multiline
@@ -218,7 +218,9 @@ const SignupAccordian = ({ redirect = "/login" }) => {
                         rowsMax={5}
                         value={value}
                         onChange={onChange}
-                        className={classNames({ "form-error": error })}
+                        className={classNames({
+                          "form-error": error,
+                        })}
                       />
                     </FormControl>
                   )}
@@ -275,75 +277,27 @@ const SignupAccordian = ({ redirect = "/login" }) => {
               </Typography>
             </AccordionSummary>
             <AccordionDetails className="signUp-form-container">
-              <Box component="div" m={1}>
-                <Controller
-                  name="facebookUrl"
-                  control={control}
-                  render={({
-                    field: { onChange, value },
-                    fieldState: { error },
-                  }) => (
-                    <FormControl>
-                      <InputLabel
-                        className={classNames({ "form-error": error })}
-                      >
-                        Facebook URL
-                      </InputLabel>
-                      <Input
-                        value={value}
-                        onChange={onChange}
-                        error={!!error}
-                      />
-                    </FormControl>
-                  )}
-                />
-              </Box>
-              <Box component="div" m={1}>
-                <Controller
-                  name="twitterUrl"
-                  control={control}
-                  render={({
-                    field: { onChange, value },
-                    fieldState: { error },
-                  }) => (
-                    <FormControl>
-                      <InputLabel
-                        className={classNames({ "form-error": error })}
-                      >
-                        Twitter URL
-                      </InputLabel>
-                      <Input
-                        value={value}
-                        onChange={onChange}
-                        error={!!error}
-                      />
-                    </FormControl>
-                  )}
-                />
-              </Box>
-              <Box component="div" m={1}>
-                <Controller
-                  name="instagramUrl"
-                  control={control}
-                  render={({
-                    field: { onChange, value },
-                    fieldState: { error },
-                  }) => (
-                    <FormControl>
-                      <InputLabel
-                        className={classNames({ "form-error": error })}
-                      >
-                        Instagram URL
-                      </InputLabel>
-                      <Input
-                        value={value}
-                        onChange={onChange}
-                        error={!!error}
-                      />
-                    </FormControl>
-                  )}
-                />
-              </Box>
+              <FormInput
+                name="facebookUrl"
+                placeholder="Facebook URL"
+                control={control}
+                required={true}
+                classes={classes}
+              />
+              <FormInput
+                name="twitterUrl"
+                placeholder="Twitter URL"
+                control={control}
+                required={true}
+                classes={classes}
+              />
+              <FormInput
+                name="instagramUrl"
+                placeholder="Instagram URL"
+                control={control}
+                required={true}
+                classes={classes}
+              />
             </AccordionDetails>
           </Accordion>
           <div className="sign-up-btn-container">
