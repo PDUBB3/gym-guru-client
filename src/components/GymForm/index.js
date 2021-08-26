@@ -74,7 +74,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const GymForm = ({ gym }) => {
-  const { id } = gym;
+  const id = gym?.id;
+
   const classes = useStyles();
 
   const history = useHistory();
@@ -149,7 +150,6 @@ const GymForm = ({ gym }) => {
   };
 
   const onSubmit = async (formData) => {
-    console.log(formData);
     const openingTimes = days.map((day, dayIndex) => {
       const openTime = getOpeningTimes(formData, `openTime_${day.value}`);
       const closeTime = getOpeningTimes(formData, `closeTime_${day.value}`);
