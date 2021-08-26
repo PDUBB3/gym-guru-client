@@ -10,6 +10,7 @@ import { setContext } from "@apollo/client/link/context";
 import { BuddiesFilterProvider } from "./context/BuddiesFilterContext";
 
 import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/index";
 
 import Routes from "./Routes";
 
@@ -47,6 +48,7 @@ const App = () => {
           </Router>
         </BuddiesFilterProvider>
       </ApolloProvider>
+      <Footer />
     </UserProvider>
   );
 };
