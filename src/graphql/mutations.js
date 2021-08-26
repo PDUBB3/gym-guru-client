@@ -112,6 +112,34 @@ export const ADD_REVIEW = gql`
   }
 `;
 
+export const UPDATE_GYM = gql`
+  mutation Mutation($updateGymInput: updateGymInput) {
+    updateGym(input: $updateGymInput) {
+      id
+      name
+      imageURL
+      address
+      city
+      postCode
+      contactNumber
+      openingTimes {
+        endTime
+        dayName
+        startTime
+      }
+      rating
+      exerciseFacilities {
+        id
+        name
+      }
+      otherFacilities {
+        id
+        name
+      }
+    }
+  }
+`;
+
 export const UPDATE_GYM_RATING = gql`
   mutation UpdateGymRatingMutation($updateGymRatingInput: GymRating) {
     updateGymRating(input: $updateGymRatingInput) {
