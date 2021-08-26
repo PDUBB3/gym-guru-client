@@ -143,7 +143,12 @@ const InfoSection = ({
               <h3>Buddy Requests</h3>
               <div className="cards">
                 {buddyRequestData.map((buddy) => (
-                  <BuddyCard buddy={buddy} userId={id} username={username} />
+                  <BuddyCard
+                    buddy={buddy}
+                    userId={id}
+                    username={username}
+                    currentUser={currentUser}
+                  />
                 ))}
               </div>
             </div>
@@ -153,7 +158,12 @@ const InfoSection = ({
             <div className="cards">
               {buddiesData.length ? (
                 buddiesData.map((buddy) => (
-                  <BuddyCard buddy={buddy} userId={id} username={username} />
+                  <BuddyCard
+                    buddy={buddy}
+                    userId={id}
+                    username={username}
+                    currentUser={currentUser}
+                  />
                 ))
               ) : (
                 <div>{firstName} does not have any gym buddies.</div>

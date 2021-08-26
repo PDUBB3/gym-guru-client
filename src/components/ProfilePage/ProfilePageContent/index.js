@@ -133,8 +133,8 @@ const ProfilePageContent = ({ user, currentUser, buddyRequestsData }) => {
           firstName={firstName}
           buddiesData={buddiesData.getBuddies}
           buddyRequestData={buddyRequestsData}
-          user={rest}
           currentUser={currentUser}
+          user={rest}
         />
       </div>
     </>
