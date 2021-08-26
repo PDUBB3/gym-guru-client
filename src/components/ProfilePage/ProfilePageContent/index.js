@@ -14,6 +14,7 @@ import { DELETE_USER } from "../../../graphql/mutations";
 import AboutSection from "../AboutSection";
 import SignupAccordian from "../../SignUpAccordion";
 import InfoSection from "../InfoSection";
+import { useUserContext } from "../../../context/UserContext";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -50,6 +51,7 @@ const ProfilePageContent = ({ user, currentUser, buddyRequestsData }) => {
 
   const classes = useStyles();
   const history = useHistory();
+  const { dispatch } = useUserContext();
 
   const [open, setOpen] = useState(false);
   const [confirmOpen, setConfirmOpen] = useState(false);
@@ -85,6 +87,8 @@ const ProfilePageContent = ({ user, currentUser, buddyRequestsData }) => {
         deleteUserId: user.id,
       },
     });
+    localStorage.removeItem("user");
+    dispatch({ type: "LOGOUT" });
   };
 
   const {
