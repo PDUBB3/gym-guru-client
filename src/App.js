@@ -14,6 +14,7 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import { createTheme } from "@material-ui/core/styles";
 
 import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/index";
 
 import Routes from "./Routes";
 
@@ -64,6 +65,7 @@ const App = () => {
           </ThemeProvider>
         </BuddiesFilterProvider>
       </ApolloProvider>
+      <Footer />
     </UserProvider>
   );
 };

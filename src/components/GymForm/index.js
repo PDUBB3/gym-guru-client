@@ -17,7 +17,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Divider from "@material-ui/core/Divider";
 
 import { GYMS_QUERY } from "../../graphql/queries";
-import { CREATE_GYM } from "../../graphql/mutations";
+import { CREATE_GYM, UPDATE_GYM } from "../../graphql/mutations";
 
 import ImageUploader from "../ImageUploader";
 import CityAutocomplete from "../CityAutocomplete";
@@ -28,6 +28,7 @@ import { useUserContext } from "../../context/UserContext";
 import days from "./days";
 import times from "./times";
 import Loader from "react-loader-spinner";
+import ErrorAlert from "../ErrorAlert";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -74,6 +75,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const GymForm = ({ gym }) => {
+  const id = gym?.id;
+
   const classes = useStyles();
 
   const history = useHistory();
@@ -94,7 +97,16 @@ const GymForm = ({ gym }) => {
       history.push(`${data.createGym.id}`);
     },
     onError: (error) => {
-      console.log(error);
+      <ErrorAlert error={error} />;
+    },
+  });
+
+  const [updateGym] = useMutation(UPDATE_GYM, {
+    onCompleted: (data) => {
+      history.push(`${data.createGym.id}`);
+    },
+    onError: (error) => {
+      <ErrorAlert error={error} />;
     },
   });
 
@@ -157,21 +169,40 @@ const GymForm = ({ gym }) => {
 
     const { name, address, city, postCode, contactNumber } = formData;
 
-    const { data } = await createGym({
-      variables: {
-        createGymInput: {
-          name,
-          imageURL: imageUrl,
-          address,
-          city,
-          postCode,
-          contactNumber,
-          openingTimes,
-          otherFacilities,
-          exerciseFacilities,
+    if (!gym) {
+      const { data } = await createGym({
+        variables: {
+          createGymInput: {
+            name,
+            imageURL: imageUrl,
+            address,
+            city,
+            postCode,
+            contactNumber,
+            openingTimes,
+            otherFacilities,
+            exerciseFacilities,
+          },
         },
-      },
-    });
+      });
+    } else {
+      await updateGym({
+        variables: {
+          updateGymInput: {
+            id,
+            name,
+            imageURL: imageUrl,
+            address,
+            city,
+            postCode,
+            contactNumber,
+            openingTimes,
+            otherFacilities,
+            exerciseFacilities,
+          },
+        },
+      });
+    }
   };
 
   return (
@@ -241,6 +272,19 @@ const GymForm = ({ gym }) => {
           </AccordionSummary>
           <AccordionDetails className={classes.accordionDetails}>
             {days.map(({ label, value }) => {
+              let openDefaultValue = null;
+              let closeDefaultValue = null;
+
+              if (gym) {
+                const { openingTimes } = gym;
+                const dayObject = openingTimes.find((day) => {
+                  return day.dayName === label;
+                });
+
+                openDefaultValue = dayObject.startTime;
+                closeDefaultValue = dayObject.endTime;
+              }
+
               return (
                 <Box component="div" m={1}>
                   <Box component="div" m={1} className={classes.day}>
@@ -250,6 +294,7 @@ const GymForm = ({ gym }) => {
                         name={`openTime_${value}`}
                         label="Open"
                         control={control}
+                        defaultValue={openDefaultValue}
                         rules={{ required: false }}
                       >
                         {times.map(({ label, value }) => {
@@ -266,6 +311,7 @@ const GymForm = ({ gym }) => {
                         name={`closeTime_${value}`}
                         label="Close"
                         control={control}
+                        defaultValue={closeDefaultValue}
                         rules={{ required: false }}
                       >
                         {times.map(({ label, value }) => {

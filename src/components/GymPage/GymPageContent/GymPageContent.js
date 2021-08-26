@@ -7,11 +7,18 @@ import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import { Box, Button, Container } from "@material-ui/core";
 
-import { UPDATE_GYM_RATING } from "../../../graphql/mutations";
+import {
+  UPDATE_GYM_RATING,
+  UPDATE_ATTENDING_GYM,
+  DELETE_GYM,
+} from "../../../graphql/mutations";
+
 import { GYM_QUERY } from "../../../graphql/queries";
 import CustomizedAccordions from "../Accordian/Accordian";
 import Reviews from "../Reviews";
 import GymForm from "../../GymForm";
+import { useHistory } from "react-router-dom";
+import { useUserContext } from "../../../context/UserContext";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -24,13 +31,32 @@ const useStyles = makeStyles((theme) => ({
     border: "2px solid #000",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+    width: "75%",
+    maxHeight: "75%",
+    overflowY: "auto",
   },
 }));
 
 const GymPageContent = ({ gym, reviews, user }) => {
   const classes = useStyles();
-
+  const history = useHistory();
   const [open, setOpen] = useState(false);
+
+  const [deleteGym] = useMutation(DELETE_GYM, {
+    variables: {
+      deleteGymId: gym.id,
+    },
+    onCompleted: (data) => {
+      history.push(`/${user.username}`);
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  const handleDelete = async () => {
+    await deleteGym();
+  };
 
   const handleOpen = () => {
     setOpen(true);
@@ -42,10 +68,21 @@ const GymPageContent = ({ gym, reviews, user }) => {
 
   const { id, name, rating, imageURL, ...rest } = gym;
 
+  const { dispatch } = useUserContext();
+
   const [updateGymRating] = useMutation(UPDATE_GYM_RATING, {
     refetchQueries: [GYM_QUERY, "getGym"],
     onError: (error) => {
       console.log(error);
+    },
+  });
+
+  const [
+    updateAttendingGym,
+    { data: updateData, error: updateError, loading: updateLoading },
+  ] = useMutation(UPDATE_ATTENDING_GYM, {
+    onError: (e) => {
+      console.log(e);
     },
   });
 
@@ -84,6 +121,30 @@ const GymPageContent = ({ gym, reviews, user }) => {
     });
   };
 
+  const onClickAttend = async () => {
+    try {
+      await updateAttendingGym({
+        variables: {
+          updateAttendingGymInput: {
+            id: user.id,
+            attendingGymId: gym.id,
+          },
+        },
+      });
+
+      const payload = {
+        attendingGymId: gym.id,
+      };
+
+      dispatch({
+        type: "UPDATE_ATTENDING_GYM",
+        payload,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
       <Container maxWidth="lg">
@@ -97,6 +158,15 @@ const GymPageContent = ({ gym, reviews, user }) => {
             >
               Edit
             </Button>
+            <Button
+              variant="contained"
+              disableElevation
+              type="button"
+              onClick={handleDelete}
+            >
+              Delete
+            </Button>
+
             <Modal
               aria-labelledby="transition-modal-title"
               aria-describedby="transition-modal-description"
@@ -121,6 +191,20 @@ const GymPageContent = ({ gym, reviews, user }) => {
       <div className="gym-container">
         <div className="image-container">
           <img src={imageURL} alt={name} height="350" className="image" />
+          {user.attendingGymId === gym.id ? (
+            <h2>You are attending this gym!</h2>
+          ) : (
+            [
+              user.attendingGymId && (
+                <button
+                  className="attendGymBtn view-btn"
+                  onClick={onClickAttend}
+                >
+                  + Attend this gym
+                </button>
+              ),
+            ]
+          )}
         </div>
         <div className="about-container">
           <h1 className="title">{name}</h1>

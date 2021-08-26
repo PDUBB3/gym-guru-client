@@ -33,7 +33,6 @@ const HomePage = (props) => {
   }
 
   const { gyms } = data;
-  console.log(gyms);
 
   return (
     <>

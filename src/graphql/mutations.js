@@ -112,12 +112,88 @@ export const ADD_REVIEW = gql`
   }
 `;
 
+export const UPDATE_GYM = gql`
+  mutation Mutation($updateGymInput: updateGymInput) {
+    updateGym(input: $updateGymInput) {
+      id
+      name
+      imageURL
+      address
+      city
+      postCode
+      contactNumber
+      openingTimes {
+        endTime
+        dayName
+        startTime
+      }
+      rating
+      exerciseFacilities {
+        id
+        name
+      }
+      otherFacilities {
+        id
+        name
+      }
+    }
+  }
+`;
+
 export const UPDATE_GYM_RATING = gql`
   mutation UpdateGymRatingMutation($updateGymRatingInput: GymRating) {
     updateGymRating(input: $updateGymRatingInput) {
       name
       id
       rating
+    }
+  }
+`;
+
+export const UPDATE_USER = gql`
+  mutation UpdateUserMutation($updateUserInput: updateUserInput) {
+    updateUser(input: $updateUserInput) {
+      username
+      firstName
+      lastName
+      isGymOwner
+      attendingGymId {
+        name
+      }
+      profileImageUrl
+      city
+      bio
+      goals
+      interests
+      facebookUrl
+      twitterUrl
+      instagramUrl
+    }
+  }
+`;
+
+export const DELETE_USER = gql`
+  mutation Mutation($deleteUserId: ID!) {
+    deleteUser(id: $deleteUserId) {
+      id
+     }
+   }
+ `
+export const DELETE_GYM = gql`
+  mutation Mutation($deleteGymId: ID!) {
+    deleteGym(id: $deleteGymId) {
+      id}
+      }`;
+
+export const UPDATE_ATTENDING_GYM = gql`
+  mutation Mutation($updateAttendingGymInput: updateAttendingGymInput) {
+    updateAttendingGym(input: $updateAttendingGymInput) {
+      username
+      firstName
+      lastName
+      attendingGymId {
+        name
+      }
     }
   }
 `;

@@ -12,19 +12,16 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
 import Box from "@material-ui/core/Box";
-import Input from "@material-ui/core/Input";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import TextField from "@material-ui/core/TextField";
 
-import { SIGNUP } from "../../graphql/mutations";
+import { SIGNUP, UPDATE_USER } from "../../graphql/mutations";
 
 import ImageUploader from "../ImageUploader";
 import MultiSelectDropDown from "../MultiSelectDropDown";
 import CityAutocomplete from "../CityAutocomplete";
-import { useUserContext } from "../../context/UserContext";
 
 import "../../pages/SignUpPage/SignUpPage.css";
 import Loader from "react-loader-spinner";
@@ -36,9 +33,11 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
   },
   heading: {
-    fontSize: theme.typography.pxToRem(15),
+    fontSize: 20,
     flexBasis: "33.33%",
     flexShrink: 0,
+    color: "#00b4d8",
+    fontWeight: "bold",
   },
   secondaryHeading: {
     fontSize: theme.typography.pxToRem(15),
@@ -51,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SignupAccordian = ({ redirect = "/login" }) => {
+const SignupAccordian = ({ user }, { redirect = "/login" }) => {
   const {
     handleSubmit,
     formState: { errors },
@@ -68,26 +67,49 @@ const SignupAccordian = ({ redirect = "/login" }) => {
       console.log(e);
     },
   });
+
+  const [
+    updateUser,
+    { data: updateData, error: updateError, loading: updateLoading },
+  ] = useMutation(UPDATE_USER, {
+    onCompleted: () => {
+      history.push(redirect);
+    },
+    onError: (e) => {
+      console.log(e);
+    },
+  });
   const classes = useStyles();
 
   const [expanded, setExpanded] = useState(false);
   const [images, setImages] = useState([]);
-  const [imageUrl, setImageUrl] = useState();
+  const [imageUrl, setImageUrl] = useState(user?.profileImageUrl);
 
   const onSubmit = async (formData) => {
     formData.username = formData.username.toLowerCase();
-    try {
-      await signUp({
+    if (!user) {
+      try {
+        await signUp({
+          variables: {
+            signUpInput: { ...formData, profileImageUrl: imageUrl },
+          },
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      await updateUser({
         variables: {
-          signUpInput: formData,
+          updateUserInput: {
+            id: user.id,
+            ...formData,
+          },
         },
       });
-    } catch (error) {
-      console.log(error);
     }
   };
 
-  if (loading) {
+  if (loading || updateLoading) {
     return (
       <Box display="flex" justifyContent="center" alignItems="center">
         <Loader
@@ -137,9 +159,7 @@ const SignupAccordian = ({ redirect = "/login" }) => {
               aria-controls="panel1bh-content"
               id="panel1bh-header"
             >
-              <Typography className={classes.heading}>
-                1. Basic details
-              </Typography>
+              <Typography className={classes.heading}>Basic details</Typography>
             </AccordionSummary>
             <AccordionDetails className="signUp-form-container">
               <FormInput
@@ -148,6 +168,7 @@ const SignupAccordian = ({ redirect = "/login" }) => {
                 control={control}
                 required={true}
                 classes={classes}
+                defaultValue={user?.firstName}
               />
               <FormInput
                 name="lastName"
@@ -155,26 +176,34 @@ const SignupAccordian = ({ redirect = "/login" }) => {
                 control={control}
                 required={true}
                 classes={classes}
+                defaultValue={user?.lastName}
               />
-              <FormInput
-                name="email"
-                placeholder="Email"
-                control={control}
-                required={true}
-                classes={classes}
-              />
+              {!user && (
+                <FormInput
+                  name="email"
+                  placeholder="Email"
+                  control={control}
+                  required={true}
+                  classes={classes}
+                  defaultValue={user?.email}
+                />
+              )}
+
               <FormInput
                 name="username"
                 placeholder="Username"
                 control={control}
                 required={true}
                 classes={classes}
+                defaultValue={user?.username}
               />
-              <PasswordInput
-                control={control}
-                placeholder="Password"
-                name="password"
-              />
+              {!user && (
+                <PasswordInput
+                  control={control}
+                  placeholder="Password"
+                  name="password"
+                />
+              )}
             </AccordionDetails>
           </Accordion>
           <Accordion
@@ -187,7 +216,7 @@ const SignupAccordian = ({ redirect = "/login" }) => {
               id="panel2bh-header"
             >
               <Typography className={classes.heading}>
-                2. Create your profile
+                Create your profile
               </Typography>
             </AccordionSummary>
             <AccordionDetails className="signUp-form-container">
@@ -200,12 +229,13 @@ const SignupAccordian = ({ redirect = "/login" }) => {
                   prefix={"user/images/"}
                 />
               </Box>
-              <CityAutocomplete control={control} />
+              <CityAutocomplete control={control} city={user?.city} />
               <Box component="div" m={1}>
                 <Controller
                   name="bio"
                   control={control}
                   rules={{ required: "Bio is required" }}
+                  defaultValue={user?.bio}
                   render={({
                     field: { onChange, value },
                     fieldState: { error },
@@ -232,6 +262,7 @@ const SignupAccordian = ({ redirect = "/login" }) => {
                   placeholder="Goals"
                   name="goals"
                   control={control}
+                  defaults={user?.goals}
                 />
               </Box>
               <Box component="div" m={1}>
@@ -240,6 +271,7 @@ const SignupAccordian = ({ redirect = "/login" }) => {
                   placeholder="Interests"
                   name="interests"
                   control={control}
+                  defaults={user?.interests}
                 />
               </Box>
               <Box component="div" m={1}>
@@ -273,7 +305,7 @@ const SignupAccordian = ({ redirect = "/login" }) => {
               id="panel3bh-header"
             >
               <Typography className={classes.heading}>
-                3. Add your social media info
+                Add your social media info
               </Typography>
             </AccordionSummary>
             <AccordionDetails className="signUp-form-container">
@@ -283,6 +315,7 @@ const SignupAccordian = ({ redirect = "/login" }) => {
                 control={control}
                 required={true}
                 classes={classes}
+                defaultValue={user?.facebookUrl}
               />
               <FormInput
                 name="twitterUrl"
@@ -290,6 +323,7 @@ const SignupAccordian = ({ redirect = "/login" }) => {
                 control={control}
                 required={true}
                 classes={classes}
+                defaultValue={user?.twitterUrl}
               />
               <FormInput
                 name="instagramUrl"
@@ -297,12 +331,13 @@ const SignupAccordian = ({ redirect = "/login" }) => {
                 control={control}
                 required={true}
                 classes={classes}
+                defaultValue={user?.instagramUrl}
               />
             </AccordionDetails>
           </Accordion>
           <div className="sign-up-btn-container">
             <button className="sign-up-btn" type="submit">
-              Submit
+              {user ? "Update" : "Submit"}
             </button>
           </div>
         </form>

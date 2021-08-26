@@ -1,14 +1,27 @@
 // Importing react
 import React from "react";
-import { useUserContext } from "../../context/UserContext";
+import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
-import Logo from "../../assets/img/gym-guru-whitebg-nav-logo.png";
+import { useUserContext } from "../../context/UserContext";
+import Logo from "../../assets/img/gym-guru-white.png";
 
 import "./Navbar.css";
 
-const Navbar = (props) => {
-  const { state, dispatch } = useUserContext();
+const useStyles = makeStyles({
+  root: {
+    background: "linear-gradient(45deg, #3a7bd5 30%, #00b4d8 90%)",
+    border: 0,
+    borderRadius: 3,
+    boxShadow: "0 3px 5px 2px #666769",
+    color: "white",
+    height: 48,
+    padding: "0 30px",
+  },
+});
 
+const Navbar = (props) => {
+  const classes = useStyles();
+  const { state, dispatch } = useUserContext();
   const history = useHistory();
   const handleLogout = () => {
     history.push("/login");
@@ -17,64 +30,65 @@ const Navbar = (props) => {
   };
 
   return (
-    <div id="nav-container">
+    <div id="nav-container" className={classes.root}>
       <nav className="navbar">
-        <div id="nav-item-container">
+        <div id="navlogo">
           <img
-            className="navlogo"
             src={Logo}
-            alt="gym-guru-logo"
-            width="55"
-            height="45"
-          />{" "}
+            width="48"
+            height="40"
+            className="d-inline-block "
+            alt="gymguru logo"
+          />
         </div>
-        <div id="nav-item-container">
-          <a className="navbarLink" href="/">
-            Home
-          </a>
+        <div className="nav-links">
+          <div id="nav-item-container">
+            <a className="navbarLink" href="/">
+              Home
+            </a>
+          </div>
+          {state.user ? (
+            <>
+              <div id="nav-item-container">
+                <a className="navbarLink" href={`/${state.user.username}`}>
+                  My Profile
+                </a>
+              </div>
+              <div id="nav-item-container">
+                <a className="navbarLink" href="/findbuddies">
+                  Buddies
+                </a>
+              </div>
+              <div id="nav-item-container">
+                <button
+                  type="submit"
+                  className="navbarLink"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </button>
+              </div>
+            </>
+          ) : (
+            <>
+              <div id="nav-item-container">
+                <a className="navbarLink" href="/login">
+                  Login
+                </a>
+              </div>
+              <div id="nav-item-container">
+                <a className="navbarLink" href="/signup">
+                  Signup
+                </a>
+              </div>
+            </>
+          )}
+          <div id="nav-item-container">
+            <a className="navbarLink" href="/gyms">
+              Gyms
+            </a>
+          </div>
         </div>
-        {state.user && (
-          <>
-            <div id="nav-item-container">
-              <a className="navbarLink" href={`/${state.user.username}`}>
-                My Profile
-              </a>
-            </div>
-            <div id="nav-item-container">
-              <a className="navbarLink" href="/findbuddies">
-                Buddies
-              </a>
-            </div>
-          </>
-        )}
-        {!state.user && (
-          <>
-            <div id="nav-item-container">
-              <a className="navbarLink" href="/login">
-                Login
-              </a>
-            </div>
-            <div id="nav-item-container">
-              <a className="navbarLink" href="/signup">
-                Signup
-              </a>
-            </div>
-          </>
-        )}
-        <div id="nav-item-container">
-          <a className="navbarLink" href="/gyms">
-            Gyms
-          </a>
-        </div>
-        {state.user && (
-          <>
-            <div id="nav-item-container">
-              <button className="navbarLink" onClick={handleLogout}>
-                Logout
-              </button>
-            </div>
-          </>
-        )}
       </nav>
     </div>
   );

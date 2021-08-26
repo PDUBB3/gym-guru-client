@@ -11,12 +11,17 @@
   width: 50%;
   text-align: center;
   align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .image {
   border-radius: 25px;
   max-width: 500px;
   box-shadow: 0px 0px 20px #00b4d8;
+  margin-top: 4rem;
 }
 
 .about-container {
@@ -79,6 +84,10 @@
   width: 50%;
   text-align: left;
   align-self: center;
+}
+
+.attendGymBtn {
+  max-width: none;
 }
 
 @media screen and (max-width: 1100px) {

@@ -3,8 +3,12 @@ import { useState } from "react";
 import StarRatings from "react-star-ratings";
 import ReviewModal from "../ReviewModal";
 
+import { useUserContext } from "../../../context/UserContext";
+
 const Reviews = ({ reviews, rating, updateRating }) => {
   const [open, setOpen] = useState(false);
+
+  const { state } = useUserContext();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -50,7 +54,7 @@ const Reviews = ({ reviews, rating, updateRating }) => {
             </div>
           );
         })}
-        <button onClick={handleClickOpen}>Add review</button>
+        {state.user && <button onClick={handleClickOpen}>Add review</button>}
         <ReviewModal
           handleClose={handleClose}
           open={open}
