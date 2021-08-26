@@ -151,9 +151,13 @@ const InfoSection = ({
           <div className="buddyContainer">
             {buddyRequestData.length > 0 && <h3>Buddies</h3>}
             <div className="cards">
-              {buddiesData.map((buddy) => (
-                <BuddyCard buddy={buddy} userId={id} username={username} />
-              ))}
+              {buddiesData.length ? (
+                buddiesData.map((buddy) => (
+                  <BuddyCard buddy={buddy} userId={id} username={username} />
+                ))
+              ) : (
+                <div>{firstName} does not have any gym buddies.</div>
+              )}
             </div>
           </div>
         </div>
