@@ -8,22 +8,14 @@ import Input from "@material-ui/core/Input";
 
 import "./FormInput.css";
 
-const useStyles = makeStyles((theme) => ({
-  formControl: {
-    padding: "8px 16px",
-    minWidth: "100%",
-  },
-}));
-
 const FormInput = ({
   placeholder,
   name,
   control,
   required = false,
   defaultValue = "",
+  classes,
 }) => {
-  const classes = useStyles();
-
   return (
     <Box component="div" m={1}>
       <Controller
@@ -32,9 +24,9 @@ const FormInput = ({
         rules={{ required }}
         defaultValue={defaultValue}
         render={({ field: { onChange, value }, fieldState: { error } }) => (
-          <FormControl className={classes.formControl}>
+          <FormControl className={classes?.formControl}>
             <InputLabel
-              className={classNames(classes.formControl, {
+              className={classNames(classes?.formControl, {
                 "form-error": error,
               })}
             >
