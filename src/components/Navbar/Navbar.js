@@ -41,51 +41,53 @@ const Navbar = (props) => {
             alt="gymguru logo"
           />
         </div>
-        <div id="nav-item-container">
-          <a className="navbarLink" href="/">
-            Home
-          </a>
-        </div>
-        {state.user ? (
-          <>
-            <div id="nav-item-container">
-              <a className="navbarLink" href={`/${state.user.username}`}>
-                My Profile
-              </a>
-            </div>
-            <div id="nav-item-container">
-              <a className="navbarLink" href="/findbuddies">
-                Buddies
-              </a>
-            </div>
-            <div id="nav-item-container">
-              <button
-                type="submit"
-                className="navbarLink"
-                onClick={handleLogout}
-              >
-                Logout
-              </button>
-            </div>
-          </>
-        ) : (
-          <>
-            <div id="nav-item-container">
-              <a className="navbarLink" href="/login">
-                Login
-              </a>
-            </div>
-            <div id="nav-item-container">
-              <a className="navbarLink" href="/signup">
-                Signup
-              </a>
-            </div>
-          </>
-        )}
-        <div id="nav-item-container">
-          <a className="navbarLink" href="/gyms">
-            Gyms
-          </a>
+        <div className="nav-links">
+          <div id="nav-item-container">
+            <a className="navbarLink" href="/">
+              Home
+            </a>
+          </div>
+          {state.user ? (
+            <>
+              <div id="nav-item-container">
+                <a className="navbarLink" href={`/${state.user.username}`}>
+                  My Profile
+                </a>
+              </div>
+              <div id="nav-item-container">
+                <a className="navbarLink" href="/findbuddies">
+                  Buddies
+                </a>
+              </div>
+              <div id="nav-item-container">
+                <button
+                  type="submit"
+                  className="navbarLink"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </button>
+              </div>
+            </>
+          ) : (
+            <>
+              <div id="nav-item-container">
+                <a className="navbarLink" href="/login">
+                  Login
+                </a>
+              </div>
+              <div id="nav-item-container">
+                <a className="navbarLink" href="/signup">
+                  Signup
+                </a>
+              </div>
+            </>
+          )}
+          <div id="nav-item-container">
+            <a className="navbarLink" href="/gyms">
+              Gyms
+            </a>
+          </div>
         </div>
       </nav>
     </div>
