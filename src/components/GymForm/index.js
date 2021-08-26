@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#00b4d8",
     fontWeight: "bold",
   },
-  gymDetails: {
+  accordionDetails: {
     display: "flex",
     flexDirection: "column",
   },
@@ -53,6 +53,23 @@ const useStyles = makeStyles((theme) => ({
     minWidth: "100%",
     padding: "0 16px",
     paddingTop: "15px",
+  },
+  label: {
+    fontSize: 17,
+    fontWeight: "bold",
+    color: "black",
+  },
+  day: {
+    display: "flex",
+    justifyContent: "space-evenly",
+    alignContent: "middle",
+  },
+  dayDropdown: {
+    width: "25%",
+  },
+  accordionDetailsFacilities: {
+    display: "flex",
+    justifyContent: "space-evenly",
   },
 }));
 
@@ -171,7 +188,7 @@ const GymForm = ({ gym }) => {
           >
             <Typography className={classes.heading}>Gym Details</Typography>
           </AccordionSummary>
-          <AccordionDetails className={classes.gymDetails}>
+          <AccordionDetails className={classes.accordionDetails}>
             <FormInput
               name="name"
               placeholder="Name"
@@ -222,58 +239,60 @@ const GymForm = ({ gym }) => {
           >
             <Typography className={classes.heading}>Opening Hours</Typography>
           </AccordionSummary>
-          <AccordionDetails>
+          <AccordionDetails className={classes.accordionDetails}>
             {days.map(({ label, value }) => {
               return (
-                <Box>
-                  <Typography>{label}</Typography>
-                  <FormControlLabel
-                    control={
-                      <Controller
-                        name={`isClosed_${value}`}
+                <Box component="div" m={1}>
+                  <Box component="div" m={1} className={classes.day}>
+                    <Typography className={classes.label}>{label}</Typography>
+                    <Box component="div" m={1} className={classes.dayDropdown}>
+                      <ReactHookFormSelect
+                        name={`openTime_${value}`}
+                        label="Open"
                         control={control}
-                        defaultValue={false}
-                        render={({ field: { onChange, value } }) => {
+                        rules={{ required: false }}
+                      >
+                        {times.map(({ label, value }) => {
                           return (
-                            <Checkbox checked={value} onChange={onChange} />
+                            <MenuItem name={value} value={value} key={value}>
+                              {label}
+                            </MenuItem>
                           );
-                        }}
-                      />
-                    }
-                    label="Closed"
-                    key={value}
-                  />
-                  <Box component="div" m={1}>
-                    <ReactHookFormSelect
-                      name={`openTime_${value}`}
-                      label="Open"
-                      control={control}
-                      rules={{ required: false }}
-                    >
-                      {times.map(({ label, value }) => {
-                        return (
-                          <MenuItem name={value} value={value} key={value}>
-                            {label}
-                          </MenuItem>
-                        );
-                      })}
-                    </ReactHookFormSelect>
-                  </Box>
-                  <Box component="div" m={1}>
-                    <ReactHookFormSelect
-                      name={`closeTime_${value}`}
-                      label="Close"
-                      control={control}
-                      rules={{ required: false }}
-                    >
-                      {times.map(({ label, value }) => {
-                        return (
-                          <MenuItem name={value} value={value} key={value}>
-                            {label}
-                          </MenuItem>
-                        );
-                      })}
-                    </ReactHookFormSelect>
+                        })}
+                      </ReactHookFormSelect>
+                    </Box>
+                    <Box component="div" m={1} className={classes.dayDropdown}>
+                      <ReactHookFormSelect
+                        name={`closeTime_${value}`}
+                        label="Close"
+                        control={control}
+                        rules={{ required: false }}
+                      >
+                        {times.map(({ label, value }) => {
+                          return (
+                            <MenuItem name={value} value={value} key={value}>
+                              {label}
+                            </MenuItem>
+                          );
+                        })}
+                      </ReactHookFormSelect>
+                    </Box>
+                    <FormControlLabel
+                      control={
+                        <Controller
+                          name={`isClosed_${value}`}
+                          control={control}
+                          defaultValue={false}
+                          render={({ field: { onChange, value } }) => {
+                            return (
+                              <Checkbox checked={value} onChange={onChange} />
+                            );
+                          }}
+                        />
+                      }
+                      label="Closed"
+                      key={value}
+                    />
                   </Box>
                 </Box>
               );
@@ -291,7 +310,7 @@ const GymForm = ({ gym }) => {
           >
             <Typography className={classes.heading}>Facilities</Typography>
           </AccordionSummary>
-          <AccordionDetails>
+          <AccordionDetails className={classes.accordionDetailsFacilities}>
             <FacilitiesCheckboxes
               control={control}
               classes={classes}

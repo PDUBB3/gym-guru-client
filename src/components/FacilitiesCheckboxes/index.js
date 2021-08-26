@@ -15,14 +15,14 @@ const FacilitiesCheckboxes = ({
 }) => {
   const facilityIds = facilities.map((each) => each.id);
   const selectedFacilityIds = selectedFacilities.map((each) => each.id);
-  console.log(facilityIds);
-  console.log(selectedFacilityIds);
 
   return (
     <Box component="div">
-      <FormControl component="fieldset" className={classes.formControl}>
-        <FormLabel component="legend">{label}</FormLabel>
-        <FormGroup className={classes.checkboxesContainer}>
+      <FormControl component="fieldset" className={classes?.formControl}>
+        <FormLabel component="legend" className={classes?.label}>
+          {label}
+        </FormLabel>
+        <FormGroup className={classes?.checkboxesContainer}>
           {facilities.map((facility) => {
             console.log(selectedFacilityIds.includes(facility.id));
             return (
