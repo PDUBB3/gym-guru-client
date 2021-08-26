@@ -49,12 +49,10 @@ const ProfilePage = () => {
     return <div>error no data</div>;
   }
 
-  const user = data.findUser;
-
   return (
     <div>
       <ProfilePageContent
-        user={user}
+        user={data.findUser}
         currentUser={state.user}
         buddyRequestsData={buddyRequestsData.getBuddies}
       />
