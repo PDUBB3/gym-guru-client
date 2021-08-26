@@ -18,12 +18,18 @@
 }
 
 .view-btn {
-  font-size: 1rem;
+  font-size: 1.5rem;
   margin-bottom: 0.5rem;
+  padding: 0.5rem 1.5rem;
+  background-color: #00b4d8;
+  border: 1px solid #00b4d8;
+  border-radius: 10px;
   text-decoration: none;
-  color: #00b4d8;
+  color: white;
 }
 
-.card-icon {
-  padding: 0.2rem;
+.view-btn:hover {
+  color: #00b4d8;
+  background-color: white;
+  border: 1px solid #00b4d8;
 }

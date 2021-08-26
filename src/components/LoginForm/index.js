@@ -6,15 +6,25 @@ import { useHistory } from "react-router-dom";
 import { useUserContext } from "../../context/UserContext";
 import { LOGIN } from "../../graphql/mutations";
 import FormInput from "../FormInput";
+import { Box, makeStyles } from "@material-ui/core";
+import Loader from "react-loader-spinner";
 
 import "./LoginForm.css";
 import "../Button/button.css";
 import PasswordInput from "../PasswordInput";
 
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    padding: "8px 16px",
+    minWidth: "100%",
+    textAlign: "left",
+  },
+}));
+
 const LoginForm = () => {
+  const classes = useStyles();
   const history = useHistory();
   const { dispatch } = useUserContext();
-  const [passwordShown, setPasswordShown] = useState(false);
 
   const {
     handleSubmit,
@@ -29,6 +39,9 @@ const LoginForm = () => {
         email: data.login.user.email,
         username: data.login.user.username,
         id: data.login.user.id,
+        isGymOwner: data.login.user.isGymOwner,
+        ownedGymId: data.login.user.ownedGymId,
+        attendingGymId: data.login.user.attendingGymId,
       };
 
       localStorage.setItem("user", JSON.stringify(payload));
@@ -54,12 +67,18 @@ const LoginForm = () => {
   };
 
   if (loading) {
-    return <h1>Loading...</h1>;
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center">
+        <Loader
+          type="Circles"
+          color="#00BFFF"
+          height={100}
+          width={100}
+          timeout={3000} //3 secs
+        />
+      </Box>
+    );
   }
-
-  const togglePassword = () => {
-    setPasswordShown(!passwordShown);
-  };
 
   return (
     <div className="login-form-container">
@@ -73,6 +92,7 @@ const LoginForm = () => {
               control={control}
               placeholder="Username"
               name="username"
+              classes={classes}
             />
             <PasswordInput
               control={control}

@@ -6,19 +6,19 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 
-import { BsPeopleFill } from "react-icons/bs";
-import { RiAddCircleFill } from "react-icons/ri";
-
 const useStyles = makeStyles((theme) => ({
   root: {
     width: 250,
-    height: 430,
     boxShadow: "0px 0px 20px #00b4d8",
     margin: 15,
+    borderRadius: "25px",
+    display: "flex",
+    flexDirection: "column",
   },
   header: {
     height: 80,
     textAlign: "center",
+    background: "linear-gradient(#00c8f0ee, #71c5d6)",
   },
   content: {
     color: "grey",

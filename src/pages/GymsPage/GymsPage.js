@@ -7,6 +7,8 @@ import GymsJumbotron from "../../components/GymsJumbotron";
 import GymFilter from "../../components/GymPage/GymFilter";
 
 import "./GymsPage.css";
+import { Box } from "@material-ui/core";
+import Loader from "react-loader-spinner";
 
 const GymsPage = () => {
   const { data, loading, error } = useQuery(GYMS_QUERY);
@@ -19,7 +21,17 @@ const GymsPage = () => {
   const cities = City.getCitiesOfCountry("GB");
 
   if (loading || lazyLoading) {
-    return <h1>loading</h1>;
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center">
+        <Loader
+          type="Circles"
+          color="#00BFFF"
+          height={100}
+          width={100}
+          timeout={3000} //3 secs
+        />
+      </Box>
+    );
   }
 
   if (error || lazyError) {

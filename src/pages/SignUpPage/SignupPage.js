@@ -1,4 +1,3 @@
-// import SignUpForm from "../components/SignUpForm";
 import SignUpBenefitsBlock from "../../components/SignUpBenefitsBlock";
 import SignUpAccordion from "../../components/SignUpAccordion";
 

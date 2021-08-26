@@ -10,6 +10,8 @@ import PartTwo from "./PartTwo";
 import PartThree from "./PartThree";
 
 import "./SignUpForm.css";
+import { Box } from "@material-ui/core";
+import Loader from "react-loader-spinner";
 
 const SignUpForm = ({ redirect = "/login" }) => {
   const {
@@ -34,8 +36,6 @@ const SignUpForm = ({ redirect = "/login" }) => {
   });
 
   const onSubmit = async (formData) => {
-    console.log(formData);
-
     try {
       console.log(formData);
       await signUp({
@@ -49,7 +49,17 @@ const SignUpForm = ({ redirect = "/login" }) => {
   };
 
   if (loading) {
-    return <h1>Loading...</h1>;
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center">
+        <Loader
+          type="Circles"
+          color="#00BFFF"
+          height={100}
+          width={100}
+          timeout={3000} //3 secs
+        />
+      </Box>
+    );
   }
 
   const onClickNext = (event) => {

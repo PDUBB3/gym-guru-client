@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { Controller } from "react-hook-form";
 import { makeStyles } from "@material-ui/core/styles";
@@ -12,40 +12,47 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
 import Box from "@material-ui/core/Box";
-import Input from "@material-ui/core/Input";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import TextField from "@material-ui/core/TextField";
 
-import { SIGNUP } from "../../graphql/mutations";
+import { SIGNUP, UPDATE_USER } from "../../graphql/mutations";
 
 import ImageUploader from "../ImageUploader";
 import MultiSelectDropDown from "../MultiSelectDropDown";
 import CityAutocomplete from "../CityAutocomplete";
 
 import "../../pages/SignUpPage/SignUpPage.css";
+import Loader from "react-loader-spinner";
+import FormInput from "../FormInput";
+import PasswordInput from "../PasswordInput";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
   },
   heading: {
-    fontSize: theme.typography.pxToRem(15),
+    fontSize: 20,
     flexBasis: "33.33%",
     flexShrink: 0,
+    color: "#00b4d8",
+    fontWeight: "bold",
   },
   secondaryHeading: {
     fontSize: theme.typography.pxToRem(15),
     color: theme.palette.text.secondary,
   },
+  formControl: {
+    padding: "8px 16px",
+    minWidth: "100%",
+    textAlign: "left",
+  },
 }));
 
-export default function ControlledAccordions({ redirect = "/login" }) {
+const SignupAccordian = ({ user }, { redirect = "/login" }) => {
   const {
     handleSubmit,
-    setValue,
     formState: { errors },
     control,
   } = useForm();
@@ -60,24 +67,60 @@ export default function ControlledAccordions({ redirect = "/login" }) {
       console.log(e);
     },
   });
+
+  const [
+    updateUser,
+    { data: updateData, error: updateError, loading: updateLoading },
+  ] = useMutation(UPDATE_USER, {
+    onCompleted: () => {
+      history.push(redirect);
+    },
+    onError: (e) => {
+      console.log(e);
+    },
+  });
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
+
+  const [expanded, setExpanded] = useState(false);
+  const [images, setImages] = useState([]);
+  const [imageUrl, setImageUrl] = useState(user?.profileImageUrl);
 
   const onSubmit = async (formData) => {
     formData.username = formData.username.toLowerCase();
-    try {
-      await signUp({
+    if (!user) {
+      try {
+        await signUp({
+          variables: {
+            signUpInput: formData,
+          },
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      await updateUser({
         variables: {
-          signUpInput: formData,
+          updateUserInput: {
+            id: user.id,
+            ...formData,
+          },
         },
       });
-    } catch (error) {
-      console.log(error);
     }
   };
 
-  if (loading) {
-    return <h1>Loading...</h1>;
+  if (loading || updateLoading) {
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center">
+        <Loader
+          type="Circles"
+          color="#00BFFF"
+          height={100}
+          width={100}
+          timeout={3000} //3 secs
+        />
+      </Box>
+    );
   }
 
   const goals = [
@@ -116,133 +159,51 @@ export default function ControlledAccordions({ redirect = "/login" }) {
               aria-controls="panel1bh-content"
               id="panel1bh-header"
             >
-              <Typography className={classes.heading}>
-                1. Basic details
-              </Typography>
+              <Typography className={classes.heading}>Basic details</Typography>
             </AccordionSummary>
             <AccordionDetails className="signUp-form-container">
-              <Box component="div" m={1}>
-                <Controller
-                  name="firstName"
-                  control={control}
-                  rules={{ required: "First name is required" }}
-                  render={({
-                    field: { onChange, value },
-                    fieldState: { error },
-                  }) => (
-                    <FormControl>
-                      <InputLabel
-                        className={classNames({ "form-error": error })}
-                      >
-                        First Name
-                      </InputLabel>
-                      <Input
-                        value={value}
-                        onChange={onChange}
-                        error={!!error}
-                      />
-                    </FormControl>
-                  )}
-                />
-              </Box>
-              <Box component="div" m={1}>
-                <Controller
-                  name="lastName"
-                  control={control}
-                  rules={{ required: "Last name is required" }}
-                  render={({
-                    field: { onChange, value },
-                    fieldState: { error },
-                  }) => (
-                    <FormControl>
-                      <InputLabel
-                        className={classNames({ "form-error": error })}
-                      >
-                        Last Name
-                      </InputLabel>
-                      <Input
-                        value={value}
-                        onChange={onChange}
-                        error={!!error}
-                      />
-                    </FormControl>
-                  )}
-                />
-              </Box>
-              <Box component="div" m={1}>
-                <Controller
+              <FormInput
+                name="firstName"
+                placeholder="First Name"
+                control={control}
+                required={true}
+                classes={classes}
+                defaultValue={user?.firstName}
+              />
+              <FormInput
+                name="lastName"
+                placeholder="Last Name"
+                control={control}
+                required={true}
+                classes={classes}
+                defaultValue={user?.lastName}
+              />
+              {!user && (
+                <FormInput
                   name="email"
+                  placeholder="Email"
                   control={control}
-                  rules={{ required: "Email is required" }}
-                  render={({
-                    field: { onChange, value },
-                    fieldState: { error },
-                  }) => (
-                    <FormControl>
-                      <InputLabel
-                        className={classNames({ "form-error": error })}
-                      >
-                        Email
-                      </InputLabel>
-                      <Input
-                        value={value}
-                        onChange={onChange}
-                        error={!!error}
-                      />
-                    </FormControl>
-                  )}
+                  required={true}
+                  classes={classes}
+                  defaultValue={user?.email}
                 />
-              </Box>
-              <Box component="div" m={1}>
-                <Controller
-                  name="username"
+              )}
+
+              <FormInput
+                name="username"
+                placeholder="Username"
+                control={control}
+                required={true}
+                classes={classes}
+                defaultValue={user?.username}
+              />
+              {!user && (
+                <PasswordInput
                   control={control}
-                  rules={{ required: "Username is required" }}
-                  render={({
-                    field: { onChange, value },
-                    fieldState: { error },
-                  }) => (
-                    <FormControl>
-                      <InputLabel
-                        className={classNames({ "form-error": error })}
-                      >
-                        Username
-                      </InputLabel>
-                      <Input
-                        value={value}
-                        onChange={onChange}
-                        error={!!error}
-                      />
-                    </FormControl>
-                  )}
-                />
-              </Box>
-              <Box component="div" m={1}>
-                <Controller
+                  placeholder="Password"
                   name="password"
-                  control={control}
-                  rules={{ required: "Password is required" }}
-                  render={({
-                    field: { onChange, value },
-                    fieldState: { error },
-                  }) => (
-                    <FormControl>
-                      <InputLabel
-                        className={classNames({ "form-error": error })}
-                      >
-                        Password
-                      </InputLabel>
-                      <Input
-                        value={value}
-                        onChange={onChange}
-                        error={!!error}
-                        label="Password"
-                        type="password"
-                      />
-                    </FormControl>
-                  )}
                 />
-              </Box>
+              )}
             </AccordionDetails>
           </Accordion>
           <Accordion
@@ -255,24 +216,31 @@ export default function ControlledAccordions({ redirect = "/login" }) {
               id="panel2bh-header"
             >
               <Typography className={classes.heading}>
-                2. Create your profile
+                Create your profile
               </Typography>
             </AccordionSummary>
             <AccordionDetails className="signUp-form-container">
               <Box component="div" m={1}>
-                <ImageUploader setValue={setValue} />
+                <ImageUploader
+                  images={images}
+                  setImages={setImages}
+                  imageUrl={imageUrl}
+                  setImageUrl={setImageUrl}
+                  prefix={"user/images/"}
+                />
               </Box>
-              <CityAutocomplete control={control} />
+              <CityAutocomplete control={control} city={user?.city} />
               <Box component="div" m={1}>
                 <Controller
                   name="bio"
                   control={control}
                   rules={{ required: "Bio is required" }}
+                  defaultValue={user?.bio}
                   render={({
                     field: { onChange, value },
                     fieldState: { error },
                   }) => (
-                    <FormControl>
+                    <FormControl className={classes.formControl}>
                       <TextField
                         placeholder="Bio"
                         multiline
@@ -280,7 +248,9 @@ export default function ControlledAccordions({ redirect = "/login" }) {
                         rowsMax={5}
                         value={value}
                         onChange={onChange}
-                        className={classNames({ "form-error": error })}
+                        className={classNames({
+                          "form-error": error,
+                        })}
                       />
                     </FormControl>
                   )}
@@ -333,88 +303,45 @@ export default function ControlledAccordions({ redirect = "/login" }) {
               id="panel3bh-header"
             >
               <Typography className={classes.heading}>
-                3. Add your social media info
+                Add your social media info
               </Typography>
             </AccordionSummary>
             <AccordionDetails className="signUp-form-container">
-              <Box component="div" m={1}>
-                <Controller
-                  name="facebookUrl"
-                  control={control}
-                  render={({
-                    field: { onChange, value },
-                    fieldState: { error },
-                  }) => (
-                    <FormControl>
-                      <InputLabel
-                        className={classNames({ "form-error": error })}
-                      >
-                        Facebook URL
-                      </InputLabel>
-                      <Input
-                        value={value}
-                        onChange={onChange}
-                        error={!!error}
-                      />
-                    </FormControl>
-                  )}
-                />
-              </Box>
-              <Box component="div" m={1}>
-                <Controller
-                  name="twitterUrl"
-                  control={control}
-                  render={({
-                    field: { onChange, value },
-                    fieldState: { error },
-                  }) => (
-                    <FormControl>
-                      <InputLabel
-                        className={classNames({ "form-error": error })}
-                      >
-                        Twitter URL
-                      </InputLabel>
-                      <Input
-                        value={value}
-                        onChange={onChange}
-                        error={!!error}
-                      />
-                    </FormControl>
-                  )}
-                />
-              </Box>
-              <Box component="div" m={1}>
-                <Controller
-                  name="instagramUrl"
-                  control={control}
-                  render={({
-                    field: { onChange, value },
-                    fieldState: { error },
-                  }) => (
-                    <FormControl>
-                      <InputLabel
-                        className={classNames({ "form-error": error })}
-                      >
-                        Instagram URL
-                      </InputLabel>
-                      <Input
-                        value={value}
-                        onChange={onChange}
-                        error={!!error}
-                      />
-                    </FormControl>
-                  )}
-                />
-              </Box>
+              <FormInput
+                name="facebookUrl"
+                placeholder="Facebook URL"
+                control={control}
+                required={true}
+                classes={classes}
+                defaultValue={user?.facebookUrl}
+              />
+              <FormInput
+                name="twitterUrl"
+                placeholder="Twitter URL"
+                control={control}
+                required={true}
+                classes={classes}
+                defaultValue={user?.twitterUrl}
+              />
+              <FormInput
+                name="instagramUrl"
+                placeholder="Instagram URL"
+                control={control}
+                required={true}
+                classes={classes}
+                defaultValue={user?.instagramUrl}
+              />
             </AccordionDetails>
           </Accordion>
           <div className="sign-up-btn-container">
             <button className="sign-up-btn" type="submit">
-              Submit
+              {user ? "Update" : "Submit"}
             </button>
           </div>
         </form>
       </div>
     </div>
   );
-}
+};
+
+export default SignupAccordian;
