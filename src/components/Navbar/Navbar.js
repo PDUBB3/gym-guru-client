@@ -32,16 +32,17 @@ const Navbar = (props) => {
   return (
     <div id="nav-container" className={classes.root}>
       <nav className="navbar">
+        <div id="navlogo">
+          <img
+            src={Logo}
+            width="48"
+            height="40"
+            className="d-inline-block "
+            alt="gymguru logo"
+            style=""
+          />
+        </div>
         <div id="nav-item-container">
-          <div id="navlogo">
-            <img
-              src={Logo}
-              width="50"
-              height="50"
-              className="d-inline-block "
-              alt="gymguru logo"
-            />
-          </div>
           <a className="navbarLink" href="/">
             Home
           </a>
