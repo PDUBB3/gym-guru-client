@@ -121,3 +121,22 @@ export const UPDATE_GYM_RATING = gql`
     }
   }
 `;
+
+export const UPDATE_USER = gql`
+  mutation UpdateUserMutation($updateUserInput: updateUserInput) {
+    updateUser(input: $updateUserInput) {
+      username
+      firstName
+      lastName
+      isGymOwner
+      profileImageUrl
+      city
+      bio
+      goals
+      interests
+      facebookUrl
+      twitterUrl
+      instagramUrl
+    }
+  }
+`;
