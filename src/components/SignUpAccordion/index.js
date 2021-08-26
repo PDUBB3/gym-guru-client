@@ -262,6 +262,7 @@ const SignupAccordian = ({ user }, { redirect = "/login" }) => {
                   placeholder="Goals"
                   name="goals"
                   control={control}
+                  defaults={user?.goals}
                 />
               </Box>
               <Box component="div" m={1}>
@@ -270,6 +271,7 @@ const SignupAccordian = ({ user }, { redirect = "/login" }) => {
                   placeholder="Interests"
                   name="interests"
                   control={control}
+                  defaults={user?.interests}
                 />
               </Box>
               <Box component="div" m={1}>

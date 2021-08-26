@@ -9,13 +9,20 @@ import { Controller } from "react-hook-form";
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
-const MultiSelectDropDown = ({ options, placeholder, name, control }) => {
+const MultiSelectDropDown = ({
+  options,
+  placeholder,
+  name,
+  control,
+  defaults,
+}) => {
   return (
     <Controller
       render={({ field: { onChange } }) => (
         <Autocomplete
           multiple
           disableCloseOnSelect
+          defaultValue={defaults}
           options={options}
           renderOption={(option, { selected }) => (
             <FormControlLabel
