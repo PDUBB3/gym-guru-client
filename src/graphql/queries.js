@@ -116,7 +116,6 @@ export const USERS_QUERY = gql`
       lastName
       firstName
       isGymOwner
-      ownedGymId
       attendingGymId {
         name
       }
