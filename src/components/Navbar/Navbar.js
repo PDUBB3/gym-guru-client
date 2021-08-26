@@ -39,7 +39,6 @@ const Navbar = (props) => {
             height="40"
             className="d-inline-block "
             alt="gymguru logo"
-            style=""
           />
         </div>
         <div id="nav-item-container">
