@@ -157,6 +157,9 @@ export const UPDATE_USER = gql`
       firstName
       lastName
       isGymOwner
+      attendingGymId {
+        name
+      }
       profileImageUrl
       city
       bio
@@ -165,6 +168,19 @@ export const UPDATE_USER = gql`
       facebookUrl
       twitterUrl
       instagramUrl
+    }
+  }
+`;
+
+export const UPDATE_ATTENDING_GYM = gql`
+  mutation Mutation($updateAttendingGymInput: updateAttendingGymInput) {
+    updateAttendingGym(input: $updateAttendingGymInput) {
+      username
+      firstName
+      lastName
+      attendingGymId {
+        name
+      }
     }
   }
 `;

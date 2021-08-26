@@ -7,11 +7,16 @@ import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import { Box, Button, Container } from "@material-ui/core";
 
-import { UPDATE_GYM_RATING } from "../../../graphql/mutations";
+import {
+  UPDATE_ATTENDING_GYM,
+  UPDATE_GYM_RATING,
+} from "../../../graphql/mutations";
+
 import { GYM_QUERY } from "../../../graphql/queries";
 import CustomizedAccordions from "../Accordian/Accordian";
 import Reviews from "../Reviews";
 import GymForm from "../../GymForm";
+import { useUserContext } from "../../../context/UserContext";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -45,10 +50,21 @@ const GymPageContent = ({ gym, reviews, user }) => {
 
   const { id, name, rating, imageURL, ...rest } = gym;
 
+  const { dispatch } = useUserContext();
+
   const [updateGymRating] = useMutation(UPDATE_GYM_RATING, {
     refetchQueries: [GYM_QUERY, "getGym"],
     onError: (error) => {
       console.log(error);
+    },
+  });
+
+  const [
+    updateAttendingGym,
+    { data: updateData, error: updateError, loading: updateLoading },
+  ] = useMutation(UPDATE_ATTENDING_GYM, {
+    onError: (e) => {
+      console.log(e);
     },
   });
 
@@ -85,6 +101,30 @@ const GymPageContent = ({ gym, reviews, user }) => {
         },
       },
     });
+  };
+
+  const onClickAttend = async () => {
+    try {
+      await updateAttendingGym({
+        variables: {
+          updateAttendingGymInput: {
+            id: user.id,
+            attendingGymId: gym.id,
+          },
+        },
+      });
+
+      const payload = {
+        attendingGymId: gym.id,
+      };
+
+      dispatch({
+        type: "UPDATE_ATTENDING_GYM",
+        payload,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -124,6 +164,20 @@ const GymPageContent = ({ gym, reviews, user }) => {
       <div className="gym-container">
         <div className="image-container">
           <img src={imageURL} alt={name} height="350" className="image" />
+          {user.attendingGymId === gym.id ? (
+            <h2>You are attending this gym!</h2>
+          ) : (
+            [
+              user.attendingGymId && (
+                <button
+                  className="attendGymBtn view-btn"
+                  onClick={onClickAttend}
+                >
+                  + Attend this gym
+                </button>
+              ),
+            ]
+          )}
         </div>
         <div className="about-container">
           <h1 className="title">{name}</h1>
