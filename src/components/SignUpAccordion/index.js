@@ -12,19 +12,16 @@ import AccordionSummary from "@material-ui/core/AccordionSummary";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
 import Box from "@material-ui/core/Box";
-import Input from "@material-ui/core/Input";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import TextField from "@material-ui/core/TextField";
 
-import { SIGNUP } from "../../graphql/mutations";
+import { SIGNUP, UPDATE_USER } from "../../graphql/mutations";
 
 import ImageUploader from "../ImageUploader";
 import MultiSelectDropDown from "../MultiSelectDropDown";
 import CityAutocomplete from "../CityAutocomplete";
-import { useUserContext } from "../../context/UserContext";
 
 import "../../pages/SignUpPage/SignUpPage.css";
 import Loader from "react-loader-spinner";
@@ -70,6 +67,18 @@ const SignupAccordian = ({ user }, { redirect = "/login" }) => {
       console.log(e);
     },
   });
+
+  const [
+    updateUser,
+    { data: updateData, error: updateError, loading: updateLoading },
+  ] = useMutation(UPDATE_USER, {
+    onCompleted: () => {
+      history.push(redirect);
+    },
+    onError: (e) => {
+      console.log(e);
+    },
+  });
   const classes = useStyles();
 
   const [expanded, setExpanded] = useState(false);
@@ -78,18 +87,30 @@ const SignupAccordian = ({ user }, { redirect = "/login" }) => {
 
   const onSubmit = async (formData) => {
     formData.username = formData.username.toLowerCase();
-    try {
-      await signUp({
+    console.log(formData);
+    if (!user) {
+      try {
+        await signUp({
+          variables: {
+            signUpInput: formData,
+          },
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      await updateUser({
         variables: {
-          signUpInput: formData,
+          updateUserInput: {
+            id: user.id,
+            ...formData,
+          },
         },
       });
-    } catch (error) {
-      console.log(error);
     }
   };
 
-  if (loading) {
+  if (loading || updateLoading) {
     return (
       <Box display="flex" justifyContent="center" alignItems="center">
         <Loader
@@ -315,7 +336,7 @@ const SignupAccordian = ({ user }, { redirect = "/login" }) => {
           </Accordion>
           <div className="sign-up-btn-container">
             <button className="sign-up-btn" type="submit">
-              Submit
+              {user ? "Update" : "Submit"}
             </button>
           </div>
         </form>
