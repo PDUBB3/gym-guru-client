@@ -271,9 +271,19 @@ const GymForm = ({ gym }) => {
           </AccordionSummary>
           <AccordionDetails className={classes.accordionDetails}>
             {days.map(({ label, value }) => {
-              // look up our data value from db for this day
-              // dayDefaultValue = data value
-              // only if it's edit form
+              let openDefaultValue = null;
+              let closeDefaultValue = null;
+
+              if (gym) {
+                const { openingTimes } = gym;
+                const dayObject = openingTimes.find((day) => {
+                  return day.dayName === label;
+                });
+
+                openDefaultValue = dayObject.startTime;
+                closeDefaultValue = dayObject.endTime;
+              }
+
               return (
                 <Box component="div" m={1}>
                   <Box component="div" m={1} className={classes.day}>
@@ -283,7 +293,7 @@ const GymForm = ({ gym }) => {
                         name={`openTime_${value}`}
                         label="Open"
                         control={control}
-                        defaultValue={null}
+                        defaultValue={openDefaultValue}
                         rules={{ required: false }}
                       >
                         {times.map(({ label, value }) => {
@@ -300,6 +310,7 @@ const GymForm = ({ gym }) => {
                         name={`closeTime_${value}`}
                         label="Close"
                         control={control}
+                        defaultValue={closeDefaultValue}
                         rules={{ required: false }}
                       >
                         {times.map(({ label, value }) => {
