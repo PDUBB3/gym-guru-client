@@ -61,6 +61,8 @@ const BuddiesFilter = ({ getUsers, options }) => {
         usersCity: city,
       },
     });
+
+    setIsOpen(false);
   };
 
   return (

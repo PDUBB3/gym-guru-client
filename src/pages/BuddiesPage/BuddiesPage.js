@@ -12,6 +12,7 @@ import BuddiesFilter from "../../components/BuddiesPage/Filter/BuddiesFilter";
 import BuddyCard from "../../components/BuddiesPage/BuddyCard/BuddyCard";
 
 import "./BuddiesPage.css";
+import ErrorCard from "../../components/ErrorCard";
 
 const BuddiesPage = () => {
   const [getUsers, { loading: lazyLoading, data: lazyData, error: lazyError }] =
@@ -49,11 +50,15 @@ const BuddiesPage = () => {
         <BuddiesJumbotron />
         <BuddiesFilter getUsers={getUsers} options={cities} />
         <div className="buddiesBody">
-          <div className="buddiesCards">
-            {users.map((user) => {
-              return <BuddyCard data={user} />;
-            })}
-          </div>
+          {users.length ? (
+            <div className="buddiesCards">
+              {users.map((user) => {
+                return <BuddyCard data={user} />;
+              })}
+            </div>
+          ) : (
+            <ErrorCard text="buddies" />
+          )}
         </div>
       </div>
     );
