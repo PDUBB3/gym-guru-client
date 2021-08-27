@@ -41,16 +41,22 @@ const BuddyCard = ({ data }) => {
           <p>
             Interests:
             {data.interests
-              .map((interest) => {
-                return ` ${interest}`;
+              .map((interest, index) => {
+                if (index === data.goals.length - 1) {
+                  return ` ${interest}`;
+                }
+                return ` ${interest}, `;
               })
               .slice(0, 2)}
           </p>
           <p>
             Goals:{" "}
             {data.goals
-              .map((goal) => {
-                return ` ${goal}`;
+              .map((goal, index) => {
+                if (index === data.goals.length - 1) {
+                  return `${goal}`;
+                }
+                return ` ${goal}, `;
               })
               .slice(0, 2)}
           </p>
