@@ -215,7 +215,7 @@ const GymPageContent = ({ gym, reviews, user }) => {
             <h2>You are attending this gym!</h2>
           ) : (
             [
-              user && user.attendingGymId && (
+              user && user.attendingGymId !== gym.id && (
                 <button
                   className="attendGymBtn view-btn"
                   onClick={onClickAttend}
