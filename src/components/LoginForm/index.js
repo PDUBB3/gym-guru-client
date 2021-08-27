@@ -24,7 +24,8 @@ const useStyles = makeStyles((theme) => ({
       "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
     )`,
     backgroundRepeat: "no-repeat",
-    [theme.breakpoints.down("sm")]: {
+    backgroundSize: "cover",
+    [theme.breakpoints.down("md")]: {
       display: "none",
     },
   },
@@ -43,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     fontSize: "1.25rem",
     width: "60%",
-    [theme.breakpoints.down("sm")]: {
+    [theme.breakpoints.down("md")]: {
       display: "grid",
       gridTemplateColumns: "repeat(1, 65%)",
     },

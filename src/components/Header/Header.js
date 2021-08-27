@@ -66,6 +66,7 @@ const useStyles = makeStyles((theme) => ({
       marginTop: "1rem",
       justifySelf: "center",
       textAlign: "center",
+      margin: "0rem",
       marginRight: "0rem",
     },
     [theme.breakpoints.up("sm")]: {
