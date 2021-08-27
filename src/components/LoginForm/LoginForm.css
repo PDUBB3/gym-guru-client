@@ -42,7 +42,7 @@ button {
 }
 
 .login-image-container {
-  background-image: url("https://images.unsplash.com/photo-1572459815549-873917ec8c0a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=480&q=80");
+  background-image: url("https://images.unsplash.com/photo-1572459815549-873917ec8c0a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80");
   background-repeat: no-repeat;
 }
 
@@ -65,8 +65,8 @@ button {
   border: 2px solid #484a4b;
   border-radius: 5px;
   box-shadow: 0 20px 20px -5px #25293450;
-  min-height: 83vh;
-  min-width: 65vw;
+  min-height: 60vh;
+  min-width: 50vw;
   text-align: center;
   font-size: 1.25rem;
   /* padding: 1rem; */
