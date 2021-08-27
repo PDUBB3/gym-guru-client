@@ -154,7 +154,6 @@ const GymForm = ({ gym }) => {
     const openingTimes = days.map((day, dayIndex) => {
       const openTime = getOpeningTimes(formData, `openTime_${day.value}`);
       const closeTime = getOpeningTimes(formData, `closeTime_${day.value}`);
-      const isClosed = getOpeningTimes(formData, `isClosed_${day.value}`);
       return {
         dayIndex,
         dayName: day.label,
@@ -170,7 +169,7 @@ const GymForm = ({ gym }) => {
     const { name, address, city, postCode, contactNumber } = formData;
 
     if (!gym) {
-      const { data } = await createGym({
+      await createGym({
         variables: {
           createGymInput: {
             name,
