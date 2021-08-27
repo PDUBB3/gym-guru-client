@@ -14,6 +14,41 @@ import "../Button/button.css";
 import PasswordInput from "../PasswordInput";
 
 const useStyles = makeStyles((theme) => ({
+  loginFormContainer: {
+    display: "flex",
+    justifyContent: "center",
+    alignContent: "center",
+    margin: "2rem",
+  },
+  loginFormImageContainer: {
+    background: `url(
+      "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
+    )`,
+    backgroundRepeat: "no-repeat",
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
+  },
+  loginForm: {
+    display: "grid",
+    justifyContent: "center",
+    gridTemplateColumns: "repeat(2, 50%)",
+    gridColumnGap: "10px",
+    overflow: "hidden",
+    color: "#00B4D8",
+    border: "2px solid #484a4b",
+    borderRadius: "5px",
+    boxShadow: "0 20px 20px -5px #25293450",
+    minHeight: "83vh",
+    minWidth: "65vw",
+    textAlign: "center",
+    fontSize: "1.25rem",
+    width: "60%",
+    [theme.breakpoints.down("sm")]: {
+      display: "grid",
+      gridTemplateColumns: "repeat(1, 65%)",
+    },
+  },
   formControl: {
     padding: "8px 16px",
     minWidth: "100%",
@@ -81,9 +116,9 @@ const LoginForm = () => {
   }
 
   return (
-    <div className="login-form-container">
-      <div className="form-box">
-        <div className="login-image-container"></div>
+    <div className={classes.loginFormContainer}>
+      <div className={classes.loginForm}>
+        <div className={classes.loginFormImageContainer}></div>
         <form className="loginForm" onSubmit={handleSubmit(onSubmit)}>
           <div className="login-input-container">
             <h2 className="form-heading">Sign in</h2>
