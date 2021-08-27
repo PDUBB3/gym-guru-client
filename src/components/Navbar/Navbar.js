@@ -1,98 +1,140 @@
-// Importing react
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { useMediaQuery } from "react-responsive";
 import { useHistory } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
+
 import { useUserContext } from "../../context/UserContext";
-import Logo from "../../assets/img/gym-guru-white.png";
 
-import "./Navbar.css";
+import { MOBILE_BREAKPOINT } from "../../mediaQueries";
 
-const useStyles = makeStyles({
-  root: {
+const useStyles = makeStyles(() => ({
+  navbar: {
     background: "linear-gradient(45deg, #3a7bd5 30%, #00b4d8 90%)",
-    border: 0,
-    borderRadius: 3,
-    boxShadow: "0 3px 5px 2px #666769",
-    color: "white",
-    height: 48,
-    padding: "0 30px",
   },
-});
+}));
 
-const Navbar = (props) => {
+const Navbar = () => {
   const classes = useStyles();
-  const { state, dispatch } = useUserContext();
   const history = useHistory();
+  const { state, dispatch } = useUserContext();
+  const isMobile = useMediaQuery(MOBILE_BREAKPOINT);
+
   const handleLogout = () => {
-    history.push("/login");
     localStorage.removeItem("user");
     dispatch({ type: "LOGOUT" });
+    history.push("/login");
   };
 
+  const renderMenuItems = () => (
+    <>
+      <Button
+        disableElevation
+        color="inherit"
+        aria-controls="simple-menu"
+        aria-haspopup="true"
+        onClick={() => {
+          history.push("/");
+        }}
+      >
+        Home
+      </Button>
+      <Button
+        disableElevation
+        color="inherit"
+        aria-controls="simple-menu"
+        aria-haspopup="true"
+        onClick={() => {
+          history.push("/gyms");
+        }}
+      >
+        Gyms
+      </Button>
+    </>
+  );
+
+  const renderLoginSignUp = () => (
+    <>
+      <Button
+        disableElevation
+        color="inherit"
+        aria-controls="simple-menu"
+        aria-haspopup="true"
+        onClick={() => {
+          history.push("/login");
+        }}
+      >
+        Login
+      </Button>
+      <Button
+        disableElevation
+        color="inherit"
+        aria-controls="simple-menu"
+        aria-haspopup="true"
+        onClick={() => {
+          history.push("/signup");
+        }}
+      >
+        Signup
+      </Button>
+    </>
+  );
+
+  const renderPrivateMenuItems = () => (
+    <>
+      <Button
+        disableElevation
+        color="inherit"
+        aria-controls="simple-menu"
+        aria-haspopup="true"
+        onClick={() => {
+          history.push(`/profile/${state.user.username}`);
+        }}
+      >
+        My Profile
+      </Button>
+      <Button
+        disableElevation
+        color="inherit"
+        aria-controls="simple-menu"
+        aria-haspopup="true"
+        onClick={() => {
+          history.push("/findbuddies");
+        }}
+      >
+        Buddies
+      </Button>
+      <Button
+        disableElevation
+        color="inherit"
+        aria-controls="simple-menu"
+        aria-haspopup="true"
+        onClick={handleLogout}
+      >
+        Logout
+      </Button>
+    </>
+  );
+
   return (
-    <div id="nav-container" className={classes.root}>
-      <nav className="navbar">
-        <div id="navlogo">
-          <img
-            src={Logo}
-            width="48"
-            height="40"
-            className="d-inline-block "
-            alt="gymguru logo"
-          />
-        </div>
-        <div className="nav-links">
-          <div id="nav-item-container">
-            <a className="navbarLink" href="/">
-              Home
-            </a>
-          </div>
-          {state.user ? (
-            <>
-              <div id="nav-item-container">
-                <a className="navbarLink" href={`/${state.user.username}`}>
-                  My Profile
-                </a>
-              </div>
-              <div id="nav-item-container">
-                <a className="navbarLink" href="/findbuddies">
-                  Buddies
-                </a>
-              </div>
-              <div id="nav-item-container">
-                <button
-                  type="submit"
-                  className="navbarLink"
-                  onClick={handleLogout}
-                >
-                  Logout
-                </button>
-              </div>
-            </>
-          ) : (
-            <>
-              <div id="nav-item-container">
-                <a className="navbarLink" href="/login">
-                  Login
-                </a>
-              </div>
-              <div id="nav-item-container">
-                <a className="navbarLink" href="/signup">
-                  Signup
-                </a>
-              </div>
-            </>
-          )}
-          <div id="nav-item-container">
-            <a className="navbarLink" href="/gyms">
-              Gyms
-            </a>
-          </div>
-        </div>
-      </nav>
-    </div>
+    <>
+      <AppBar position="static" className={classes.navbar}>
+        <Toolbar>
+          <Grid
+            container
+            direction={isMobile ? "column" : "row"}
+            justifyContent="center"
+            alignItems="center"
+          >
+            {renderMenuItems()}
+            {state.user ? renderPrivateMenuItems() : renderLoginSignUp()}
+          </Grid>
+        </Toolbar>
+      </AppBar>
+    </>
   );
 };
 
-// Exporting Navbar Component
 export default Navbar;

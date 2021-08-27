@@ -6,24 +6,20 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-
-import { BuddiesFilterProvider } from "./context/BuddiesFilterContext";
-
 import { ThemeProvider } from "@material-ui/core/styles";
-
 import { createTheme } from "@material-ui/core/styles";
 
+import Routes from "./routes";
+import BuddiesFilterProvider from "./context/BuddiesFilterContext";
+import UserProvider from "./context/UserContext";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/index";
 
-import Routes from "./Routes";
-
 import "./App.css";
-import UserProvider from "./context/UserContext";
 
 const httpLink = createHttpLink({
-  // uri: process.env.GRAPHQL_URL || "http://localhost:4000/",
-  uri: "https://whispering-ocean-57878.herokuapp.com/",
+  uri: process.env.GRAPHQL_URL || "http://localhost:3001/",
+  // uri: "https://whispering-ocean-57878.herokuapp.com/",
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -54,6 +50,7 @@ const App = () => {
       },
     },
   });
+
   return (
     <UserProvider>
       <ApolloProvider client={client}>
