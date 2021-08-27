@@ -13,7 +13,6 @@ const FacilitiesCheckboxes = ({
   selectedFacilities,
   label,
 }) => {
-  const facilityIds = facilities.map((each) => each.id);
   const selectedFacilityIds = selectedFacilities.map((each) => each.id);
 
   return (

@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 
@@ -86,7 +85,7 @@ const LoginForm = () => {
         payload,
       });
 
-      history.push(`/${data.login.user.username}`);
+      history.push(`/profile/${data.login.user.username}`);
     },
     onError: () => {},
   });

@@ -47,7 +47,7 @@ const GymPageContent = ({ gym, reviews, user }) => {
       deleteGymId: gym.id,
     },
     onCompleted: (data) => {
-      history.push(`/${user.username}`);
+      history.push(`/profile/${user.username}`);
     },
     onError: (error) => {
       console.log(error);
@@ -66,7 +66,7 @@ const GymPageContent = ({ gym, reviews, user }) => {
     setOpen(false);
   };
 
-  const { id, name, rating, imageURL, ...rest } = gym;
+  let { id, name, rating, imageURL, ...rest } = gym;
 
   const { dispatch } = useUserContext();
 
@@ -108,6 +108,21 @@ const GymPageContent = ({ gym, reviews, user }) => {
     }
   };
 
+  const checkRating = async () => {
+    if (rating === 0) {
+      rating = averageRating();
+
+      await updateGymRating({
+        variables: {
+          updateGymRatingInput: {
+            id,
+            rating,
+          },
+        },
+      });
+    }
+  };
+
   const updateRating = async () => {
     const updatedRating = averageRating();
 
@@ -145,26 +160,31 @@ const GymPageContent = ({ gym, reviews, user }) => {
     }
   };
 
+  checkRating();
+
   return (
     <>
       <Container maxWidth="lg">
         {user && user.ownedGymId === id && (
-          <Box m={1}>
+          <Box m={1} display="flex" justifyContent="flex-end">
             <Button
               variant="contained"
               disableElevation
               type="button"
               onClick={handleOpen}
+              style={{ maxWidth: "170px", minWidth: "170px", margin: "1rem" }}
             >
-              Edit
+              EDIT
             </Button>
             <Button
               variant="contained"
               disableElevation
               type="button"
               onClick={handleDelete}
+              color="secondary"
+              style={{ maxWidth: "170px", minWidth: "170px", margin: "1rem" }}
             >
-              Delete
+              DELETE
             </Button>
 
             <Modal

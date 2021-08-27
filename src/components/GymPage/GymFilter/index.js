@@ -88,7 +88,9 @@ const GymFilter = ({
 
   return (
     <Container maxWidth="lg">
-      <Button onClick={toggleDrawer(true)}>Filter</Button>
+      <div className="gymFilterButton">
+        <Button onClick={toggleDrawer(true)}>Filter</Button>
+      </div>
       <Drawer anchor="top" open={isOpen} onClose={toggleDrawer(false)}>
         <Box m={2} className={classes.closeButton}>
           <CloseIcon onClick={toggleDrawer(false)} />

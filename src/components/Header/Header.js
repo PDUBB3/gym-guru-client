@@ -1,10 +1,6 @@
 import "./Header.css";
 
-import { DESKTOP_BREAKPOINT } from "../../mediaQueries";
-import { LARGE_DESKTOP_BREAKPOINT } from "../../mediaQueries";
-import { useMediaQuery } from "react-responsive";
 import { makeStyles } from "@material-ui/core/styles";
-import { FaColumns } from "react-icons/fa";
 
 const useStyles = makeStyles((theme) => ({
   HomeHeader: {

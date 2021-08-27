@@ -120,13 +120,17 @@ const ProfilePageContent = ({ user, currentUser, buddyRequestsData }) => {
   return (
     <>
       {user.username === currentUser.username && (
-        <Box m={1}>
+        <Box m={1} display="flex" justifyContent="flex-end">
           <Button
             variant="contained"
             disableElevation
             type="button"
             onClick={handleOpen}
-            style={{ maxWidth: "170px", minWidth: "170px", margin: "1rem" }}
+            style={{
+              maxWidth: "170px",
+              minWidth: "170px",
+              margin: "1rem",
+            }}
           >
             Edit Profile
           </Button>
