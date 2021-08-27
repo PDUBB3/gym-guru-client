@@ -1,23 +1,14 @@
-import { useState } from "react";
 import { Controller } from "react-hook-form";
-import React from "react";
+import { useState } from "react";
 import clsx from "clsx";
 
 import Box from "@material-ui/core/Box";
-import classNames from "classnames";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Input from "@material-ui/core/Input";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import {
-  Button,
-  IconButton,
-  InputAdornment,
-  makeStyles,
-} from "@material-ui/core";
-
-import "./PasswordInput.css";
+import { IconButton, InputAdornment, makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,10 +31,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PasswordInput = ({ control, placeholder, name }) => {
+const PasswordInput = ({ control, name }) => {
   const classes = useStyles();
 
-  const [values, setValues] = React.useState({
+  const [values, setValues] = useState({
     showPassword: false,
   });
 
