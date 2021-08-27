@@ -34,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "flex-end",
     alignContent: "center",
     [theme.breakpoints.down("xs")]: {
-      fontSize: "1.5rem",
       paddingTop: "2rem",
       justifyContent: "center",
       marginRight: "0rem",
@@ -46,17 +45,18 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: "flex-end",
       textAlign: "center",
     },
-    [theme.breakpoints.up("md")]: {},
-    [theme.breakpoints.up("lg")]: {
+    [theme.breakpoints.up("md")]: {
       fontSize: "3.5rem",
-      marginTop: "1.5rem",
+    },
+    [theme.breakpoints.up("lg")]: {
+      fontSize: "4rem",
     },
   },
   h1GymHeader: {
     marginTop: "2rem",
     textDecoration: "none",
     borderBottom: "2px solid #00b4d8",
-    fontSize: "3rem",
+    fontSize: "4rem",
     color: "white",
     [theme.breakpoints.up("xs")]: {
       fontSize: "1.5rem",
@@ -70,9 +70,11 @@ const useStyles = makeStyles((theme) => ({
       justifySelf: "center",
       textAlign: "center",
     },
-    [theme.breakpoints.up("md")]: {},
-    [theme.breakpoints.up("lg")]: {
+    [theme.breakpoints.up("md")]: {
       fontSize: "3.5rem",
+    },
+    [theme.breakpoints.up("lg")]: {
+      fontSize: "4rem",
       marginTop: "1.5rem",
     },
   },
@@ -88,7 +90,12 @@ const useStyles = makeStyles((theme) => ({
       textAlign: "center",
     },
     [theme.breakpoints.up("md")]: {
-      marginRight: "1rem",
+      marginRight: "3rem",
+      marginTop: "2rem",
+      flexDirection: "row",
+    },
+    [theme.breakpoints.up("lg")]: {
+      marginRight: "4rem",
       marginTop: "2rem",
       flexDirection: "row",
     },
