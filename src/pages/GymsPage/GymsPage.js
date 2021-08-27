@@ -9,6 +9,7 @@ import GymFilter from "../../components/GymPage/GymFilter";
 import "./GymsPage.css";
 import { Box } from "@material-ui/core";
 import Loader from "react-loader-spinner";
+import ErrorCard from "../../components/ErrorCard";
 
 const GymsPage = () => {
   const { data, loading, error } = useQuery(GYMS_QUERY);
@@ -70,7 +71,7 @@ const GymsPage = () => {
             })}
           </div>
         ) : (
-          <div>No gyms</div>
+          <ErrorCard />
         )}
       </div>
     );
