@@ -191,11 +191,11 @@ const GymPageContent = ({ gym, reviews, user }) => {
       <div className="gym-container">
         <div className="image-container">
           <img src={imageURL} alt={name} height="350" className="image" />
-          {user.attendingGymId === gym.id ? (
+          {user && user.attendingGymId === gym.id ? (
             <h2>You are attending this gym!</h2>
           ) : (
             [
-              user.attendingGymId && (
+              user && user.attendingGymId && (
                 <button
                   className="attendGymBtn view-btn"
                   onClick={onClickAttend}
