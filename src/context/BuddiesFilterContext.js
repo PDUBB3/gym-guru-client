@@ -2,7 +2,7 @@ import { createContext, useState, useMemo } from "react";
 
 export const BuddiesFilterContext = createContext();
 
-export const BuddiesFilterProvider = ({ ...rest }) => {
+const BuddiesFilterProvider = ({ ...rest }) => {
   const [filterParams, setFilterParams] = useState("");
 
   const value = useMemo(
@@ -15,3 +15,5 @@ export const BuddiesFilterProvider = ({ ...rest }) => {
 
   return <BuddiesFilterContext.Provider value={value} {...rest} />;
 };
+
+export default BuddiesFilterProvider;
