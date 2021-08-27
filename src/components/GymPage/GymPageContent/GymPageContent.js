@@ -47,7 +47,7 @@ const GymPageContent = ({ gym, reviews, user }) => {
       deleteGymId: gym.id,
     },
     onCompleted: (data) => {
-      history.push(`/${user.username}`);
+      history.push(`/profile/${user.username}`);
     },
     onError: (error) => {
       console.log(error);
