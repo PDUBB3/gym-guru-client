@@ -5,7 +5,7 @@ import ReviewModal from "../ReviewModal";
 
 import { useUserContext } from "../../../context/UserContext";
 
-const Reviews = ({ reviews, rating, updateRating }) => {
+const Reviews = ({ reviews, rating, updateRating, gymId }) => {
   const [open, setOpen] = useState(false);
 
   const { state } = useUserContext();
@@ -54,7 +54,11 @@ const Reviews = ({ reviews, rating, updateRating }) => {
             </div>
           );
         })}
-        {state.user && <button onClick={handleClickOpen}>Add review</button>}
+        {state.user && [
+          state.user.ownedGymId !== gymId && (
+            <button onClick={handleClickOpen}>Add review</button>
+          ),
+        ]}
         <ReviewModal
           handleClose={handleClose}
           open={open}

@@ -27,6 +27,20 @@ const reducer = (state, action) => {
     return newState;
   }
 
+  if (action.type === "UPDATE_OWNED_GYM") {
+    const newUser = { ...state.user };
+    newUser.ownedGymId = action.payload.ownedGymId;
+
+    const newState = {
+      ...state,
+      user: newUser,
+    };
+
+    localStorage.setItem("user", JSON.stringify(newUser));
+
+    return newState;
+  }
+
   return state;
 };
 

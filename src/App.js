@@ -18,8 +18,8 @@ import Footer from "./components/Footer/index";
 import "./App.css";
 
 const httpLink = createHttpLink({
-  // uri: process.env.GRAPHQL_URL || "http://localhost:3001/",
-  uri: "https://whispering-ocean-57878.herokuapp.com/",
+  uri: process.env.GRAPHQL_URL || "http://localhost:3001/",
+  // uri: "https://whispering-ocean-57878.herokuapp.com/",
 });
 
 const authLink = setContext((_, { headers }) => {

@@ -176,14 +176,16 @@ export const DELETE_USER = gql`
   mutation Mutation($deleteUserId: ID!) {
     deleteUser(id: $deleteUserId) {
       id
-     }
-   }
- `
+    }
+  }
+`;
 export const DELETE_GYM = gql`
   mutation Mutation($deleteGymId: ID!) {
     deleteGym(id: $deleteGymId) {
-      id}
-      }`;
+      id
+    }
+  }
+`;
 
 export const UPDATE_ATTENDING_GYM = gql`
   mutation Mutation($updateAttendingGymInput: updateAttendingGymInput) {
@@ -192,6 +194,19 @@ export const UPDATE_ATTENDING_GYM = gql`
       firstName
       lastName
       attendingGymId {
+        name
+      }
+    }
+  }
+`;
+
+export const UPDATE_OWNED_GYM = gql`
+  mutation Mutation($updateOwnedGymInput: updateOwnedGymInput) {
+    updateOwnedGym(input: $updateOwnedGymInput) {
+      username
+      firstName
+      lastName
+      ownedGymId {
         name
       }
     }
