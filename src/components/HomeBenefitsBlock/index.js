@@ -44,13 +44,13 @@ const useStyles = makeStyles((theme) => ({
       url("https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80")`,
     backgroundRepeat: "repeat",
     backgroundPosition: "center",
-    maxWidth: "33%",
+    maxWidth: "34%",
     marginRight: "1rem",
   },
   benefitsBlock3: {
     backgroundImage: `linear-gradient(
         to bottom,
-        #333533 25%,
+        #333533 26%,
         rgba(0, 255, 0, 0) 100%
       ),
       url("https://images.unsplash.com/photo-1554284126-aa88f22d8b74?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzN8fHdvcmtvdXR8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=80")`,
@@ -80,13 +80,13 @@ const HomeBenefitsBlock = (props) => {
         </p>
       </div>
       <div className={classes.benefitsBlock2}>
-        <h2 lassName={classes.h2Benefits}>Find Gyms</h2>
+        <h2 className={classes.h2Benefits}>Find Gyms</h2>
         <p className={classes.benefitsP}>
           Find a new fitness hub or rate your favourite gym
         </p>
       </div>
       <div className={classes.benefitsBlock3}>
-        <h2 lassName={classes.h2Benefits}>Find Buddies</h2>
+        <h2 className={classes.h2Benefits}>Find Buddies</h2>
         <p className={classes.benefitsP}>
           Connect with new friends to smash those goals together
         </p>
