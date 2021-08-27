@@ -108,9 +108,20 @@ const GymPageContent = ({ gym, reviews, user }) => {
     }
   };
 
-  if (rating === 0) {
-    rating = averageRating();
-  }
+  const checkRating = async () => {
+    if (rating === 0) {
+      rating = averageRating();
+
+      await updateGymRating({
+        variables: {
+          updateGymRatingInput: {
+            id,
+            rating,
+          },
+        },
+      });
+    }
+  };
 
   const updateRating = async () => {
     const updatedRating = averageRating();
@@ -148,6 +159,8 @@ const GymPageContent = ({ gym, reviews, user }) => {
       console.log(err);
     }
   };
+
+  checkRating();
 
   return (
     <>
