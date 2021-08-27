@@ -9,7 +9,7 @@
 .user-info-container {
   width: 30%;
   text-align: center;
-  border-radius: 20px;
+  border-radius: 5px;
   box-shadow: 0px 0px 20px #00b4d8;
   margin: 1rem;
   align-self: flex-start;
@@ -18,8 +18,8 @@
 .background {
   background: linear-gradient(#00c8f0ee, #71c5d6);
   padding-bottom: 1rem;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .profile-image {
@@ -75,7 +75,7 @@ h1 {
 .box {
   padding: 2rem;
   margin-bottom: 2rem;
-  border-radius: 20px;
+  border-radius: 5px;
   box-shadow: 0px 0px 15px #00b4d8;
 }
 
