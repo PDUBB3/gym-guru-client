@@ -45,13 +45,8 @@ const BuddiesPage = () => {
     return (
       <div>
         <BuddiesJumbotron />
-        <div className="buddiesHeader">
-          <h1>Find a buddy!</h1>
-        </div>
+        <BuddiesFilter getUsers={getUsers} options={cities} />
         <div className="buddiesBody">
-          <div>
-            <BuddiesFilter getUsers={getUsers} options={cities} />
-          </div>
           <div className="buddiesCards">
             {users.map((user) => {
               return <BuddyCard data={user} />;
