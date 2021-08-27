@@ -17,7 +17,11 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Divider from "@material-ui/core/Divider";
 
 import { GYMS_QUERY } from "../../graphql/queries";
-import { CREATE_GYM, UPDATE_GYM } from "../../graphql/mutations";
+import {
+  CREATE_GYM,
+  UPDATE_GYM,
+  UPDATE_OWNED_GYM,
+} from "../../graphql/mutations";
 
 import ImageUploader from "../ImageUploader";
 import CityAutocomplete from "../CityAutocomplete";
@@ -81,7 +85,7 @@ const GymForm = ({ gym }) => {
 
   const history = useHistory();
 
-  const { state } = useUserContext();
+  const { state, dispatch } = useUserContext();
 
   const { handleSubmit, control } = useForm();
 
@@ -92,9 +96,33 @@ const GymForm = ({ gym }) => {
 
   const { data, loading, error } = useQuery(GYMS_QUERY);
 
+  const [updateOwnedGym] = useMutation(UPDATE_OWNED_GYM, {
+    onError: (e) => {
+      console.log(e);
+    },
+  });
+
   const [createGym] = useMutation(CREATE_GYM, {
     onCompleted: (data) => {
       history.push(`${data.createGym.id}`);
+
+      updateOwnedGym({
+        variables: {
+          updateOwnedGymInput: {
+            id: state.user.id,
+            ownedGymId: data.createGym.id,
+          },
+        },
+      });
+
+      const payload = {
+        ownedGymId: data.createGym.id,
+      };
+
+      dispatch({
+        type: "UPDATE_OWNED_GYM",
+        payload,
+      });
     },
     onError: (error) => {
       <ErrorAlert error={error} />;

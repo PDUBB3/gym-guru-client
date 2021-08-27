@@ -255,6 +255,7 @@ const GymPageContent = ({ gym, reviews, user }) => {
             reviews={reviews}
             rating={rating}
             updateRating={updateRating}
+            gymId={gym.id}
           />
         </div>
       </div>
