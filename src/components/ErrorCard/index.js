@@ -20,7 +20,7 @@ const useStyles = makeStyles({
   },
 });
 
-const ErrorCard = () => {
+const ErrorCard = ({ text }) => {
   const classes = useStyles();
 
   return (
@@ -28,7 +28,7 @@ const ErrorCard = () => {
       <Card className={classes.root}>
         <CardContent>
           <Typography variant="h5" component="h2">
-            No gyms fitting your criteria...
+            No {text} fitting your criteria...
           </Typography>
           <Typography variant="body2" component="p" className={classes.body}>
             Please select new criteria and search again.

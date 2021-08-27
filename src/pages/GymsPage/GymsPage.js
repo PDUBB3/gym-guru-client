@@ -71,7 +71,7 @@ const GymsPage = () => {
             })}
           </div>
         ) : (
-          <ErrorCard />
+          <ErrorCard text="gyms" />
         )}
       </div>
     );
