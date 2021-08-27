@@ -271,8 +271,8 @@ const GymForm = ({ gym }) => {
           </AccordionSummary>
           <AccordionDetails className={classes.accordionDetails}>
             {days.map(({ label, value }) => {
-              let openDefaultValue = null;
-              let closeDefaultValue = null;
+              let openDefaultValue = "10:00";
+              let closeDefaultValue = "20:00";
 
               if (gym) {
                 const { openingTimes } = gym;
