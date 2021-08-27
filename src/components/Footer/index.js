@@ -22,11 +22,11 @@ const useStyles = makeStyles({
 const Footer = () => {
   const classes = useStyles();
   return (
-    <div className={classes.root}>
-      <Typography id="footer"> © 2021. All Rights reserved.</Typography>
-      <Box fontStyle="italic" id="quote" m={1}>
-        Hustle for that muscle
-      </Box>
+    <div id="footer" className={classes.root}>
+      <Typography>
+        {" "}
+        Hustle for that muscle. © 2021. All Rights reserved.
+      </Typography>
     </div>
   );
 };

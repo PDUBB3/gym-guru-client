@@ -23,7 +23,7 @@
   padding: 0.5rem 1.5rem;
   background-color: #00b4d8;
   border: 1px solid #00b4d8;
-  border-radius: 10px;
+  border-radius: 2px;
   text-decoration: none;
   color: white;
 }
@@ -32,4 +32,16 @@
   color: #00b4d8;
   background-color: white;
   border: 1px solid #00b4d8;
+}
+
+.gymFilterButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+}
+
+.gymFilterButton button {
+  background-color: rgb(58, 58, 58);
+  color: white;
 }

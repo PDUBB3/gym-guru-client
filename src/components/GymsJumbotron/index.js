@@ -1,7 +1,6 @@
-import "./GymsJumbotron.css";
-
-import { useMediaQuery } from "react-responsive";
 import { makeStyles } from "@material-ui/core/styles";
+
+import "./GymsJumbotron.css";
 
 const useStyles = makeStyles((theme) => ({
   gymHeaderContainer: {

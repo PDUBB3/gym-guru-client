@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     width: 250,
     boxShadow: "0px 0px 20px #00b4d8",
     margin: 15,
-    borderRadius: "25px",
+    borderRadius: "5px",
     display: "flex",
     flexDirection: "column",
   },

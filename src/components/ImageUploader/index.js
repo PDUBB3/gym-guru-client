@@ -17,6 +17,7 @@ const useStyles = makeStyles({
   },
   media: {
     height: 241,
+    width: 241,
   },
   title: {
     textAlign: "center",

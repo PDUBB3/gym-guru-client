@@ -5,11 +5,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
-import FormGroup from "@material-ui/core/FormGroup";
-import FormLabel from "@material-ui/core/FormLabel";
-import FormControl from "@material-ui/core/FormControl";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import Box from "@material-ui/core/Box";
 import Divider from "@material-ui/core/Divider";
 import TextField from "@material-ui/core/TextField";
@@ -66,11 +61,15 @@ const BuddiesFilter = ({ getUsers, options }) => {
         usersCity: city,
       },
     });
+
+    setIsOpen(false);
   };
 
   return (
     <Container maxWidth="lg">
-      <Button onClick={toggleDrawer(true)}>Filter</Button>
+      <div className="gymFilterButton">
+        <Button onClick={toggleDrawer(true)}>Filter</Button>
+      </div>
       <Drawer anchor="top" open={isOpen} onClose={toggleDrawer(false)}>
         <Box m={2} className={classes.closeButton}>
           <CloseIcon onClick={toggleDrawer(false)} />

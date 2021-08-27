@@ -1,15 +1,18 @@
-import "./BuddiesPage.css";
-import { useState, useContext } from "react";
 import { useLazyQuery, useQuery } from "@apollo/client";
+import Loader from "react-loader-spinner";
+
 import { City } from "country-state-city";
+
+import { Box } from "@material-ui/core";
 
 import { USERS_QUERY } from "../../graphql/queries";
 
 import BuddiesJumbotron from "../../components/BuddiesJumbotron";
 import BuddiesFilter from "../../components/BuddiesPage/Filter/BuddiesFilter";
 import BuddyCard from "../../components/BuddiesPage/BuddyCard/BuddyCard";
-import { Box } from "@material-ui/core";
-import Loader from "react-loader-spinner";
+
+import "./BuddiesPage.css";
+import ErrorCard from "../../components/ErrorCard";
 
 const BuddiesPage = () => {
   const [getUsers, { loading: lazyLoading, data: lazyData, error: lazyError }] =
@@ -45,18 +48,17 @@ const BuddiesPage = () => {
     return (
       <div>
         <BuddiesJumbotron />
-        <div className="buddiesHeader">
-          <h1>Find a buddy!</h1>
-        </div>
+        <BuddiesFilter getUsers={getUsers} options={cities} />
         <div className="buddiesBody">
-          <div>
-            <BuddiesFilter getUsers={getUsers} options={cities} />
-          </div>
-          <div className="buddiesCards">
-            {users.map((user) => {
-              return <BuddyCard data={user} />;
-            })}
-          </div>
+          {users.length ? (
+            <div className="buddiesCards">
+              {users.map((user) => {
+                return <BuddyCard data={user} />;
+              })}
+            </div>
+          ) : (
+            <ErrorCard text="buddies" />
+          )}
         </div>
       </div>
     );

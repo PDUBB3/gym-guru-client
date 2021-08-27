@@ -1,4 +1,5 @@
 import { useMutation } from "@apollo/client";
+import { Avatar, makeStyles } from "@material-ui/core";
 import { FaUserCheck, FaUserMinus } from "react-icons/fa";
 import {
   ACCEPTBUDDYREQUEST,
@@ -6,7 +7,21 @@ import {
 } from "../../../graphql/mutations";
 import { BUDDIES_QUERY } from "../../../graphql/queries";
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+    "& > *": {
+      margin: theme.spacing(1),
+    },
+  },
+  large: {
+    width: theme.spacing(8),
+    height: theme.spacing(8),
+  },
+}));
+
 const BuddyCard = ({ buddy, userId, username, currentUser }) => {
+  const classes = useStyles();
   const [acceptBuddyRequest] = useMutation(ACCEPTBUDDYREQUEST, {
     refetchQueries: [BUDDIES_QUERY, "getBuddies"],
     onError: (error) => {
@@ -45,7 +60,6 @@ const BuddyCard = ({ buddy, userId, username, currentUser }) => {
 
   const onClickDelete = async () => {
     if (buddy.recipientId.id === userId) {
-      console.log("hello");
       await rejectBuddyRequest({
         variables: {
           rejectBuddyRequestInput: {
@@ -55,7 +69,6 @@ const BuddyCard = ({ buddy, userId, username, currentUser }) => {
         },
       });
     }
-    console.log("hi");
     await rejectBuddyRequest({
       variables: {
         rejectBuddyRequestInput: {
@@ -78,47 +91,50 @@ const BuddyCard = ({ buddy, userId, username, currentUser }) => {
     ? buddy.requesterId.profileImageUrl
     : buddy.recipientId.profileImageUrl;
 
+  console.log(buddy);
+
   return (
-    <div className="buddy-card">
-      <a href={buddyName} className="buddyCardLink">
-        {!buddyImage ? (
-          <img
-            src="https://www.seekpng.com/png/full/966-9665317_placeholder-image-person-jpg.png"
-            alt="buddy"
-            height="90"
-            width="90"
-            className="buddy-image"
-          />
-        ) : (
-          <img
-            src={buddyImage}
-            alt="buddy"
-            height="90"
-            width="90"
-            className="buddy-image"
-          />
-        )}
-      </a>
-      <div className="buddyDetails">
-        <h3>{buddyName}</h3>
-        <div>{buddyCity}</div>
-        {currentUser.username === username && [
-          buddy.status === "BUDDIES" && (
-            <FaUserMinus onClick={onClickDelete} className="buddyIcon" />
-          ),
-        ]}
-      </div>
-      <div>
-        {buddy.status === "PENDING" && (
-          <div>
-            <FaUserCheck
-              onClick={onClickAccept}
-              className="addBuddy buddyIcon"
-            />
-            <FaUserMinus onClick={onClickReject} className="buddyIcon" />
+    <div>
+      <a className="buddyCardLink" href={`/profile/${buddyName}`}>
+        <div className="buddyCard">
+          <div className="avatarContainer">
+            {!buddyImage ? (
+              <Avatar
+                alt={buddyName}
+                src="https://www.seekpng.com/png/full/966-9665317_placeholder-image-person-jpg.png"
+                className={classes.large}
+              />
+            ) : (
+              <Avatar
+                alt={buddyName}
+                src={buddyImage}
+                className={classes.large}
+              />
+            )}
           </div>
-        )}
-      </div>
+          <div className="buddyInfoContainer">
+            <h3>{buddyName}</h3>
+            <p>City: {buddyCity}</p>
+            <br></br>
+            {currentUser.username === username && [
+              buddy.status === "BUDDIES" && (
+                <FaUserMinus onClick={onClickDelete} className="buddyIcon" />
+              ),
+            ]}
+            <div>
+              {buddy.status === "PENDING" && (
+                <div>
+                  <FaUserCheck
+                    onClick={onClickAccept}
+                    className="addBuddy buddyIcon"
+                  />
+                  <FaUserMinus onClick={onClickReject} className="buddyIcon" />
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </a>
     </div>
   );
 };

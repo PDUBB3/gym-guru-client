@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Alert, AlertTitle } from "@material-ui/lab";
 
@@ -13,8 +12,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ErrorAlert = () => {
-  const [showAlert, setShowAlert] = useState(false);
-
   const classes = useStyles();
 
   return (
