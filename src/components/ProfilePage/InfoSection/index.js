@@ -4,6 +4,7 @@ import { FiTarget } from "react-icons/fi";
 import StarRatings from "react-star-ratings";
 
 import BuddyCard from "../BuddyCard";
+import { Button } from "@material-ui/core";
 
 const InfoSection = ({
   firstName,
@@ -87,8 +88,16 @@ const InfoSection = ({
                   </div>
                 ) : (
                   <div className="no-gym">
-                    <h2>Attending Gym</h2>
-                    <div>{firstName} does not currently attend a gym.</div>
+                    <h2 className="add-gym">Attending Gym</h2>
+                    {username === currentUser.username ? (
+                      <Button variant="contained" color="primary">
+                        <a href="/gyms" className="add-gym-link">
+                          Add a gym
+                        </a>
+                      </Button>
+                    ) : (
+                      <div>{firstName} is not currently attending a gym.</div>
+                    )}
                   </div>
                 ),
               ]
@@ -124,9 +133,13 @@ const InfoSection = ({
                   </div>
                 ) : (
                   <div className="no-gym">
-                    <h2>Own Gym</h2>
+                    <h2 className="add-gym">Own Gym</h2>
                     {username === currentUser.username ? (
-                      <a href="/gyms/new">Add a gym</a>
+                      <Button variant="contained" color="primary">
+                        <a href="/gyms/new" className="add-gym-link">
+                          Add a gym
+                        </a>
+                      </Button>
                     ) : (
                       <div>{firstName} has not registered their gym.</div>
                     )}
