@@ -93,7 +93,7 @@ const Navbar = () => {
           history.push(`/profile/${state.user.username}`);
         }}
       >
-        My Profile
+        Profile
       </Button>
       <Button
         disableElevation
