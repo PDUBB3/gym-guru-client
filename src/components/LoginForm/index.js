@@ -86,7 +86,7 @@ const LoginForm = () => {
         payload,
       });
 
-      history.push(`/${data.login.user.username}`);
+      history.push(`/profile/${data.login.user.username}`);
     },
     onError: () => {},
   });

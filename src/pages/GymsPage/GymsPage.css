@@ -33,3 +33,15 @@
   background-color: white;
   border: 1px solid #00b4d8;
 }
+
+.gymFilterButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+}
+
+.gymFilterButton button {
+  background-color: rgb(58, 58, 58);
+  color: white;
+}
