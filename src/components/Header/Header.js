@@ -43,12 +43,18 @@ const useStyles = makeStyles((theme) => ({
       marginRight: "0rem",
       textAlign: "center",
     },
-    [theme.breakpoints.down("sm")]: {
+    [theme.breakpoints.up("sm")]: {
+      marginTop: "1rem",
       marginBottom: "1rem",
       marginRight: "1rem",
       justifyContent: "flex-end",
+      textAlign: "center",
+    },
+    [theme.breakpoints.up("md")]: {
+      fontSize: "3.5rem",
     },
     [theme.breakpoints.up("lg")]: {
+      fontSize: "4rem",
       marginBottom: "2rem",
       marginRight: "2rem",
     },
@@ -57,24 +63,26 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "2rem",
     textDecoration: "none",
     borderBottom: "2px solid #00b4d8",
-    fontSize: "3rem",
+    fontSize: "4rem",
     color: "white",
-    [theme.breakpoints.up("xs")]: {
+    [theme.breakpoints.down("xs")]: {
       fontSize: "1.5rem",
       marginTop: "1rem",
       justifySelf: "center",
       textAlign: "center",
       marginRight: "0rem",
     },
-    [theme.breakpoints.down("sm")]: {
+    [theme.breakpoints.up("sm")]: {
       fontSize: "2rem",
       marginTop: "1rem",
-      justifySelf: "center",
+      justifySelf: "flex-end",
       textAlign: "center",
     },
-    [theme.breakpoints.up("md")]: {},
+    [theme.breakpoints.up("md")]: {
+      fontSize: "3rem",
+    },
     [theme.breakpoints.up("lg")]: {
-      fontSize: "3.5rem",
+      fontSize: "4rem",
       marginTop: "1.5rem",
     },
   },
@@ -91,9 +99,13 @@ const useStyles = makeStyles((theme) => ({
       textAlign: "center",
     },
     [theme.breakpoints.up("md")]: {
-      marginRight: "1rem",
+      marginRight: "4rem",
       marginTop: "2rem",
       flexDirection: "row",
+    },
+    [theme.breakpoints.up("lg")]: {
+      marginRight: "5rem",
+      marginTop: "2rem",
     },
   },
   h2HomeHeaderBlue: {
