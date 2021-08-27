@@ -4,6 +4,7 @@ import { Controller } from "react-hook-form";
 import { makeStyles } from "@material-ui/core/styles";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
+import Loader from "react-loader-spinner";
 import classNames from "classnames";
 
 import Accordion from "@material-ui/core/Accordion";
@@ -22,11 +23,10 @@ import { SIGNUP, UPDATE_USER } from "../../graphql/mutations";
 import ImageUploader from "../ImageUploader";
 import MultiSelectDropDown from "../MultiSelectDropDown";
 import CityAutocomplete from "../CityAutocomplete";
-
-import "../../pages/SignUpPage/SignUpPage.css";
-import Loader from "react-loader-spinner";
 import FormInput from "../FormInput";
 import PasswordInput from "../PasswordInput";
+
+import "../../pages/SignUpPage/SignUpPage.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {

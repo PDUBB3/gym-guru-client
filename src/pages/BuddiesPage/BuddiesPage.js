@@ -1,15 +1,17 @@
-import "./BuddiesPage.css";
-import { useState, useContext } from "react";
 import { useLazyQuery, useQuery } from "@apollo/client";
+import Loader from "react-loader-spinner";
+
 import { City } from "country-state-city";
+
+import { Box } from "@material-ui/core";
 
 import { USERS_QUERY } from "../../graphql/queries";
 
 import BuddiesJumbotron from "../../components/BuddiesJumbotron";
 import BuddiesFilter from "../../components/BuddiesPage/Filter/BuddiesFilter";
 import BuddyCard from "../../components/BuddiesPage/BuddyCard/BuddyCard";
-import { Box } from "@material-ui/core";
-import Loader from "react-loader-spinner";
+
+import "./BuddiesPage.css";
 
 const BuddiesPage = () => {
   const [getUsers, { loading: lazyLoading, data: lazyData, error: lazyError }] =
