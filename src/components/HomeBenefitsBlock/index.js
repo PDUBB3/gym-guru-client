@@ -1,10 +1,24 @@
-import "./Home-Benefits-Block.css";
+import { makeStyles } from "@material-ui/core/styles";
+import { Grid } from "@material-ui/core";
+import "./HomeBenefitsBlock.css";
 
-// Benefits block for homepage
+const useStyles = makeStyles(() => ({
+  container: {
+    minHeight: "55vh",
+    maxHeight: "55vh",
+  },
+}));
 
 const HomeBenefitsBlock = (props) => {
+  const classes = useStyles();
+
   return (
-    <div className="benefits-container">
+    <Grid
+      container
+      direction="row"
+      className={classes.container}
+      alignContent="stretch"
+    >
       <div className="benefits-block-1">
         <h2 className="h2-benefits">Sign Up</h2>
         <p className="benefits-p">
@@ -23,7 +37,7 @@ const HomeBenefitsBlock = (props) => {
           Connect with new friends to smash those goals together
         </p>
       </div>
-    </div>
+    </Grid>
   );
 };
 

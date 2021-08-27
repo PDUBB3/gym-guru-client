@@ -3,7 +3,7 @@ import { Box, Container } from "@material-ui/core";
 import GymCarousel from "../components/GymCarousel";
 
 import Header from "../components/Header/Header";
-import HomeBenefitsBlock from "../components/Home-Benefits-Block";
+import HomeBenefitsBlock from "../components/HomeBenefitsBlock";
 import Loader from "react-loader-spinner";
 import { HOME_QUERY } from "../graphql/queries";
 
