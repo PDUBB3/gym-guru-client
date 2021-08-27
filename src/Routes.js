@@ -31,7 +31,7 @@ const Routes = () => {
         <GymPage />
       </Route>
       <Route exact path="/findbuddies">
-        <BuddiesPage />
+        {state.user ? <BuddiesPage /> : <Redirect to="/login" />}
       </Route>
       <Route exact path="/:username">
         <ProfileRoute />
