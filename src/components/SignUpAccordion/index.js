@@ -313,7 +313,7 @@ const SignupAccordian = ({ user }, { redirect = "/login" }) => {
                 name="facebookUrl"
                 placeholder="Facebook URL"
                 control={control}
-                required={true}
+                required={false}
                 classes={classes}
                 defaultValue={user?.facebookUrl}
               />
@@ -321,7 +321,7 @@ const SignupAccordian = ({ user }, { redirect = "/login" }) => {
                 name="twitterUrl"
                 placeholder="Twitter URL"
                 control={control}
-                required={true}
+                required={false}
                 classes={classes}
                 defaultValue={user?.twitterUrl}
               />
@@ -329,7 +329,7 @@ const SignupAccordian = ({ user }, { redirect = "/login" }) => {
                 name="instagramUrl"
                 placeholder="Instagram URL"
                 control={control}
-                required={true}
+                required={false}
                 classes={classes}
                 defaultValue={user?.instagramUrl}
               />
