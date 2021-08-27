@@ -9,7 +9,7 @@ import { setContext } from "@apollo/client/link/context";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { createTheme } from "@material-ui/core/styles";
 
-import Routes from "./Routes";
+import Routes from "./routes";
 import BuddiesFilterProvider from "./context/BuddiesFilterContext";
 import UserProvider from "./context/UserContext";
 import Navbar from "./components/Navbar/Navbar";

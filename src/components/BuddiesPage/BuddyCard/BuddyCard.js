@@ -20,7 +20,7 @@ const BuddyCard = ({ data }) => {
   const classes = useStyles();
 
   return (
-    <a className="buddyCardLink" href={`/${data.username}`}>
+    <a className="buddyCardLink" href={`/profile/${data.username}`}>
       <div className="buddyCard">
         <div className="avatarContainer">
           <Avatar

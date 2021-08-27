@@ -90,7 +90,7 @@ const Navbar = () => {
         aria-controls="simple-menu"
         aria-haspopup="true"
         onClick={() => {
-          history.push(`/${state.user.username}`);
+          history.push(`/profile/${state.user.username}`);
         }}
       >
         My Profile

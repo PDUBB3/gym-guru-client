@@ -12,6 +12,7 @@ import { Box } from "@material-ui/core";
 import Loader from "react-loader-spinner";
 
 const ProfilePage = () => {
+  console.log("HERE");
   const { username } = useParams();
   const { state } = useUserContext();
 
