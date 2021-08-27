@@ -80,13 +80,13 @@ const HomeBenefitsBlock = (props) => {
         </p>
       </div>
       <div className={classes.benefitsBlock2}>
-        <h2 lassName={classes.h2Benefits}>Find Gyms</h2>
+        <h2 className={classes.h2Benefits}>Find Gyms</h2>
         <p className={classes.benefitsP}>
           Find a new fitness hub or rate your favourite gym
         </p>
       </div>
       <div className={classes.benefitsBlock3}>
-        <h2 lassName={classes.h2Benefits}>Find Buddies</h2>
+        <h2 className={classes.h2Benefits}>Find Buddies</h2>
         <p className={classes.benefitsP}>
           Connect with new friends to smash those goals together
         </p>
