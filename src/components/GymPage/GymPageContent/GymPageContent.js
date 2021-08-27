@@ -210,7 +210,16 @@ const GymPageContent = ({ gym, reviews, user }) => {
       </Container>
       <div className="gym-container">
         <div className="image-container">
-          <img src={imageURL} alt={name} height="350" className="image" />
+          {!imageURL ? (
+            <img
+              src="https://media.istockphoto.com/vectors/thumbnail-image-vector-graphic-vector-id1147544807?k=6&m=1147544807&s=612x612&w=0&h=8CXEtGfDlt7oFx7UyEZClHojvDjZR91U-mAU8UlFF4Y="
+              alt={name}
+              height="350"
+              className="image"
+            />
+          ) : (
+            <img src={imageURL} alt={name} height="350" className="image" />
+          )}
           {user && user.attendingGymId === gym.id ? (
             <h2>You are attending this gym!</h2>
           ) : (
