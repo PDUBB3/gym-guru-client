@@ -66,7 +66,7 @@ const GymPageContent = ({ gym, reviews, user }) => {
     setOpen(false);
   };
 
-  const { id, name, rating, imageURL, ...rest } = gym;
+  let { id, name, rating, imageURL, ...rest } = gym;
 
   const { dispatch } = useUserContext();
 
@@ -107,6 +107,10 @@ const GymPageContent = ({ gym, reviews, user }) => {
       return rating;
     }
   };
+
+  if (rating === 0) {
+    rating = averageRating();
+  }
 
   const updateRating = async () => {
     const updatedRating = averageRating();
