@@ -95,46 +95,48 @@ const BuddyCard = ({ buddy, userId, username, currentUser }) => {
 
   return (
     <div>
-      <a className="buddyCardLink" href={`/profile/${buddyName}`}>
-        <div className="buddyCard">
-          <div className="avatarContainer">
-            {!buddyImage ? (
+      <div className="buddyCard">
+        <div className="avatarContainer">
+          {!buddyImage ? (
+            <a className="buddyCardLink" href={`/profile/${buddyName}`}>
               <Avatar
                 alt={buddyName}
                 src="https://www.seekpng.com/png/full/966-9665317_placeholder-image-person-jpg.png"
                 className={classes.large}
               />
-            ) : (
+            </a>
+          ) : (
+            <a className="buddyCardLink" href={`/profile/${buddyName}`}>
               <Avatar
                 alt={buddyName}
                 src={buddyImage}
                 className={classes.large}
               />
+            </a>
+          )}
+        </div>
+        <div className="buddyInfoContainer">
+          <h3>{buddyName}</h3>
+          <p>City: {buddyCity}</p>
+          <br></br>
+          {currentUser.username === username && [
+            buddy.status === "BUDDIES" && (
+              <FaUserMinus onClick={onClickDelete} className="buddyIcon" />
+            ),
+          ]}
+          <div>
+            {buddy.status === "PENDING" && (
+              <div>
+                <FaUserCheck
+                  onClick={onClickAccept}
+                  className="addBuddy buddyIcon"
+                />
+                <FaUserMinus onClick={onClickReject} className="buddyIcon" />
+              </div>
             )}
           </div>
-          <div className="buddyInfoContainer">
-            <h3>{buddyName}</h3>
-            <p>City: {buddyCity}</p>
-            <br></br>
-            {currentUser.username === username && [
-              buddy.status === "BUDDIES" && (
-                <FaUserMinus onClick={onClickDelete} className="buddyIcon" />
-              ),
-            ]}
-            <div>
-              {buddy.status === "PENDING" && (
-                <div>
-                  <FaUserCheck
-                    onClick={onClickAccept}
-                    className="addBuddy buddyIcon"
-                  />
-                  <FaUserMinus onClick={onClickReject} className="buddyIcon" />
-                </div>
-              )}
-            </div>
-          </div>
         </div>
-      </a>
+      </div>
     </div>
   );
 };
