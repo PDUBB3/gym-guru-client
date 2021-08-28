@@ -1,15 +1,18 @@
-<h1> Gym Guru  </h1>
+# Gym Guru
 
-<h2> Table of Contents </h2>
-- [Project Link](#project-link)
-- [Functionality](#functionality)
-- [What did we do?](#what-did-we-do)
-- [Technologies:](#technologies)
-  - [Installation](#installation)
-- [Getting Started](#getting-started)
-  - [Launch the app](#launch-the-app)
-- [License](#license)
-- [Screenshots](#screenshots)
+## Table of Contents
+
+- [Gym Guru](#gym-guru)
+  - [Table of Contents](#table-of-contents)
+  - [Project Link](#project-link)
+  - [Functionality](#functionality)
+  - [What did we do?](#what-did-we-do)
+  - [Technologies:](#technologies)
+    - [Installation](#installation)
+  - [Getting Started](#getting-started)
+    - [Launch the app](#launch-the-app)
+  - [License](#license)
+  - [Screenshots](#screenshots)
 
 ## Project Link
 
