@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
         #2f2f2f 33%,
         #00ff0000 100%
       ),
-      url("https://images.unsplash.com/photo-1554284126-aa88f22d8b74?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDV8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=950&q=60")`,
+      url("https://images.unsplash.com/photo-1554284126-aa88f22d8b74?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDV8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=60")`,
     [theme.breakpoints.up("xs")]: {
       background: "#2f2f2f",
     },
