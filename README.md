@@ -64,7 +64,7 @@ Our application allows gym owners to:
 - Apollo server
 - Node.js
 
-### Installation
+## Installation
 
 ```
 git clone https://github.com/PDUBB3/gym-guru-client.git
@@ -80,7 +80,7 @@ To seed the data:
 npm run seed
 ```
 
-### Launch the app
+## Launch the app
 
 ```
 npm run start
